@@ -1,15 +1,15 @@
 {
  "schema": "pulse-mirror-v1",
- "generatedAt": "2026-10-12T21:32:02.557Z",
+ "generatedAt": "2026-10-12T22:28:34.649Z",
  "trigger": "workflow_dispatch",
  "provenance": "CI-carried from roshpinacare-sys/Sandbox public-grade ledgers (darkened by the T-66 repo flip, not by content) + live chain probes. Sanitized output of a §7 runner shell.",
  "chains": {
-  "hiveHead": 110719904,
-  "steemHead": 110386231
+  "hiveHead": 110721032,
+  "steemHead": 110387357
  },
  "sources": {
   "profitOracle": {
-   "at": "2026-10-12T21:32:02.557Z",
+   "at": "2026-10-12T22:28:34.649Z",
    "path": "receipts/profit-oracle-latest.json",
    "source": "roshpinacare-sys/Sandbox",
    "candidates": [
@@ -385,129 +385,8 @@
     }
    }
   },
-  "lessons": {
-   "at": "2026-10-12T21:32:02.557Z",
-   "path": "ops/lessons/ledger.md",
-   "source": "roshpinacare-sys/Autonomy",
-   "candidates": [
-    {
-     "repo": "roshpinacare-sys/Autonomy",
-     "path": "ops/lessons/ledger.md",
-     "at": null
-    },
-    {
-     "repo": "roshpinacare-sys/Sandbox",
-     "path": "ops/lessons/ledger.md",
-     "at": null
-    }
-   ],
-   "text": "# LESSONS LEDGER · append-only · deterministic distillation of measured history\n\n## scribe #1 · 2026-10-12T20:40:52.826Z\n- wallet: no receipts yet (artery young)\n- fleet actions 24h: 14 runs · failures: artery-grid:failure×1, artery-fleet:failure×1, hive-probe:failure×1, federation:failure×1, verifier (truth & quality):failure×2, sovereign-state:failure×1, artery-catchup:failure×1\n- sovereign tick last pulse: 1min ago\n- sandbox commits 24h: 7 · authors: {\"integrity-guard\":1,\"grid-watch\":1,\"sovereign-flow\":1,\"probe-runner[bot]\":1,\"sandbox-sovereign\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 17min ago\n- Domain book office/data.json: 48min old (law <=60min)\n- Domain book agents/office-live.json: 87min old (law <=180min)\n- Domain book dex/office-feed.json: 561min old (law <=1560min)\n- flow map: not yet generated (artery-flow first run pending)\n- integrity guard: no verdict yet (artery-integrity first run pending)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=15029 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=15h\n- dex book dex/showcase.json: ok sig=pair=unknown age=15h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: no verdict yet (artery-decision-truth first run pending)\n- no law proposals — everything measured healthy\n\n"
-  },
-  "integrity": {
-   "at": "2026-10-12T21:32:02.557Z",
-   "path": "ops/integrity/verdict.json",
-   "source": "roshpinacare-sys/Autonomy",
-   "candidates": [
-    {
-     "repo": "roshpinacare-sys/Sandbox",
-     "path": "ops/integrity/verdict.json",
-     "at": "2026-10-12T10:42:49.896Z"
-    },
-    {
-     "repo": "roshpinacare-sys/Autonomy",
-     "path": "ops/integrity/verdict.json",
-     "at": "2026-10-12T20:40:47.022Z"
-    }
-   ],
-   "data": {
-    "schema": "integrity-guard/2",
-    "at": "2026-10-12T20:40:47.022Z",
-    "overall": "PASS_WITH_ALERTS",
-    "summary": {
-     "sources": 9,
-     "verified": 3,
-     "findings": 8,
-     "counts": {
-      "MEDIUM": 1,
-      "FLAG": 7
-     }
-    },
-    "provenance": {
-     "runId": "38305759419",
-     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38305759419",
-     "sha": "264f42f61e1829c4fb56ea6baf46e25753f95031"
-    },
-    "verified": [
-     {
-      "where": "self:ops/integrity/verdict.json",
-      "law": "first-run",
-      "detail": "אין-קבלה-קודמת — ריצה-ראשונה"
-     },
-     {
-      "where": "FleetHQ:receipts/office-ci/verdict.json",
-      "law": "verified",
-      "detail": "run=38303811191 conc=success repo=FleetHQ"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38269593418 conc=success repo=FleetHQ"
-     }
-    ],
-    "findings": [
-     {
-      "level": "MEDIUM",
-      "where": "Sandbox",
-      "law": "tree-unreachable",
-      "detail": "HTTP 404 — גילוי-דינמי דולג (לא-זיוף)"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/wallet/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/fleet/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/grid/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/latest.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:ops/flow/receipt.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:state/verifier/verdict-latest.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Domain:agents/office-live.json",
-      "law": "unprovenanced",
-      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: office lane"
-     }
-    ]
-   }
-  },
   "flowMap": {
-   "at": "2026-10-12T21:32:02.557Z",
+   "at": "2026-10-12T22:28:34.649Z",
    "path": "ops/flow/flow-map.json",
    "source": "roshpinacare-sys/Sandbox",
    "candidates": [
@@ -2293,8 +2172,26 @@
     ]
    }
   },
+  "lessons": {
+   "at": "2026-10-12T22:28:34.649Z",
+   "path": "ops/lessons/ledger.md",
+   "source": "roshpinacare-sys/Autonomy",
+   "candidates": [
+    {
+     "repo": "roshpinacare-sys/Autonomy",
+     "path": "ops/lessons/ledger.md",
+     "at": null
+    },
+    {
+     "repo": "roshpinacare-sys/Sandbox",
+     "path": "ops/lessons/ledger.md",
+     "at": null
+    }
+   ],
+   "text": "# LESSONS LEDGER · append-only · deterministic distillation of measured history\n\n## scribe #1 · 2026-10-12T20:40:52.826Z\n- wallet: no receipts yet (artery young)\n- fleet actions 24h: 14 runs · failures: artery-grid:failure×1, artery-fleet:failure×1, hive-probe:failure×1, federation:failure×1, verifier (truth & quality):failure×2, sovereign-state:failure×1, artery-catchup:failure×1\n- sovereign tick last pulse: 1min ago\n- sandbox commits 24h: 7 · authors: {\"integrity-guard\":1,\"grid-watch\":1,\"sovereign-flow\":1,\"probe-runner[bot]\":1,\"sandbox-sovereign\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 17min ago\n- Domain book office/data.json: 48min old (law <=60min)\n- Domain book agents/office-live.json: 87min old (law <=180min)\n- Domain book dex/office-feed.json: 561min old (law <=1560min)\n- flow map: not yet generated (artery-flow first run pending)\n- integrity guard: no verdict yet (artery-integrity first run pending)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=15029 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=15h\n- dex book dex/showcase.json: ok sig=pair=unknown age=15h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: no verdict yet (artery-decision-truth first run pending)\n- no law proposals — everything measured healthy\n\n"
+  },
   "decisionTruth": {
-   "at": "2026-10-12T21:32:02.557Z",
+   "at": "2026-10-12T22:28:34.649Z",
    "path": "ops/decision-truth/verdict.json",
    "source": "roshpinacare-sys/Autonomy",
    "candidates": [
@@ -2504,8 +2401,111 @@
     }
    }
   },
+  "integrity": {
+   "at": "2026-10-12T22:28:34.649Z",
+   "path": "ops/integrity/verdict.json",
+   "source": "roshpinacare-sys/Autonomy",
+   "candidates": [
+    {
+     "repo": "roshpinacare-sys/Sandbox",
+     "path": "ops/integrity/verdict.json",
+     "at": "2026-10-12T10:42:49.896Z"
+    },
+    {
+     "repo": "roshpinacare-sys/Autonomy",
+     "path": "ops/integrity/verdict.json",
+     "at": "2026-10-12T20:40:47.022Z"
+    }
+   ],
+   "data": {
+    "schema": "integrity-guard/2",
+    "at": "2026-10-12T20:40:47.022Z",
+    "overall": "PASS_WITH_ALERTS",
+    "summary": {
+     "sources": 9,
+     "verified": 3,
+     "findings": 8,
+     "counts": {
+      "MEDIUM": 1,
+      "FLAG": 7
+     }
+    },
+    "provenance": {
+     "runId": "38305759419",
+     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38305759419",
+     "sha": "264f42f61e1829c4fb56ea6baf46e25753f95031"
+    },
+    "verified": [
+     {
+      "where": "self:ops/integrity/verdict.json",
+      "law": "first-run",
+      "detail": "אין-קבלה-קודמת — ריצה-ראשונה"
+     },
+     {
+      "where": "FleetHQ:receipts/office-ci/verdict.json",
+      "law": "verified",
+      "detail": "run=38303811191 conc=success repo=FleetHQ"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38269593418 conc=success repo=FleetHQ"
+     }
+    ],
+    "findings": [
+     {
+      "level": "MEDIUM",
+      "where": "Sandbox",
+      "law": "tree-unreachable",
+      "detail": "HTTP 404 — גילוי-דינמי דולג (לא-זיוף)"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/wallet/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/fleet/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/grid/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/latest.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:ops/flow/receipt.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:state/verifier/verdict-latest.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Domain:agents/office-live.json",
+      "law": "unprovenanced",
+      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: office lane"
+     }
+    ]
+   }
+  },
   "research": {
-   "at": "2026-10-12T21:32:02.557Z",
+   "at": "2026-10-12T22:28:34.649Z",
    "path": "research/findings-2026-10-11.json",
    "data": {
     "schema": "saos.research.findings/1",
