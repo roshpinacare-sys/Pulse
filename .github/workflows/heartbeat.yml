@@ -5,6 +5,15 @@ name: heartbeat
 # Loop discipline: observe (live API census) → act (write state) → record (git commit)
 # → verify (the commit itself is the observable gate) → terminal states in state/terminal.
 
+# CLOCK REDUNDANCY (DECISIONS #9): three independent clocks, one SLA (state freshness 90min):
+#   1. schedule cron — best-effort, may lag on new repos, needs no credentials
+#   2. self-relay — every successful run sleeps to the next half-hour boundary and
+#      dispatches the next tick (github.token with actions:write; FLEET_TOKEN fallback).
+#      The organ carries its own clock: survives with zero sandbox and zero sessions.
+#   3. manual/repository_dispatch ignition — humans, agents, or sibling organs
+# Fail-closed law: relay fires ONLY on success (probe crash = no chain = named failure),
+#   degraded keeps the chain alive (the state commit is the receipt, probe exit 0).
+
 on:
   schedule:
     - cron: '*/30 * * * *' # every 30 min; GitHub may delay under load — the state file records reality
@@ -20,6 +29,7 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write # powers the self-relay dispatch (POST /repos/{repo}/dispatches)
 
 concurrency:
   group: heartbeat
@@ -28,7 +38,7 @@ concurrency:
 jobs:
   pulse:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 45 # relay sleeps up to 30 min before self-kick; public-repo minutes are free
     steps:
       - uses: actions/checkout@v4
 
@@ -60,3 +70,33 @@ jobs:
               if [ "$i" = "3" ]; then echo "named terminal: push-race-unresolved after 3 attempts"; exit 1; fi
             done
           fi
+
+      - name: relay (self-kick the next tick — the organ carries its own clock)
+        if: success()
+        env:
+          FLEET_TOKEN: ${{ secrets.FLEET_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          now=$(date +%s)
+          next=$(( (now / 1800 + 1) * 1800 ))
+          wait=$(( next - now ))
+          [ "$wait" -gt 0 ] || wait=60
+          echo "relay: sleeping ${wait}s until next half-hour boundary"
+          sleep "$wait"
+          relay_dispatch () { # $1 = token, $2 = label
+            curl -s -o /tmp/relay.out -w '%{http_code}' -X POST \
+              -H "Authorization: Bearer $1" \
+              -H "Accept: application/vnd.github+json" \
+              -H "User-Agent: pulse-relay" \
+              https://api.github.com/repos/roshpinacare-sys/Pulse/dispatches \
+              -d '{"event_type":"pulse","client_payload":{"note":"self-relay"}}'
+          }
+          code=$(relay_dispatch "$GH_TOKEN" github-token)
+          if [ "$code" != "204" ]; then
+            echo "relay: github.token dispatch http=${code} — falling back to FLEET_TOKEN"
+            code=$(relay_dispatch "$FLEET_TOKEN" fleet-token)
+          fi
+          echo "relay: next tick dispatched http=${code}"
+          cat /tmp/relay.out || true
+          [ "$code" = "204" ] || { echo "named terminal: relay-dispatch-failed"; exit 1; }
