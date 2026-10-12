@@ -25,6 +25,7 @@ schedule (*/30) ──▶ probe.mjs ──▶ state/network.json ──▶ git c
 | `scripts/probe.mjs` | גוף-הלולאה (observe→act→record→terminal) |
 | `state/network.json` | **האמת החיה של הצי** — census מלא, טריות, בריאות-PAT |
 | `state/history.jsonl` | לדג' הדופק (3000 ריצות אחרונות ≈ 62 ימים) |
+| `mirror/lanes.json` | **המראה הציבורית** — רישומי-lane מדרגה-ציבורית שהואפלו ע"י פריטת-Sandbox של T-66, נישאים חזרה לאור ע"י CI (פאנלי Domain חיים ממנו) |
 | `BOOTSTRAP.md` | איך סוכן חדש נכנס מאפס — הרשת מתארת את עצמה |
 | `PROMPTS.md` | ספריית-פרומטים לבעלים ולסוכנים |
 | `DECISIONS.md` | פרוטוקול + יומן ההחלטות של הריבונות |
