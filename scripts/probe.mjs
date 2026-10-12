@@ -123,6 +123,7 @@ for (const r of repos) {
     conclusion: run.conclusion,
     workflow: run.name,
     event: run.event,
+    runId: run.id,
     startedAt: run.created_at,
     url: run.html_url,
   })
@@ -160,6 +161,24 @@ const redRuns = fleet.filter((r) => {
 const isInfoClass = (r) => r.private && !RUNNER_CLASS.test(r.actions.workflow || '') && AUDIT_CLASS.test(r.actions.workflow || '') && r.actions.event !== 'push'
 const actionsRedInfo = redRuns.filter((r) => isInfoClass(r)).map((r) => r.name)
 const actionsRedActionable = redRuns.filter((r) => !isInfoClass(r)).map((r) => r.name)
+// --- QUOTA-SIGNATURE (T-73): root-cause dedup, measured 2026-10-12 ---
+// A private-repo job that FAILS with ZERO executed steps within seconds is not a code
+// failure — it is the Actions-minutes billing gate (measured: saos-dex gate + wallet-verify
+// failed 2s after start with steps=[] while public organs ran unlimited). N scary reds
+// collapse into ONE named owner-gated condition; the code-level reds keep their own list.
+const quotaGated = []
+for (const name of actionsRedActionable) {
+  const repo = fleet.find((r) => r.name === name)
+  const runId = (LIVENESS.get(name) || {}).runId
+  if (!repo || !repo.private || !runId) continue
+  const jr = await gh(`/repos/${OWNER}/${name}/actions/runs/${runId}/jobs`, AUTH_TOK)
+  const job = Array.isArray(jr.data?.jobs) ? jr.data.jobs.find((j) => j.conclusion === 'failure') : null
+  if (!job) continue
+  const stepsRun = (job.steps || []).filter((s) => s.status === 'completed' || s.status === 'in_progress').length
+  const seconds = job.started_at && job.completed_at ? (new Date(job.completed_at) - new Date(job.started_at)) / 1000 : null
+  if (stepsRun === 0 && seconds !== null && seconds < 15) quotaGated.push(name)
+}
+const actionsRedCode = actionsRedActionable.filter((n) => !quotaGated.includes(n))
 const actionsFailing = redRuns.map((r) => r.name) // raw, unfiltered — kept for continuity
 const stale24h = fleet
   .filter((r) => !r.archived && r.pushedAt && Date.now() - new Date(r.pushedAt).getTime() > 24 * 3600 * 1000)
@@ -179,7 +198,8 @@ const totals = {
   issuesTop,
   actionsFailing: actionsFailing.length,
   actionsRedInfo: actionsRedInfo.length,
-  actionsRedActionable: actionsRedActionable.length,
+  actionsRedActionable: actionsRedCode.length,
+  actionsQuotaGated: quotaGated.length,
   actionsUnmeasured: fleet.filter((r) => r.actions.status === 'unmeasured').length,
 }
 
@@ -217,10 +237,12 @@ if (repos.length === 0) {
 } else if (mode !== 'fleet-full') {
   state.terminal = 'degraded'
   state.reasons.push(`visibility: public-only — ${totals.private === 0 ? 'private sight unavailable' : `${totals.private} private repos invisible from this census`} (mode=${mode})`)
-} else if (patHealth.ok && actionsRedActionable.length > 0) {
-  // calibrated degrade: ONLY actionable reds speak here (audit noise is recorded, not degrading)
+} else if (patHealth.ok && (actionsRedCode.length > 0 || quotaGated.length > 0)) {
+  // calibrated degrade: ONLY code-level actionable reds speak here (audit noise and the
+  // billing gate are recorded as named conditions, never blended into code-failure noise)
   state.terminal = 'degraded'
-  state.reasons.push(`Actions red (actionable): ${actionsRedActionable.join(', ')}`)
+  if (quotaGated.length > 0) state.reasons.push(`Actions minutes quota-exhausted on private fleet (${quotaGated.length} repos: ${quotaGated.join(', ')}) — billing gate, owner-gated; jobs fail in ~2s with zero executed steps; public organs unaffected (unlimited free minutes)`)
+  if (actionsRedCode.length > 0) state.reasons.push(`Actions red (code-level, actionable): ${actionsRedCode.join(', ')}`)
   if (actionsRedInfo.length > 0) state.reasons.push(`Actions red (expected-audit info, calibrated per #8, ${actionsRedInfo.length}): ${actionsRedInfo.join(', ')}`)
 } else if (patHealth.ok && actionsRedInfo.length > 0) {
   state.reasons.push(`Actions red (expected-audit info, calibrated per #8, ${actionsRedInfo.length}): ${actionsRedInfo.join(', ')}`)
@@ -244,7 +266,8 @@ const network = {
   totals,
   stale24h,
   actionsFailing,
-  actionsRedActionable,
+  actionsRedActionable: actionsRedCode,
+  actionsQuotaGated: quotaGated,
   actionsRedInfo,
   fleet,
 }
