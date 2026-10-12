@@ -1,389 +1,124 @@
 {
  "schema": "pulse-mirror-v1",
- "generatedAt": "2026-10-12T20:52:19.874Z",
+ "generatedAt": "2026-10-12T20:52:39.059Z",
  "trigger": "workflow_dispatch",
  "provenance": "CI-carried from roshpinacare-sys/Sandbox public-grade ledgers (darkened by the T-66 repo flip, not by content) + live chain probes. Sanitized output of a §7 runner shell.",
  "chains": {
-  "hiveHead": 110719112,
-  "steemHead": 110385441
+  "hiveHead": 110719119,
+  "steemHead": 110385449
  },
  "sources": {
-  "profitOracle": {
-   "at": "2026-10-12T20:52:19.874Z",
-   "path": "receipts/profit-oracle-latest.json",
+  "integrity": {
+   "at": "2026-10-12T20:52:39.059Z",
+   "path": "ops/integrity/verdict.json",
    "data": {
-    "ok": true,
-    "schema": "roshpinacare.profit-oracle/1",
-    "agent": "profit-oracle v1 (zai-14b)",
-    "law": "keyless daily profitability pulse: V-WORTH (14-roster own/eff SP + liquid + order-book mid → netWorthSbdEquiv) · V-GRID-EDGE (pnl-desk verdict/edge/realized — value is data, desk decides) · V-ZOMBIE-LADDER (owner-treasury open orders vs prior: vanished = AMBER until fill/cancel verified); delta > +0.5% = PROFIT, ±0.5% = FLAT, < −0.5% = LOSS; network failure = UNKNOWN + reason, never guessed",
-    "gate": "profit-oracle (zai-14b) — standing daily profit pulse; joins zai-12b's fresh-oracle house pattern; owner trace 1a12…7021 'the autonomy itself checks profitability daily'",
-    "prior": {
-     "ok": true,
-     "schema": "roshpinacare.profit-oracle/1",
-     "agent": "profit-oracle v1 (zai-14b)",
-     "law": "keyless daily profitability pulse: V-WORTH (14-roster own/eff SP + liquid + order-book mid → netWorthSbdEquiv) · V-GRID-EDGE (pnl-desk verdict/edge/realized — value is data, desk decides) · V-ZOMBIE-LADDER (owner-treasury open orders vs prior: vanished = AMBER until fill/cancel verified); delta > +0.5% = PROFIT, ±0.5% = FLAT, < −0.5% = LOSS; network failure = UNKNOWN + reason, never guessed",
-     "gate": "profit-oracle (zai-14b) — standing daily profit pulse; joins zai-12b's fresh-oracle house pattern; owner trace 1a12…7021 'the autonomy itself checks profitability daily'",
-     "prior": null,
-     "runs": [
-      {
-       "at": "2026-10-11T23:50:12.357Z",
-       "trigger": "local",
-       "checks": [
-        {
-         "id": "V-WORTH",
-         "measuredAt": "2026-10-11T23:50:12.357Z",
-         "evidence": {
-          "rpc": {
-           "primary": "https://api.steemit.com",
-           "fallback": "https://api.justyy.com"
-          },
-          "dgpo": false,
-          "accounts": false,
-          "orderBook": false,
-          "error": "תשובה ללא result"
-         },
-         "verdict": "UNKNOWN",
-         "note": "כשל-RPC ב-dgpo — לא מנחשים שווי (fail-open, R5)"
-        },
-        {
-         "id": "V-GRID-EDGE",
-         "verdict": "GREEN",
-         "measuredAt": "2026-10-11T23:50:14.993Z",
-         "evidence": {
-          "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
-          "http": 200,
-          "verdict": "EDGE-NEGATIVE-GRID-HOLD",
-          "postLawEdgePct": -3,
-          "lifetimeRealizedSbd": -0.388666,
-          "generatedAt": "2026-10-11T15:02:49.879Z",
-          "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
-          "edgeLawPct": 1
-         },
-         "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
-        },
-        {
-         "id": "V-ZOMBIE-LADDER",
-         "verdict": "UNKNOWN",
-         "measuredAt": "2026-10-11T23:50:15.409Z",
-         "evidence": {
-          "method": "database_api.find_limit_orders",
-          "account": "owner-treasury",
-          "error": "תשובה ללא result"
-         },
-         "note": "כשל-RPC בסריקת-הפקודות — לא מנחשים"
-        }
-       ],
-       "summary": {
-        "GREEN": 1,
-        "AMBER": 0,
-        "RED": 0,
-        "UNKNOWN": 2,
-        "ownSp": null,
-        "effSp": null,
-        "liquidSteem": null,
-        "liquidSbd": null,
-        "mid": null,
-        "netWorthSbdEquiv": null,
-        "deltaVsPriorPct": null,
-        "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
-        "gridEdgePct": -3,
-        "ladderOpenSbd": null,
-        "ladderCount": null,
-        "ladderZombieSbd": null,
-        "verdict": "UNKNOWN"
-       },
-       "deltaNote": "אין-בסיס קודם / שווי לא-נמדד — UNKNOWN כן"
-      }
-     ],
-     "updatedAt": "2026-10-11T23:50:12.357Z",
-     "at": "2026-10-11T23:50:12.357Z",
-     "summary": {
-      "GREEN": 1,
-      "AMBER": 0,
-      "RED": 0,
-      "UNKNOWN": 2,
-      "ownSp": null,
-      "effSp": null,
-      "liquidSteem": null,
-      "liquidSbd": null,
-      "mid": null,
-      "netWorthSbdEquiv": null,
-      "deltaVsPriorPct": null,
-      "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
-      "gridEdgePct": -3,
-      "ladderOpenSbd": null,
-      "ladderCount": null,
-      "ladderZombieSbd": null,
-      "verdict": "UNKNOWN"
+    "schema": "integrity-guard/2",
+    "at": "2026-10-12T10:42:49.896Z",
+    "overall": "PASS",
+    "summary": {
+     "sources": 11,
+     "verified": 12,
+     "findings": 3,
+     "counts": {
+      "FLAG": 3
      }
     },
-    "runs": [
+    "provenance": {
+     "runId": "38238019604",
+     "runUrl": "https://github.com/roshpinacare-sys/Sandbox/actions/runs/38238019604",
+     "sha": "215d309975a025aa881743c403b49b5af2bbb653"
+    },
+    "verified": [
      {
-      "at": "2026-10-11T23:50:12.357Z",
-      "trigger": "local",
-      "checks": [
-       {
-        "id": "V-WORTH",
-        "measuredAt": "2026-10-11T23:50:12.357Z",
-        "evidence": {
-         "rpc": {
-          "primary": "https://api.steemit.com",
-          "fallback": "https://api.justyy.com"
-         },
-         "dgpo": false,
-         "accounts": false,
-         "orderBook": false,
-         "error": "תשובה ללא result"
-        },
-        "verdict": "UNKNOWN",
-        "note": "כשל-RPC ב-dgpo — לא מנחשים שווי (fail-open, R5)"
-       },
-       {
-        "id": "V-GRID-EDGE",
-        "verdict": "GREEN",
-        "measuredAt": "2026-10-11T23:50:14.993Z",
-        "evidence": {
-         "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
-         "http": 200,
-         "verdict": "EDGE-NEGATIVE-GRID-HOLD",
-         "postLawEdgePct": -3,
-         "lifetimeRealizedSbd": -0.388666,
-         "generatedAt": "2026-10-11T15:02:49.879Z",
-         "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
-         "edgeLawPct": 1
-        },
-        "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
-       },
-       {
-        "id": "V-ZOMBIE-LADDER",
-        "verdict": "UNKNOWN",
-        "measuredAt": "2026-10-11T23:50:15.409Z",
-        "evidence": {
-         "method": "database_api.find_limit_orders",
-         "account": "owner-treasury",
-         "error": "תשובה ללא result"
-        },
-        "note": "כשל-RPC בסריקת-הפקודות — לא מנחשים"
-       }
-      ],
-      "summary": {
-       "GREEN": 1,
-       "AMBER": 0,
-       "RED": 0,
-       "UNKNOWN": 2,
-       "ownSp": null,
-       "effSp": null,
-       "liquidSteem": null,
-       "liquidSbd": null,
-       "mid": null,
-       "netWorthSbdEquiv": null,
-       "deltaVsPriorPct": null,
-       "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
-       "gridEdgePct": -3,
-       "ladderOpenSbd": null,
-       "ladderCount": null,
-       "ladderZombieSbd": null,
-       "verdict": "UNKNOWN"
-      },
-      "deltaNote": "אין-בסיס קודם / שווי לא-נמדד — UNKNOWN כן"
+      "where": "self:ops/integrity/verdict.json",
+      "law": "verified",
+      "detail": "run=38228087710 conc=failure repo=Sandbox"
      },
      {
-      "at": "2026-10-11T23:50:30.041Z",
-      "trigger": "local",
-      "checks": [
-       {
-        "id": "V-WORTH",
-        "measuredAt": "2026-10-11T23:50:30.041Z",
-        "evidence": {
-         "rpc": {
-          "primary": "https://api.steemit.com",
-          "fallback": "https://api.justyy.com"
-         },
-         "dgpo": true,
-         "accounts": true,
-         "orderBook": true,
-         "ratioSpPerVests": 0.000620208399,
-         "ownSp": 4294.5,
-         "effSp": 3556,
-         "liquidSteem": 30.985,
-         "liquidSbd": 10.617,
-         "mid": 0.10281,
-         "spreadBps": 48.8,
-         "netWorthSbdEquiv": 455.32,
-         "roster": 14
-        },
-        "verdict": "GREEN",
-        "note": "🟢 שווי-חי: own-SP 4294.5 · eff-SP 3556 · נזיל 30.985 STEEM + 10.617 SBD · mid 0.10281 → netWorth 455.32 SBD-equiv"
-       },
-       {
-        "id": "V-GRID-EDGE",
-        "verdict": "GREEN",
-        "measuredAt": "2026-10-11T23:50:31.359Z",
-        "evidence": {
-         "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
-         "http": 200,
-         "verdict": "EDGE-NEGATIVE-GRID-HOLD",
-         "postLawEdgePct": -3,
-         "lifetimeRealizedSbd": -0.388666,
-         "generatedAt": "2026-10-11T15:02:49.879Z",
-         "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
-         "edgeLawPct": 1
-        },
-        "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
-       },
-       {
-        "id": "V-ZOMBIE-LADDER",
-        "verdict": "UNKNOWN",
-        "measuredAt": "2026-10-11T23:50:31.736Z",
-        "evidence": {
-         "method": "database_api.find_limit_orders",
-         "account": "owner-treasury",
-         "count": 16,
-         "openSbd": 94.011,
-         "openSteem": 962.673,
-         "zombieSbd": 91.195,
-         "zombieCount": 5,
-         "priorCount": null,
-         "priorOpenSbd": null
-        },
-        "note": "ריצה-ראשונה / אין-בסיס-קודם — הסולם נמדד, הדלתא תימדד מחר"
-       }
-      ],
-      "summary": {
-       "GREEN": 2,
-       "AMBER": 0,
-       "RED": 0,
-       "UNKNOWN": 1,
-       "ownSp": 4294.5,
-       "effSp": 3556,
-       "liquidSteem": 30.985,
-       "liquidSbd": 10.617,
-       "mid": 0.10281,
-       "netWorthSbdEquiv": 455.32,
-       "deltaVsPriorPct": null,
-       "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
-       "gridEdgePct": -3,
-       "ladderOpenSbd": 94.011,
-       "ladderCount": 16,
-       "ladderZombieSbd": 91.195,
-       "verdict": "UNKNOWN"
-      },
-      "deltaNote": "אין-בסיס קודם / שווי לא-נמדד — UNKNOWN כן"
+      "where": "Sandbox:receipts/wallet/verdict.json",
+      "law": "verified",
+      "detail": "run=38231695506 conc=success repo=Sandbox"
      },
      {
-      "at": "2026-10-11T23:52:50.902Z",
-      "trigger": "workflow_dispatch",
-      "checks": [
-       {
-        "id": "V-WORTH",
-        "measuredAt": "2026-10-11T23:52:50.902Z",
-        "evidence": {
-         "rpc": {
-          "primary": "https://api.steemit.com",
-          "fallback": "https://api.justyy.com"
-         },
-         "dgpo": true,
-         "accounts": true,
-         "orderBook": true,
-         "ratioSpPerVests": 0.000620208465,
-         "ownSp": 4294.5,
-         "effSp": 3556,
-         "liquidSteem": 30.985,
-         "liquidSbd": 10.617,
-         "mid": 0.10281,
-         "spreadBps": 48.8,
-         "netWorthSbdEquiv": 455.32,
-         "roster": 14
-        },
-        "verdict": "GREEN",
-        "note": "🟢 שווי-חי: own-SP 4294.5 · eff-SP 3556 · נזיל 30.985 STEEM + 10.617 SBD · mid 0.10281 → netWorth 455.32 SBD-equiv"
-       },
-       {
-        "id": "V-GRID-EDGE",
-        "verdict": "GREEN",
-        "measuredAt": "2026-10-11T23:52:51.170Z",
-        "evidence": {
-         "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
-         "http": 200,
-         "verdict": "EDGE-NEGATIVE-GRID-HOLD",
-         "postLawEdgePct": -3,
-         "lifetimeRealizedSbd": -0.388666,
-         "generatedAt": "2026-10-11T15:02:49.879Z",
-         "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
-         "edgeLawPct": 1
-        },
-        "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
-       },
-       {
-        "id": "V-ZOMBIE-LADDER",
-        "verdict": "GREEN",
-        "measuredAt": "2026-10-11T23:52:51.286Z",
-        "evidence": {
-         "method": "database_api.find_limit_orders",
-         "account": "owner-treasury",
-         "count": 16,
-         "openSbd": 94.011,
-         "openSteem": 962.673,
-         "zombieSbd": 91.195,
-         "zombieCount": 5,
-         "priorCount": 16,
-         "priorOpenSbd": 94.011
-        },
-        "note": "🟢 סולם-עומד: 16 פקודות · 94.011 SBD פתוח (מהם זומבי 91.195 SBD @≤0.0995) — יציב או מתמלא"
-       }
-      ],
-      "summary": {
-       "GREEN": 3,
-       "AMBER": 0,
-       "RED": 0,
-       "UNKNOWN": 0,
-       "ownSp": 4294.5,
-       "effSp": 3556,
-       "liquidSteem": 30.985,
-       "liquidSbd": 10.617,
-       "mid": 0.10281,
-       "netWorthSbdEquiv": 455.32,
-       "deltaVsPriorPct": 0,
-       "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
-       "gridEdgePct": -3,
-       "ladderOpenSbd": 94.011,
-       "ladderCount": 16,
-       "ladderZombieSbd": 91.195,
-       "verdict": "FLAT"
-      },
-      "deltaNote": "FLAT: +0.000% מול-הריצה-הקודמת (חוק: > +0.5% / < −0.5%)"
+      "where": "Sandbox:receipts/fleet/verdict.json",
+      "law": "verified",
+      "detail": "run=38226675048 conc=failure repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:receipts/grid/verdict.json",
+      "law": "verified",
+      "detail": "run=38235230671 conc=failure repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:ops/flow/receipt.json",
+      "law": "verified",
+      "detail": "run=38219951240 conc=success repo=Sandbox"
+     },
+     {
+      "where": "FleetHQ:receipts/office-ci/verdict.json",
+      "law": "verified",
+      "detail": "run=38195742752 conc=success repo=FleetHQ"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38195742752 conc=success repo=FleetHQ"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38221258238 conc=success repo=Sandbox"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38228086943 conc=failure repo=Sandbox"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38226675048 conc=failure repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:ops/decision-truth/verdict.json",
+      "law": "verified",
+      "detail": "run=38233807900 conc=success repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:ops/integrity/verdict.json",
+      "law": "verified",
+      "detail": "run=38228087710 conc=failure repo=Sandbox"
      }
     ],
-    "updatedAt": "2026-10-11T23:52:50.902Z",
-    "at": "2026-10-11T23:52:50.902Z",
-    "summary": {
-     "GREEN": 3,
-     "AMBER": 0,
-     "RED": 0,
-     "UNKNOWN": 0,
-     "ownSp": 4294.5,
-     "effSp": 3556,
-     "liquidSteem": 30.985,
-     "liquidSbd": 10.617,
-     "mid": 0.10281,
-     "netWorthSbdEquiv": 455.32,
-     "deltaVsPriorPct": 0,
-     "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
-     "gridEdgePct": -3,
-     "ladderOpenSbd": 94.011,
-     "ladderCount": 16,
-     "ladderZombieSbd": 91.195,
-     "verdict": "FLAT"
-    }
+    "findings": [
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/latest.json",
+      "law": "unprovenanced",
+      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: sovereign.yml"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:state/verifier/verdict-latest.json",
+      "law": "unprovenanced",
+      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: verifier.yml"
+     },
+     {
+      "level": "FLAG",
+      "where": "Domain:agents/office-live.json",
+      "law": "unprovenanced",
+      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: office lane"
+     }
+    ]
    }
   },
   "lessons": {
-   "at": "2026-10-12T20:52:19.874Z",
+   "at": "2026-10-12T20:52:39.059Z",
    "path": "ops/lessons/ledger.md",
    "text": "# LESSONS LEDGER · append-only · deterministic distillation of measured history\n\n## scribe #1 · 2026-10-11T13:15:17.153Z\n- wallet: no receipts yet (artery young)\n- fleet actions 24h: 100 runs · failures: none\n- sovereign tick last pulse: 9min ago\n- sandbox commits 24h: 1 · authors: {\"sovereign-federation\":1}\n- no law proposals — everything measured healthy\n\n\n## scribe #2 · 2026-10-11T13:23:01.464Z\n- wallet 24h verdicts: {\"FAIL\":1,\"PASS\":1} · failing laws: {\"law-pass-provenance\":1}\n- fleet actions 24h: 100 runs · failures: artery-wallet:failure×1\n- sovereign tick last pulse: 2min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"zai-code-3\":5,\"wallet-artery\":2,\"sandbox-sovereign\":31,\"sandbox-state\":33,\"sandbox-verifier\":3,\"sovereign-scribe\":1,\"sovereign-federation\":9,\"fleet-healer\":9,\"zai-sec-1a12af86\":2,\"zai-code-2\":1,\"fleet-yield\":3,\"zai-code-agent\":1}\n- PROPOSAL(law): wallet carried 1 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet law law-pass-provenance failed 1×/24h — regression or theater attempt; verify immediately\n\n\n## weekly-retro 2026-W41 · 2026-10-11T13:51:12.702Z\n- org runs 1w: 0 · ok=0 · fail=0 · instant-fail(billing-signature)=0\n- red engines: none · healthy: 0 · silent: 26\n- open law-proposals: 2\n- DIRECTIVE(1): silent repos (26): Sandbox, steem, saos-runtime, Domain, saos-dex, Console, FleetHQ, sovereign-lighthouse, sovereign-beacon, TruthRail, Zip, saos-control-center, Saosmartwallet, saos-agents, sanbox, SovereignConsole, vault-home, Project-files, saos-sovereign-platform, Defi, roshpina, Adsmarket, Sdk, saos-jummper, saos-sovereign-foundry, anchor-baseline ran nothing in 1 week(s) — either wire a real trigger or archive honestly; a repo that never runs is a claim, not a system\n- DIRECTIVE(2): open scribe law-proposals: 2 — review, adopt or refute each with a measured verdict; a proposal older than 2 retro cycles with no verdict becomes a doctrine violation itself\n\n## weekly-retro 2026-W41 · 2026-10-11T13:53:02.351Z\n- org runs 1w: 1171 · ok=557 · fail=525 · instant-fail(billing-signature)=525\n- red engines: saos-dex(×100), Zip(×100), sanbox(×6) · healthy: 2 · silent: 5\n- open law-proposals: 2\n- DIRECTIVE(1): billing-wall signature detected: 525 instant-fail runs (<5s) across the org this week — lift the Actions spending limit or migrate the affected engines' cadence to public homes; fleet-heal will re-probe within 24h of release\n- DIRECTIVE(2): red engines (saos-dex, Zip, sanbox): zero success vs 206 failures — fix root cause before adding features; red CI is not a state, it is a debt\n- DIRECTIVE(3): silent repos (5): FleetHQ, sovereign-beacon, saos-agents, SovereignConsole, vault-home ran nothing in 1 week(s) — either wire a real trigger or archive honestly; a repo that never runs is a claim, not a system\n- DIRECTIVE(4): open scribe law-proposals: 2 — review, adopt or refute each with a measured verdict; a proposal older than 2 retro cycles with no verdict becomes a doctrine violation itself\n\n## weekly-retro 2026-W41 · 2026-10-11T13:54:18.924Z\n- org runs 1w: 1171 · ok=554 · fail=525 · instant-fail(billing-signature)=525\n- red engines: saos-dex(×100), Zip(×100), sanbox(×6) · healthy: 2 · silent: 5\n- open law-proposals: 2\n- DIRECTIVE(1): billing-wall signature detected: 525 instant-fail runs (<5s) across the org this week — lift the Actions spending limit or migrate the affected engines' cadence to public homes; fleet-heal will re-probe within 24h of release\n- DIRECTIVE(2): red engines (saos-dex, Zip, sanbox): zero success vs 206 failures — fix root cause before adding features; red CI is not a state, it is a debt\n- DIRECTIVE(3): silent repos (5): FleetHQ, sovereign-beacon, saos-agents, SovereignConsole, vault-home ran nothing in 1 week(s) — either wire a real trigger or archive honestly; a repo that never runs is a claim, not a system\n- DIRECTIVE(4): open scribe law-proposals: 2 — review, adopt or refute each with a measured verdict; a proposal older than 2 retro cycles with no verdict becomes a doctrine violation itself\n\n## scribe #6 · 2026-10-12T10:38:23.000Z\n- wallet 24h verdicts: {\"FAIL\":1,\"PASS\":17} · failing laws: {\"law-pass-provenance\":1}\n- fleet 24h verdicts: {\"PASS\":11,\"FAIL\":3} · alerts: 32\n- fleet actions 24h: 100 runs · failures: artery-grid:failure×5, artery-integrity:failure×1, artery-fleet:failure×1, sovereign-tick:failure×1\n- sovereign tick last pulse: 9min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"fleet-healer\":8,\"sandbox-sovereign\":21,\"sandbox-state\":23,\"grid-watch\":7,\"participation[bot]\":4,\"decision-truth\":7,\"value-scan-bot\":6,\"wallet-artery\":4,\"sovereign-federation\":5,\"integrity-guard\":4,\"fleet-artery\":3,\"fleet-yield\":2,\"sandbox-verifier\":1,\"sovereign-flow\":1,\"github-actions[bot]\":3,\"sovereign-decider-bot\":1}\n- office-ci (FleetHQ) verdict: PASS · 492min ago\n- Domain book office/data.json: 72min old (law <=60min)\n- Domain book agents/office-live.json: 57min old (law <=180min)\n- Domain book dex/office-feed.json: 706min old (law <=1560min)\n- flow map: nodes=35 edges=119 page-integrated=15 plane-internal=19 orphans=0 ghosts=0 density=3.4\n- integrity guard: overall=FAIL sources=11 claims-verified=11 findings=4 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=15029 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=5h\n- dex book dex/showcase.json: ok sig=pair=unknown age=5h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 17 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet law law-pass-provenance failed 1×/24h — regression or theater attempt; verify immediately\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): Domain book office/data.json stale (72min > 60min) - its producer workflow may be stalled\n- PROPOSAL(law): 9 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"CRITICAL\":1,\"FLAG\":3}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n"
   },
   "flowMap": {
-   "at": "2026-10-12T20:52:19.874Z",
+   "at": "2026-10-12T20:52:39.059Z",
    "path": "ops/flow/flow-map.json",
    "data": {
     "generatedAt": "2026-10-12T20:51:46.476Z",
@@ -2156,112 +1891,8 @@
     ]
    }
   },
-  "integrity": {
-   "at": "2026-10-12T20:52:19.874Z",
-   "path": "ops/integrity/verdict.json",
-   "data": {
-    "schema": "integrity-guard/2",
-    "at": "2026-10-12T10:42:49.896Z",
-    "overall": "PASS",
-    "summary": {
-     "sources": 11,
-     "verified": 12,
-     "findings": 3,
-     "counts": {
-      "FLAG": 3
-     }
-    },
-    "provenance": {
-     "runId": "38238019604",
-     "runUrl": "https://github.com/roshpinacare-sys/Sandbox/actions/runs/38238019604",
-     "sha": "215d309975a025aa881743c403b49b5af2bbb653"
-    },
-    "verified": [
-     {
-      "where": "self:ops/integrity/verdict.json",
-      "law": "verified",
-      "detail": "run=38228087710 conc=failure repo=Sandbox"
-     },
-     {
-      "where": "Sandbox:receipts/wallet/verdict.json",
-      "law": "verified",
-      "detail": "run=38231695506 conc=success repo=Sandbox"
-     },
-     {
-      "where": "Sandbox:receipts/fleet/verdict.json",
-      "law": "verified",
-      "detail": "run=38226675048 conc=failure repo=Sandbox"
-     },
-     {
-      "where": "Sandbox:receipts/grid/verdict.json",
-      "law": "verified",
-      "detail": "run=38235230671 conc=failure repo=Sandbox"
-     },
-     {
-      "where": "Sandbox:ops/flow/receipt.json",
-      "law": "verified",
-      "detail": "run=38219951240 conc=success repo=Sandbox"
-     },
-     {
-      "where": "FleetHQ:receipts/office-ci/verdict.json",
-      "law": "verified",
-      "detail": "run=38195742752 conc=success repo=FleetHQ"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38195742752 conc=success repo=FleetHQ"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38221258238 conc=success repo=Sandbox"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38228086943 conc=failure repo=Sandbox"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38226675048 conc=failure repo=Sandbox"
-     },
-     {
-      "where": "Sandbox:ops/decision-truth/verdict.json",
-      "law": "verified",
-      "detail": "run=38233807900 conc=success repo=Sandbox"
-     },
-     {
-      "where": "Sandbox:ops/integrity/verdict.json",
-      "law": "verified",
-      "detail": "run=38228087710 conc=failure repo=Sandbox"
-     }
-    ],
-    "findings": [
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/latest.json",
-      "law": "unprovenanced",
-      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: sovereign.yml"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:state/verifier/verdict-latest.json",
-      "law": "unprovenanced",
-      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: verifier.yml"
-     },
-     {
-      "level": "FLAG",
-      "where": "Domain:agents/office-live.json",
-      "law": "unprovenanced",
-      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: office lane"
-     }
-    ]
-   }
-  },
   "decisionTruth": {
-   "at": "2026-10-12T20:52:19.874Z",
+   "at": "2026-10-12T20:52:39.059Z",
    "path": "ops/decision-truth/verdict.json",
    "data": {
     "schema": "sandbox/decision-truth/1",
@@ -2459,8 +2090,377 @@
     }
    }
   },
+  "profitOracle": {
+   "at": "2026-10-12T20:52:39.059Z",
+   "path": "receipts/profit-oracle-latest.json",
+   "data": {
+    "ok": true,
+    "schema": "roshpinacare.profit-oracle/1",
+    "agent": "profit-oracle v1 (zai-14b)",
+    "law": "keyless daily profitability pulse: V-WORTH (14-roster own/eff SP + liquid + order-book mid → netWorthSbdEquiv) · V-GRID-EDGE (pnl-desk verdict/edge/realized — value is data, desk decides) · V-ZOMBIE-LADDER (owner-treasury open orders vs prior: vanished = AMBER until fill/cancel verified); delta > +0.5% = PROFIT, ±0.5% = FLAT, < −0.5% = LOSS; network failure = UNKNOWN + reason, never guessed",
+    "gate": "profit-oracle (zai-14b) — standing daily profit pulse; joins zai-12b's fresh-oracle house pattern; owner trace 1a12…7021 'the autonomy itself checks profitability daily'",
+    "prior": {
+     "ok": true,
+     "schema": "roshpinacare.profit-oracle/1",
+     "agent": "profit-oracle v1 (zai-14b)",
+     "law": "keyless daily profitability pulse: V-WORTH (14-roster own/eff SP + liquid + order-book mid → netWorthSbdEquiv) · V-GRID-EDGE (pnl-desk verdict/edge/realized — value is data, desk decides) · V-ZOMBIE-LADDER (owner-treasury open orders vs prior: vanished = AMBER until fill/cancel verified); delta > +0.5% = PROFIT, ±0.5% = FLAT, < −0.5% = LOSS; network failure = UNKNOWN + reason, never guessed",
+     "gate": "profit-oracle (zai-14b) — standing daily profit pulse; joins zai-12b's fresh-oracle house pattern; owner trace 1a12…7021 'the autonomy itself checks profitability daily'",
+     "prior": null,
+     "runs": [
+      {
+       "at": "2026-10-11T23:50:12.357Z",
+       "trigger": "local",
+       "checks": [
+        {
+         "id": "V-WORTH",
+         "measuredAt": "2026-10-11T23:50:12.357Z",
+         "evidence": {
+          "rpc": {
+           "primary": "https://api.steemit.com",
+           "fallback": "https://api.justyy.com"
+          },
+          "dgpo": false,
+          "accounts": false,
+          "orderBook": false,
+          "error": "תשובה ללא result"
+         },
+         "verdict": "UNKNOWN",
+         "note": "כשל-RPC ב-dgpo — לא מנחשים שווי (fail-open, R5)"
+        },
+        {
+         "id": "V-GRID-EDGE",
+         "verdict": "GREEN",
+         "measuredAt": "2026-10-11T23:50:14.993Z",
+         "evidence": {
+          "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
+          "http": 200,
+          "verdict": "EDGE-NEGATIVE-GRID-HOLD",
+          "postLawEdgePct": -3,
+          "lifetimeRealizedSbd": -0.388666,
+          "generatedAt": "2026-10-11T15:02:49.879Z",
+          "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
+          "edgeLawPct": 1
+         },
+         "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
+        },
+        {
+         "id": "V-ZOMBIE-LADDER",
+         "verdict": "UNKNOWN",
+         "measuredAt": "2026-10-11T23:50:15.409Z",
+         "evidence": {
+          "method": "database_api.find_limit_orders",
+          "account": "owner-treasury",
+          "error": "תשובה ללא result"
+         },
+         "note": "כשל-RPC בסריקת-הפקודות — לא מנחשים"
+        }
+       ],
+       "summary": {
+        "GREEN": 1,
+        "AMBER": 0,
+        "RED": 0,
+        "UNKNOWN": 2,
+        "ownSp": null,
+        "effSp": null,
+        "liquidSteem": null,
+        "liquidSbd": null,
+        "mid": null,
+        "netWorthSbdEquiv": null,
+        "deltaVsPriorPct": null,
+        "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+        "gridEdgePct": -3,
+        "ladderOpenSbd": null,
+        "ladderCount": null,
+        "ladderZombieSbd": null,
+        "verdict": "UNKNOWN"
+       },
+       "deltaNote": "אין-בסיס קודם / שווי לא-נמדד — UNKNOWN כן"
+      }
+     ],
+     "updatedAt": "2026-10-11T23:50:12.357Z",
+     "at": "2026-10-11T23:50:12.357Z",
+     "summary": {
+      "GREEN": 1,
+      "AMBER": 0,
+      "RED": 0,
+      "UNKNOWN": 2,
+      "ownSp": null,
+      "effSp": null,
+      "liquidSteem": null,
+      "liquidSbd": null,
+      "mid": null,
+      "netWorthSbdEquiv": null,
+      "deltaVsPriorPct": null,
+      "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+      "gridEdgePct": -3,
+      "ladderOpenSbd": null,
+      "ladderCount": null,
+      "ladderZombieSbd": null,
+      "verdict": "UNKNOWN"
+     }
+    },
+    "runs": [
+     {
+      "at": "2026-10-11T23:50:12.357Z",
+      "trigger": "local",
+      "checks": [
+       {
+        "id": "V-WORTH",
+        "measuredAt": "2026-10-11T23:50:12.357Z",
+        "evidence": {
+         "rpc": {
+          "primary": "https://api.steemit.com",
+          "fallback": "https://api.justyy.com"
+         },
+         "dgpo": false,
+         "accounts": false,
+         "orderBook": false,
+         "error": "תשובה ללא result"
+        },
+        "verdict": "UNKNOWN",
+        "note": "כשל-RPC ב-dgpo — לא מנחשים שווי (fail-open, R5)"
+       },
+       {
+        "id": "V-GRID-EDGE",
+        "verdict": "GREEN",
+        "measuredAt": "2026-10-11T23:50:14.993Z",
+        "evidence": {
+         "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
+         "http": 200,
+         "verdict": "EDGE-NEGATIVE-GRID-HOLD",
+         "postLawEdgePct": -3,
+         "lifetimeRealizedSbd": -0.388666,
+         "generatedAt": "2026-10-11T15:02:49.879Z",
+         "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
+         "edgeLawPct": 1
+        },
+        "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
+       },
+       {
+        "id": "V-ZOMBIE-LADDER",
+        "verdict": "UNKNOWN",
+        "measuredAt": "2026-10-11T23:50:15.409Z",
+        "evidence": {
+         "method": "database_api.find_limit_orders",
+         "account": "owner-treasury",
+         "error": "תשובה ללא result"
+        },
+        "note": "כשל-RPC בסריקת-הפקודות — לא מנחשים"
+       }
+      ],
+      "summary": {
+       "GREEN": 1,
+       "AMBER": 0,
+       "RED": 0,
+       "UNKNOWN": 2,
+       "ownSp": null,
+       "effSp": null,
+       "liquidSteem": null,
+       "liquidSbd": null,
+       "mid": null,
+       "netWorthSbdEquiv": null,
+       "deltaVsPriorPct": null,
+       "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+       "gridEdgePct": -3,
+       "ladderOpenSbd": null,
+       "ladderCount": null,
+       "ladderZombieSbd": null,
+       "verdict": "UNKNOWN"
+      },
+      "deltaNote": "אין-בסיס קודם / שווי לא-נמדד — UNKNOWN כן"
+     },
+     {
+      "at": "2026-10-11T23:50:30.041Z",
+      "trigger": "local",
+      "checks": [
+       {
+        "id": "V-WORTH",
+        "measuredAt": "2026-10-11T23:50:30.041Z",
+        "evidence": {
+         "rpc": {
+          "primary": "https://api.steemit.com",
+          "fallback": "https://api.justyy.com"
+         },
+         "dgpo": true,
+         "accounts": true,
+         "orderBook": true,
+         "ratioSpPerVests": 0.000620208399,
+         "ownSp": 4294.5,
+         "effSp": 3556,
+         "liquidSteem": 30.985,
+         "liquidSbd": 10.617,
+         "mid": 0.10281,
+         "spreadBps": 48.8,
+         "netWorthSbdEquiv": 455.32,
+         "roster": 14
+        },
+        "verdict": "GREEN",
+        "note": "🟢 שווי-חי: own-SP 4294.5 · eff-SP 3556 · נזיל 30.985 STEEM + 10.617 SBD · mid 0.10281 → netWorth 455.32 SBD-equiv"
+       },
+       {
+        "id": "V-GRID-EDGE",
+        "verdict": "GREEN",
+        "measuredAt": "2026-10-11T23:50:31.359Z",
+        "evidence": {
+         "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
+         "http": 200,
+         "verdict": "EDGE-NEGATIVE-GRID-HOLD",
+         "postLawEdgePct": -3,
+         "lifetimeRealizedSbd": -0.388666,
+         "generatedAt": "2026-10-11T15:02:49.879Z",
+         "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
+         "edgeLawPct": 1
+        },
+        "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
+       },
+       {
+        "id": "V-ZOMBIE-LADDER",
+        "verdict": "UNKNOWN",
+        "measuredAt": "2026-10-11T23:50:31.736Z",
+        "evidence": {
+         "method": "database_api.find_limit_orders",
+         "account": "owner-treasury",
+         "count": 16,
+         "openSbd": 94.011,
+         "openSteem": 962.673,
+         "zombieSbd": 91.195,
+         "zombieCount": 5,
+         "priorCount": null,
+         "priorOpenSbd": null
+        },
+        "note": "ריצה-ראשונה / אין-בסיס-קודם — הסולם נמדד, הדלתא תימדד מחר"
+       }
+      ],
+      "summary": {
+       "GREEN": 2,
+       "AMBER": 0,
+       "RED": 0,
+       "UNKNOWN": 1,
+       "ownSp": 4294.5,
+       "effSp": 3556,
+       "liquidSteem": 30.985,
+       "liquidSbd": 10.617,
+       "mid": 0.10281,
+       "netWorthSbdEquiv": 455.32,
+       "deltaVsPriorPct": null,
+       "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+       "gridEdgePct": -3,
+       "ladderOpenSbd": 94.011,
+       "ladderCount": 16,
+       "ladderZombieSbd": 91.195,
+       "verdict": "UNKNOWN"
+      },
+      "deltaNote": "אין-בסיס קודם / שווי לא-נמדד — UNKNOWN כן"
+     },
+     {
+      "at": "2026-10-11T23:52:50.902Z",
+      "trigger": "workflow_dispatch",
+      "checks": [
+       {
+        "id": "V-WORTH",
+        "measuredAt": "2026-10-11T23:52:50.902Z",
+        "evidence": {
+         "rpc": {
+          "primary": "https://api.steemit.com",
+          "fallback": "https://api.justyy.com"
+         },
+         "dgpo": true,
+         "accounts": true,
+         "orderBook": true,
+         "ratioSpPerVests": 0.000620208465,
+         "ownSp": 4294.5,
+         "effSp": 3556,
+         "liquidSteem": 30.985,
+         "liquidSbd": 10.617,
+         "mid": 0.10281,
+         "spreadBps": 48.8,
+         "netWorthSbdEquiv": 455.32,
+         "roster": 14
+        },
+        "verdict": "GREEN",
+        "note": "🟢 שווי-חי: own-SP 4294.5 · eff-SP 3556 · נזיל 30.985 STEEM + 10.617 SBD · mid 0.10281 → netWorth 455.32 SBD-equiv"
+       },
+       {
+        "id": "V-GRID-EDGE",
+        "verdict": "GREEN",
+        "measuredAt": "2026-10-11T23:52:51.170Z",
+        "evidence": {
+         "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
+         "http": 200,
+         "verdict": "EDGE-NEGATIVE-GRID-HOLD",
+         "postLawEdgePct": -3,
+         "lifetimeRealizedSbd": -0.388666,
+         "generatedAt": "2026-10-11T15:02:49.879Z",
+         "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
+         "edgeLawPct": 1
+        },
+        "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
+       },
+       {
+        "id": "V-ZOMBIE-LADDER",
+        "verdict": "GREEN",
+        "measuredAt": "2026-10-11T23:52:51.286Z",
+        "evidence": {
+         "method": "database_api.find_limit_orders",
+         "account": "owner-treasury",
+         "count": 16,
+         "openSbd": 94.011,
+         "openSteem": 962.673,
+         "zombieSbd": 91.195,
+         "zombieCount": 5,
+         "priorCount": 16,
+         "priorOpenSbd": 94.011
+        },
+        "note": "🟢 סולם-עומד: 16 פקודות · 94.011 SBD פתוח (מהם זומבי 91.195 SBD @≤0.0995) — יציב או מתמלא"
+       }
+      ],
+      "summary": {
+       "GREEN": 3,
+       "AMBER": 0,
+       "RED": 0,
+       "UNKNOWN": 0,
+       "ownSp": 4294.5,
+       "effSp": 3556,
+       "liquidSteem": 30.985,
+       "liquidSbd": 10.617,
+       "mid": 0.10281,
+       "netWorthSbdEquiv": 455.32,
+       "deltaVsPriorPct": 0,
+       "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+       "gridEdgePct": -3,
+       "ladderOpenSbd": 94.011,
+       "ladderCount": 16,
+       "ladderZombieSbd": 91.195,
+       "verdict": "FLAT"
+      },
+      "deltaNote": "FLAT: +0.000% מול-הריצה-הקודמת (חוק: > +0.5% / < −0.5%)"
+     }
+    ],
+    "updatedAt": "2026-10-11T23:52:50.902Z",
+    "at": "2026-10-11T23:52:50.902Z",
+    "summary": {
+     "GREEN": 3,
+     "AMBER": 0,
+     "RED": 0,
+     "UNKNOWN": 0,
+     "ownSp": 4294.5,
+     "effSp": 3556,
+     "liquidSteem": 30.985,
+     "liquidSbd": 10.617,
+     "mid": 0.10281,
+     "netWorthSbdEquiv": 455.32,
+     "deltaVsPriorPct": 0,
+     "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+     "gridEdgePct": -3,
+     "ladderOpenSbd": 94.011,
+     "ladderCount": 16,
+     "ladderZombieSbd": 91.195,
+     "verdict": "FLAT"
+    }
+   }
+  },
   "research": {
-   "at": "2026-10-12T20:52:19.874Z",
+   "at": "2026-10-12T20:52:39.059Z",
    "path": "research/findings-2026-10-11.json",
    "data": {
     "schema": "saos.research.findings/1",
