@@ -25,6 +25,7 @@ const OWNER = REPO.split('/')[0]
 const FLEET_TOKEN = process.env.FLEET_TOKEN || ''
 const GH_PAT = process.env.GH_PAT || ''
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || ''
+const GITHUB_RUN_ID = process.env.GITHUB_RUN_ID || ''
 const TRIGGER = (process.env.TRIGGER || 'unknown').slice(0, 40)
 const NOTE = (process.env.NOTE || '').slice(0, 200)
 const NOW = new Date().toISOString()
@@ -129,6 +130,18 @@ for (const r of repos) {
 if (livenessRateLimited) state.reasons.push('Actions liveness partially unmeasured — API rate-limit wall hit (honest gap, not silence)')
 
 // --- 2. ACT: compute ---
+// CALIBRATION MATRIX (issue #8, T-70): a red run is not automatically a sick organ.
+//   info-class    = private repo + audit/scan/verify/test/build-shaped workflow dispatched
+//                   by design to FLAG things (gitleaks, exposure-gate, claims-guard, ...) —
+//                   red is their working output, recorded but never a degrade.
+//   actionable    = public repo red (faces/runners must be green), OR private repo red on a
+//                   PUSH trigger (active development CI), OR private red on a runner-shaped
+//                   workflow (rotation/runtime/wallet/treasury/payroll/evolution/artery),
+//                   OR any red older than 7d is DORMANT, not failing-now (freshness guard).
+// Raw counts stay visible either way — calibration organizes signal, it never hides.
+const AUDIT_CLASS = /(gitleaks|scan|audit|verif|guard|baseline|canary|tests?\b|\bCI\b|build|heart|controls|exposure|claims|integrity)/i
+const RUNNER_CLASS = /(rotation|runtime|wallet|treasury|payroll|evolution|artery|tick|catchup|heal|watchdog|deploy)/i
+const RED_FRESH_MS = 7 * 24 * 3600 * 1000
 const fleet = repos.map((r) => ({
   name: r.name,
   private: !!r.private,
@@ -138,12 +151,24 @@ const fleet = repos.map((r) => ({
   issuesOpen: r.open_issues_count ?? 0,
   actions: LIVENESS.get(r.name) || { status: 'unmeasured' },
 }))
-const actionsFailing = fleet
-  .filter((r) => r.actions.status === 'completed' && r.actions.conclusion && !['success', 'neutral', 'skipped'].includes(r.actions.conclusion))
-  .map((r) => r.name)
+const redRuns = fleet.filter((r) => {
+  const a = r.actions
+  if (a.status !== 'completed' || !a.conclusion || ['success', 'neutral', 'skipped'].includes(a.conclusion)) return false
+  if (a.startedAt && Date.now() - new Date(a.startedAt).getTime() > RED_FRESH_MS) return false // dormant, not failing-now
+  return true
+})
+const isInfoClass = (r) => r.private && !RUNNER_CLASS.test(r.actions.workflow || '') && AUDIT_CLASS.test(r.actions.workflow || '') && r.actions.event !== 'push'
+const actionsRedInfo = redRuns.filter((r) => isInfoClass(r)).map((r) => r.name)
+const actionsRedActionable = redRuns.filter((r) => !isInfoClass(r)).map((r) => r.name)
+const actionsFailing = redRuns.map((r) => r.name) // raw, unfiltered — kept for continuity
 const stale24h = fleet
   .filter((r) => !r.archived && r.pushedAt && Date.now() - new Date(r.pushedAt).getTime() > 24 * 3600 * 1000)
   .map((r) => r.name)
+const issuesTop = fleet
+  .filter((r) => (r.issuesOpen || 0) > 0)
+  .sort((a, b) => b.issuesOpen - a.issuesOpen)
+  .slice(0, 8)
+  .map((r) => ({ name: r.name, open: r.issuesOpen }))
 const totals = {
   repos: fleet.length,
   public: fleet.filter((r) => !r.private).length,
@@ -151,20 +176,58 @@ const totals = {
   archived: fleet.filter((r) => r.archived).length,
   stale24h: stale24h.length,
   issuesOpen: fleet.reduce((a, r) => a + (r.issuesOpen || 0), 0),
+  issuesTop,
   actionsFailing: actionsFailing.length,
+  actionsRedInfo: actionsRedInfo.length,
+  actionsRedActionable: actionsRedActionable.length,
   actionsUnmeasured: fleet.filter((r) => r.actions.status === 'unmeasured').length,
 }
 
-// --- terminal semantics (honest, fail-closed) ---
+// --- cadence honesty: measure the LOOP, not just the means (T-68/T-69 pending item) ---
+// The current run always sees itself as fresh — so freshness is measured against the
+// PREVIOUS run (any trigger). scheduleStatus records GitHub's best-effort registration
+// as a named, time-stamped fact instead of a silent assumption.
+const cadence = {
+  schedule: '*/30 * * * *',
+  scheduleStatus: 'unmeasured',
+  firstScheduledRun: null,
+  lastRunAgeMin: null,
+  covered: false,
+  nextExpectedWithinMin: 90,
+}
+{
+  const own = await gh(`/repos/${REPO}/actions/runs?per_page=30`, GITHUB_TOKEN)
+  const runs = Array.isArray(own.data?.workflow_runs) ? own.data.workflow_runs : []
+  const prev = runs.find((r) => String(r.id) !== String(GITHUB_RUN_ID))
+  const sched = runs.find((r) => r.event === 'schedule')
+  cadence.scheduleStatus = sched ? 'firing' : runs.length > 0 ? 'pending-first-fire' : 'unmeasured'
+  if (sched) cadence.firstScheduledRun = { id: sched.id, at: sched.created_at }
+  if (prev) {
+    cadence.lastRunAgeMin = Math.round((Date.now() - new Date(prev.created_at).getTime()) / 60000)
+    cadence.covered = cadence.lastRunAgeMin <= cadence.nextExpectedWithinMin
+  }
+  if (!sched && runs.length > 0) {
+    state.reasons.push(`schedule event not yet firing (GitHub best-effort registration; ${runs.length} runs so far, trigger=${[...new Set(runs.map((r) => r.event))].join('/')}) — loop covered by dispatch ignition within SLA; auto-upgrades when schedule registers`)
+  }
+}
+
+// --- terminal semantics (honest, fail-closed, CALIBRATED) ---
 if (repos.length === 0) {
   state.terminal = 'blocked'
 } else if (mode !== 'fleet-full') {
   state.terminal = 'degraded'
   state.reasons.push(`visibility: public-only — ${totals.private === 0 ? 'private sight unavailable' : `${totals.private} private repos invisible from this census`} (mode=${mode})`)
-} else if (patHealth.ok && actionsFailing.length > 0) {
-  // full sight + a red run in the fleet: the organ SAW it — report degraded so the alert law speaks
+} else if (patHealth.ok && actionsRedActionable.length > 0) {
+  // calibrated degrade: ONLY actionable reds speak here (audit noise is recorded, not degrading)
   state.terminal = 'degraded'
-  state.reasons.push(`Actions failing in fleet: ${actionsFailing.join(', ')}`)
+  state.reasons.push(`Actions red (actionable): ${actionsRedActionable.join(', ')}`)
+  if (actionsRedInfo.length > 0) state.reasons.push(`Actions red (expected-audit info, calibrated per #8, ${actionsRedInfo.length}): ${actionsRedInfo.join(', ')}`)
+} else if (patHealth.ok && actionsRedInfo.length > 0) {
+  state.reasons.push(`Actions red (expected-audit info, calibrated per #8, ${actionsRedInfo.length}): ${actionsRedInfo.join(', ')}`)
+}
+if (repos.length > 0 && cadence.scheduleStatus !== 'unmeasured' && !cadence.covered) {
+  state.terminal = 'degraded'
+  state.reasons.push(`heartbeat loop uncovered: last run ${cadence.lastRunAgeMin ?? '?'} min ago (SLA ${cadence.nextExpectedWithinMin}) — the anti-silence promise requires freshness, not just triggers`)
 }
 
 // --- 3. RECORD: write state (names + timestamps only — sanitized, PUBLISH-POLICY §3) ---
@@ -177,10 +240,12 @@ const network = {
   visibility,
   reasons: state.reasons,
   auth: { pat: patHealth, mode, visibility },
-  cadence: { schedule: '*/30 * * * *', nextExpectedWithinMin: 90 },
+  cadence,
   totals,
   stale24h,
   actionsFailing,
+  actionsRedActionable,
+  actionsRedInfo,
   fleet,
 }
 await writeFile('state/network.json', JSON.stringify(network, null, 1), 'utf-8')
@@ -270,11 +335,11 @@ let hist = []
 try {
   hist = (await readFile('state/history.jsonl', 'utf-8')).split('\n').filter(Boolean)
 } catch {}
-hist.push(JSON.stringify({ at: NOW, trigger: TRIGGER, terminal: state.terminal, repos: totals.repos, stale: totals.stale24h, pat: patHealth.ok, visibility, actionsFailing: totals.actionsFailing }))
+hist.push(JSON.stringify({ at: NOW, trigger: TRIGGER, terminal: state.terminal, repos: totals.repos, stale: totals.stale24h, pat: patHealth.ok, visibility, actionsFailing: totals.actionsFailing, redActionable: totals.actionsRedActionable, covered: cadence.covered, schedule: cadence.scheduleStatus }))
 if (hist.length > 3000) hist = hist.slice(-3000)
 await writeFile('state/history.jsonl', hist.join('\n') + '\n', 'utf-8')
 
-console.log(`probe: terminal=${state.terminal} repos=${totals.repos} public=${totals.public} private=${totals.private} stale24h=${totals.stale24h} actionsFailing=${totals.actionsFailing} visibility=${visibility} pat=${patHealth.ok ? 'ok' : patHealth.status} mode=${mode}`)
+console.log(`probe: terminal=${state.terminal} repos=${totals.repos} public=${totals.public} private=${totals.private} stale24h=${totals.stale24h} red=${totals.actionsFailing} (actionable=${totals.actionsRedActionable} info=${totals.actionsRedInfo}) visibility=${visibility} pat=${patHealth.ok ? 'ok' : patHealth.status} mode=${mode} schedule=${cadence.scheduleStatus} covered=${cadence.covered} lastRunAgeMin=${cadence.lastRunAgeMin ?? '-'}`)
 
 // --- 4. fail-closed alerting (never silent) — and recovery closes the loop ---
 const alertBody = `${NOW}\ntrigger=${TRIGGER} terminal=${state.terminal} visibility=${visibility}\nreasons:\n${state.reasons.map((r) => '- ' + r).join('\n')}`
