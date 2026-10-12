@@ -257,33 +257,62 @@ await writeFile('state/network.json', JSON.stringify(network, null, 1), 'utf-8')
 //     the content repo (PUBLISH-POLICY §7 sanitized output, same class as beacon/lighthouse states).
 //     Honesty: per-source at/error recorded; a failed source is reported, never forged.
 const SANDBOX = 'roshpinacare-sys/Sandbox'
-const RAW_SB = `https://raw.githubusercontent.com/${SANDBOX}/main/`
+const AUTONOMY = 'roshpinacare-sys/Autonomy'
 const sources = {}
-async function grab(key, path, kind) {
-  try {
-    let res = await fetch(RAW_SB + path, { headers: H(FLEET_TOKEN || GITHUB_TOKEN), signal: AbortSignal.timeout(20000) })
-    if (res.status === 404) { sources[key] = { at: NOW, path, error: 'source 404 — honest gap' }; return }
-    if (!res.ok) {
-      // fallback: contents API (works with token on private repos)
-      const c = await gh(`/repos/${SANDBOX}/contents/${path}`, FLEET_TOKEN || GITHUB_TOKEN)
-      if (c.status !== 200 || !c.data?.content) { sources[key] = { at: NOW, path, error: `fetch ${res.status}/contents ${c.status}` }; return }
-      const buf = Buffer.from(c.data.content, 'base64')
-      const body = kind === 'text' ? buf.toString('utf8') : JSON.parse(buf.toString('utf8'))
-      sources[key] = { at: NOW, path, [kind === 'text' ? 'text' : 'data']: body }
-      return
-    }
-    const body = kind === 'text' ? await res.text() : await res.json()
-    sources[key] = { at: NOW, path, [kind === 'text' ? 'text' : 'data']: body }
-  } catch (e) {
-    sources[key] = { at: NOW, path, error: String(e?.message || e).slice(0, 120) }
+// SOURCE-LADDER (T-70, root-cause of issue #7): the arteries MOVED — public compute now
+// lives on Autonomy while Sandbox is quota-dead private memory. A single-source mirror
+// carried frozen ledgers while the living verdict was published one repo away.
+// Rule: json lanes try every candidate and carry the FRESHEST by embedded timestamp;
+// text lanes take the first candidate in order (living producer listed first);
+// profitOracle keeps its Sandbox-only shape contract with the Domain loader.
+const rawGet = async (repo, path) => {
+  const url = `https://raw.githubusercontent.com/${repo}/main/${path}`
+  let res = await fetch(url, { headers: H(FLEET_TOKEN || GITHUB_TOKEN), signal: AbortSignal.timeout(20000) })
+  if (res.status === 404) return { miss: '404' }
+  if (!res.ok) {
+    const c = await gh(`/repos/${repo}/contents/${path}`, FLEET_TOKEN || GITHUB_TOKEN)
+    if (c.status !== 200 || !c.data?.content) return { miss: `raw ${res.status}/contents ${c.status}` }
+    const buf = Buffer.from(c.data.content, 'base64')
+    return { body: buf }
   }
+  return { body: await res.arrayBuffer() }
+}
+const tsOf = (b) => {
+  if (!b || typeof b !== 'object') return null
+  const t = b.generatedAt || b.at || b.timestamp || null
+  const d = t ? new Date(t) : null
+  return d && !isNaN(d) ? d.toISOString() : null
+}
+async function grabLadder(key, candidates, kind) {
+  const tried = []
+  let best = null
+  for (const [repo, path] of candidates) {
+    try {
+      const r = await rawGet(repo, path)
+      if (r.miss) { tried.push({ repo, path, error: r.miss }); continue }
+      let body
+      if (kind === 'text') body = Buffer.from(r.body).toString('utf8')
+      else body = JSON.parse(Buffer.from(r.body).toString('utf8'))
+      tried.push({ repo, path, at: tsOf(body) })
+      if (kind === 'json') {
+        const t = tsOf(body)
+        const bt = best ? tsOf(best.body) : null
+        if (!best || (t && (!bt || new Date(t) > new Date(bt)))) best = { repo, path, body }
+      } else if (!best) best = { repo, path, body }
+    } catch (e) {
+      tried.push({ repo, path, error: String(e?.message || e).slice(0, 80) })
+    }
+  }
+  sources[key] = best
+    ? { at: NOW, path: best.path, source: best.repo, candidates: tried, [kind === 'text' ? 'text' : 'data']: best.body }
+    : { at: NOW, path: candidates.map((c) => c[1]).join(' | '), error: `no candidate carried — honest gap (${tried.map((t) => t.error || t.at || '?').join('; ')})` }
 }
 await Promise.all([
-  grab('lessons', 'ops/lessons/ledger.md', 'text'),
-  grab('flowMap', 'ops/flow/flow-map.json', 'json'),
-  grab('integrity', 'ops/integrity/verdict.json', 'json'),
-  grab('decisionTruth', 'ops/decision-truth/verdict.json', 'json'),
-  grab('profitOracle', 'receipts/profit-oracle-latest.json', 'json'),
+  grabLadder('lessons', [[AUTONOMY, 'ops/lessons/ledger.md'], [SANDBOX, 'ops/lessons/ledger.md']], 'text'),
+  grabLadder('flowMap', [[SANDBOX, 'ops/flow/flow-map.json'], [AUTONOMY, 'ops/flow/flow-map.json']], 'json'),
+  grabLadder('integrity', [[SANDBOX, 'ops/integrity/verdict.json'], [AUTONOMY, 'ops/integrity/verdict.json']], 'json'),
+  grabLadder('decisionTruth', [[SANDBOX, 'ops/decision-truth/verdict.json'], [AUTONOMY, 'ops/decision-truth/verdict.json']], 'json'),
+  grabLadder('profitOracle', [[SANDBOX, 'receipts/profit-oracle-latest.json']], 'json'),
 ])
 // research: date-named files — CI walks back up to 9 days for the latest findings
 {
@@ -293,7 +322,7 @@ await Promise.all([
     const d = new Date(Date.now() - back * 86400e3)
     const path = `research/findings-${d.getUTCFullYear()}-${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())}.json`
     try {
-      const res = await fetch(RAW_SB + path, { headers: H(FLEET_TOKEN || GITHUB_TOKEN), signal: AbortSignal.timeout(20000) })
+      const res = await fetch(`https://raw.githubusercontent.com/${SANDBOX}/main/${path}`, { headers: H(FLEET_TOKEN || GITHUB_TOKEN), signal: AbortSignal.timeout(20000) })
       if (res.ok) { sources.research = { at: NOW, path, data: await res.json() }; done = true }
     } catch {}
   }
