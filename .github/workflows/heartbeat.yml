@@ -1,0 +1,52 @@
+name: heartbeat
+# Pulse — the fleet's autonomous heartbeat (public runner shell, PUBLISH-POLICY §7).
+# Public repositories get UNLIMITED free Actions minutes: this organ can pulse forever
+# at zero cost, with zero dependency on any sandbox or agent session.
+# Loop discipline: observe (live API census) → act (write state) → record (git commit)
+# → verify (the commit itself is the observable gate) → terminal states in state/terminal.
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # every 30 min; GitHub may delay under load — the state file records reality
+  workflow_dispatch:
+    inputs:
+      note:
+        description: 'optional note recorded into state (max 200 chars)'
+        required: false
+        default: ''
+  repository_dispatch:
+    types: [pulse, task]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: heartbeat
+  cancel-in-progress: false
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: probe (observe → act → record)
+        env:
+          FLEET_TOKEN: ${{ secrets.FLEET_TOKEN }}
+          TRIGGER: ${{ github.event_name }}
+          NOTE: ${{ github.event.inputs.note || github.event.client_payload.note || '' }}
+        run: node scripts/probe.mjs
+
+      - name: record (commit the receipt)
+        run: |
+          git config user.name "pulse-heartbeat"
+          git config user.email "pulse-heartbeat@users.noreply.github.com"
+          git add state/
+          if git diff --cached --quiet; then
+            echo "no state change — clean no-op (named terminal: no-op)"
+          else
+            git commit -m "pulse: $(date -u +'%Y-%m-%dT%H:%M:%SZ') [skip ci]"
+            git push
+          fi
