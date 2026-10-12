@@ -35,6 +35,8 @@ jobs:
       - name: probe (observe → act → record)
         env:
           FLEET_TOKEN: ${{ secrets.FLEET_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }} # fallback PAT — census ladder: FLEET_TOKEN → GH_PAT → tokenless public
+          GITHUB_TOKEN: ${{ github.token }} # powers the fail-closed alert-issue law (POST/close)
           TRIGGER: ${{ github.event_name }}
           NOTE: ${{ github.event.inputs.note || github.event.client_payload.note || '' }}
         run: node scripts/probe.mjs

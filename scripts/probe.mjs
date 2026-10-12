@@ -1,19 +1,29 @@
 // Pulse probe — the loop-body of the fleet's autonomous heartbeat.
 // Loop discipline (observe → choose → act → verify → record → named terminal):
 //   1. OBSERVE: live GitHub census of the whole fleet (every repo, dynamic — new repos
-//      are auto-included; no hardcoded roster = no drift blind-spot).
+//      are auto-included; no hardcoded roster = no drift blind-spot). NEVER-BLIND law:
+//      authority ladder FLEET_TOKEN → GH_PAT → tokenless /users/{owner}/repos.
+//      Public repos are listable WITHOUT any token — so `repos: 0` while public repos
+//      exist is a blindness bug, never an honest verdict. Each repo's Actions liveness
+//      (latest workflow run) is measured too — the organ sees the network's real pulse.
 //   2. ACT: compute staleness/health; write state/network.json + state/history.jsonl.
 //   3. VERIFY: the workflow's git commit of state/ is the observable gate — anyone can
 //      see the heartbeat in git log without trusting any agent's word.
 //   4. RECORD + TERMINAL: state/terminal semantics — success | degraded | blocked.
-//      Never silent: a degraded probe opens/comments an alert issue (fail-closed honesty).
-// Secrets: FLEET_TOKEN (Actions secret) is never printed, never logged, never committed.
+//      Never silent: a degraded probe opens/comments an alert issue (fail-closed honesty);
+//      recovery (success again) closes the alert issue, completing the loop.
+// Secrets: FLEET_TOKEN / GH_PAT (Actions secrets) are never printed, never logged, never committed.
 //   PAT health is probed every run — a dead/expired token is FLAGS, not a silent failure.
+//   Tokenless mode is an HONEST permanent mode: the state says `visibility: public-only`
+//   and the terminal is degraded — private sight is missing, and that is reported, not hidden.
+// Schema: pulse-network-v2 (v1 fields preserved; adds auth.visibility + per-repo actions liveness).
 import { readFile, writeFile } from 'node:fs/promises'
 
 const API = 'https://api.github.com'
 const REPO = process.env.GITHUB_REPOSITORY || 'roshpinacare-sys/Pulse'
+const OWNER = REPO.split('/')[0]
 const FLEET_TOKEN = process.env.FLEET_TOKEN || ''
+const GH_PAT = process.env.GH_PAT || ''
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || ''
 const TRIGGER = (process.env.TRIGGER || 'unknown').slice(0, 40)
 const NOTE = (process.env.NOTE || '').slice(0, 200)
@@ -36,39 +46,89 @@ async function gh(path, tok) {
   }
 }
 
-const state = { terminal: 'success', reasons: [] }
-
-// --- 1. PAT health (blind-spot cover: token expiry/death becomes VISIBLE, not silent) ---
-let patHealth = { ok: false, status: 'missing' }
-if (FLEET_TOKEN) {
-  const r = await gh('/user', FLEET_TOKEN)
-  patHealth = { ok: r.status === 200, status: String(r.status) }
-  if (!patHealth.ok) state.reasons.push(`FLEET_TOKEN probe failed (HTTP ${r.status}) — expired/revoked/scoped-out token`)
-} else {
-  state.reasons.push('FLEET_TOKEN secret not set — fleet census impossible')
-}
-
-// --- 2. census with the best available authority ---
-const tok = patHealth.ok ? FLEET_TOKEN : GITHUB_TOKEN
-const mode = patHealth.ok ? 'fleet-full' : GITHUB_TOKEN ? 'own-repo-only (degraded)' : 'anonymous (degraded)'
-const repos = []
-let page = 1
-if (tok) {
-  for (; page <= 5; page++) {
-    const r = await gh(`/user/repos?per_page=100&page=${page}&sort=pushed`, tok)
-    if (r.status !== 200 || !Array.isArray(r.data)) break
-    repos.push(...r.data)
+// paginated list (max 5 pages = 500 repos); honest failure record per page
+async function listRepos(path, tok) {
+  const sep = path.includes('?') ? '&' : '?'
+  const out = []
+  for (let page = 1; page <= 5; page++) {
+    const r = await gh(`${path}${sep}per_page=100&page=${page}&sort=pushed`, tok)
+    if (r.status !== 200 || !Array.isArray(r.data)) {
+      const why = r.error || (r.data && r.data.message) || `HTTP ${r.status}`
+      return { repos: out, ok: false, http: r.status, why }
+    }
+    out.push(...r.data)
     if (r.data.length < 100) break
   }
-}
-if (repos.length === 0) {
-  state.terminal = 'blocked'
-  state.reasons.push(`census returned 0 repos (token mode=${mode}) — no authority to see anything`)
-} else if (!patHealth.ok) {
-  state.terminal = 'degraded'
+  return { repos: out, ok: true, http: 200, why: null }
 }
 
-// --- 3. compute ---
+const state = { terminal: 'success', reasons: [] }
+
+// --- 1. OBSERVE (a): PAT health (blind-spot cover: token expiry/death becomes VISIBLE, not silent) ---
+const AUTH_SECRET = FLEET_TOKEN ? 'FLEET_TOKEN' : GH_PAT ? 'GH_PAT' : ''
+const AUTH_TOK = FLEET_TOKEN || GH_PAT || ''
+let patHealth = { ok: false, status: 'missing', secret: AUTH_SECRET || null }
+if (AUTH_TOK) {
+  const r = await gh('/user', AUTH_TOK)
+  patHealth = { ok: r.status === 200, status: String(r.status), secret: AUTH_SECRET }
+  if (!patHealth.ok) state.reasons.push(`${AUTH_SECRET} probe failed (HTTP ${r.status}) — expired/revoked/scoped-out token`)
+} else {
+  state.reasons.push('FLEET_TOKEN/GH_PAT secrets not set — census falls back to tokenless public-only sight')
+}
+
+// --- 1. OBSERVE (b): census — authority ladder, NEVER-BLIND ---
+// ladder: authenticated /user/repos (private+public) → tokenless /users/{owner}/repos?type=owner (public-only).
+const repos = []
+let mode = 'anonymous'
+let visibility = 'public-only'
+const authCensus = patHealth.ok ? await listRepos('/user/repos', AUTH_TOK) : null
+if (authCensus && authCensus.repos.length > 0) {
+  mode = 'fleet-full'
+  visibility = 'private+public'
+  repos.push(...authCensus.repos)
+} else if (authCensus) {
+  state.reasons.push(`authenticated census returned 0 repos (HTTP ${authCensus.http}${authCensus.why ? `: ${authCensus.why}` : ''}) — falling back to tokenless public sight`)
+}
+if (repos.length === 0) {
+  const pub = await listRepos(`/users/${OWNER}/repos?type=owner`, '') // tokenless ON PURPOSE
+  if (pub.repos.length > 0) {
+    mode = 'public-only'
+    repos.push(...pub.repos)
+  } else {
+    mode = patHealth.ok ? 'fleet-full (0 measured)' : 'anonymous (0 measured)'
+    state.reasons.push(`tokenless census of /users/${OWNER}/repos returned 0 repos (HTTP ${pub.http}${pub.why ? `: ${pub.why}` : ''}) — organ is blind: network unreachable or IP rate-limited (60/h tokenless)`)
+  }
+}
+
+// --- 1. OBSERVE (c): per-repo Actions liveness — the network's actual pulse ---
+// latest workflow run per repo; authenticated for private sight, tokenless works for public repos.
+const liveTok = patHealth.ok ? AUTH_TOK : ''
+const LIVENESS = new Map()
+let livenessRateLimited = false
+for (const r of repos) {
+  if (r.archived) { LIVENESS.set(r.name, { status: 'skipped', why: 'archived' }); continue }
+  const lr = await gh(`/repos/${r.full_name || `${OWNER}/${r.name}`}/actions/runs?per_page=1`, liveTok)
+  if (!liveTok) await new Promise((s) => setTimeout(s, 250)) // politeness: tokenless budget is 60/h per IP
+  if (lr.status === 403 || lr.status === 429) {
+    livenessRateLimited = true
+    LIVENESS.set(r.name, { status: 'unmeasured', http: lr.status })
+    continue
+  }
+  if (lr.status !== 200) { LIVENESS.set(r.name, { status: 'unmeasured', http: lr.status }); continue }
+  const run = lr.data?.workflow_runs?.[0]
+  if (!run) { LIVENESS.set(r.name, { status: 'no-runs' }); continue }
+  LIVENESS.set(r.name, {
+    status: run.status,
+    conclusion: run.conclusion,
+    workflow: run.name,
+    event: run.event,
+    startedAt: run.created_at,
+    url: run.html_url,
+  })
+}
+if (livenessRateLimited) state.reasons.push('Actions liveness partially unmeasured — API rate-limit wall hit (honest gap, not silence)')
+
+// --- 2. ACT: compute ---
 const fleet = repos.map((r) => ({
   name: r.name,
   private: !!r.private,
@@ -76,7 +136,11 @@ const fleet = repos.map((r) => ({
   defaultBranch: r.default_branch,
   pushedAt: r.pushed_at,
   issuesOpen: r.open_issues_count ?? 0,
+  actions: LIVENESS.get(r.name) || { status: 'unmeasured' },
 }))
+const actionsFailing = fleet
+  .filter((r) => r.actions.status === 'completed' && r.actions.conclusion && !['success', 'neutral', 'skipped'].includes(r.actions.conclusion))
+  .map((r) => r.name)
 const stale24h = fleet
   .filter((r) => !r.archived && r.pushedAt && Date.now() - new Date(r.pushedAt).getTime() > 24 * 3600 * 1000)
   .map((r) => r.name)
@@ -87,20 +151,36 @@ const totals = {
   archived: fleet.filter((r) => r.archived).length,
   stale24h: stale24h.length,
   issuesOpen: fleet.reduce((a, r) => a + (r.issuesOpen || 0), 0),
+  actionsFailing: actionsFailing.length,
+  actionsUnmeasured: fleet.filter((r) => r.actions.status === 'unmeasured').length,
 }
 
-// --- 4. write state (names + timestamps only — sanitized, PUBLISH-POLICY §3) ---
+// --- terminal semantics (honest, fail-closed) ---
+if (repos.length === 0) {
+  state.terminal = 'blocked'
+} else if (mode !== 'fleet-full') {
+  state.terminal = 'degraded'
+  state.reasons.push(`visibility: public-only — ${totals.private === 0 ? 'private sight unavailable' : `${totals.private} private repos invisible from this census`} (mode=${mode})`)
+} else if (patHealth.ok && actionsFailing.length > 0) {
+  // full sight + a red run in the fleet: the organ SAW it — report degraded so the alert law speaks
+  state.terminal = 'degraded'
+  state.reasons.push(`Actions failing in fleet: ${actionsFailing.join(', ')}`)
+}
+
+// --- 3. RECORD: write state (names + timestamps only — sanitized, PUBLISH-POLICY §3) ---
 const network = {
-  schema: 'pulse-network-v1',
+  schema: 'pulse-network-v2',
   generatedAt: NOW,
   trigger: TRIGGER,
   note: NOTE || undefined,
   terminal: state.terminal,
+  visibility,
   reasons: state.reasons,
-  auth: { pat: patHealth, mode },
+  auth: { pat: patHealth, mode, visibility },
   cadence: { schedule: '*/30 * * * *', nextExpectedWithinMin: 90 },
   totals,
   stale24h,
+  actionsFailing,
   fleet,
 }
 await writeFile('state/network.json', JSON.stringify(network, null, 1), 'utf-8')
@@ -190,29 +270,45 @@ let hist = []
 try {
   hist = (await readFile('state/history.jsonl', 'utf-8')).split('\n').filter(Boolean)
 } catch {}
-hist.push(JSON.stringify({ at: NOW, trigger: TRIGGER, terminal: state.terminal, repos: totals.repos, stale: totals.stale24h, pat: patHealth.ok }))
+hist.push(JSON.stringify({ at: NOW, trigger: TRIGGER, terminal: state.terminal, repos: totals.repos, stale: totals.stale24h, pat: patHealth.ok, visibility, actionsFailing: totals.actionsFailing }))
 if (hist.length > 3000) hist = hist.slice(-3000)
 await writeFile('state/history.jsonl', hist.join('\n') + '\n', 'utf-8')
 
-console.log(`probe: terminal=${state.terminal} repos=${totals.repos} public=${totals.public} private=${totals.private} stale24h=${totals.stale24h} pat=${patHealth.ok ? 'ok' : patHealth.status}`)
+console.log(`probe: terminal=${state.terminal} repos=${totals.repos} public=${totals.public} private=${totals.private} stale24h=${totals.stale24h} actionsFailing=${totals.actionsFailing} visibility=${visibility} pat=${patHealth.ok ? 'ok' : patHealth.status} mode=${mode}`)
 
-// --- 5. fail-closed alerting (never silent) ---
+// --- 4. fail-closed alerting (never silent) — and recovery closes the loop ---
+const alertBody = `${NOW}\ntrigger=${TRIGGER} terminal=${state.terminal} visibility=${visibility}\nreasons:\n${state.reasons.map((r) => '- ' + r).join('\n')}`
 if (state.terminal !== 'success') {
   const title = 'alert: heartbeat degraded/blocked — see latest state/network.json'
-  const s = await gh(`/repos/${REPO}/issues?labels=alert&state=open&per_page=1`, GITHUB_TOKEN)
-  const existing = s.data?.[0]
+  const s = await gh(`/repos/${REPO}/issues?labels=alert&state=open&per_page=10`, GITHUB_TOKEN)
+  const existing = Array.isArray(s.data) ? s.data.find((i) => !i.pull_request) : null
   if (existing) {
     const c = await fetch(`${API}/repos/${REPO}/issues/${existing.number}/comments`, {
       method: 'POST', headers: { ...H(GITHUB_TOKEN), 'Content-Type': 'application/json' },
-      body: JSON.stringify({ body: `${NOW}\ntrigger=${TRIGGER} terminal=${state.terminal}\nreasons:\n${state.reasons.map((r) => '- ' + r).join('\n')}` }),
+      body: JSON.stringify({ body: alertBody }),
     })
     console.log(`alert: commented on #${existing.number} (${c.status})`)
   } else {
     const c = await fetch(`${API}/repos/${REPO}/issues`, {
       method: 'POST', headers: { ...H(GITHUB_TOKEN), 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, labels: ['alert'], body: `${NOW}\ntrigger=${TRIGGER} terminal=${state.terminal}\nreasons:\n${state.reasons.map((r) => '- ' + r).join('\n')}\n\nThis issue stays open until a heartbeat run succeeds again.` }),
+      body: JSON.stringify({ title, labels: ['alert'], body: `${alertBody}\n\nThis issue stays open until a heartbeat run succeeds again.` }),
     })
     console.log(`alert: created issue (${c.status})`)
+  }
+} else {
+  // recovery: the alert issue's own law says "stays open until a heartbeat run succeeds again"
+  const s = await gh(`/repos/${REPO}/issues?labels=alert&state=open&per_page=10`, GITHUB_TOKEN)
+  const existing = Array.isArray(s.data) ? s.data.find((i) => !i.pull_request) : null
+  if (existing) {
+    const cm = await fetch(`${API}/repos/${REPO}/issues/${existing.number}/comments`, {
+      method: 'POST', headers: { ...H(GITHUB_TOKEN), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ body: `${NOW}\nrecovered: heartbeat terminal=success visibility=${visibility} repos=${totals.repos} — closing per the issue's own law` }),
+    })
+    const c = await fetch(`${API}/repos/${REPO}/issues/${existing.number}`, {
+      method: 'PATCH', headers: { ...H(GITHUB_TOKEN), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ state: 'closed' }),
+    })
+    console.log(`alert: recovered — closed #${existing.number} (comment ${cm.status}, patch ${c.status})`)
   }
 }
 
