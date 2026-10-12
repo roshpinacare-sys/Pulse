@@ -1,6 +1,2967 @@
 {
  "schema": "pulse-mirror-v1",
- "generatedAt": "2026-10-12T00:00:00Z",
- "note": "seed placeholder — first heartbeat run overwrites with CI-carried lane sources",
- "sources": {}
+ "generatedAt": "2026-10-12T20:50:00.218Z",
+ "trigger": "workflow_dispatch",
+ "provenance": "CI-carried from roshpinacare-sys/Sandbox public-grade ledgers (darkened by the T-66 repo flip, not by content) + live chain probes. Sanitized output of a §7 runner shell.",
+ "chains": {
+  "hiveHead": 110719065,
+  "steemHead": 110385395
+ },
+ "sources": {
+  "integrity": {
+   "at": "2026-10-12T20:50:00.218Z",
+   "path": "ops/integrity/verdict.json",
+   "data": {
+    "schema": "integrity-guard/2",
+    "at": "2026-10-12T10:42:49.896Z",
+    "overall": "PASS",
+    "summary": {
+     "sources": 11,
+     "verified": 12,
+     "findings": 3,
+     "counts": {
+      "FLAG": 3
+     }
+    },
+    "provenance": {
+     "runId": "38238019604",
+     "runUrl": "https://github.com/roshpinacare-sys/Sandbox/actions/runs/38238019604",
+     "sha": "215d309975a025aa881743c403b49b5af2bbb653"
+    },
+    "verified": [
+     {
+      "where": "self:ops/integrity/verdict.json",
+      "law": "verified",
+      "detail": "run=38228087710 conc=failure repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:receipts/wallet/verdict.json",
+      "law": "verified",
+      "detail": "run=38231695506 conc=success repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:receipts/fleet/verdict.json",
+      "law": "verified",
+      "detail": "run=38226675048 conc=failure repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:receipts/grid/verdict.json",
+      "law": "verified",
+      "detail": "run=38235230671 conc=failure repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:ops/flow/receipt.json",
+      "law": "verified",
+      "detail": "run=38219951240 conc=success repo=Sandbox"
+     },
+     {
+      "where": "FleetHQ:receipts/office-ci/verdict.json",
+      "law": "verified",
+      "detail": "run=38195742752 conc=success repo=FleetHQ"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38195742752 conc=success repo=FleetHQ"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38221258238 conc=success repo=Sandbox"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38228086943 conc=failure repo=Sandbox"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38226675048 conc=failure repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:ops/decision-truth/verdict.json",
+      "law": "verified",
+      "detail": "run=38233807900 conc=success repo=Sandbox"
+     },
+     {
+      "where": "Sandbox:ops/integrity/verdict.json",
+      "law": "verified",
+      "detail": "run=38228087710 conc=failure repo=Sandbox"
+     }
+    ],
+    "findings": [
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/latest.json",
+      "law": "unprovenanced",
+      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: sovereign.yml"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:state/verifier/verdict-latest.json",
+      "law": "unprovenanced",
+      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: verifier.yml"
+     },
+     {
+      "level": "FLAG",
+      "where": "Domain:agents/office-live.json",
+      "law": "unprovenanced",
+      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: office lane"
+     }
+    ]
+   }
+  },
+  "decisionTruth": {
+   "at": "2026-10-12T20:50:00.218Z",
+   "path": "ops/decision-truth/verdict.json",
+   "data": {
+    "schema": "sandbox/decision-truth/1",
+    "generatedAt": "2026-10-12T10:56:07Z",
+    "durationMs": 2398,
+    "overall": "PASS_WITH_ALERTS",
+    "charter": "ops/sovereign/DECIDER/CHARTER.md",
+    "law": "H: every ENFORCED decision must re-measure its evidence independently AND show a measured consumer; stale evidence = STALE-TRUTH; no consumer = UNEXECUTED; source down = UNVERIFIABLE (never forged)",
+    "decider": {
+     "generatedAt": "2026-10-12T06:28:23Z",
+     "stateAgeMin": 268,
+     "heartbeat": {
+      "workflow": "sovereign-decider.yml",
+      "lastRunAt": "2026-10-12T06:28:16Z",
+      "ageS": 16069,
+      "stalled": true
+     }
+    },
+    "measures": {
+     "chain": {
+      "head": 110373558,
+      "treasuryNetSp": 2925.7,
+      "mult": 0.0006202278291913218
+     },
+     "beaconPulse": {
+      "treasuryNetSp": 2925.7
+     },
+     "faultedAgentsNow": [],
+     "flowSummary": {
+      "nodes": 35,
+      "edges": 119,
+      "orphans": 0,
+      "ghosts": null
+     },
+     "workOrderIds": [
+      "WO-Sandbox-reds",
+      "WO-saos-runtime-reds"
+     ]
+    },
+    "decisions": [
+     {
+      "id": "D0-owner-channel",
+      "area": "הנהגה",
+      "status": "ENFORCED",
+      "priority": "P0",
+      "decidedAt": "2026-10-12T06:28:22Z",
+      "truth": "STALE-TRUTH",
+      "checks": [
+       {
+        "law": "decider-state-age",
+        "result": "mismatch",
+        "detail": "state age 268min (limit 120)"
+       }
+      ],
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+     },
+     {
+      "id": "D1-econ-treasury-floor",
+      "area": "כלכלה",
+      "status": "ENFORCED",
+      "priority": "P1",
+      "decidedAt": "2026-10-12T06:28:23Z",
+      "truth": "STALE-TRUTH",
+      "checks": [
+       {
+        "law": "policy-internal-consistency",
+        "result": "ok",
+        "detail": "interimFloors=13/13 tier-mapping=ok"
+       },
+       {
+        "law": "treasury-basis-fresh-measure",
+        "result": "ok",
+        "detail": "claimed=2925.7 fresh=2925.7 tol=1"
+       },
+       {
+        "law": "beacon-vs-fresh",
+        "result": "ok",
+        "detail": "beacon=2925.7"
+       },
+       {
+        "law": "operators-basis",
+        "result": "ok",
+        "detail": "all 13 operators within ±2SP"
+       },
+       {
+        "law": "below-floor-list",
+        "result": "ok",
+        "detail": "fresh-below=[\"woq\",\"hcsoldier4\",\"hcsoldier5\",\"hcsoldier6\",\"wog\"] declared=[\"woq\",\"hcsoldier4\",\"hcsoldier5\",\"hcsoldier6\",\"wog\"]"
+       },
+       {
+        "law": "execution-existence",
+        "result": "ok",
+        "detail": "[{\"where\":\"sandbox:engine/fleet-yield.mjs\",\"via\":[\"operatingFloorSp\",\"interimFloorSp\",\"operatorInterimFloors\",\"D1-econ-treasury-floor\"]}]"
+       },
+       {
+        "law": "yield-engines-declared",
+        "result": "ok",
+        "detail": "dex=continue-armed (keyless engine, כבר-חי) curation=continue"
+       },
+       {
+        "law": "decider-state-age",
+        "result": "mismatch",
+        "detail": "state age 268min (limit 120)"
+       }
+      ],
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+     },
+     {
+      "id": "D2-eng-errors",
+      "area": "הנדסה",
+      "status": "ENFORCED",
+      "priority": "P0",
+      "decidedAt": "2026-10-12T06:28:23Z",
+      "truth": "STALE-TRUTH",
+      "checks": [
+       {
+        "law": "routed-orders-exist",
+        "result": "mismatch",
+        "detail": "routed=[\"WO-FleetHQ-reds\",\"WO-saos-runtime-reds\",\"WO-unwired-dex-mirror\",\"WO-unwired-steem-social-cadence\",\"WO-unwired-evo-windows\",\"WO-unwired-fleethq-gitignore\",\"WO-unwired-fleethq-potential-link\",\"WO-unwired-sandbox-ops-docs\"] missing=[\"WO-FleetHQ-reds\",\"WO-unwired-dex-mirror\",\"WO-unwired-steem-social-cadence\",\"WO-unwired-evo-windows\",\"WO-unwired-fleethq-gitignore\",\"WO-unwired-fleethq-potential-link\",\"WO-unwired-sandbox-ops-docs\"]"
+       },
+       {
+        "law": "orders-status-tracking",
+        "result": "unverifiable",
+        "detail": "orders without status field (done-ness unverifiable): [\"WO-saos-runtime-reds\"] - route: growth engine add status lifecycle"
+       },
+       {
+        "law": "fleethq-reds-persist",
+        "result": "ok",
+        "detail": "failure runs in last 48h: 1 - routed WO-FleetHQ-reds subject persists (work pending)"
+       },
+       {
+        "law": "faulted-agents-fix",
+        "result": "mismatch",
+        "detail": "foreman reports zero faulted agents NOW - fix landed, world moved past the decision - RE-MEASURE"
+       },
+       {
+        "law": "decider-state-age",
+        "result": "mismatch",
+        "detail": "state age 268min (limit 120)"
+       }
+      ],
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+     },
+     {
+      "id": "D3-flow-weave",
+      "area": "רשת",
+      "status": "ENFORCED",
+      "decidedAt": "2026-10-12T06:28:23Z",
+      "truth": "STALE-TRUTH",
+      "checks": [
+       {
+        "law": "orphans-fresh",
+        "result": "ok",
+        "detail": "claimed=0 fresh=0"
+       },
+       {
+        "law": "ghosts-fresh",
+        "result": "ok",
+        "detail": "claimed=0 fresh=0"
+       },
+       {
+        "law": "decider-state-age",
+        "result": "mismatch",
+        "detail": "state age 268min (limit 120)"
+       }
+      ],
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+     },
+     {
+      "id": "D4-truth-network",
+      "area": "אימות-עצמי",
+      "status": "OBSERVING",
+      "decidedAt": "2026-10-12T06:28:23Z",
+      "truth": "STALE-TRUTH",
+      "checks": [
+       {
+        "law": "decider-state-age",
+        "result": "mismatch",
+        "detail": "state age 268min (limit 120)"
+       }
+      ],
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+     }
+    ],
+    "provenance": {
+     "runId": "38239391717",
+     "runUrl": "https://github.com/roshpinacare-sys/Sandbox/actions/runs/38239391717",
+     "sha": "a300153a37799923eecd35193f65a4150a00a300",
+     "engine": "engine/decision-truth.mjs (H-series, zai-code-3)",
+     "generatedAt": "2026-10-12T10:56:07Z"
+    },
+    "selftest": {
+     "vectors": 16,
+     "ok": true
+    }
+   }
+  },
+  "profitOracle": {
+   "at": "2026-10-12T20:50:00.218Z",
+   "path": "receipts/profit-oracle-latest.json",
+   "data": {
+    "ok": true,
+    "schema": "roshpinacare.profit-oracle/1",
+    "agent": "profit-oracle v1 (zai-14b)",
+    "law": "keyless daily profitability pulse: V-WORTH (14-roster own/eff SP + liquid + order-book mid → netWorthSbdEquiv) · V-GRID-EDGE (pnl-desk verdict/edge/realized — value is data, desk decides) · V-ZOMBIE-LADDER (owner-treasury open orders vs prior: vanished = AMBER until fill/cancel verified); delta > +0.5% = PROFIT, ±0.5% = FLAT, < −0.5% = LOSS; network failure = UNKNOWN + reason, never guessed",
+    "gate": "profit-oracle (zai-14b) — standing daily profit pulse; joins zai-12b's fresh-oracle house pattern; owner trace 1a12…7021 'the autonomy itself checks profitability daily'",
+    "prior": {
+     "ok": true,
+     "schema": "roshpinacare.profit-oracle/1",
+     "agent": "profit-oracle v1 (zai-14b)",
+     "law": "keyless daily profitability pulse: V-WORTH (14-roster own/eff SP + liquid + order-book mid → netWorthSbdEquiv) · V-GRID-EDGE (pnl-desk verdict/edge/realized — value is data, desk decides) · V-ZOMBIE-LADDER (owner-treasury open orders vs prior: vanished = AMBER until fill/cancel verified); delta > +0.5% = PROFIT, ±0.5% = FLAT, < −0.5% = LOSS; network failure = UNKNOWN + reason, never guessed",
+     "gate": "profit-oracle (zai-14b) — standing daily profit pulse; joins zai-12b's fresh-oracle house pattern; owner trace 1a12…7021 'the autonomy itself checks profitability daily'",
+     "prior": null,
+     "runs": [
+      {
+       "at": "2026-10-11T23:50:12.357Z",
+       "trigger": "local",
+       "checks": [
+        {
+         "id": "V-WORTH",
+         "measuredAt": "2026-10-11T23:50:12.357Z",
+         "evidence": {
+          "rpc": {
+           "primary": "https://api.steemit.com",
+           "fallback": "https://api.justyy.com"
+          },
+          "dgpo": false,
+          "accounts": false,
+          "orderBook": false,
+          "error": "תשובה ללא result"
+         },
+         "verdict": "UNKNOWN",
+         "note": "כשל-RPC ב-dgpo — לא מנחשים שווי (fail-open, R5)"
+        },
+        {
+         "id": "V-GRID-EDGE",
+         "verdict": "GREEN",
+         "measuredAt": "2026-10-11T23:50:14.993Z",
+         "evidence": {
+          "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
+          "http": 200,
+          "verdict": "EDGE-NEGATIVE-GRID-HOLD",
+          "postLawEdgePct": -3,
+          "lifetimeRealizedSbd": -0.388666,
+          "generatedAt": "2026-10-11T15:02:49.879Z",
+          "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
+          "edgeLawPct": 1
+         },
+         "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
+        },
+        {
+         "id": "V-ZOMBIE-LADDER",
+         "verdict": "UNKNOWN",
+         "measuredAt": "2026-10-11T23:50:15.409Z",
+         "evidence": {
+          "method": "database_api.find_limit_orders",
+          "account": "owner-treasury",
+          "error": "תשובה ללא result"
+         },
+         "note": "כשל-RPC בסריקת-הפקודות — לא מנחשים"
+        }
+       ],
+       "summary": {
+        "GREEN": 1,
+        "AMBER": 0,
+        "RED": 0,
+        "UNKNOWN": 2,
+        "ownSp": null,
+        "effSp": null,
+        "liquidSteem": null,
+        "liquidSbd": null,
+        "mid": null,
+        "netWorthSbdEquiv": null,
+        "deltaVsPriorPct": null,
+        "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+        "gridEdgePct": -3,
+        "ladderOpenSbd": null,
+        "ladderCount": null,
+        "ladderZombieSbd": null,
+        "verdict": "UNKNOWN"
+       },
+       "deltaNote": "אין-בסיס קודם / שווי לא-נמדד — UNKNOWN כן"
+      }
+     ],
+     "updatedAt": "2026-10-11T23:50:12.357Z",
+     "at": "2026-10-11T23:50:12.357Z",
+     "summary": {
+      "GREEN": 1,
+      "AMBER": 0,
+      "RED": 0,
+      "UNKNOWN": 2,
+      "ownSp": null,
+      "effSp": null,
+      "liquidSteem": null,
+      "liquidSbd": null,
+      "mid": null,
+      "netWorthSbdEquiv": null,
+      "deltaVsPriorPct": null,
+      "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+      "gridEdgePct": -3,
+      "ladderOpenSbd": null,
+      "ladderCount": null,
+      "ladderZombieSbd": null,
+      "verdict": "UNKNOWN"
+     }
+    },
+    "runs": [
+     {
+      "at": "2026-10-11T23:50:12.357Z",
+      "trigger": "local",
+      "checks": [
+       {
+        "id": "V-WORTH",
+        "measuredAt": "2026-10-11T23:50:12.357Z",
+        "evidence": {
+         "rpc": {
+          "primary": "https://api.steemit.com",
+          "fallback": "https://api.justyy.com"
+         },
+         "dgpo": false,
+         "accounts": false,
+         "orderBook": false,
+         "error": "תשובה ללא result"
+        },
+        "verdict": "UNKNOWN",
+        "note": "כשל-RPC ב-dgpo — לא מנחשים שווי (fail-open, R5)"
+       },
+       {
+        "id": "V-GRID-EDGE",
+        "verdict": "GREEN",
+        "measuredAt": "2026-10-11T23:50:14.993Z",
+        "evidence": {
+         "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
+         "http": 200,
+         "verdict": "EDGE-NEGATIVE-GRID-HOLD",
+         "postLawEdgePct": -3,
+         "lifetimeRealizedSbd": -0.388666,
+         "generatedAt": "2026-10-11T15:02:49.879Z",
+         "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
+         "edgeLawPct": 1
+        },
+        "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
+       },
+       {
+        "id": "V-ZOMBIE-LADDER",
+        "verdict": "UNKNOWN",
+        "measuredAt": "2026-10-11T23:50:15.409Z",
+        "evidence": {
+         "method": "database_api.find_limit_orders",
+         "account": "owner-treasury",
+         "error": "תשובה ללא result"
+        },
+        "note": "כשל-RPC בסריקת-הפקודות — לא מנחשים"
+       }
+      ],
+      "summary": {
+       "GREEN": 1,
+       "AMBER": 0,
+       "RED": 0,
+       "UNKNOWN": 2,
+       "ownSp": null,
+       "effSp": null,
+       "liquidSteem": null,
+       "liquidSbd": null,
+       "mid": null,
+       "netWorthSbdEquiv": null,
+       "deltaVsPriorPct": null,
+       "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+       "gridEdgePct": -3,
+       "ladderOpenSbd": null,
+       "ladderCount": null,
+       "ladderZombieSbd": null,
+       "verdict": "UNKNOWN"
+      },
+      "deltaNote": "אין-בסיס קודם / שווי לא-נמדד — UNKNOWN כן"
+     },
+     {
+      "at": "2026-10-11T23:50:30.041Z",
+      "trigger": "local",
+      "checks": [
+       {
+        "id": "V-WORTH",
+        "measuredAt": "2026-10-11T23:50:30.041Z",
+        "evidence": {
+         "rpc": {
+          "primary": "https://api.steemit.com",
+          "fallback": "https://api.justyy.com"
+         },
+         "dgpo": true,
+         "accounts": true,
+         "orderBook": true,
+         "ratioSpPerVests": 0.000620208399,
+         "ownSp": 4294.5,
+         "effSp": 3556,
+         "liquidSteem": 30.985,
+         "liquidSbd": 10.617,
+         "mid": 0.10281,
+         "spreadBps": 48.8,
+         "netWorthSbdEquiv": 455.32,
+         "roster": 14
+        },
+        "verdict": "GREEN",
+        "note": "🟢 שווי-חי: own-SP 4294.5 · eff-SP 3556 · נזיל 30.985 STEEM + 10.617 SBD · mid 0.10281 → netWorth 455.32 SBD-equiv"
+       },
+       {
+        "id": "V-GRID-EDGE",
+        "verdict": "GREEN",
+        "measuredAt": "2026-10-11T23:50:31.359Z",
+        "evidence": {
+         "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
+         "http": 200,
+         "verdict": "EDGE-NEGATIVE-GRID-HOLD",
+         "postLawEdgePct": -3,
+         "lifetimeRealizedSbd": -0.388666,
+         "generatedAt": "2026-10-11T15:02:49.879Z",
+         "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
+         "edgeLawPct": 1
+        },
+        "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
+       },
+       {
+        "id": "V-ZOMBIE-LADDER",
+        "verdict": "UNKNOWN",
+        "measuredAt": "2026-10-11T23:50:31.736Z",
+        "evidence": {
+         "method": "database_api.find_limit_orders",
+         "account": "owner-treasury",
+         "count": 16,
+         "openSbd": 94.011,
+         "openSteem": 962.673,
+         "zombieSbd": 91.195,
+         "zombieCount": 5,
+         "priorCount": null,
+         "priorOpenSbd": null
+        },
+        "note": "ריצה-ראשונה / אין-בסיס-קודם — הסולם נמדד, הדלתא תימדד מחר"
+       }
+      ],
+      "summary": {
+       "GREEN": 2,
+       "AMBER": 0,
+       "RED": 0,
+       "UNKNOWN": 1,
+       "ownSp": 4294.5,
+       "effSp": 3556,
+       "liquidSteem": 30.985,
+       "liquidSbd": 10.617,
+       "mid": 0.10281,
+       "netWorthSbdEquiv": 455.32,
+       "deltaVsPriorPct": null,
+       "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+       "gridEdgePct": -3,
+       "ladderOpenSbd": 94.011,
+       "ladderCount": 16,
+       "ladderZombieSbd": 91.195,
+       "verdict": "UNKNOWN"
+      },
+      "deltaNote": "אין-בסיס קודם / שווי לא-נמדד — UNKNOWN כן"
+     },
+     {
+      "at": "2026-10-11T23:52:50.902Z",
+      "trigger": "workflow_dispatch",
+      "checks": [
+       {
+        "id": "V-WORTH",
+        "measuredAt": "2026-10-11T23:52:50.902Z",
+        "evidence": {
+         "rpc": {
+          "primary": "https://api.steemit.com",
+          "fallback": "https://api.justyy.com"
+         },
+         "dgpo": true,
+         "accounts": true,
+         "orderBook": true,
+         "ratioSpPerVests": 0.000620208465,
+         "ownSp": 4294.5,
+         "effSp": 3556,
+         "liquidSteem": 30.985,
+         "liquidSbd": 10.617,
+         "mid": 0.10281,
+         "spreadBps": 48.8,
+         "netWorthSbdEquiv": 455.32,
+         "roster": 14
+        },
+        "verdict": "GREEN",
+        "note": "🟢 שווי-חי: own-SP 4294.5 · eff-SP 3556 · נזיל 30.985 STEEM + 10.617 SBD · mid 0.10281 → netWorth 455.32 SBD-equiv"
+       },
+       {
+        "id": "V-GRID-EDGE",
+        "verdict": "GREEN",
+        "measuredAt": "2026-10-11T23:52:51.170Z",
+        "evidence": {
+         "url": "https://roshpinacare-sys.github.io/Domain/dex/pnl-desk.json",
+         "http": 200,
+         "verdict": "EDGE-NEGATIVE-GRID-HOLD",
+         "postLawEdgePct": -3,
+         "lifetimeRealizedSbd": -0.388666,
+         "generatedAt": "2026-10-11T15:02:49.879Z",
+         "deskLaw": "weekly edge >= +1% or the grid holds (T2, master plan 2026-10-11 — \"edge positive or off\")",
+         "edgeLawPct": 1
+        },
+        "note": "🟢 השולחן נמדד: verdict=EDGE-NEGATIVE-GRID-HOLD · postLaw.edgePct=-3% · lifetime.realizedSbd=-0.388666 SBD (חוק-השולחן: ≥+1% = מותר-להציב; ההכרעה ב-desk — חדר-אחד)"
+       },
+       {
+        "id": "V-ZOMBIE-LADDER",
+        "verdict": "GREEN",
+        "measuredAt": "2026-10-11T23:52:51.286Z",
+        "evidence": {
+         "method": "database_api.find_limit_orders",
+         "account": "owner-treasury",
+         "count": 16,
+         "openSbd": 94.011,
+         "openSteem": 962.673,
+         "zombieSbd": 91.195,
+         "zombieCount": 5,
+         "priorCount": 16,
+         "priorOpenSbd": 94.011
+        },
+        "note": "🟢 סולם-עומד: 16 פקודות · 94.011 SBD פתוח (מהם זומבי 91.195 SBD @≤0.0995) — יציב או מתמלא"
+       }
+      ],
+      "summary": {
+       "GREEN": 3,
+       "AMBER": 0,
+       "RED": 0,
+       "UNKNOWN": 0,
+       "ownSp": 4294.5,
+       "effSp": 3556,
+       "liquidSteem": 30.985,
+       "liquidSbd": 10.617,
+       "mid": 0.10281,
+       "netWorthSbdEquiv": 455.32,
+       "deltaVsPriorPct": 0,
+       "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+       "gridEdgePct": -3,
+       "ladderOpenSbd": 94.011,
+       "ladderCount": 16,
+       "ladderZombieSbd": 91.195,
+       "verdict": "FLAT"
+      },
+      "deltaNote": "FLAT: +0.000% מול-הריצה-הקודמת (חוק: > +0.5% / < −0.5%)"
+     }
+    ],
+    "updatedAt": "2026-10-11T23:52:50.902Z",
+    "at": "2026-10-11T23:52:50.902Z",
+    "summary": {
+     "GREEN": 3,
+     "AMBER": 0,
+     "RED": 0,
+     "UNKNOWN": 0,
+     "ownSp": 4294.5,
+     "effSp": 3556,
+     "liquidSteem": 30.985,
+     "liquidSbd": 10.617,
+     "mid": 0.10281,
+     "netWorthSbdEquiv": 455.32,
+     "deltaVsPriorPct": 0,
+     "gridVerdict": "EDGE-NEGATIVE-GRID-HOLD",
+     "gridEdgePct": -3,
+     "ladderOpenSbd": 94.011,
+     "ladderCount": 16,
+     "ladderZombieSbd": 91.195,
+     "verdict": "FLAT"
+    }
+   }
+  },
+  "lessons": {
+   "at": "2026-10-12T20:50:00.218Z",
+   "path": "ops/lessons/ledger.md",
+   "text": "# LESSONS LEDGER · append-only · deterministic distillation of measured history\n\n## scribe #1 · 2026-10-11T13:15:17.153Z\n- wallet: no receipts yet (artery young)\n- fleet actions 24h: 100 runs · failures: none\n- sovereign tick last pulse: 9min ago\n- sandbox commits 24h: 1 · authors: {\"sovereign-federation\":1}\n- no law proposals — everything measured healthy\n\n\n## scribe #2 · 2026-10-11T13:23:01.464Z\n- wallet 24h verdicts: {\"FAIL\":1,\"PASS\":1} · failing laws: {\"law-pass-provenance\":1}\n- fleet actions 24h: 100 runs · failures: artery-wallet:failure×1\n- sovereign tick last pulse: 2min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"zai-code-3\":5,\"wallet-artery\":2,\"sandbox-sovereign\":31,\"sandbox-state\":33,\"sandbox-verifier\":3,\"sovereign-scribe\":1,\"sovereign-federation\":9,\"fleet-healer\":9,\"zai-sec-1a12af86\":2,\"zai-code-2\":1,\"fleet-yield\":3,\"zai-code-agent\":1}\n- PROPOSAL(law): wallet carried 1 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet law law-pass-provenance failed 1×/24h — regression or theater attempt; verify immediately\n\n\n## weekly-retro 2026-W41 · 2026-10-11T13:51:12.702Z\n- org runs 1w: 0 · ok=0 · fail=0 · instant-fail(billing-signature)=0\n- red engines: none · healthy: 0 · silent: 26\n- open law-proposals: 2\n- DIRECTIVE(1): silent repos (26): Sandbox, steem, saos-runtime, Domain, saos-dex, Console, FleetHQ, sovereign-lighthouse, sovereign-beacon, TruthRail, Zip, saos-control-center, Saosmartwallet, saos-agents, sanbox, SovereignConsole, vault-home, Project-files, saos-sovereign-platform, Defi, roshpina, Adsmarket, Sdk, saos-jummper, saos-sovereign-foundry, anchor-baseline ran nothing in 1 week(s) — either wire a real trigger or archive honestly; a repo that never runs is a claim, not a system\n- DIRECTIVE(2): open scribe law-proposals: 2 — review, adopt or refute each with a measured verdict; a proposal older than 2 retro cycles with no verdict becomes a doctrine violation itself\n\n## weekly-retro 2026-W41 · 2026-10-11T13:53:02.351Z\n- org runs 1w: 1171 · ok=557 · fail=525 · instant-fail(billing-signature)=525\n- red engines: saos-dex(×100), Zip(×100), sanbox(×6) · healthy: 2 · silent: 5\n- open law-proposals: 2\n- DIRECTIVE(1): billing-wall signature detected: 525 instant-fail runs (<5s) across the org this week — lift the Actions spending limit or migrate the affected engines' cadence to public homes; fleet-heal will re-probe within 24h of release\n- DIRECTIVE(2): red engines (saos-dex, Zip, sanbox): zero success vs 206 failures — fix root cause before adding features; red CI is not a state, it is a debt\n- DIRECTIVE(3): silent repos (5): FleetHQ, sovereign-beacon, saos-agents, SovereignConsole, vault-home ran nothing in 1 week(s) — either wire a real trigger or archive honestly; a repo that never runs is a claim, not a system\n- DIRECTIVE(4): open scribe law-proposals: 2 — review, adopt or refute each with a measured verdict; a proposal older than 2 retro cycles with no verdict becomes a doctrine violation itself\n\n## weekly-retro 2026-W41 · 2026-10-11T13:54:18.924Z\n- org runs 1w: 1171 · ok=554 · fail=525 · instant-fail(billing-signature)=525\n- red engines: saos-dex(×100), Zip(×100), sanbox(×6) · healthy: 2 · silent: 5\n- open law-proposals: 2\n- DIRECTIVE(1): billing-wall signature detected: 525 instant-fail runs (<5s) across the org this week — lift the Actions spending limit or migrate the affected engines' cadence to public homes; fleet-heal will re-probe within 24h of release\n- DIRECTIVE(2): red engines (saos-dex, Zip, sanbox): zero success vs 206 failures — fix root cause before adding features; red CI is not a state, it is a debt\n- DIRECTIVE(3): silent repos (5): FleetHQ, sovereign-beacon, saos-agents, SovereignConsole, vault-home ran nothing in 1 week(s) — either wire a real trigger or archive honestly; a repo that never runs is a claim, not a system\n- DIRECTIVE(4): open scribe law-proposals: 2 — review, adopt or refute each with a measured verdict; a proposal older than 2 retro cycles with no verdict becomes a doctrine violation itself\n\n## scribe #6 · 2026-10-12T10:38:23.000Z\n- wallet 24h verdicts: {\"FAIL\":1,\"PASS\":17} · failing laws: {\"law-pass-provenance\":1}\n- fleet 24h verdicts: {\"PASS\":11,\"FAIL\":3} · alerts: 32\n- fleet actions 24h: 100 runs · failures: artery-grid:failure×5, artery-integrity:failure×1, artery-fleet:failure×1, sovereign-tick:failure×1\n- sovereign tick last pulse: 9min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"fleet-healer\":8,\"sandbox-sovereign\":21,\"sandbox-state\":23,\"grid-watch\":7,\"participation[bot]\":4,\"decision-truth\":7,\"value-scan-bot\":6,\"wallet-artery\":4,\"sovereign-federation\":5,\"integrity-guard\":4,\"fleet-artery\":3,\"fleet-yield\":2,\"sandbox-verifier\":1,\"sovereign-flow\":1,\"github-actions[bot]\":3,\"sovereign-decider-bot\":1}\n- office-ci (FleetHQ) verdict: PASS · 492min ago\n- Domain book office/data.json: 72min old (law <=60min)\n- Domain book agents/office-live.json: 57min old (law <=180min)\n- Domain book dex/office-feed.json: 706min old (law <=1560min)\n- flow map: nodes=35 edges=119 page-integrated=15 plane-internal=19 orphans=0 ghosts=0 density=3.4\n- integrity guard: overall=FAIL sources=11 claims-verified=11 findings=4 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=15029 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=5h\n- dex book dex/showcase.json: ok sig=pair=unknown age=5h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 17 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet law law-pass-provenance failed 1×/24h — regression or theater attempt; verify immediately\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): Domain book office/data.json stale (72min > 60min) - its producer workflow may be stalled\n- PROPOSAL(law): 9 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"CRITICAL\":1,\"FLAG\":3}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n"
+  },
+  "flowMap": {
+   "at": "2026-10-12T20:50:00.218Z",
+   "path": "ops/flow/flow-map.json",
+   "data": {
+    "generatedAt": "2026-10-12T10:55:59.895Z",
+    "owner": "roshpinacare-sys",
+    "corpusFiles": [
+     "roshpinacare-sys/Domain/index.html [page]",
+     "roshpinacare-sys/Domain/agents/office-pulse.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/office-feed.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/office-artery.mjs [agent]",
+     "roshpinacare-sys/Sandbox/engine/scribe.mjs [learner]",
+     "roshpinacare-sys/Sandbox/.github/workflows/artery-watch.yml [watch]",
+     "roshpinacare-sys/Domain/marketing/adsmarket.html [page]",
+     "roshpinacare-sys/Domain/.github/workflows/adsmarket-panel.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/agent-verify.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/anchor-execute.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/arb-mesh-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/audience-analyst.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/blurt-connect.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/book-audit.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/bootstrap-pages.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/canary.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/cloud-heart.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/cloud-pulse.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/cognition-beat.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/content-campaign.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/content-gate.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/content-reviewer.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/content-truth-wave.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/daily-claim.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/daily-digest.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/dex-beat.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/dex-core-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/dex-grid.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/dex-router-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/earn-audit-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/econ-desk.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/economy-engine.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/evo-windows.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/exposure-gate.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/fill-ledger-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/fleet-census-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/foundry-mesh-tests.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/gitleaks.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/grid-doctor.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/grid-trigger-twin.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/human-cadence.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/ladder-refresh.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/market-grid-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/moment-watch.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/office-artery.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/office-feed.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/office-pulse-twin.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/office-pulse.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/operator-console.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/org-gitleaks.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/org-selftests.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/proof-pipeline.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/public-pulse.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/recruit.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/saos-act.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/seal-adopt.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/self-audience.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/social-audit.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/soldiers-curate.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/sovereign-pulse.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/sovereign-selftests.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/sovereign-tick-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/steem-posting-repair.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/tick-keeper.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/token-forge.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/treasury-arm.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/treasury-route.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/tri-bridge.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/twin-audit.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/vault-transfer.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/watchdog.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/weave-anchor-lines.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/weave-anchor-ping.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/weave-ecosystem.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/weave-heart.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/weave-mirror.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/web-publish.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/workflow-yaml-guard.yml [workflow]",
+     "roshpinacare-sys/Domain/agents/adsmarket-panel.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/agent-registry.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/anchor-execute.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/arb-mesh.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/audience-analyst.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/blurt-connect.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/blurt-curate.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/book-auditor.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/bridge-desk.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/cadence-week.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/canon-liveness.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/capability-matrix.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/capital-gate.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/capital-gate.selftest.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/ci-hands.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/claims-audit.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/cloud-pulse.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/cognition-beat.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/cognitive-rail.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/collapse-drill.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/command-guard.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/community-founder.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/content-campaign.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/content-gate.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/content-reviewer.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/convert-canon.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/coord-bus.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/coord-lease.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/counter-grid.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/cross-layer.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/daily-claim.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/daily-digest.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/dedup-corrections.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/deep-audit.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/dex-book.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/dex-core.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/dex-mirror.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/dex-router.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/dex-xc.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/directivesChain.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/drip-canon.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/earn-audit.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/econ-desk.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/evo-windows.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/fee-doctrine-law.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/fill-ledger.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/fleet-census.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/fleet-claim.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/fleet-delta.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/fleet-doctor.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/fleet-indicators.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/fleet-roster.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/fleet-social.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/grid-doctor.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/grid-guard.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/hands-book.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/harness-audit.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/head-delegate.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/human-cadence.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/key-census.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/key-verify.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/laya-triage.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/loopguard.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/market-cycle.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/market-exec.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/market-grid.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/measure-learn.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/mirror-from-console.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/mm-volume.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/moment-watch.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/money-watch.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/one-bloc.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/operator-console.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/owner-proof.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/page-laws.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/pegout-hand.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/persona-store.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/pnl-book.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/proof-pipeline.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/public-pulse.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/public-wave.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/pulse.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/reconcile.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/recruit.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/redact-telemetry.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/reef-harness-evo.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/reef-rung3.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/route-desk.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/scheduler-audit.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/scheduler-collect.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/scheduler-heal.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/self-audience.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/selfmodel.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/skill-library-gate.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/social-dedupe.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/soldiers-blog.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/soldiers-curate.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/sovereign-tick.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/sovereign-trade.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/sovereign.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/steem-posting-repair.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/tick-keeper.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/treasury-arm.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/treasury-desk.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/tribridge.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/truth-fix.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/truth-sweep.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/twin-audit.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/twin-issue-gate.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/twin-marker-law.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/venture-desk.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/watch.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/watchdog.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/weave-mirror.mjs [agent]",
+     "roshpinacare-sys/Domain/agents/workflow-audit.cjs [agent]",
+     "roshpinacare-sys/Domain/agents/workflow-parse-gate.cjs [agent]",
+     "roshpinacare-sys/Sandbox/engine/agent-gate.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/candidates-export.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/cloud-echo.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/decision-truth.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/federation-scan.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/federation-selftest.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/fleet-participation.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/fleet-verify.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/fleet-yield-selftest.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/fleet-yield.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/gitlab-mirror.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/grid-watch.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/key-probe.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/leak-scan.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/network-probe.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/operator.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/render-home.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/scribe.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/seal-selftest.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/sovereign-tick.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/state-lib.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/state-tick.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/vein-probe.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/vercel-deploy.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/verifier.mjs [engine]",
+     "roshpinacare-sys/Sandbox/engine/wallet-verify.mjs [engine]"
+    ],
+    "nodes": [
+     {
+      "key": "roshpinacare-sys/Sandbox:receipts/wallet/verdict.json",
+      "kind": "receipt",
+      "path": "receipts/wallet/verdict.json",
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 1.17,
+      "missing": false,
+      "author": "wallet-artery",
+      "sha": "c51296ed",
+      "maxAgeH": 2,
+      "feeds": "artery-wallet (hourly)",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+       "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/wallet-verify.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Sandbox:receipts/fleet/verdict.json",
+      "kind": "receipt",
+      "path": "receipts/fleet/verdict.json",
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 1.97,
+      "missing": false,
+      "author": "fleet-artery",
+      "sha": "c1aeb4e6",
+      "maxAgeH": 3,
+      "feeds": "artery-fleet (2h)",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+       "roshpinacare-sys/Sandbox/engine/fleet-verify.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Sandbox:receipts/grid/verdict.json",
+      "kind": "receipt",
+      "path": "receipts/grid/verdict.json",
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 0.65,
+      "missing": false,
+      "author": "grid-watch",
+      "sha": "5a2535d1",
+      "maxAgeH": 1,
+      "feeds": "artery-grid (30min)",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+       "roshpinacare-sys/Sandbox/engine/grid-watch.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Sandbox:receipts/latest.json",
+      "kind": "pulse",
+      "path": "receipts/latest.json",
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 0.18,
+      "missing": false,
+      "author": "sandbox-sovereign",
+      "sha": "8cdb643e",
+      "maxAgeH": 1,
+      "feeds": "sovereign.yml (~15min)",
+      "contentAt": "2026-10-12T10:44:23.900Z",
+      "contentAgeH": 0.18,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/network-probe.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/sovereign-tick.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/state-lib.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Sandbox:ops/lessons/ledger.md",
+      "kind": "lesson",
+      "path": "ops/lessons/ledger.md",
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 0.28,
+      "missing": false,
+      "author": "sovereign-scribe",
+      "sha": "25c15330",
+      "maxAgeH": 26,
+      "feeds": "artery-scribe (daily)",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Sandbox:ops/flow/flow-map.json",
+      "kind": "flowmap",
+      "path": "ops/flow/flow-map.json",
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 3.07,
+      "missing": false,
+      "author": "sovereign-flow",
+      "sha": "f04985a4",
+      "maxAgeH": 4,
+      "feeds": "artery-flow (3h)",
+      "contentAt": "2026-10-12T07:50:42.413Z",
+      "contentAgeH": 3.07,
+      "contentDivergence": false,
+      "integration": "SELF",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
+      "kind": "receipt",
+      "path": "receipts/office-ci/verdict.json",
+      "repo": "roshpinacare-sys/FleetHQ",
+      "ageH": 8.47,
+      "missing": false,
+      "author": "office-ci-bot",
+      "sha": "6507e91f",
+      "maxAgeH": 30,
+      "feeds": "office-ci (push)",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/FleetHQ:office/state/office-state.json",
+      "kind": "state",
+      "path": "office/state/office-state.json",
+      "repo": "roshpinacare-sys/FleetHQ",
+      "ageH": 0.76,
+      "missing": false,
+      "author": "fleet-office-bot",
+      "sha": "b570ea8a",
+      "maxAgeH": 3,
+      "feeds": "office-heartbeat (2h)",
+      "contentAt": "2026-10-12T10:08:43.259Z",
+      "contentAgeH": 0.77,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Sandbox/engine/decision-truth.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/FleetHQ:digest.json",
+      "kind": "digest",
+      "path": "digest.json",
+      "repo": "roshpinacare-sys/FleetHQ",
+      "ageH": 8.76,
+      "missing": false,
+      "author": "fleet-office-bot",
+      "sha": "7d3725f6",
+      "maxAgeH": 26,
+      "feeds": "unknown (404 measured 2026-10-11)",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:office/data.json",
+      "kind": "book",
+      "path": "office/data.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 1.47,
+      "missing": false,
+      "author": "office-pulse-bot",
+      "sha": "9797aae5",
+      "maxAgeH": 1,
+      "feeds": "office-pulse (20min)",
+      "contentAt": "2026-10-12T09:26:38.913Z",
+      "contentAgeH": 1.47,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Domain/.github/workflows/office-pulse-twin.yml (workflow)",
+       "roshpinacare-sys/Domain/.github/workflows/office-pulse.yml (workflow)",
+       "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:agents/office-live.json",
+      "kind": "book",
+      "path": "agents/office-live.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 1.23,
+      "missing": false,
+      "author": "office-artery",
+      "sha": "6c300405",
+      "maxAgeH": 3,
+      "feeds": "office-artery (2h)",
+      "contentAt": "2026-10-12T09:41:06.532Z",
+      "contentAgeH": 1.23,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/agents/office-artery.mjs (agent)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Domain/.github/workflows/office-artery.yml (workflow)",
+       "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/office-feed.json",
+      "kind": "book",
+      "path": "dex/office-feed.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 12.05,
+      "missing": false,
+      "author": "office-feed[bot]",
+      "sha": "4b4c8ba7",
+      "maxAgeH": 26,
+      "feeds": "office-feed (daily)",
+      "contentAt": "2026-10-11T22:52:14.288Z",
+      "contentAgeH": 12.05,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:status.json",
+      "kind": "book",
+      "path": "status.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 12.47,
+      "missing": false,
+      "author": "weave-mirror",
+      "sha": "c10b8714",
+      "maxAgeH": 30,
+      "feeds": "pages build",
+      "contentAt": "2026-10-11T20:34:03.234Z",
+      "contentAgeH": 14.35,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Domain/agents/office-artery.mjs (agent)",
+       "roshpinacare-sys/Domain/.github/workflows/weave-mirror.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/weave-mirror.mjs (agent)",
+       "roshpinacare-sys/Sandbox/engine/fleet-verify.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/network-probe.mjs (engine)",
+       "roshpinacare-sys/Sandbox/engine/wallet-verify.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:marketing/adsmarket.json",
+      "kind": "book",
+      "path": "marketing/adsmarket.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 10.87,
+      "missing": false,
+      "author": "adsmarket-panel-bot",
+      "sha": "097a8541",
+      "maxAgeH": 168,
+      "feeds": "adsmarket-panel (weekly Mon 05:41 UTC + dispatch)",
+      "contentAt": "2026-10-12T00:02:45.129Z",
+      "contentAgeH": 10.87,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/marketing/adsmarket.html (page)",
+       "roshpinacare-sys/Domain/.github/workflows/adsmarket-panel.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/adsmarket-panel.cjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/agent.json",
+      "kind": "book",
+      "path": "dex/agent.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 538.51,
+      "missing": false,
+      "author": "Z User",
+      "sha": "9365852e",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/bridge.json",
+      "kind": "book",
+      "path": "dex/bridge.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 538.51,
+      "missing": false,
+      "author": "Z User",
+      "sha": "9365852e",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/credits.json",
+      "kind": "book",
+      "path": "dex/credits.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 2.84,
+      "missing": false,
+      "author": "dex-mirror",
+      "sha": "e96f4910",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": "2026-10-12T05:52:05.552Z",
+      "contentAgeH": 5.05,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
+       "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/deposits.json",
+      "kind": "book",
+      "path": "dex/deposits.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 8.25,
+      "missing": false,
+      "author": "mirror-from-console",
+      "sha": "38fae067",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/watch.mjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/fleet.json",
+      "kind": "book",
+      "path": "dex/fleet.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 538.51,
+      "missing": false,
+      "author": "Z User",
+      "sha": "9365852e",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/grid.json",
+      "kind": "book",
+      "path": "dex/grid.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 2.84,
+      "missing": false,
+      "author": "dex-mirror",
+      "sha": "e96f4910",
+      "maxAgeH": 26,
+      "feeds": "discovered",
+      "contentAt": "2026-10-12T02:38:34.150Z",
+      "contentAgeH": 8.28,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/content-campaign.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/daily-digest.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/grid-guard.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/proof-pipeline.mjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/mirror-stub.json",
+      "kind": "book",
+      "path": "dex/mirror-stub.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 538.51,
+      "missing": false,
+      "author": "Z User",
+      "sha": "9365852e",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/money.json",
+      "kind": "book",
+      "path": "dex/money.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 2.84,
+      "missing": false,
+      "author": "dex-mirror",
+      "sha": "e96f4910",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": "2026-10-12T06:21:05.902Z",
+      "contentAgeH": 4.57,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/money-watch.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/watch.mjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/onramp.json",
+      "kind": "book",
+      "path": "dex/onramp.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 2.84,
+      "missing": false,
+      "author": "dex-mirror",
+      "sha": "e96f4910",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/pegout-queue.json",
+      "kind": "book",
+      "path": "dex/pegout-queue.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 18.69,
+      "missing": false,
+      "author": "zai-agent",
+      "sha": "010550d1",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": "2026-10-04T14:23:10.883Z",
+      "contentAgeH": 188.53,
+      "contentDivergence": true,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
+       "roshpinacare-sys/Domain/agents/dex-xc.cjs (agent)",
+       "roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/pnl-desk.json",
+      "kind": "book",
+      "path": "dex/pnl-desk.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 18.69,
+      "missing": false,
+      "author": "zai-agent",
+      "sha": "010550d1",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": "2026-10-11T15:02:49.879Z",
+      "contentAgeH": 19.87,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/market-exec.cjs (agent)",
+       "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/portfolio.json",
+      "kind": "book",
+      "path": "dex/portfolio.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 2.84,
+      "missing": false,
+      "author": "dex-mirror",
+      "sha": "e96f4910",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/redeem-requests.json",
+      "kind": "book",
+      "path": "dex/redeem-requests.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 189.75,
+      "missing": false,
+      "author": "Z User",
+      "sha": "a5dc89c7",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/relay.json",
+      "kind": "book",
+      "path": "dex/relay.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 2.84,
+      "missing": false,
+      "author": "dex-mirror",
+      "sha": "e96f4910",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/showcase.json",
+      "kind": "book",
+      "path": "dex/showcase.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 2.84,
+      "missing": false,
+      "author": "dex-mirror",
+      "sha": "e96f4910",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": null,
+      "contentAgeH": null,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+       "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+       "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/state.json",
+      "kind": "book",
+      "path": "dex/state.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 2.84,
+      "missing": false,
+      "author": "dex-mirror",
+      "sha": "e96f4910",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": "2026-10-12T05:52:05.552Z",
+      "contentAgeH": 5.05,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/watch.json",
+      "kind": "book",
+      "path": "dex/watch.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 8.25,
+      "missing": false,
+      "author": "mirror-from-console",
+      "sha": "38fae067",
+      "maxAgeH": 26,
+      "feeds": "discovered",
+      "contentAt": "2026-10-11T23:49:40.800Z",
+      "contentAgeH": 11.09,
+      "contentDivergence": false,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
+       "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/world.json",
+      "kind": "book",
+      "path": "dex/world.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 2.84,
+      "missing": false,
+      "author": "dex-mirror",
+      "sha": "e96f4910",
+      "maxAgeH": 26,
+      "feeds": "discovered",
+      "contentAt": "2026-10-12T05:52:05.559Z",
+      "contentAgeH": 5.05,
+      "contentDivergence": false,
+      "integration": "INTEGRATED",
+      "pageConsumed": true,
+      "consumers": [
+       "roshpinacare-sys/Domain/index.html (page)",
+       "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+       "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
+       "roshpinacare-sys/Domain/agents/money-watch.mjs (agent)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/xc-intents.json",
+      "kind": "book",
+      "path": "dex/xc-intents.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 18.69,
+      "missing": false,
+      "author": "zai-agent",
+      "sha": "010550d1",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": "2026-10-04T21:59:27.265Z",
+      "contentAgeH": 180.93,
+      "contentDivergence": true,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/xc-ops.json",
+      "kind": "book",
+      "path": "dex/xc-ops.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 18.69,
+      "missing": false,
+      "author": "zai-agent",
+      "sha": "010550d1",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": "2026-10-04T14:24:37.881Z",
+      "contentAgeH": 188.51,
+      "contentDivergence": true,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)"
+      ]
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/xc-requests.json",
+      "kind": "book",
+      "path": "dex/xc-requests.json",
+      "repo": "roshpinacare-sys/Domain",
+      "ageH": 18.69,
+      "missing": false,
+      "author": "zai-agent",
+      "sha": "010550d1",
+      "maxAgeH": 48,
+      "feeds": "discovered",
+      "contentAt": "2026-10-04T14:21:46.235Z",
+      "contentAgeH": 188.56,
+      "contentDivergence": true,
+      "integration": "PLANE-INTERNAL",
+      "pageConsumed": false,
+      "consumers": [
+       "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)"
+      ]
+     }
+    ],
+    "loopOnly": [
+     "roshpinacare-sys/Domain:agents/office-live.json",
+     "roshpinacare-sys/Domain:dex/agent.json",
+     "roshpinacare-sys/Domain:dex/bridge.json",
+     "roshpinacare-sys/Domain:dex/credits.json",
+     "roshpinacare-sys/Domain:dex/fleet.json",
+     "roshpinacare-sys/Domain:dex/mirror-stub.json",
+     "roshpinacare-sys/Domain:dex/money.json",
+     "roshpinacare-sys/Domain:dex/onramp.json",
+     "roshpinacare-sys/Domain:dex/pegout-queue.json",
+     "roshpinacare-sys/Domain:dex/pnl-desk.json",
+     "roshpinacare-sys/Domain:dex/portfolio.json",
+     "roshpinacare-sys/Domain:dex/redeem-requests.json",
+     "roshpinacare-sys/Domain:dex/relay.json",
+     "roshpinacare-sys/Domain:dex/showcase.json",
+     "roshpinacare-sys/Domain:dex/state.json",
+     "roshpinacare-sys/Domain:dex/watch.json",
+     "roshpinacare-sys/Domain:dex/xc-intents.json",
+     "roshpinacare-sys/Domain:dex/xc-ops.json",
+     "roshpinacare-sys/Domain:dex/xc-requests.json"
+    ],
+    "edges": [
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/Domain:dex/grid.json",
+      "evidenceLine": 240,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/Domain:dex/world.json",
+      "evidenceLine": 363,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/Domain:dex/office-feed.json",
+      "evidenceLine": 364,
+      "nodeAgeH": 12.0483,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/Domain:dex/deposits.json",
+      "evidenceLine": 623,
+      "nodeAgeH": 8.247466666666666,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/FleetHQ:digest.json",
+      "evidenceLine": 457,
+      "nodeAgeH": 8.761355555555555,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/FleetHQ:office/state/office-state.json",
+      "evidenceLine": 647,
+      "nodeAgeH": 0.7641333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/Sandbox:ops/lessons/ledger.md",
+      "evidenceLine": 687,
+      "nodeAgeH": 0.2794111111111111,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/Sandbox:ops/flow/flow-map.json",
+      "evidenceLine": 716,
+      "nodeAgeH": 3.074133333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/Domain:status.json",
+      "evidenceLine": 362,
+      "nodeAgeH": 12.473022222222221,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/index.html (page)",
+      "to": "roshpinacare-sys/Domain:office/data.json",
+      "evidenceLine": 490,
+      "nodeAgeH": 1.4749666666666668,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:office/data.json",
+      "evidenceLine": 209,
+      "nodeAgeH": 1.4749666666666668,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "to": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
+      "evidenceLine": 100,
+      "nodeAgeH": 8.474966666666667,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "to": "roshpinacare-sys/Sandbox:receipts/wallet/verdict.json",
+      "evidenceLine": 129,
+      "nodeAgeH": 1.1730222222222222,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "to": "roshpinacare-sys/Sandbox:receipts/grid/verdict.json",
+      "evidenceLine": 130,
+      "nodeAgeH": 0.6491333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "to": "roshpinacare-sys/Sandbox:receipts/fleet/verdict.json",
+      "evidenceLine": 131,
+      "nodeAgeH": 1.9658,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "to": "roshpinacare-sys/Sandbox:receipts/latest.json",
+      "evidenceLine": 132,
+      "nodeAgeH": 0.17913333333333334,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/office-feed.json",
+      "evidenceLine": 7,
+      "nodeAgeH": 12.0483,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
+      "to": "roshpinacare-sys/FleetHQ:digest.json",
+      "evidenceLine": 42,
+      "nodeAgeH": 8.761355555555555,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-artery.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:status.json",
+      "evidenceLine": 68,
+      "nodeAgeH": 12.473022222222221,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/office-artery.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:agents/office-live.json",
+      "evidenceLine": 22,
+      "nodeAgeH": 1.2341333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:dex/office-feed.json",
+      "evidenceLine": 109,
+      "nodeAgeH": 12.0483,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:dex/bridge.json",
+      "evidenceLine": 150,
+      "nodeAgeH": 538.5066333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:dex/fleet.json",
+      "evidenceLine": 150,
+      "nodeAgeH": 538.5066333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:dex/relay.json",
+      "evidenceLine": 150,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:dex/onramp.json",
+      "evidenceLine": 150,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:dex/showcase.json",
+      "evidenceLine": 151,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:dex/redeem-requests.json",
+      "evidenceLine": 151,
+      "nodeAgeH": 189.75163333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:dex/mirror-stub.json",
+      "evidenceLine": 151,
+      "nodeAgeH": 538.5066333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
+      "evidenceLine": 95,
+      "nodeAgeH": 8.474966666666667,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:office/data.json",
+      "evidenceLine": 107,
+      "nodeAgeH": 1.4749666666666668,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Domain:agents/office-live.json",
+      "evidenceLine": 108,
+      "nodeAgeH": 1.2341333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Sandbox:ops/lessons/ledger.md",
+      "evidenceLine": 197,
+      "nodeAgeH": 0.2794111111111111,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Sandbox:ops/flow/flow-map.json",
+      "evidenceLine": 125,
+      "nodeAgeH": 3.074133333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "to": "roshpinacare-sys/Sandbox:receipts/latest.json",
+      "evidenceLine": 64,
+      "nodeAgeH": 0.17913333333333334,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/marketing/adsmarket.html (page)",
+      "to": "roshpinacare-sys/Domain:marketing/adsmarket.json",
+      "evidenceLine": 41,
+      "nodeAgeH": 10.8733,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/adsmarket-panel.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:marketing/adsmarket.json",
+      "evidenceLine": 42,
+      "nodeAgeH": 10.8733,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/grid.json",
+      "evidenceLine": 59,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/world.json",
+      "evidenceLine": 59,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/state.json",
+      "evidenceLine": 59,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/credits.json",
+      "evidenceLine": 59,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/portfolio.json",
+      "evidenceLine": 59,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/onramp.json",
+      "evidenceLine": 59,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/showcase.json",
+      "evidenceLine": 59,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/relay.json",
+      "evidenceLine": 59,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/xc-intents.json",
+      "evidenceLine": 47,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/xc-ops.json",
+      "evidenceLine": 47,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/xc-requests.json",
+      "evidenceLine": 47,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
+      "evidenceLine": 47,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/pnl-desk.json",
+      "evidenceLine": 39,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/money.json",
+      "evidenceLine": 39,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/deposits.json",
+      "evidenceLine": 39,
+      "nodeAgeH": 8.247466666666666,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/watch.json",
+      "evidenceLine": 39,
+      "nodeAgeH": 8.247466666666666,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/office-artery.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:agents/office-live.json",
+      "evidenceLine": 9,
+      "nodeAgeH": 1.2341333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:dex/office-feed.json",
+      "evidenceLine": 25,
+      "nodeAgeH": 12.0483,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/office-pulse-twin.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:office/data.json",
+      "evidenceLine": 85,
+      "nodeAgeH": 1.4749666666666668,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/office-pulse.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:office/data.json",
+      "evidenceLine": 47,
+      "nodeAgeH": 1.4749666666666668,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/.github/workflows/weave-mirror.yml (workflow)",
+      "to": "roshpinacare-sys/Domain:status.json",
+      "evidenceLine": 39,
+      "nodeAgeH": 12.473022222222221,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/adsmarket-panel.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:marketing/adsmarket.json",
+      "evidenceLine": 72,
+      "nodeAgeH": 10.8733,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/content-campaign.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/grid.json",
+      "evidenceLine": 169,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/daily-digest.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/grid.json",
+      "evidenceLine": 88,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
+      "evidenceLine": 17,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/credits.json",
+      "evidenceLine": 172,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/grid.json",
+      "evidenceLine": 4,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/world.json",
+      "evidenceLine": 4,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/state.json",
+      "evidenceLine": 4,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/credits.json",
+      "evidenceLine": 4,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/portfolio.json",
+      "evidenceLine": 5,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/state.json",
+      "evidenceLine": 14,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/watch.json",
+      "evidenceLine": 318,
+      "nodeAgeH": 8.247466666666666,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/agent.json",
+      "evidenceLine": 332,
+      "nodeAgeH": 538.5066333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/dex-xc.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
+      "evidenceLine": 32,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/grid-guard.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/grid.json",
+      "evidenceLine": 17,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/market-exec.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/pnl-desk.json",
+      "evidenceLine": 387,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/money.json",
+      "evidenceLine": 34,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/pnl-desk.json",
+      "evidenceLine": 35,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/deposits.json",
+      "evidenceLine": 36,
+      "nodeAgeH": 8.247466666666666,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/watch.json",
+      "evidenceLine": 37,
+      "nodeAgeH": 8.247466666666666,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/grid.json",
+      "evidenceLine": 28,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/money.json",
+      "evidenceLine": 138,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/deposits.json",
+      "evidenceLine": 139,
+      "nodeAgeH": 8.247466666666666,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/money-watch.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/money.json",
+      "evidenceLine": 15,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/money-watch.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/world.json",
+      "evidenceLine": 141,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
+      "evidenceLine": 7,
+      "nodeAgeH": 18.691355555555557,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/proof-pipeline.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/grid.json",
+      "evidenceLine": 95,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/money.json",
+      "evidenceLine": 66,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:dex/deposits.json",
+      "evidenceLine": 70,
+      "nodeAgeH": 8.247466666666666,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:status.json",
+      "evidenceLine": 126,
+      "nodeAgeH": 12.473022222222221,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Domain/agents/weave-mirror.mjs (agent)",
+      "to": "roshpinacare-sys/Domain:status.json",
+      "evidenceLine": 31,
+      "nodeAgeH": 12.473022222222221,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/decision-truth.mjs (engine)",
+      "to": "roshpinacare-sys/FleetHQ:office/state/office-state.json",
+      "evidenceLine": 250,
+      "nodeAgeH": 0.7641333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/fleet-verify.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:status.json",
+      "evidenceLine": 105,
+      "nodeAgeH": 12.473022222222221,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/fleet-verify.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/fleet/verdict.json",
+      "evidenceLine": 217,
+      "nodeAgeH": 1.9658,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/grid-watch.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/grid/verdict.json",
+      "evidenceLine": 125,
+      "nodeAgeH": 0.6491333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:office/data.json",
+      "evidenceLine": 49,
+      "nodeAgeH": 1.4749666666666668,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:agents/office-live.json",
+      "evidenceLine": 50,
+      "nodeAgeH": 1.2341333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+      "to": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
+      "evidenceLine": 48,
+      "nodeAgeH": 8.474966666666667,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/wallet/verdict.json",
+      "evidenceLine": 42,
+      "nodeAgeH": 1.1730222222222222,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/fleet/verdict.json",
+      "evidenceLine": 43,
+      "nodeAgeH": 1.9658,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/grid/verdict.json",
+      "evidenceLine": 44,
+      "nodeAgeH": 0.6491333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/latest.json",
+      "evidenceLine": 45,
+      "nodeAgeH": 0.17913333333333334,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/network-probe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:status.json",
+      "evidenceLine": 9,
+      "nodeAgeH": 12.473022222222221,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/network-probe.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/latest.json",
+      "evidenceLine": 11,
+      "nodeAgeH": 0.17913333333333334,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:dex/office-feed.json",
+      "evidenceLine": 109,
+      "nodeAgeH": 12.0483,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:dex/bridge.json",
+      "evidenceLine": 150,
+      "nodeAgeH": 538.5066333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:dex/fleet.json",
+      "evidenceLine": 150,
+      "nodeAgeH": 538.5066333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:dex/relay.json",
+      "evidenceLine": 150,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:dex/onramp.json",
+      "evidenceLine": 150,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:dex/showcase.json",
+      "evidenceLine": 151,
+      "nodeAgeH": 2.8360777777777777,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:dex/redeem-requests.json",
+      "evidenceLine": 151,
+      "nodeAgeH": 189.75163333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:dex/mirror-stub.json",
+      "evidenceLine": 151,
+      "nodeAgeH": 538.5066333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
+      "evidenceLine": 95,
+      "nodeAgeH": 8.474966666666667,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:office/data.json",
+      "evidenceLine": 107,
+      "nodeAgeH": 1.4749666666666668,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:agents/office-live.json",
+      "evidenceLine": 108,
+      "nodeAgeH": 1.2341333333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:ops/lessons/ledger.md",
+      "evidenceLine": 197,
+      "nodeAgeH": 0.2794111111111111,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:ops/flow/flow-map.json",
+      "evidenceLine": 125,
+      "nodeAgeH": 3.074133333333333,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/latest.json",
+      "evidenceLine": 64,
+      "nodeAgeH": 0.17913333333333334,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/sovereign-tick.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/latest.json",
+      "evidenceLine": 9,
+      "nodeAgeH": 0.17913333333333334,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/state-lib.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/latest.json",
+      "evidenceLine": 10,
+      "nodeAgeH": 0.17913333333333334,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/wallet-verify.mjs (engine)",
+      "to": "roshpinacare-sys/Domain:status.json",
+      "evidenceLine": 107,
+      "nodeAgeH": 12.473022222222221,
+      "nodeMissing": false
+     },
+     {
+      "from": "roshpinacare-sys/Sandbox/engine/wallet-verify.mjs (engine)",
+      "to": "roshpinacare-sys/Sandbox:receipts/wallet/verdict.json",
+      "evidenceLine": 152,
+      "nodeAgeH": 1.1730222222222222,
+      "nodeMissing": false
+     }
+    ],
+    "orphans": [],
+    "ghosts": [],
+    "stale": [
+     {
+      "consumer": "roshpinacare-sys/Domain/index.html (page)",
+      "target": "roshpinacare-sys/Domain:office/data.json",
+      "ageH": 1.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "target": "roshpinacare-sys/Domain:office/data.json",
+      "ageH": 1.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "target": "roshpinacare-sys/Domain:dex/bridge.json",
+      "ageH": 538.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "target": "roshpinacare-sys/Domain:dex/fleet.json",
+      "ageH": 538.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "target": "roshpinacare-sys/Domain:dex/redeem-requests.json",
+      "ageH": 189.8
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "target": "roshpinacare-sys/Domain:dex/mirror-stub.json",
+      "ageH": 538.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (learner)",
+      "target": "roshpinacare-sys/Domain:office/data.json",
+      "ageH": 1.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Domain/.github/workflows/office-pulse-twin.yml (workflow)",
+      "target": "roshpinacare-sys/Domain:office/data.json",
+      "ageH": 1.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Domain/.github/workflows/office-pulse.yml (workflow)",
+      "target": "roshpinacare-sys/Domain:office/data.json",
+      "ageH": 1.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
+      "target": "roshpinacare-sys/Domain:dex/agent.json",
+      "ageH": 538.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine)",
+      "target": "roshpinacare-sys/Domain:office/data.json",
+      "ageH": 1.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "target": "roshpinacare-sys/Domain:dex/bridge.json",
+      "ageH": 538.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "target": "roshpinacare-sys/Domain:dex/fleet.json",
+      "ageH": 538.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "target": "roshpinacare-sys/Domain:dex/redeem-requests.json",
+      "ageH": 189.8
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "target": "roshpinacare-sys/Domain:dex/mirror-stub.json",
+      "ageH": 538.5
+     },
+     {
+      "consumer": "roshpinacare-sys/Sandbox/engine/scribe.mjs (engine)",
+      "target": "roshpinacare-sys/Domain:office/data.json",
+      "ageH": 1.5
+     }
+    ],
+    "summary": {
+     "nodes": 35,
+     "edges": 119,
+     "orphans": 0,
+     "planeInternal": 19,
+     "ghosts": 0,
+     "stale": 16,
+     "integrated": 15,
+     "flowDensity": 3.4
+    },
+    "alerts": [
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:office/data.json age=1.5h > 1h (consumer: roshpinacare-sys/Domain/index.html (page))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:office/data.json age=1.5h > 1h (consumer: roshpinacare-sys/Domain/agents/office-pulse.cjs (agent))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/bridge.json age=538.5h > 48h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (learner))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/fleet.json age=538.5h > 48h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (learner))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/redeem-requests.json age=189.8h > 48h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (learner))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/mirror-stub.json age=538.5h > 48h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (learner))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:office/data.json age=1.5h > 1h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (learner))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:office/data.json age=1.5h > 1h (consumer: roshpinacare-sys/Domain/.github/workflows/office-pulse-twin.yml (workflow))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:office/data.json age=1.5h > 1h (consumer: roshpinacare-sys/Domain/.github/workflows/office-pulse.yml (workflow))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/agent.json age=538.5h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-router.cjs (agent))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:office/data.json age=1.5h > 1h (consumer: roshpinacare-sys/Sandbox/engine/integrity-guard.mjs (engine))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/bridge.json age=538.5h > 48h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (engine))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/fleet.json age=538.5h > 48h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (engine))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/redeem-requests.json age=189.8h > 48h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (engine))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/mirror-stub.json age=538.5h > 48h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (engine))"
+     },
+     {
+      "law": "law-feed-fresh",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:office/data.json age=1.5h > 1h (consumer: roshpinacare-sys/Sandbox/engine/scribe.mjs (engine))"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:agents/office-live.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/agent.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/bridge.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/credits.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/fleet.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/mirror-stub.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/money.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/onramp.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/pnl-desk.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/portfolio.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/redeem-requests.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/relay.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/showcase.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/state.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/watch.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/xc-intents.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-plane-internal",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
+     },
+     {
+      "law": "law-content-divergence",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json commit-age=18.7h but content-age=188.5h — fresh commits of stale content"
+     },
+     {
+      "law": "law-content-divergence",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/xc-intents.json commit-age=18.7h but content-age=180.9h — fresh commits of stale content"
+     },
+     {
+      "law": "law-content-divergence",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json commit-age=18.7h but content-age=188.5h — fresh commits of stale content"
+     },
+     {
+      "law": "law-content-divergence",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json commit-age=18.7h but content-age=188.6h — fresh commits of stale content"
+     }
+    ]
+   }
+  },
+  "research": {
+   "at": "2026-10-12T20:50:00.218Z",
+   "path": "research/findings-2026-10-11.json",
+   "data": {
+    "schema": "saos.research.findings/1",
+    "at": "2026-10-11T20:13:07.191Z",
+    "lane": "research-and-discovery (10-d)",
+    "laws": "read-only · no keys · no broadcast · honest failures recorded",
+    "experiments": [
+     {
+      "id": "E1",
+      "name": "spread-regime",
+      "hypothesis": "פיזורי-השוק-הפנימי הם ר'זימה נמדדת — מעקב שבועי מגלה אם הגריד שלנו מצר אותם",
+      "baseline": {
+       "steemBps": 93.5,
+       "hiveBps": 10.6,
+       "at": "2026-10-11T19:55Z (ECONOMIC-PLAN §2.2)"
+      },
+      "measured": {
+       "steem": {
+        "bid": 0.10105092966855295,
+        "ask": 0.102,
+        "spreadBps": 93.48
+       },
+       "hive": {
+        "bid": 0.0559405316870354,
+        "ask": 0.05600003551603294,
+        "spreadBps": 10.63
+       }
+      },
+      "verdict": "spread tightened (93.48 < 93.5 bps) — grid-side liquidity improving",
+      "ok": true,
+      "next": "track weekly; correlate with grid-beat placements (saos-dex ledger) before claiming causality"
+     },
+     {
+      "id": "E2",
+      "name": "feed-divergence",
+      "hypothesis": "סטיית-פיד-העדים מהשוק-הפנימי היא מדד-לחץ-יתר על הפג — מעקב שבועי מקדים-הזהרה",
+      "baseline": {
+       "feedMedian": 0.10409,
+       "marketMid": 0.10153,
+       "divergenceBps": 251,
+       "at": "2026-10-11T19:55Z"
+      },
+      "measured": {
+       "feedMedian": 0.10409,
+       "marketMid": 0.10153,
+       "divergenceBps": 252.14,
+       "direction": "feed_above_market"
+      },
+      "verdict": "healthy band: divergence 252.14 bps ≤ 300 (feed_above_market)",
+      "ok": true,
+      "next": "if >300 bps repeats 2× consecutively, escalate to operator brief (peg-door policy ref)"
+     },
+     {
+      "id": "E3",
+      "name": "rc-census",
+      "hypothesis": "חשבונות-מורעבי-RC (<40%) מדכאים-פעילות-צי — סקר-שבועי מנבא חנק לפני-שהוא נראה בפועל",
+      "baseline": {
+       "starved": [
+        "hcsoldier4 8.05%",
+        "wog 25.9%",
+        "hcsoldier6 31.0%",
+        "hcsoldier5 35.4%"
+       ],
+       "at": "2026-10-11T19:56Z"
+      },
+      "measured": {
+       "rcPct": {
+        "owner-treasury": 98.01,
+        "cashmachine": 91.37,
+        "haran": 87.98,
+        "israelnews": 89.68,
+        "lsa": 87.46,
+        "macrame": 87.82,
+        "siq": 95.88,
+        "tov": 72.88,
+        "wic": 68.28,
+        "wog": 25.94,
+        "woq": 86.14,
+        "hcsoldier4": 8.05,
+        "hcsoldier5": 28.55,
+        "hcsoldier6": 21.63
+       },
+       "starved": [
+        "wog 25.94%",
+        "hcsoldier4 8.05%",
+        "hcsoldier5 28.55%",
+        "hcsoldier6 21.63%"
+       ]
+      },
+      "verdict": "4 RC-starved accounts (<40%): wog 25.94%, hcsoldier4 8.05%, hcsoldier5 28.55%, hcsoldier6 21.63% — propose SP delegation top-up or activity cap (owner word for delegation lane)",
+      "ok": true,
+      "next": "if starved persists 2× weekly, draft a delegation delta into grids/delegate-plan (owner word gate)"
+     }
+    ],
+    "probeDigestJoin": {
+     "hive": {
+      "file": "probes/hive/2026-10-11.json",
+      "ok": true,
+      "at": "2026-10-11T15:18:18.342Z"
+     },
+     "blurt": {
+      "file": "probes/blurt/2026-10-11.json",
+      "ok": true,
+      "at": "2026-10-11T15:18:18.996Z"
+     }
+    },
+    "allConclusive": true
+   }
+  }
+ }
 }
