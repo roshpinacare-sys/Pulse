@@ -1,15 +1,15 @@
 {
  "schema": "pulse-mirror-v1",
- "generatedAt": "2026-10-13T03:30:09.472Z",
+ "generatedAt": "2026-10-13T04:00:08.369Z",
  "trigger": "repository_dispatch",
  "provenance": "CI-carried from roshpinacare-sys/Sandbox public-grade ledgers (darkened by the T-66 repo flip, not by content) + live chain probes. Sanitized output of a §7 runner shell.",
  "chains": {
-  "hiveHead": 110727045,
-  "steemHead": 110393364
+  "hiveHead": 110727644,
+  "steemHead": 110393963
  },
  "sources": {
   "profitOracle": {
-   "at": "2026-10-13T03:30:09.472Z",
+   "at": "2026-10-13T04:00:08.369Z",
    "path": "receipts/profit-oracle-latest.json",
    "source": "roshpinacare-sys/Sandbox",
    "candidates": [
@@ -386,7 +386,7 @@
    }
   },
   "decisionTruth": {
-   "at": "2026-10-13T03:30:09.472Z",
+   "at": "2026-10-13T04:00:08.369Z",
    "path": "ops/decision-truth/verdict.json",
    "source": "roshpinacare-sys/Autonomy",
    "candidates": [
@@ -398,32 +398,32 @@
     {
      "repo": "roshpinacare-sys/Autonomy",
      "path": "ops/decision-truth/verdict.json",
-     "at": "2026-10-13T02:35:18.000Z"
+     "at": "2026-10-13T03:54:37.000Z"
     }
    ],
    "data": {
     "schema": "sandbox/decision-truth/1",
-    "generatedAt": "2026-10-13T02:35:18Z",
-    "durationMs": 2920,
+    "generatedAt": "2026-10-13T03:54:37Z",
+    "durationMs": 2371,
     "overall": "PASS_WITH_ALERTS",
     "charter": "ops/sovereign/DECIDER/CHARTER.md",
     "law": "H: every ENFORCED decision must re-measure its evidence independently AND show a measured consumer; stale evidence = STALE-TRUTH; no consumer = UNEXECUTED; source down = UNVERIFIABLE (never forged)",
     "decider": {
-     "generatedAt": "2026-10-12T22:35:37Z",
-     "stateAgeMin": 240,
+     "generatedAt": "2026-10-13T03:11:08Z",
+     "stateAgeMin": 43,
      "source": "sandbox-raw (public source of truth)",
      "heartbeat": {
       "workflow": "sovereign-decider.yml",
       "lastRunAt": "2026-10-13T02:33:08Z",
-      "ageS": 128,
+      "ageS": 4888,
       "stalled": false
      }
     },
     "measures": {
      "chain": {
-      "head": 110392270,
+      "head": 110393849,
       "treasuryNetSp": 2810.7,
-      "mult": 0.0006202552485046527
+      "mult": 0.0006202575629042193
      },
      "beaconPulse": {
       "treasuryNetSp": 2810.7
@@ -431,7 +431,7 @@
      "faultedAgentsNow": [],
      "flowSummary": {
       "nodes": 35,
-      "edges": 95,
+      "edges": 97,
       "orphans": 0,
       "ghosts": null
      },
@@ -442,24 +442,24 @@
       "id": "D0-owner-channel",
       "area": "הנהגה",
       "status": "OBSERVING",
-      "decidedAt": "2026-10-12T22:35:36Z",
-      "truth": "STALE-TRUTH",
+      "decidedAt": "2026-10-13T03:11:07Z",
+      "truth": "VERIFIED",
       "checks": [
        {
         "law": "decider-state-age",
-        "result": "mismatch",
-        "detail": "state age 240min (limit 120)"
+        "result": "ok",
+        "detail": "state age 43min (limit 120)"
        }
       ],
-      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+      "note": "evidence re-measured independently + execution present"
      },
      {
       "id": "D1-econ-treasury-floor",
       "area": "כלכלה",
       "status": "ENFORCED",
       "priority": "P1",
-      "decidedAt": "2026-10-12T22:35:37Z",
-      "truth": "STALE-TRUTH",
+      "decidedAt": "2026-10-13T03:11:08Z",
+      "truth": "VERIFIED",
       "checks": [
        {
         "law": "policy-internal-consistency",
@@ -468,8 +468,8 @@
        },
        {
         "law": "treasury-basis-fresh-measure",
-        "result": "mismatch",
-        "detail": "claimed=2830 fresh=2810.7 tol=1"
+        "result": "ok",
+        "detail": "claimed=2810.7 fresh=2810.7 tol=1"
        },
        {
         "law": "beacon-vs-fresh",
@@ -478,13 +478,13 @@
        },
        {
         "law": "operators-basis",
-        "result": "mismatch",
-        "detail": "[{\"op\":\"acct-06\",\"policySp\":31.1,\"freshSp\":11.8},{\"op\":\"acct-09\",\"policySp\":11.9,\"freshSp\":31.2}]"
+        "result": "ok",
+        "detail": "all 13 operators within ±2SP"
        },
        {
         "law": "below-floor-list",
-        "result": "mismatch",
-        "detail": "fresh-below=[\"acct-10\",\"acct-06\",\"acct-11\",\"acct-12\",\"acct-13\"] declared=[\"acct-10\",\"acct-11\",\"acct-12\",\"acct-13\",\"acct-09\"]"
+        "result": "ok",
+        "detail": "fresh-below=[\"acct-10\",\"acct-11\",\"acct-12\",\"acct-13\",\"acct-06\"] declared=[\"acct-10\",\"acct-11\",\"acct-12\",\"acct-13\",\"acct-06\"]"
        },
        {
         "law": "execution-existence",
@@ -498,18 +498,18 @@
        },
        {
         "law": "decider-state-age",
-        "result": "mismatch",
-        "detail": "state age 240min (limit 120)"
+        "result": "ok",
+        "detail": "state age 43min (limit 120)"
        }
       ],
-      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+      "note": "evidence re-measured independently + execution present"
      },
      {
       "id": "D2-eng-errors",
       "area": "הנדסה",
       "status": "ENFORCED",
       "priority": "P0",
-      "decidedAt": "2026-10-12T22:35:37Z",
+      "decidedAt": "2026-10-13T03:11:08Z",
       "truth": "STALE-TRUTH",
       "checks": [
        {
@@ -534,8 +534,8 @@
        },
        {
         "law": "decider-state-age",
-        "result": "mismatch",
-        "detail": "state age 240min (limit 120)"
+        "result": "ok",
+        "detail": "state age 43min (limit 120)"
        }
       ],
       "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
@@ -544,7 +544,7 @@
       "id": "D3-flow-weave",
       "area": "רשת",
       "status": "OBSERVING",
-      "decidedAt": "2026-10-12T22:35:37Z",
+      "decidedAt": "2026-10-13T03:11:08Z",
       "truth": "STALE-TRUTH",
       "checks": [
        {
@@ -559,8 +559,8 @@
        },
        {
         "law": "decider-state-age",
-        "result": "mismatch",
-        "detail": "state age 240min (limit 120)"
+        "result": "ok",
+        "detail": "state age 43min (limit 120)"
        }
       ],
       "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
@@ -570,24 +570,24 @@
       "area": "אימות-עצמי",
       "status": "ENFORCED",
       "priority": "P1",
-      "decidedAt": "2026-10-12T22:35:37Z",
-      "truth": "STALE-TRUTH",
+      "decidedAt": "2026-10-13T03:11:08Z",
+      "truth": "VERIFIED",
       "checks": [
        {
         "law": "decider-state-age",
-        "result": "mismatch",
-        "detail": "state age 240min (limit 120)"
+        "result": "ok",
+        "detail": "state age 43min (limit 120)"
        }
       ],
-      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+      "note": "evidence re-measured independently + execution present"
      }
     ],
     "provenance": {
-     "runId": "38337570384",
-     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38337570384",
-     "sha": "feb1704b1c39bca55d3e8dd10b89d78a7f37747d",
+     "runId": "38343896139",
+     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38343896139",
+     "sha": "5fd639a9add0a83be440556ff69993e2912201be",
      "engine": "engine/decision-truth.mjs (H-series, zai-code-3)",
-     "generatedAt": "2026-10-13T02:35:18Z"
+     "generatedAt": "2026-10-13T03:54:37Z"
     },
     "selftest": {
      "vectors": 16,
@@ -595,142 +595,8 @@
     }
    }
   },
-  "integrity": {
-   "at": "2026-10-13T03:30:09.472Z",
-   "path": "ops/integrity/verdict.json",
-   "source": "roshpinacare-sys/Autonomy",
-   "candidates": [
-    {
-     "repo": "roshpinacare-sys/Sandbox",
-     "path": "ops/integrity/verdict.json",
-     "at": "2026-10-12T10:42:49.896Z"
-    },
-    {
-     "repo": "roshpinacare-sys/Autonomy",
-     "path": "ops/integrity/verdict.json",
-     "at": "2026-10-13T02:39:36.742Z"
-    }
-   ],
-   "data": {
-    "schema": "integrity-guard/2",
-    "at": "2026-10-13T02:39:36.742Z",
-    "overall": "FAIL",
-    "summary": {
-     "sources": 9,
-     "verified": 3,
-     "findings": 10,
-     "counts": {
-      "MEDIUM": 1,
-      "FLAG": 7,
-      "CRITICAL": 2
-     }
-    },
-    "provenance": {
-     "runId": "38337914920",
-     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38337914920",
-     "sha": "97daef7b4fddd153cf701942e6093c4df921df3d"
-    },
-    "verified": [
-     {
-      "where": "self:ops/integrity/verdict.json",
-      "law": "verified",
-      "detail": "run=38335913762 conc=success repo=Autonomy"
-     },
-     {
-      "where": "FleetHQ:receipts/office-ci/verdict.json",
-      "law": "verified",
-      "detail": "run=38335819755 conc=success repo=FleetHQ"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38335819755 conc=success repo=FleetHQ"
-     }
-    ],
-    "findings": [
-     {
-      "level": "MEDIUM",
-      "where": "Sandbox",
-      "law": "tree-unreachable",
-      "detail": "HTTP 404 — גילוי-דינמי דולג (לא-זיוף)"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/wallet/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/fleet/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/grid/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/latest.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:ops/flow/receipt.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:state/verifier/verdict-latest.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "CRITICAL",
-      "where": "Domain:office/data.json",
-      "law": "ghost-run",
-      "detail": "run 38242234259 אינו-קיים ב-Sandbox (404 מוכח)"
-     },
-     {
-      "level": "CRITICAL",
-      "where": "Domain:office/data.json",
-      "law": "ghost-run",
-      "detail": "run 38226675048 אינו-קיים ב-Sandbox (404 מוכח)"
-     },
-     {
-      "level": "FLAG",
-      "where": "Domain:agents/office-live.json",
-      "law": "unprovenanced",
-      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: office lane"
-     }
-    ]
-   }
-  },
-  "lessons": {
-   "at": "2026-10-13T03:30:09.472Z",
-   "path": "ops/lessons/ledger.md",
-   "source": "roshpinacare-sys/Autonomy",
-   "candidates": [
-    {
-     "repo": "roshpinacare-sys/Autonomy",
-     "path": "ops/lessons/ledger.md",
-     "at": null
-    },
-    {
-     "repo": "roshpinacare-sys/Sandbox",
-     "path": "ops/lessons/ledger.md",
-     "at": null
-    }
-   ],
-   "text": "# LESSONS LEDGER · append-only · deterministic distillation of measured history\n\n## scribe #1 · 2026-10-12T20:40:52.826Z\n- wallet: no receipts yet (artery young)\n- fleet actions 24h: 14 runs · failures: artery-grid:failure×1, artery-fleet:failure×1, hive-probe:failure×1, federation:failure×1, verifier (truth & quality):failure×2, sovereign-state:failure×1, artery-catchup:failure×1\n- sovereign tick last pulse: 1min ago\n- sandbox commits 24h: 7 · authors: {\"integrity-guard\":1,\"grid-watch\":1,\"sovereign-flow\":1,\"probe-runner[bot]\":1,\"sandbox-sovereign\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 17min ago\n- Domain book office/data.json: 48min old (law <=60min)\n- Domain book agents/office-live.json: 87min old (law <=180min)\n- Domain book dex/office-feed.json: 561min old (law <=1560min)\n- flow map: not yet generated (artery-flow first run pending)\n- integrity guard: no verdict yet (artery-integrity first run pending)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=15029 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=15h\n- dex book dex/showcase.json: ok sig=pair=unknown age=15h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: no verdict yet (artery-decision-truth first run pending)\n- no law proposals — everything measured healthy\n\n\n## scribe #2 · 2026-10-13T01:40:41.404Z\n- wallet 24h verdicts: {\"BLOCKED\":3} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":3} · alerts: 3\n- fleet actions 24h: 100 runs · failures: artery-fleet:failure×3, artery-wallet:failure×3, artery-grid:failure×4, artery-integrity:failure×1, hive-probe:failure×2, sovereign-tick:failure×1, artery-catchup:failure×1, research-lane:failure×2, profit-oracle:failure×2, value-scan:failure×2, key-proof:failure×1, .github/workflows/fleet-yield.yml:failure×1, artery-participation:failure×1, artery-decision-truth:failure×1\n- sovereign tick last pulse: 17min ago\n- sandbox commits 24h: 86 · authors: {\"roshpinacare-sys\":16,\"sandbox-sovereign\":8,\"sandbox-state\":12,\"fleet-artery\":2,\"wallet-artery\":2,\"probe-runner[bot]\":4,\"fleet-healer\":2,\"grid-watch\":4,\"sovereign-federation\":2,\"integrity-guard\":2,\"decision-truth\":4,\"sovereign-flow\":2,\"stabilize-agent\":1,\"sandbox-verifier\":2,\"Z User\":2,\"research-runner[bot]\":3,\"github-actions[bot]\":4,\"fleet-yield\":3,\"value-scan-bot\":2,\"participation[bot]\":3,\"autonomy-wave2-agent\":3,\"sovereign-scribe\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 25min ago\n- Domain book office/data.json: 10min old (law <=60min)\n- Domain book agents/office-live.json: 29min old (law <=180min)\n- Domain book dex/office-feed.json: 861min old (law <=1560min)\n- flow map: nodes=35 edges=95 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.71\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=5253 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 3 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet FAIL/BLOCKED streak ≥3 — escalate to owner issue; do not mint green\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 5 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n"
-  },
   "flowMap": {
-   "at": "2026-10-13T03:30:09.472Z",
+   "at": "2026-10-13T04:00:08.369Z",
    "path": "ops/flow/flow-map.json",
    "source": "roshpinacare-sys/Autonomy",
    "candidates": [
@@ -2614,8 +2480,142 @@
     ]
    }
   },
+  "lessons": {
+   "at": "2026-10-13T04:00:08.369Z",
+   "path": "ops/lessons/ledger.md",
+   "source": "roshpinacare-sys/Autonomy",
+   "candidates": [
+    {
+     "repo": "roshpinacare-sys/Autonomy",
+     "path": "ops/lessons/ledger.md",
+     "at": null
+    },
+    {
+     "repo": "roshpinacare-sys/Sandbox",
+     "path": "ops/lessons/ledger.md",
+     "at": null
+    }
+   ],
+   "text": "# LESSONS LEDGER · append-only · deterministic distillation of measured history\n\n## scribe #1 · 2026-10-12T20:40:52.826Z\n- wallet: no receipts yet (artery young)\n- fleet actions 24h: 14 runs · failures: artery-grid:failure×1, artery-fleet:failure×1, hive-probe:failure×1, federation:failure×1, verifier (truth & quality):failure×2, sovereign-state:failure×1, artery-catchup:failure×1\n- sovereign tick last pulse: 1min ago\n- sandbox commits 24h: 7 · authors: {\"integrity-guard\":1,\"grid-watch\":1,\"sovereign-flow\":1,\"probe-runner[bot]\":1,\"sandbox-sovereign\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 17min ago\n- Domain book office/data.json: 48min old (law <=60min)\n- Domain book agents/office-live.json: 87min old (law <=180min)\n- Domain book dex/office-feed.json: 561min old (law <=1560min)\n- flow map: not yet generated (artery-flow first run pending)\n- integrity guard: no verdict yet (artery-integrity first run pending)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=15029 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=15h\n- dex book dex/showcase.json: ok sig=pair=unknown age=15h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: no verdict yet (artery-decision-truth first run pending)\n- no law proposals — everything measured healthy\n\n\n## scribe #2 · 2026-10-13T01:40:41.404Z\n- wallet 24h verdicts: {\"BLOCKED\":3} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":3} · alerts: 3\n- fleet actions 24h: 100 runs · failures: artery-fleet:failure×3, artery-wallet:failure×3, artery-grid:failure×4, artery-integrity:failure×1, hive-probe:failure×2, sovereign-tick:failure×1, artery-catchup:failure×1, research-lane:failure×2, profit-oracle:failure×2, value-scan:failure×2, key-proof:failure×1, .github/workflows/fleet-yield.yml:failure×1, artery-participation:failure×1, artery-decision-truth:failure×1\n- sovereign tick last pulse: 17min ago\n- sandbox commits 24h: 86 · authors: {\"roshpinacare-sys\":16,\"sandbox-sovereign\":8,\"sandbox-state\":12,\"fleet-artery\":2,\"wallet-artery\":2,\"probe-runner[bot]\":4,\"fleet-healer\":2,\"grid-watch\":4,\"sovereign-federation\":2,\"integrity-guard\":2,\"decision-truth\":4,\"sovereign-flow\":2,\"stabilize-agent\":1,\"sandbox-verifier\":2,\"Z User\":2,\"research-runner[bot]\":3,\"github-actions[bot]\":4,\"fleet-yield\":3,\"value-scan-bot\":2,\"participation[bot]\":3,\"autonomy-wave2-agent\":3,\"sovereign-scribe\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 25min ago\n- Domain book office/data.json: 10min old (law <=60min)\n- Domain book agents/office-live.json: 29min old (law <=180min)\n- Domain book dex/office-feed.json: 861min old (law <=1560min)\n- flow map: nodes=35 edges=95 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.71\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=5253 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 3 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet FAIL/BLOCKED streak ≥3 — escalate to owner issue; do not mint green\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 5 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n"
+  },
+  "integrity": {
+   "at": "2026-10-13T04:00:08.369Z",
+   "path": "ops/integrity/verdict.json",
+   "source": "roshpinacare-sys/Autonomy",
+   "candidates": [
+    {
+     "repo": "roshpinacare-sys/Sandbox",
+     "path": "ops/integrity/verdict.json",
+     "at": "2026-10-12T10:42:49.896Z"
+    },
+    {
+     "repo": "roshpinacare-sys/Autonomy",
+     "path": "ops/integrity/verdict.json",
+     "at": "2026-10-13T02:39:36.742Z"
+    }
+   ],
+   "data": {
+    "schema": "integrity-guard/2",
+    "at": "2026-10-13T02:39:36.742Z",
+    "overall": "FAIL",
+    "summary": {
+     "sources": 9,
+     "verified": 3,
+     "findings": 10,
+     "counts": {
+      "MEDIUM": 1,
+      "FLAG": 7,
+      "CRITICAL": 2
+     }
+    },
+    "provenance": {
+     "runId": "38337914920",
+     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38337914920",
+     "sha": "97daef7b4fddd153cf701942e6093c4df921df3d"
+    },
+    "verified": [
+     {
+      "where": "self:ops/integrity/verdict.json",
+      "law": "verified",
+      "detail": "run=38335913762 conc=success repo=Autonomy"
+     },
+     {
+      "where": "FleetHQ:receipts/office-ci/verdict.json",
+      "law": "verified",
+      "detail": "run=38335819755 conc=success repo=FleetHQ"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38335819755 conc=success repo=FleetHQ"
+     }
+    ],
+    "findings": [
+     {
+      "level": "MEDIUM",
+      "where": "Sandbox",
+      "law": "tree-unreachable",
+      "detail": "HTTP 404 — גילוי-דינמי דולג (לא-זיוף)"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/wallet/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/fleet/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/grid/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/latest.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:ops/flow/receipt.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:state/verifier/verdict-latest.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "CRITICAL",
+      "where": "Domain:office/data.json",
+      "law": "ghost-run",
+      "detail": "run 38242234259 אינו-קיים ב-Sandbox (404 מוכח)"
+     },
+     {
+      "level": "CRITICAL",
+      "where": "Domain:office/data.json",
+      "law": "ghost-run",
+      "detail": "run 38226675048 אינו-קיים ב-Sandbox (404 מוכח)"
+     },
+     {
+      "level": "FLAG",
+      "where": "Domain:agents/office-live.json",
+      "law": "unprovenanced",
+      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: office lane"
+     }
+    ]
+   }
+  },
   "research": {
-   "at": "2026-10-13T03:30:09.472Z",
+   "at": "2026-10-13T04:00:08.369Z",
    "path": "research/findings-2026-10-11.json",
    "data": {
     "schema": "saos.research.findings/1",
