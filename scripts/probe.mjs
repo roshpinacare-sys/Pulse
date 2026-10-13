@@ -392,7 +392,16 @@ await Promise.all([
   if (!done) sources.research = { at: NOW, path: 'research/findings-*.json', error: 'no findings file within 9 days — honest gap' }
 }
 // live chain probes (the probe lanes live again, on public infra)
-const chains = { hiveHead: null, steemHead: null }
+// NODE-LADDER (T23-C, 2026-10-13): a single node answered before — if that one node
+// throttles, the mirror would read "chain dark" while the chain is fine. Now every
+// chain walks a verified node ladder (each node answered condenser_api
+// get_dynamic_global_properties 200-OK from CI's class of network on 2026-10-13:
+// steem 0.6-0.85s, hive 0.26-0.8s). First answering node wins; every attempt is
+// recorded (node, ms, head, ok) so a throttling first node is VISIBLE, not silent.
+const CHAIN_NODES = {
+  steem: ['https://api.steemit.com', 'https://api.justyy.com', 'https://api.steem.fans'],
+  hive: ['https://api.hive.blog', 'https://api.deathwing.me', 'https://api.openhive.network'],
+}
 const rpcHead = async (url) => {
   try {
     const r = await fetch(url, {
@@ -403,8 +412,23 @@ const rpcHead = async (url) => {
     return (await r.json())?.result?.head_block_number ?? null
   } catch { return null }
 }
-chains.hiveHead = await rpcHead('https://api.hive.blog')
-chains.steemHead = await rpcHead('https://api.steemit.com')
+const chainProbes = {}
+const rpcHeadLadder = async (chain, urls) => {
+  const tries = []
+  for (const url of urls) {
+    const t0 = Date.now()
+    const head = await rpcHead(url)
+    tries.push({ node: url.replace('https://', ''), ms: Date.now() - t0, head, ok: head != null })
+    if (head != null) break
+  }
+  chainProbes[chain] = tries
+  return tries.find((t) => t.ok)?.head ?? null
+}
+const chains = { hiveHead: null, steemHead: null }
+chains.steemHead = await rpcHeadLadder('steem', CHAIN_NODES.steem)
+chains.hiveHead = await rpcHeadLadder('hive', CHAIN_NODES.hive)
+chains.steemNodes = chainProbes.steem
+chains.hiveNodes = chainProbes.hive
 const mirror = scrubVal({
   schema: 'pulse-mirror-v1',
   generatedAt: NOW,
