@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pulse · דופק הרשת</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --line:#2a3140; --ink:#e6edf3; --mut:#8b949e;
+    --ok:#3fb950; --warn:#d29922; --bad:#f85149; --acc:#e3b341;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 system-ui,"Segoe UI",Arial,sans-serif}
+  a{color:#d2a8ff;text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
+  header{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;padding:6px 0 18px;border-bottom:1px solid var(--line)}
+  h1{font-size:22px;margin:0;font-weight:650;letter-spacing:.5px}
+  .sub{color:var(--mut);font-size:13px}
+  .badge{display:inline-block;padding:3px 12px;border-radius:99px;font-size:13px;font-weight:600;border:1px solid var(--line)}
+  .b-live{background:#12261a;color:var(--ok);border-color:#1f4a2c}
+  .b-deg{background:#2a2109;color:var(--warn);border-color:#5a4413}
+  .b-bad{background:#2d1214;color:var(--bad);border-color:#6e2226}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .card .n{font-size:26px;font-weight:700;line-height:1.2}
+  .card .l{color:var(--mut);font-size:12.5px;margin-top:2px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:14px 0}
+  h2{font-size:15px;margin:0 0 10px;color:var(--acc);font-weight:600}
+  ul{margin:6px 0;padding-inline-start:20px}
+  li{margin:4px 0;color:var(--ink)}
+  .mut{color:var(--mut)}
+  .row{display:flex;justify-content:space-between;gap:10px;border-top:1px dashed var(--line);padding:7px 0;font-size:14px}
+  .row:first-of-type{border-top:0}
+  .pill{font-size:11.5px;padding:1px 8px;border-radius:99px;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
+  .pill.ok{color:var(--ok);border-color:#1f4a2c} .pill.warn{color:var(--warn);border-color:#5a4413} .pill.bad{color:var(--bad);border-color:#6e2226}
+  footer{margin-top:26px;color:var(--mut);font-size:12.5px;border-top:1px solid var(--line);padding-top:14px}
+  .src{display:flex;flex-wrap:wrap;gap:14px}
+  @media(max-width:600px){ .card .n{font-size:21px} h1{font-size:18px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Pulse</h1>
+    <span id="term" class="badge b-deg">מתחבר…</span>
+    <span class="sub" id="gen"></span>
+  </header>
+
+  <div class="grid">
+    <div class="card"><div class="n" id="k-repos">–</div><div class="l">מאגרים בצי</div></div>
+    <div class="card"><div class="n" id="k-pub">–</div><div class="l">פומביים · דקות-פעולה חינם</div></div>
+    <div class="card"><div class="n" id="k-stale">–</div><div class="l">ללא-דופק 24 שעות</div></div>
+    <div class="card"><div class="n" id="k-issues">–</div><div class="l">תיקים פתוחים</div></div>
+    <div class="card"><div class="n" id="k-red">–</div><div class="l">רץ אדום בפעולות</div></div>
+    <div class="card"><div class="n" id="k-act">–</div><div class="l">אדום-שדורש-טיפול</div></div>
+  </div>
+
+  <section>
+    <h2>פעילות-שרשרת חיה — headcorner</h2>
+    <div id="chain" class="mut">טוען מהשרשרת…</div>
+  </section>
+
+  <section>
+    <h2>מדוע הפאנל מציג ירידה</h2>
+    <ul id="reasons" class="mut"><li>טוען…</li></ul>
+  </section>
+
+  <section>
+    <h2>קצב-העדכון</h2>
+    <div id="cadence" class="mut">טוען…</div>
+  </section>
+
+  <section>
+    <h2>הפצעים-האדומים לפי מאגר</h2>
+    <div id="redlist" class="mut">טוען…</div>
+  </section>
+
+  <footer>
+    <div class="src">
+      <a href="https://github.com/roshpinacare-sys/Pulse">מקור-הנתונים · Pulse</a>
+      <a href="https://github.com/roshpinacare-sys/saos-runtime">הפעימה-החיה · saos-runtime</a>
+      <a href="https://github.com/roshpinacare-sys/Domain">המצפן · Domain</a>
+      <a href="https://github.com/roshpinacare-sys/FleetHQ">FleetHQ</a>
+      <a href="https://github.com/roshpinacare-sys/GridWatch">GridWatch</a>
+      <a href="https://github.com/roshpinacare-sys/Console">Console</a>
+    </div>
+    <div class="mut" style="margin-top:8px">העמוד קורא את מצב-הרשת המדוד האחרון ואת השרשרת בזמן-אמת. רענון כל 5 דקות.</div>
+  </footer>
+</div>
+
+<script>
+const TERM_LABEL = { degraded:['מופחת', 'b-deg'], ok:['תקין','b-live'], down:['מושבת','b-bad'] };
+const PCT = v => (v===undefined||v===null) ? '–' : v;
+
+function paint(d){
+  const t = TERM_LABEL[d.terminal] || ['לא-ידוע','b-deg'];
+  const el = document.getElementById('term');
+  el.textContent = t[0]; el.className = 'badge ' + t[1];
+  document.getElementById('gen').textContent = 'נמדד ' + new Date(d.generatedAt).toLocaleString('he-IL');
+  const tt = d.totals || {};
+  document.getElementById('k-repos').textContent = PCT(tt.repos);
+  document.getElementById('k-pub').textContent   = PCT(tt.public);
+  document.getElementById('k-stale').textContent = PCT(tt.stale24h);
+  document.getElementById('k-issues').textContent= PCT(tt.issuesOpen);
+  document.getElementById('k-red').textContent   = PCT(tt.actionsFailing);
+  document.getElementById('k-act').textContent   = PCT(tt.actionsRedActionable);
+
+  const rs = document.getElementById('reasons'); rs.innerHTML = '';
+  (d.reasons && d.reasons.length ? d.reasons : ['אין-חריגות מדודות']).forEach(r=>{
+    const li=document.createElement('li'); li.textContent=r; rs.appendChild(li);
+  });
+
+  const c = d.cadence || {};
+  document.getElementById('cadence').innerHTML =
+    '<div class="row"><span>התזמון</span><span class="mut">'+ (c.schedule||'–') +'</span></div>'
+    + '<div class="row"><span>מצב</span><span class="pill '+(c.scheduleStatus==='firing'?'ok':'warn')+'">'+ (c.scheduleStatus||'–') +'</span></div>'
+    + '<div class="row"><span>הריצה-האחרונה</span><span class="mut">לפני '+ PCT(c.lastRunAgeMin) +' דקות</span></div>'
+    + '<div class="row"><span>ריצה-באה בתוך</span><span class="mut">'+ PCT(c.nextExpectedWithinMin) +' דקות</span></div>';
+
+  const rl = document.getElementById('redlist'); rl.innerHTML = '';
+  const af = d.actionsFailing || [];
+  const info = new Set(d.actionsRedInfo || []);
+  const quota = new Set(d.actionsQuotaGated || []);
+  if(!af.length){ rl.textContent = 'אין-מאגרים אדומים.'; }
+  af.forEach(name=>{
+    const row=document.createElement('div'); row.className='row';
+    let cls='ok', txt='ירוק-מאומת';
+    if(quota.has(name)){ cls='warn'; txt='מאחורי-מחסום-המנות'; }
+    else if(info.has(name)){ cls='ok'; txt='מצופה-בביקורת'; }
+    else { cls='bad'; txt='דורש-טיפול'; }
+    row.innerHTML = '<span>'+name+'</span><span class="pill '+cls+'">'+txt+'</span>';
+    rl.appendChild(row);
+  });
+}
+
+async function chain(){
+  const box = document.getElementById('chain');
+  try{
+    const r = await fetch('https://api.steemit.com', {method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({jsonrpc:'2.0', method:'condenser_api.get_discussions_by_blog',
+        params:[{tag:'headcorner', limit:3}], id:1})});
+    const j = await r.json();
+    const posts = j.result || [];
+    if(!posts.length){ box.textContent = 'אין-פרסומים מדודים.'; return; }
+    box.innerHTML = '';
+    posts.forEach(p=>{
+      const row=document.createElement('div'); row.className='row';
+      const when = new Date(p.created+'Z').toLocaleString('he-IL');
+      row.innerHTML = '<span><a href="https://steemit.com'+p.url+'">'+ (p.title||p.permlink) +'</a></span>'
+        + '<span class="pill">'+ when +'</span>';
+      box.appendChild(row);
+    });
+  }catch(e){ box.textContent = 'השרשרת לא נענתה כרגע — ייבדק בתור הבא.'; }
+}
+
+async function boot(){
+  try{
+    const r = await fetch('state/network.json?v='+Date.now());
+    paint(await r.json());
+  }catch(e){
+    const r2 = await fetch('https://raw.githubusercontent.com/roshpinacare-sys/Pulse/main/state/network.json?v='+Date.now());
+    paint(await r2.json());
+  }
+}
+boot(); chain();
+setInterval(boot, 5*60*1000); setInterval(chain, 5*60*1000);
+</script>
+</body>
+</html>
