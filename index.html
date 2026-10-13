@@ -56,8 +56,11 @@
   </div>
 
   <section>
-    <h2>פעילות-שרשרת חיה — headcorner</h2>
-    <div id="chain" class="mut">טוען מהשרשרת…</div>
+    <h2>פעילות-שרשרת חיה — steem</h2>
+    <div id="chainstate" class="mut">טוען מצב-שרשרת…</div>
+    <div id="chainnodes" style="margin-top:8px"></div>
+    <h2 style="margin-top:16px">פרסומים אחרונים — headcorner</h2>
+    <div id="chain" class="mut">טוען…</div>
   </section>
 
   <section>
@@ -133,24 +136,95 @@ function paint(d){
   });
 }
 
+// T23-C2: multi-node chain law — the same node ladder as scripts/probe.mjs
+// (steem: api.steemit.com → api.justyy.com → api.steem.fans). The first-answering node
+// is the source of truth and is NAMED; every attempt is shown — a throttling first node
+// is visible, never silent. The committed CI mirror paints first; the live browser
+// ladder refreshes on top of it. All three nodes answer CORS (preflight 200, *).
+const CHAIN_NODES = ['api.steemit.com', 'api.justyy.com', 'api.steem.fans'];
+const rpcCall = async (node, api, method, params, id=1) => {
+  const r = await fetch('https://' + node, {method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({jsonrpc:'2.0', method:'call', params:[api, method, params], id}), signal: AbortSignal.timeout(12000)});
+  return (await r.json())?.result ?? null;
+};
+const rpcLadder = async (api, method, params) => {
+  const tries = [];
+  for(const node of CHAIN_NODES){
+    const t0 = Date.now();
+    try{
+      const res = await rpcCall(node, api, method, params);
+      tries.push({node, ms:Date.now()-t0, ok:res!=null});
+      if(res!=null) return {res, node, tries};
+    }catch(e){ tries.push({node, ms:Date.now()-t0, ok:false, err:String(e).slice(0,40)}); }
+  }
+  return {res:null, node:null, tries};
+};
+const cnum = (s)=>{const n=parseFloat(String(s??'').split(' ')[0]); return Number.isFinite(n)?n:null;};
+const cfmt = (n)=>n==null?'–':n.toLocaleString('en-US',{maximumFractionDigits:3});
+const crow = (l,v)=>'<div class="row"><span>'+l+'</span><span class="mut">'+v+'</span></div>';
+const nodePills = (tries)=>tries.map(t=>'<span class="pill '+(t.ok?'ok':'bad')+'">'+t.node+' · '+t.ms+'ms · '+(t.ok?'ענה':'שקט')+'</span>').join(' ');
+
 async function chain(){
   const box = document.getElementById('chain');
+  const st = document.getElementById('chainstate');
+  const nd = document.getElementById('chainnodes');
+  // 1) the committed CI mirror receipt (state truth, up to 30 min old — age shown)
+  let m = null, mAge = '–';
   try{
-    const r = await fetch('https://api.steemit.com', {method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({jsonrpc:'2.0', method:'condenser_api.get_discussions_by_blog',
-        params:[{tag:'headcorner', limit:3}], id:1})});
-    const j = await r.json();
-    const posts = j.result || [];
-    if(!posts.length){ box.textContent = 'אין-פרסומים מדודים.'; return; }
-    box.innerHTML = '';
-    posts.forEach(p=>{
+    const mj = await (await fetch('mirror/lanes.json?v='+Date.now())).json();
+    m = mj.chains || null;
+    if(mj.generatedAt) mAge = Math.max(0, Math.round((Date.now()-new Date(mj.generatedAt))/60000)) + ' דק';
+  }catch{}
+  let mh = '';
+  if(m){
+    mh += crow('ראש-השרשרת steem (מראה CI)', m.steemHead!=null ? '#'+m.steemHead.toLocaleString('en-US') : '–');
+    mh += crow('צומת-עונה (מראה CI)', m.steemNode || '–');
+    const t = m.steemTreasury;
+    if(t && t.sp!=null) mh += crow('קופת-השרשרת steem.dao (מראה CI)', cfmt(t.sp)+' SP · '+cfmt(t.steem)+' STEEM · '+cfmt(t.sbd)+' SBD');
+    else if(t && t.error) mh += crow('קופת-השרשרת steem.dao', t.error);
+    if(m.hiveHead!=null) mh += crow('hive (מראה CI)', '#'+m.hiveHead.toLocaleString('en-US')+' · '+(m.hiveNode||'–'));
+    mh += crow('גיל-חותמת המראה', mAge);
+  } else {
+    mh += crow('מראה CI', 'לא נטען — הסולם-החי למטה הוא המקור');
+  }
+  // 2) live ladder from the browser — first responder wins, named, every try shown
+  let lh = '<div class="row"><span>מדידה-חיה מהדפדפן</span><span class="mut">סולם צמתות · הראשון-שעונה הוא המקור</span></div>';
+  const head = await rpcLadder('condenser_api','get_dynamic_global_properties',[]);
+  if(head.res){
+    lh += crow('ראש-השרשרת steem (חי)', '#'+head.res.head_block_number.toLocaleString('en-US'));
+    const hitTry = head.tries.find(t=>t.node===head.node);
+    lh += crow('צומת-עונה (חי)', head.node + ' · ' + (hitTry?hitTry.ms+'ms':''));
+    const acc = await rpcCall(head.node,'condenser_api','get_accounts',[['steem.dao']],2).catch(()=>null);
+    if(acc){
+      const tvs = cnum(head.res.total_vesting_shares), tvf = cnum(head.res.total_vesting_fund_steem), v = cnum(acc.vesting_shares);
+      const sp = (tvs>0 && v!=null && tvf!=null) ? (v/tvs)*tvf : null;
+      lh += crow('קופת-השרשרת steem.dao (חי)', cfmt(sp)+' SP · '+cfmt(cnum(acc.balance))+' STEEM · '+cfmt(cnum(acc.sbd_balance))+' SBD');
+    }
+    nd.innerHTML = '<span class="mut" style="font-size:12.5px">צמתות שנמדדו עכשיו (דפדפן): </span>' + nodePills(head.tries);
+  } else {
+    lh += crow('סולם-חי', 'אף צומת לא ענה מהדפדפן — מראה ה-CI למעלה הוא העדות המחויבת');
+    nd.innerHTML = '<span class="mut" style="font-size:12.5px">צמתות שנמדדו עכשיו (דפדפן): </span>' + nodePills(head.tries);
+  }
+  st.innerHTML = mh + lh;
+  // 3) posts feed — same ladder discipline, answering node named
+  const pb = await rpcLadder('condenser_api','get_discussions_by_blog',[{tag:'headcorner',limit:3}]);
+  box.innerHTML = '';
+  if(pb.res && pb.res.length){
+    pb.res.forEach(p=>{
       const row=document.createElement('div'); row.className='row';
       const when = new Date(p.created+'Z').toLocaleString('he-IL');
       row.innerHTML = '<span><a href="https://steemit.com'+p.url+'">'+ (p.title||p.permlink) +'</a></span>'
         + '<span class="pill">'+ when +'</span>';
       box.appendChild(row);
     });
-  }catch(e){ box.textContent = 'השרשרת לא נענתה כרגע — ייבדק בתור הבא.'; }
+    const via=document.createElement('div'); via.className='mut'; via.style.fontSize='12.5px';
+    via.textContent = 'ענה: ' + pb.node;
+    box.appendChild(via);
+  } else if(pb.res){
+    box.textContent = 'אין-פרסומים מדודים לתג זה (' + pb.node + ' ענה).';
+  } else {
+    box.textContent = 'אף צומת לא ענה לסולם-החי — ייבדק שוב במחזור-הבא (מראה ה-CI למעלה מחזיק את העדות).';
+  }
 }
 
 async function boot(){
