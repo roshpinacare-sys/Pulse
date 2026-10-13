@@ -409,26 +409,63 @@ const rpcHead = async (url) => {
       body: JSON.stringify({ jsonrpc: '2.0', method: 'call', params: ['condenser_api', 'get_dynamic_global_properties', []], id: 1 }),
       signal: AbortSignal.timeout(15000),
     })
-    return (await r.json())?.result?.head_block_number ?? null
+    return (await r.json())?.result ?? null // full props — head AND vesting supply (treasury math needs both)
   } catch { return null }
 }
+const rpcAccount = async (url, name) => {
+  try {
+    const r = await fetch(url, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ jsonrpc: '2.0', method: 'call', params: ['condenser_api', 'get_accounts', [[name]]], id: 2 }),
+      signal: AbortSignal.timeout(15000),
+    })
+    return (await r.json())?.result?.[0] ?? null
+  } catch { return null }
+}
+const vestNum = (s) => { const n = parseFloat(String(s ?? '').split(' ')[0]); return Number.isFinite(n) ? n : null }
 const chainProbes = {}
 const rpcHeadLadder = async (chain, urls) => {
   const tries = []
+  chainProbes[chain] = tries
   for (const url of urls) {
     const t0 = Date.now()
-    const head = await rpcHead(url)
+    const res = await rpcHead(url)
+    const head = res?.head_block_number ?? null
     tries.push({ node: url.replace('https://', ''), ms: Date.now() - t0, head, ok: head != null })
-    if (head != null) break
+    if (head != null) return { head, res, url } // first-responding node is the source of truth
   }
-  chainProbes[chain] = tries
-  return tries.find((t) => t.ok)?.head ?? null
+  return { head: null, res: null, url: null }
 }
 const chains = { hiveHead: null, steemHead: null }
-chains.steemHead = await rpcHeadLadder('steem', CHAIN_NODES.steem)
-chains.hiveHead = await rpcHeadLadder('hive', CHAIN_NODES.hive)
+const steemHit = await rpcHeadLadder('steem', CHAIN_NODES.steem)
+const hiveHit = await rpcHeadLadder('hive', CHAIN_NODES.hive)
+chains.steemHead = steemHit.head
+chains.hiveHead = hiveHit.head
+chains.steemNode = steemHit.url ? steemHit.url.replace('https://', '') : null
+chains.hiveNode = hiveHit.url ? hiveHit.url.replace('https://', '') : null
 chains.steemNodes = chainProbes.steem
 chains.hiveNodes = chainProbes.hive
+// T23-C2: treasury measured on the ANSWERING node only — never a second opinion from a
+// different node, no faking. steem.dao is the chain treasury; SP is derived from vesting
+// shares against THIS run's live supply (tvf/tvs from the same head result). Measured
+// 2026-10-13: steem.dao holds 0 SP (its value sits in liquid STEEM/SBD) — recorded as-is.
+if (steemHit.url && steemHit.res) {
+  const acc = await rpcAccount(steemHit.url, 'steem.dao')
+  const tvs = vestNum(steemHit.res.total_vesting_shares)
+  const tvf = vestNum(steemHit.res.total_vesting_fund_steem)
+  const vests = vestNum(acc?.vesting_shares)
+  const sp = acc && tvs > 0 && tvf != null && vests != null ? (vests / tvs) * tvf : null
+  chains.steemTreasury = {
+    account: 'steem.dao',
+    sp: sp == null ? null : Math.round(sp * 1000) / 1000,
+    steem: acc?.balance != null ? vestNum(acc.balance) : null,
+    sbd: acc?.sbd_balance != null ? vestNum(acc.sbd_balance) : null,
+    via: chains.steemNode,
+    at: NOW,
+  }
+} else {
+  chains.steemTreasury = { account: 'steem.dao', error: 'no steem node answered — honest gap', at: NOW }
+}
 const mirror = scrubVal({
   schema: 'pulse-mirror-v1',
   generatedAt: NOW,
@@ -446,6 +483,19 @@ if (mirrorJson.length > 600000) {
 }
 await writeFile('mirror/lanes.json', JSON.stringify(mirror, null, 1), 'utf-8')
 console.log(`mirror: sources=${Object.keys(sources).length} chains=${chains.hiveHead ?? '-'}/${chains.steemHead ?? '-'}`)
+
+// T23-C2: the STATE receipt carries the same chain section — one story in both files,
+// no recompute, no divergence. Public chain data only (no estate names, no secrets).
+try {
+  const net = JSON.parse(await readFile('state/network.json', 'utf-8'))
+  net.chains = {
+    schema: 'pulse-chains-v1',
+    at: NOW,
+    steem: { head: chains.steemHead, node: chains.steemNode, treasury: chains.steemTreasury, tries: chains.steemNodes },
+    hive: { head: chains.hiveHead, node: chains.hiveNode, tries: chains.hiveNodes },
+  }
+  await writeFile('state/network.json', JSON.stringify(net, null, 1), 'utf-8')
+} catch (e) { console.log(`chains->network.json: ${String(e?.message || e)}`) }
 
 let hist = []
 try {
