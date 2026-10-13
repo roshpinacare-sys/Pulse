@@ -12,7 +12,7 @@
 //   4. RECORD + TERMINAL: state/terminal semantics — success | degraded | blocked.
 //      Never silent: a degraded probe opens/comments an alert issue (fail-closed honesty);
 //      recovery (success again) closes the alert issue, completing the loop.
-// Secrets: FLEET_TOKEN / GH_PAT (Actions secrets) are never printed, never logged, never committed.
+// Secrets: FLEET_TOKEN / GH_PAT / FLEET_ROSTER_MAP (Actions secrets) are never printed, never logged, never committed.
 //   PAT health is probed every run — a dead/expired token is FLAGS, not a silent failure.
 //   Tokenless mode is an HONEST permanent mode: the state says `visibility: public-only`
 //   and the terminal is degraded — private sight is missing, and that is reported, not hidden.
@@ -35,6 +35,46 @@ const H = (tok) => ({
   'User-Agent': 'pulse-heartbeat',
   ...(tok ? { Authorization: `Bearer ${tok}` } : {}),
 })
+
+// ── refs layer (3-c identity law) ─────────────────────────────────────────────
+// The mirror carries VERBATIM copies of private-repo artifacts (Sandbox research
+// findings, lessons ledgers). Those artifacts may quote estate account names —
+// measured leak: the RC-starved experiment landed 13 real names in
+// mirror/lanes.json. Law now: EVERY string the mirror publishes passes the refs
+// scrub below — estate names -> acct-NN refs (map = FLEET_ROSTER_MAP secret,
+// env-only; absent map = no-op with an honest stdout note, never a fabricated
+// mapping, never a committed name->ref table).
+const ROSTER_NAME_TO_REF = (() => {
+  try {
+    const env = process.env.FLEET_ROSTER_MAP || ''
+    if (!env.trim().startsWith('{')) return new Map()
+    const j = JSON.parse(env)
+    const m = new Map()
+    const ingest = (ref, name) => {
+      if (typeof ref === 'string' && /^acct-\d\d$/.test(ref) && typeof name === 'string' && name) m.set(name, ref)
+    }
+    if (j && typeof j.refs === 'object') for (const [r, n] of Object.entries(j.refs)) ingest(r, n)
+    if (j && typeof j.names === 'object') for (const [n, r] of Object.entries(j.names)) ingest(r, n)
+    if (j && typeof j === 'object') for (const [k, v] of Object.entries(j)) {
+      if (typeof k === 'string' && typeof v === 'string') (k.startsWith('acct-') ? ingest(k, v) : ingest(v, k))
+    }
+    return m
+  } catch { return new Map() }
+})()
+if (!ROSTER_NAME_TO_REF.size) console.log('[refs] roster-unresolved: FLEET_ROSTER_MAP absent/unmapped — mirror scrub is a NO-OP this run (names must never be relied on upstream)')
+const scrubText = (t) => {
+  let out = String(t)
+  for (const [n, r] of ROSTER_NAME_TO_REF) {
+    out = out.replace(new RegExp('(?<![A-Za-z0-9])' + n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![A-Za-z0-9])', 'gi'), r)
+  }
+  return out
+}
+const scrubVal = (v) => {
+  if (typeof v === 'string') return scrubText(v)
+  if (Array.isArray(v)) return v.map(scrubVal)
+  if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [scrubText(k), scrubVal(x)]))
+  return v
+}
 
 async function gh(path, tok) {
   try {
@@ -365,14 +405,14 @@ const rpcHead = async (url) => {
 }
 chains.hiveHead = await rpcHead('https://api.hive.blog')
 chains.steemHead = await rpcHead('https://api.steemit.com')
-const mirror = {
+const mirror = scrubVal({
   schema: 'pulse-mirror-v1',
   generatedAt: NOW,
   trigger: TRIGGER,
   provenance: 'CI-carried from roshpinacare-sys/Sandbox public-grade ledgers (darkened by the T-66 repo flip, not by content) + live chain probes. Sanitized output of a §7 runner shell.',
   chains,
   sources,
-}
+}) // 3-c refs law: the whole mirror passes the estate-name scrub at write time
 const mirrorJson = JSON.stringify(mirror)
 if (mirrorJson.length > 600000) {
   // size guard — carry stamps honestly instead of oversized payloads
