@@ -92,7 +92,7 @@ async function loadDex() {
   const grab = async base => {
     const st = await fj(base + "state.json", "dex-state", 12);
     let fl = null; try { fl = await fj(base + "flow.json", "dex-flow", 12); } catch (e) { }
-    return { state: st.state || st, flow: fl && fl.markets ? fl : null, at: st.publishedAt };
+    return { state: st.state || st, top: st, flow: fl && fl.markets ? fl : null, at: st.publishedAt };
   };
   try { S.dex = await grab(RAWC); }
   catch (e1) { try { S.dex = await grab(CDNJ); } catch (e2) { /* DEX0 embed stays */ } }

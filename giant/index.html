@@ -3,12 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>GIANT — מערכת-האמת של SAOS | בורסה חיה · חיסכון · הלוואות · הצי · הערוץ-הריבוני</title>
+<title>GIANT — מערכת-האמת של SAOS | מסוף-מסחר · ספר-הזמנות · החלפות · בריכות · נגזרות · חיסכון · הלוואות · הצי</title>
 <meta name="description" content="GIANT v2: המערכת-האחת של הריבונות הפרטית SAOS — בורסה חיה (saos-dex), חיסכון-APY, שווקי-הלוואות, ve-gauges, איגרות-חוב, אורקל-מדיאנה, ליגת-הענקים, מפת-כל-הגיט (1,443 פריטים), הערוץ-הריבוני-היחיד וניהול-הבעלים. כל-מספר-חי-ומדוד.">
 <meta name="theme-color" content="#06070b">
 <link rel="canonical" href="https://roshpinacare-sys.github.io/Pulse/giant/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23f0b90b'/%3E%3Ctext x='12' y='17' font-size='13' font-weight='900' text-anchor='middle' fill='%23141002' font-family='Arial'%3EG%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="trade.css">
+<script>
+/* preview-host patch: when giant runs off github.io (e.g. sandbox preview), Pulse-relative streams resolve to Pages */
+(function(){
+  try {
+    if (location.hostname === "roshpinacare-sys.github.io") return;
+    var BASE = "https://roshpinacare-sys.github.io/Pulse/";
+    var of_ = window.fetch;
+    window.fetch = function(u, o){
+      if (typeof u === "string" && u.indexOf("../") === 0) u = BASE + u.slice(3);
+      return of_(u, o);
+    };
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 <div class="tape" id="tape" aria-hidden="true"><div class="tape-in" id="tapein"><span class="tk"><span class="s">GIANT</span><span class="p">מתחבר-לספרים-החיים…</span></span></div></div>
@@ -50,5 +65,6 @@
 
 <script src="estate-data.js"></script>
 <script src="app.js"></script>
+<script src="trade.js"></script>
 </body>
 </html>
