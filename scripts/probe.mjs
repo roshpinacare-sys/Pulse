@@ -311,6 +311,49 @@ const cadence = {
   }
 }
 
+// --- R328 economy-sovereignty: the sovereignty IS the economy — measured every beat ---
+// Reads the economic ledger of record (saos-dex) + the two live income-artery receipts.
+// Fail-open: a missed fetch is a named reason, never a silent zero (DECISIONS #14 law:
+// "evidence over narrative; every income claim cites a measured receipt").
+const economy = {
+  sovereigntyLedger: null,
+  treasury: null,
+  army: null,
+  gapsOpen: null,
+  fetchedAt: NOW,
+  note: null,
+}
+{
+  const raw = async (url) => {
+    const r = await fetch(url, { headers: { 'User-Agent': 'pulse-probe/1 (economy lane R328)' } })
+    if (!r.ok) throw new Error(`${url.split('/').slice(-1)[0]} -> ${r.status}`)
+    return r.text()
+  }
+  try {
+    const eco = JSON.parse(await raw('https://raw.githubusercontent.com/roshpinacare-sys/saos-dex/main/grids/state/economy-sovereignty.json'))
+    economy.sovereigntyLedger = {
+      schema: eco.schema,
+      at: eco.at,
+      decision: eco.decision || 'DECISIONS.md #14 ECONOMIC-INVERSION',
+      flowDirection: eco.measuredNow?.flowDirection?.currentHonestState || null,
+      reviewBy: eco.measuredNow?.reviewBy || null,
+    }
+    const gaps = eco.measuredNow?.sovereignGaps || []
+    economy.gapsOpen = gaps.filter((g) => String(g.status || '').startsWith('OPEN')).length
+  } catch (e) { economy.note = `sovereignty ledger unread: ${String(e).slice(0, 100)}` }
+  try {
+    const t = JSON.parse(await raw('https://raw.githubusercontent.com/roshpinacare-sys/saos-dex/main/grids/state/treasury-public.json'))
+    economy.treasury = { at: t.at, verdict: t.verdict, acted: t.acted, openOrders: t.openOrders, trader: t.trader }
+  } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `treasury receipt unread: ${String(e).slice(0, 80)}` }
+  try {
+    const a = JSON.parse(await raw('https://raw.githubusercontent.com/roshpinacare-sys/saos-dex/main/grids/state/army-public.json'))
+    economy.army = { at: a.at, verdict: a.verdict, acted: a.acted, roster: a.roster, stasis: a.stasis }
+  } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `army receipt unread: ${String(e).slice(0, 80)}` }
+  if (economy.gapsOpen != null && economy.gapsOpen > 0) {
+    state.reasons.push(`economy-sovereignty: ${economy.gapsOpen} sovereign self-funding gaps OPEN (DECISIONS #14) — redemption ledger active, flow direction = sovereignty funds the operator`)
+  }
+}
+
 // --- terminal semantics (honest, fail-closed, CALIBRATED) ---
 if (repos.length === 0) {
   state.terminal = 'blocked'
@@ -343,6 +386,7 @@ const network = {
   reasons: state.reasons,
   auth: { pat: patHealth, mode, visibility },
   cadence,
+  economy,
   totals,
   stale24h,
   stale24hAnnotated,
