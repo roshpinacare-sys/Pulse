@@ -3,23 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>GIANT — מערכת-האמת של SAOS | הבורסה, הארנק, הצי והערוץ-הריבוני · מערכת-אחת</title>
-<meta name="description" content="GIANT: המערכת-האחת של הריבונות הפרטית SAOS — בורסה מבוזרת, ארנק, אוצר, צי-סוכנים אוטונומי, חוקים והערוץ-הריבוני היחיד בין הבעלים לריבונות. כל-מספר-נמדד, אין-המצאה.">
-<meta name="theme-color" content="#07090d">
+<title>GIANT — מערכת-האמת של SAOS | בורסה חיה · חיסכון · הלוואות · הצי · הערוץ-הריבוני</title>
+<meta name="description" content="GIANT v2: המערכת-האחת של הריבונות הפרטית SAOS — בורסה חיה (saos-dex), חיסכון-APY, שווקי-הלוואות, ve-gauges, איגרות-חוב, אורקל-מדיאנה, ליגת-הענקים, מפת-כל-הגיט (1,443 פריטים), הערוץ-הריבוני-היחיד וניהול-הבעלים. כל-מספר-חי-ומדוד.">
+<meta name="theme-color" content="#06070b">
 <link rel="canonical" href="https://roshpinacare-sys.github.io/Pulse/giant/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23e8b64c'/%3E%3Ctext x='12' y='17' font-size='13' font-weight='900' text-anchor='middle' fill='%23151002' font-family='Arial'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23f0b90b'/%3E%3Ctext x='12' y='17' font-size='13' font-weight='900' text-anchor='middle' fill='%23141002' font-family='Arial'%3EG%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="tape" id="tape" aria-hidden="true"><div class="tape-in" id="tapein"><span class="tk"><span class="s">GIANT</span><span class="p">מתחבר-לספרים-החיים…</span></span></div></div>
+
 <header class="top">
-  <div class="brand">
+  <a class="brand" href="#/home" aria-label="GIANT — בית">
     <span class="logo" aria-hidden="true">G</span>
     <span>GIANT<small>מערכת-האמת · SAOS SOVEREIGN</small></span>
-  </div>
+  </a>
   <span class="livechip"><span class="dot" id="livedot"></span><span id="livetxt">מתחבר…</span></span>
   <span class="spacer"></span>
+  <button class="kbtn" id="palbtn" aria-label="חיפוש גלובלי (Ctrl+K)"><span aria-hidden="true">⌕</span><span class="ktxt">חיפוש-הכל</span><kbd>Ctrl K</kbd></button>
   <span class="clock" id="clock" aria-hidden="true"></span>
-  <a class="btn ghost" href="#/admin" id="adminlink" aria-label="ניהול">♛ ניהול</a>
+  <a class="btn ghost sm" href="#/admin" id="adminlink" aria-label="ניהול">♛ ניהול</a>
 </header>
 
 <nav class="side" id="sidenav" aria-label="ניווט ראשי"></nav>
@@ -27,15 +30,25 @@
 
 <main class="main" id="view" role="main"></main>
 
+<div class="palette-back" id="palback" role="dialog" aria-modal="true" aria-label="חיפוש-גלובלי">
+  <div class="palette">
+    <input id="palin" type="text" placeholder="חפש: תצוגות · חוקים · החלטות · איברי-דקס · קבלות · כל-הגיט (1,443)…" aria-label="חיפוש">
+    <div class="pl-list" id="pallist"></div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
 <footer class="foot">
-  <span><b>GIANT</b> — מערכת-אחת, ערוץ-אחד, אמת-אחת</span>
+  <span><b>GIANT v2</b> — מערכת-אחת · ערוץ-אחד · אמת-אחת · אין-סוף</span>
   <span class="spacer"></span>
-  <a href="../sovereign.html" title="משטח-הערוץ (מפנה-לכאן)">ערוץ-ריבוני ↗</a>
   <a href="https://github.com/roshpinacare-sys/Pulse/tree/main/giant" target="_blank" rel="noopener">קוד-המערכת ↗</a>
-  <a href="https://github.com/roshpinacare-sys/Pulse/blob/main/state/sovereign-channel/PROTOCOL.md" target="_blank" rel="noopener">פרוטוקול SAOS-SOVEREIGN-CHANNEL ↗</a>
+  <a href="https://github.com/roshpinacare-sys/Console/tree/main/dex" target="_blank" rel="noopener">ספרי-המנוע ↗</a>
+  <a href="https://github.com/roshpinacare-sys/Pulse/blob/main/state/sovereign-channel/PROTOCOL.md" target="_blank" rel="noopener">פרוטוקול-הערוץ ↗</a>
   <span class="asof" id="footstamp"></span>
 </footer>
 
+<script src="estate-data.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
