@@ -170,6 +170,22 @@ for (const r of repos) {
 }
 if (livenessRateLimited) state.reasons.push('Actions liveness partially unmeasured — API rate-limit wall hit (honest gap, not silence)')
 
+// --- 1. OBSERVE (d): last-commit freshness (R326) — pushed_at lies ---
+// Measured 2026-10-14T02:26:18-33Z: a bulk branch/tag event bumped pushed_at on 7
+// dormant repos within ONE minute, so the stale24h meter flashed false-fresh and
+// the dormant census (issue #5) silently fell out of the alarm. The honest clock
+// is the last COMMIT on the default branch. Rate wall → per-repo fallback to
+// pushed_at, recorded as a named honest gap (never silence).
+let lastCommitRateLimited = 0
+for (const r of repos) {
+  if (r.archived) continue
+  const cr = await gh(`/repos/${r.full_name || `${OWNER}/${r.name}`}/commits?per_page=1&sha=${encodeURIComponent(r.default_branch || 'main')}`, AUTH_TOK)
+  if (cr.status === 403 || cr.status === 429) { lastCommitRateLimited++; r.lastCommitAt = null; continue }
+  const c = Array.isArray(cr.data) ? cr.data[0] : null
+  r.lastCommitAt = c?.commit?.committer?.date || c?.commit?.author?.date || null
+}
+if (lastCommitRateLimited > 0) state.reasons.push(`last-commit freshness unmeasured on ${lastCommitRateLimited} repos (API rate wall) — those fall back to pushed_at (honest gap, not silence)`)
+
 // --- 2. ACT: compute ---
 // CALIBRATION MATRIX (issue #8, T-70): a red run is not automatically a sick organ.
 //   info-class    = private repo + audit/scan/verify/test/build-shaped workflow dispatched
@@ -189,6 +205,7 @@ const fleet = repos.map((r) => ({
   archived: !!r.archived,
   defaultBranch: r.default_branch,
   pushedAt: r.pushed_at,
+  lastCommitAt: r.lastCommitAt || null,
   issuesOpen: r.open_issues_count ?? 0,
   actions: LIVENESS.get(r.name) || { status: 'unmeasured' },
 }))
@@ -220,9 +237,31 @@ for (const name of actionsRedActionable) {
 }
 const actionsRedCode = actionsRedActionable.filter((n) => !quotaGated.includes(n))
 const actionsFailing = redRuns.map((r) => r.name) // raw, unfiltered — kept for continuity
+// R326: the staleness clock is the last commit on the default branch (lastCommitAt),
+// falling back to pushed_at only where the rate wall blocked measurement. Stale
+// entries get the dormant-decision ledger (issue #5) attached: a documented verdict
+// is a PLANNED state, never a silenced one — verdict + reason + reviewBy ride INTO
+// the published state (stale24hAnnotated), and an expired verdict re-enlists the
+// repo as undecided (the re-review alarm). No ledger file = every repo undecided.
+let dormantLedger = null
+try { dormantLedger = JSON.parse(await readFile('state/dormant-decisions.json', 'utf-8')) } catch { /* no ledger yet = honest undecided */ }
+const dormantMap = dormantLedger?.repos ? new Map(dormantLedger.repos.map((x) => [x.repo, x])) : new Map()
 const stale24h = fleet
-  .filter((r) => !r.archived && r.pushedAt && Date.now() - new Date(r.pushedAt).getTime() > 24 * 3600 * 1000)
+  .filter((r) => !r.archived && (r.lastCommitAt || r.pushedAt) && Date.now() - new Date(r.lastCommitAt || r.pushedAt).getTime() > 24 * 3600 * 1000)
   .map((r) => r.name)
+const stale24hAnnotated = stale24h.map((name) => {
+  const src = fleet.find((r) => r.name === name) || {}
+  const v = dormantMap.get(name)
+  const expired = !!(v?.reviewBy && new Date(v.reviewBy).getTime() < Date.now())
+  return {
+    name,
+    lastCommitAt: src.lastCommitAt || null,
+    clock: src.lastCommitAt ? 'last-commit' : 'pushedAt-fallback',
+    verdict: expired ? 'verdict-expired → re-enlist for re-review' : (v?.verdict || 'undecided'),
+    reason: expired ? `review window elapsed (${v.reviewBy})` : (v?.reason ?? null),
+    reviewBy: v?.reviewBy ?? null,
+  }
+})
 const issuesTop = fleet
   .filter((r) => (r.issuesOpen || 0) > 0)
   .sort((a, b) => b.issuesOpen - a.issuesOpen)
@@ -234,6 +273,7 @@ const totals = {
   private: fleet.filter((r) => r.private).length,
   archived: fleet.filter((r) => r.archived).length,
   stale24h: stale24h.length,
+  staleUndecided: stale24hAnnotated.filter((s) => s.verdict === 'undecided').length,
   issuesOpen: fleet.reduce((a, r) => a + (r.issuesOpen || 0), 0),
   issuesTop,
   actionsFailing: actionsFailing.length,
@@ -305,6 +345,7 @@ const network = {
   cadence,
   totals,
   stale24h,
+  stale24hAnnotated,
   actionsFailing,
   actionsRedActionable: actionsRedCode,
   actionsQuotaGated: quotaGated,

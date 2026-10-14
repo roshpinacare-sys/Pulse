@@ -1,0 +1,67 @@
+{
+  "schema": "pulse-dormant-decisions/1",
+  "decidedAt": "2026-10-14T07:15:00Z",
+  "decidedBy": "agent session web-d3bb9782-4861-436f-90cb-3a7d68d8b9bf (channel zai-web, trace 1a1392bdb6f16059) — R326 dormant-triage lane, executing Pulse issue #5 (census 2026-10-12)",
+  "reviewBy": "2026-11-13T00:00:00Z",
+  "law": [
+    "a documented verdict is a PLANNED state, never a silenced one — verdict + reason + reviewBy publish into state/network.json stale24hAnnotated",
+    "an expired verdict re-enlists the repo as undecided (the re-review alarm)",
+    "archive/revive EXECUTION is a separate named admin action — never implicit in this ledger",
+    "evidence over narrative: every verdict cites a measured artifact (commit, run, or quota signature)"
+  ],
+  "discovery": {
+    "what": "the staleness meter ran on pushed_at, and a bulk branch/tag event bumped pushed_at on 7 dormant repos within one minute (2026-10-14T02:26:18-33Z) — the dormant census silently fell out of the alarm without a single real commit",
+    "fix": "probe.mjs now clocks staleness on the last COMMIT of the default branch (lastCommitAt), with a named rate-wall fallback to pushed_at; this ledger rides into the published state as stale24hAnnotated"
+  },
+  "repos": [
+    {
+      "repo": "Project-files",
+      "verdict": "revived",
+      "reason": "keeper receipts flowing from public minutes — commits 2026-10-14T05:19Z + 06:45Z ('keeper receipt from public minutes [skip ci]'); an alive automated lane, not dormant",
+      "evidence": { "lastCommitAt": "2026-10-14T06:45:19Z", "lastCommitSubject": "keeper receipt from public minutes [skip ci]" }
+    },
+    {
+      "repo": "Saosmartwallet",
+      "verdict": "keep-dormant-on-purpose",
+      "reason": "wallet custody shell — revival is key-gated (owner authority over the wallet keys, owner-gated by law); real consolidation work landed 2026-10-13T10:52Z (G6 twin-tombstone, T23-C agent); Actions quota-gated (T-73 signature: private, 0-step ~2s failure)",
+      "evidence": { "lastCommitAt": "2026-10-13T10:52:11Z", "lastCommitSubject": "G6 consolidation (T23-C agent): tombstone the copy side of the duplica…", "workflow": "wallet-verify" }
+    },
+    {
+      "repo": "Defi",
+      "verdict": "keep-dormant-on-purpose",
+      "reason": "role-declared why-silenced shell (zai-10c lane, 2026-10-11T19:28Z 'constant productive role + why-silence measured'); no live lane; revival is owner-gated (key authority + minutes wall)",
+      "evidence": { "lastCommitAt": "2026-10-11T19:28:27Z", "lastCommitSubject": "[zai-10c] README role declaration: constant productive role + why-silence…", "workflow": "canary" }
+    },
+    {
+      "repo": "saos-sovereign-foundry",
+      "verdict": "keep-dormant-on-purpose",
+      "reason": "role-declared 'AGENT OPS CONSOLE v1' shell (why-silence measured 2026-10-11T19:24Z); identity-law signing 2026-10-13T00:45Z is fleet hygiene, not revival; Actions quota-gated",
+      "evidence": { "lastCommitAt": "2026-10-13T00:45:51Z", "lastCommitSubject": "sovereign identity law: every commit signed as roshpinacare-sys - fore…", "workflow": "CI" }
+    },
+    {
+      "repo": "SovereignConsole",
+      "verdict": "keep-dormant-on-purpose",
+      "reason": "role-declared 'OFFICE MIRROR' keyless shell (zai-10c, 2026-10-11T19:23Z); identity-law signing 2026-10-13; no workflow lane measured; owner-gated revival",
+      "evidence": { "lastCommitAt": "2026-10-13T00:45:39Z", "lastCommitSubject": "sovereign identity law: every commit signed as roshpinacare-sys - fore…" }
+    },
+    {
+      "repo": "anchor-baseline",
+      "verdict": "keep-dormant-on-purpose",
+      "reason": "custody-protocol shell — 'conformance suite for saos-git-custody-v1: PROTOCOL.md (pinned…)' (2026-10-11T19:20Z) + identity-law signing 2026-10-13; a pinned reference, dormant by design until custody consumers demand changes",
+      "evidence": { "lastCommitAt": "2026-10-13T00:45:15Z", "lastCommitSubject": "sovereign identity law: every commit signed as roshpinacare-sys - fore…", "workflow": "baseline-integrity" }
+    },
+    {
+      "repo": "saos-sovereign-platform",
+      "verdict": "keep-dormant-on-purpose",
+      "reason": "role-declared 'LOCAL-MACHINE CONSOLE v2' shell (zai-10c, 2026-10-11T19:24Z) + identity-law signing 2026-10-13T00:45Z; foundry-tests lane quota-gated (T-73); owner-gated revival",
+      "evidence": { "lastCommitAt": "2026-10-13T00:45:55Z", "lastCommitSubject": "sovereign identity law: every commit signed as roshpinacare-sys - fore…", "workflow": "foundry-tests" }
+    },
+    {
+      "repo": "saos-control-center",
+      "verdict": "keep-dormant-on-purpose",
+      "reason": "control-center build shell; identity-law signing 2026-10-13T00:46Z is the only 10-13 activity (bulk hygiene, not revival); control-center-build lane quota-gated; owner-gated revival",
+      "evidence": { "lastCommitAt": "2026-10-13T00:46:11Z", "lastCommitSubject": "sovereign identity law: every commit signed as roshpinacare-sys - fore…", "workflow": "control-center-build" }
+    }
+  ],
+  "note": "the 2026-10-13T00:45Z identity-law commits across the fleet are bulk signing hygiene — they clock freshness (they ARE commits) but carry no capability delta; this is exactly why verdicts cite evidence, not just timestamps"
+}
