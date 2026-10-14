@@ -351,8 +351,23 @@ const economy = {
     const a = JSON.parse(await contents('grids/state/army-public.json'))
     economy.army = { at: a.at, verdict: a.verdict, acted: a.acted, roster: a.roster, stasis: a.stasis }
   } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `army receipt unread: ${String(e).slice(0, 80)}` }
+  // R329 gearbox: which gear is the paved road in right now (SAOS-POLICY-GEARS/1)
+  try {
+    const g = JSON.parse(await contents('grids/state/policy-gears.json'))
+    economy.gearbox = {
+      protocol: g.protocol,
+      gear: g.state?.gear ?? null,
+      greenStreak: g.state?.greenStreak ?? null,
+      lastVerdict: g.state?.lastVerdict ?? null,
+      gearsCount: Array.isArray(g.gears) ? g.gears.length : null,
+      at: g.state?.at ?? null,
+    }
+  } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `gearbox unread: ${String(e).slice(0, 80)}` }
   if (economy.gapsOpen != null && economy.gapsOpen > 0) {
     state.reasons.push(`economy-sovereignty: ${economy.gapsOpen} sovereign self-funding gaps OPEN (DECISIONS #14) — redemption ledger active, flow direction = sovereignty funds the operator`)
+  }
+  if (economy.gearbox?.gear != null && economy.gearbox.gear > 1) {
+    state.reasons.push(`economy-sovereignty: paved road in gear ${economy.gearbox.gear} (streak ${economy.gearbox.greenStreak}) — receipt-driven upshift per DECISIONS #15`)
   }
 }
 
