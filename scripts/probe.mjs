@@ -360,6 +360,8 @@ const economy = {
       greenStreak: g.state?.greenStreak ?? null,
       lastVerdict: g.state?.lastVerdict ?? null,
       gearsCount: Array.isArray(g.gears) ? g.gears.length : null,
+      // R330 KELLY-CAP: expectancy governor snapshot (written by recordLadderReceipt at verdict time)
+      kelly: g.state?.kelly ?? (g.kelly?.enabled ? { mode: "enabled-stateless" } : null),
       at: g.state?.at ?? null,
     }
   } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `gearbox unread: ${String(e).slice(0, 80)}` }
