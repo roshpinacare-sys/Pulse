@@ -259,7 +259,9 @@ function channelPreview() {
 function giantsMini() {
   const rows = (S.giants && S.giants.rows) || [{ name: "Uniswap", vol24h: 2722158134 }, { name: "PancakeSwap", vol24h: 771000000 }, { name: "Aerodrome", vol24h: 585800000 }, { name: "SAOS (אנחנו)", ours: true }];
   const mx = Math.max(...rows.map(r => r.vol24h || 0), 1);
-  return `<div class="lg">${rows.slice(0, 5).map(r => `<div class="lgrow ${r.ours ? "ours" : ""}"><span class="nm">${esc(r.name)}</span><span class="bar"><i style="width:${r.vol24h ? Math.max(2, r.vol24h / mx * 100) : 2}%"></i></span><span class="vv">${r.ours ? "ספר-מנוע: " + fmti(flw() ? Object.values(flw().markets || {}).reduce((a, m) => a + (m.trades || 0), 0)) + " עסקאות-24h" : usd(r.vol24h)}</span></div>`).join("")}</div>`;
+  const f = flw();
+  const trades24 = f && f.markets ? Object.values(f.markets).reduce((a, m) => a + (m.trades || 0), 0) : 0;
+  return `<div class="lg">${rows.slice(0, 5).map(r => `<div class="lgrow ${r.ours ? "ours" : ""}"><span class="nm">${esc(r.name)}</span><span class="bar"><i style="width:${r.vol24h ? Math.max(2, r.vol24h / mx * 100) : 2}%"></i></span><span class="vv">${r.ours ? "ספר-מנוע: " + fmti(trades24) + " עסקאות-24h" : usd(r.vol24h)}</span></div>`).join("")}</div>`;
 }
 
 function vDex() {
