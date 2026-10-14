@@ -1,26 +1,26 @@
 {
  "schema": "pulse-mirror-v1",
- "generatedAt": "2026-10-14T20:30:08.583Z",
+ "generatedAt": "2026-10-14T21:00:10.739Z",
  "trigger": "repository_dispatch",
  "provenance": "CI-carried from roshpinacare-sys/Sandbox public-grade ledgers (darkened by the T-66 repo flip, not by content) + live chain probes. Sanitized output of a §7 runner shell.",
  "chains": {
-  "hiveHead": 110776085,
-  "steemHead": 110442235,
+  "hiveHead": 110776687,
+  "steemHead": 110442836,
   "steemNode": "api.steemit.com",
   "hiveNode": "api.hive.blog",
   "steemNodes": [
    {
     "node": "api.steemit.com",
-    "ms": 155,
-    "head": 110442235,
+    "ms": 222,
+    "head": 110442836,
     "ok": true
    }
   ],
   "hiveNodes": [
    {
     "node": "api.hive.blog",
-    "ms": 120,
-    "head": 110776085,
+    "ms": 144,
+    "head": 110776687,
     "ok": true
    }
   ],
@@ -28,14 +28,14 @@
    "account": "steem.dao",
    "sp": 0,
    "steem": 1.11,
-   "sbd": 2576096.337,
+   "sbd": 2576103.69,
    "via": "api.steemit.com",
-   "at": "2026-10-14T20:30:08.583Z"
+   "at": "2026-10-14T21:00:10.739Z"
   }
  },
  "sources": {
   "profitOracle": {
-   "at": "2026-10-14T20:30:08.583Z",
+   "at": "2026-10-14T21:00:10.739Z",
    "path": "receipts/profit-oracle-latest.json",
    "source": "roshpinacare-sys/Sandbox",
    "candidates": [
@@ -412,7 +412,7 @@
    }
   },
   "publishedBook": {
-   "at": "2026-10-14T20:30:08.583Z",
+   "at": "2026-10-14T21:00:10.739Z",
    "path": "content/published.json",
    "source": "roshpinacare-sys/Domain",
    "candidates": [
@@ -575,7 +575,7 @@
    }
   },
   "decisionTruth": {
-   "at": "2026-10-14T20:30:08.583Z",
+   "at": "2026-10-14T21:00:10.739Z",
    "path": "ops/decision-truth/verdict.json",
    "source": "roshpinacare-sys/Autonomy",
    "candidates": [
@@ -587,32 +587,32 @@
     {
      "repo": "roshpinacare-sys/Autonomy",
      "path": "ops/decision-truth/verdict.json",
-     "at": "2026-10-14T19:59:18.000Z"
+     "at": "2026-10-14T20:43:57.000Z"
     }
    ],
    "data": {
     "schema": "sandbox/decision-truth/1",
-    "generatedAt": "2026-10-14T19:59:18Z",
-    "durationMs": 2348,
+    "generatedAt": "2026-10-14T20:43:57Z",
+    "durationMs": 2207,
     "overall": "PASS_WITH_ALERTS",
     "charter": "ops/sovereign/DECIDER/CHARTER.md",
     "law": "H: every ENFORCED decision must re-measure its evidence independently AND show a measured consumer; stale evidence = STALE-TRUTH; no consumer = UNEXECUTED; source down = UNVERIFIABLE (never forged)",
     "decider": {
      "generatedAt": "2026-10-14T17:58:47Z",
-     "stateAgeMin": 120,
+     "stateAgeMin": 165,
      "source": "local-checkout",
      "heartbeat": {
       "workflow": "sovereign-decider.yml",
       "lastRunAt": "2026-10-14T17:58:35Z",
-      "ageS": 7242,
+      "ageS": 9921,
       "stalled": true
      }
     },
     "measures": {
      "chain": {
-      "head": 110441616,
+      "head": 110442502,
       "treasuryNetSp": 2810.8,
-      "mult": 0.0006203275253697435
+      "mult": 0.0006203288092011068
      },
      "beaconPulse": {
       "treasuryNetSp": 2810.8
@@ -635,15 +635,15 @@
       "area": "הנהגה",
       "status": "OBSERVING",
       "decidedAt": "2026-10-14T17:58:41Z",
-      "truth": "VERIFIED",
+      "truth": "STALE-TRUTH",
       "checks": [
        {
         "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 120min (limit 120)"
+        "result": "mismatch",
+        "detail": "state age 165min (limit 120)"
        }
       ],
-      "note": "evidence re-measured independently + execution present"
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
      },
      {
       "id": "D1-econ-treasury-floor",
@@ -651,7 +651,7 @@
       "status": "ENFORCED",
       "priority": "P1",
       "decidedAt": "2026-10-14T17:58:42Z",
-      "truth": "VERIFIED",
+      "truth": "STALE-TRUTH",
       "checks": [
        {
         "law": "policy-internal-consistency",
@@ -690,11 +690,11 @@
        },
        {
         "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 120min (limit 120)"
+        "result": "mismatch",
+        "detail": "state age 165min (limit 120)"
        }
       ],
-      "note": "evidence re-measured independently + execution present"
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
      },
      {
       "id": "D2-eng-errors",
@@ -725,8 +725,8 @@
        },
        {
         "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 120min (limit 120)"
+        "result": "mismatch",
+        "detail": "state age 165min (limit 120)"
        }
       ],
       "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
@@ -736,7 +736,7 @@
       "area": "רשת",
       "status": "ENFORCED",
       "decidedAt": "2026-10-14T17:58:42Z",
-      "truth": "VERIFIED",
+      "truth": "STALE-TRUTH",
       "checks": [
        {
         "law": "orphans-fresh",
@@ -750,26 +750,26 @@
        },
        {
         "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 120min (limit 120)"
+        "result": "mismatch",
+        "detail": "state age 165min (limit 120)"
        }
       ],
-      "note": "evidence re-measured independently + execution present"
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
      },
      {
       "id": "D4-truth-network",
       "area": "אימות-עצמי",
       "status": "OBSERVING",
       "decidedAt": "2026-10-14T17:58:42Z",
-      "truth": "VERIFIED",
+      "truth": "STALE-TRUTH",
       "checks": [
        {
         "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 120min (limit 120)"
+        "result": "mismatch",
+        "detail": "state age 165min (limit 120)"
        }
       ],
-      "note": "evidence re-measured independently + execution present"
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
      },
      {
       "id": "D5-social-standby",
@@ -777,23 +777,23 @@
       "status": "ENFORCED",
       "priority": "P1",
       "decidedAt": "2026-10-14T17:58:42Z",
-      "truth": "VERIFIED",
+      "truth": "STALE-TRUTH",
       "checks": [
        {
         "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 120min (limit 120)"
+        "result": "mismatch",
+        "detail": "state age 165min (limit 120)"
        }
       ],
-      "note": "evidence re-measured independently + execution present"
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
      }
     ],
     "provenance": {
-     "runId": "38628211655",
-     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38628211655",
-     "sha": "a154d3f78e1e6a042c5eb455c1b77b7eb956c65f",
+     "runId": "38634519464",
+     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38634519464",
+     "sha": "1053f56d6dbe75feeb4ae47d0351a2e4420739a0",
      "engine": "engine/decision-truth.mjs (H-series, zai-code-3)",
-     "generatedAt": "2026-10-14T19:59:18Z"
+     "generatedAt": "2026-10-14T20:43:57Z"
     },
     "selftest": {
      "vectors": 16,
@@ -801,26 +801,8 @@
     }
    }
   },
-  "lessons": {
-   "at": "2026-10-14T20:30:08.583Z",
-   "path": "ops/lessons/ledger.md",
-   "source": "roshpinacare-sys/Autonomy",
-   "candidates": [
-    {
-     "repo": "roshpinacare-sys/Autonomy",
-     "path": "ops/lessons/ledger.md",
-     "at": null
-    },
-    {
-     "repo": "roshpinacare-sys/Sandbox",
-     "path": "ops/lessons/ledger.md",
-     "at": null
-    }
-   ],
-   "text": "# LESSONS LEDGER · append-only · deterministic distillation of measured history\n\n## scribe #1 · 2026-10-12T20:40:52.826Z\n- wallet: no receipts yet (artery young)\n- fleet actions 24h: 14 runs · failures: artery-grid:failure×1, artery-fleet:failure×1, hive-probe:failure×1, federation:failure×1, verifier (truth & quality):failure×2, sovereign-state:failure×1, artery-catchup:failure×1\n- sovereign tick last pulse: 1min ago\n- sandbox commits 24h: 7 · authors: {\"integrity-guard\":1,\"grid-watch\":1,\"sovereign-flow\":1,\"probe-runner[bot]\":1,\"sandbox-sovereign\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 17min ago\n- Domain book office/data.json: 48min old (law <=60min)\n- Domain book agents/office-live.json: 87min old (law <=180min)\n- Domain book dex/office-feed.json: 561min old (law <=1560min)\n- flow map: not yet generated (artery-flow first run pending)\n- integrity guard: no verdict yet (artery-integrity first run pending)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=15029 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=15h\n- dex book dex/showcase.json: ok sig=pair=unknown age=15h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: no verdict yet (artery-decision-truth first run pending)\n- no law proposals — everything measured healthy\n\n\n## scribe #2 · 2026-10-13T01:40:41.404Z\n- wallet 24h verdicts: {\"BLOCKED\":3} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":3} · alerts: 3\n- fleet actions 24h: 100 runs · failures: artery-fleet:failure×3, artery-wallet:failure×3, artery-grid:failure×4, artery-integrity:failure×1, hive-probe:failure×2, sovereign-tick:failure×1, artery-catchup:failure×1, research-lane:failure×2, profit-oracle:failure×2, value-scan:failure×2, key-proof:failure×1, .github/workflows/fleet-yield.yml:failure×1, artery-participation:failure×1, artery-decision-truth:failure×1\n- sovereign tick last pulse: 17min ago\n- sandbox commits 24h: 86 · authors: {\"roshpinacare-sys\":16,\"sandbox-sovereign\":8,\"sandbox-state\":12,\"fleet-artery\":2,\"wallet-artery\":2,\"probe-runner[bot]\":4,\"fleet-healer\":2,\"grid-watch\":4,\"sovereign-federation\":2,\"integrity-guard\":2,\"decision-truth\":4,\"sovereign-flow\":2,\"stabilize-agent\":1,\"sandbox-verifier\":2,\"Z User\":2,\"research-runner[bot]\":3,\"github-actions[bot]\":4,\"fleet-yield\":3,\"value-scan-bot\":2,\"participation[bot]\":3,\"autonomy-wave2-agent\":3,\"sovereign-scribe\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 25min ago\n- Domain book office/data.json: 10min old (law <=60min)\n- Domain book agents/office-live.json: 29min old (law <=180min)\n- Domain book dex/office-feed.json: 861min old (law <=1560min)\n- flow map: nodes=35 edges=95 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.71\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=5253 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 3 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet FAIL/BLOCKED streak ≥3 — escalate to owner issue; do not mint green\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 5 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #3 · 2026-10-13T07:07:55.186Z\n- wallet 24h verdicts: {\"BLOCKED\":5} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":5} · alerts: 5\n- fleet actions 24h: 100 runs · failures: artery-integrity:failure×2, artery-grid:failure×6, artery-fleet:failure×2, sovereign-decider:failure×1, artery-wallet:failure×2\n- sovereign tick last pulse: 2min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"github-actions[bot]\":3,\"sandbox-sovereign\":1}\n- office-ci (FleetHQ) verdict: PASS · 5min ago\n- Domain book office/data.json: 8min old (law <=60min)\n- Domain book agents/office-live.json: 6min old (law <=180min)\n- Domain book dex/office-feed.json: 1188min old (law <=1560min)\n- flow map: nodes=35 edges=97 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.77\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=5253 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=6h\n- dex book dex/showcase.json: ok sig=pair=unknown age=6h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 5 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet FAIL/BLOCKED streak ≥3 — escalate to owner issue; do not mint green\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 4 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #4 · 2026-10-13T10:19:55.784Z\n- wallet 24h verdicts: {\"BLOCKED\":7,\"PASS\":1} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":6,\"FAIL\":1} · alerts: 8\n- fleet actions 24h: 100 runs · failures: sovereign-decider:failure×2, artery-grid:failure×5, artery-fleet:failure×2, artery-wallet:failure×2, fleet-heal:failure×1, artery-integrity:failure×3\n- sovereign tick last pulse: 9min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"Z User\":1,\"github-actions[bot]\":3}\n- office-ci (FleetHQ) verdict: PASS · 38min ago\n- Domain book office/data.json: 20min old (law <=60min)\n- Domain book agents/office-live.json: 34min old (law <=180min)\n- Domain book dex/office-feed.json: 1380min old (law <=1560min)\n- flow map: nodes=35 edges=97 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.77\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=10661 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=2h\n- dex book dex/showcase.json: ok sig=pair=unknown age=2h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=false\n- PROPOSAL(law): wallet carried 8 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 6 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #5 · 2026-10-13T13:51:15.874Z\n- wallet 24h verdicts: {\"BLOCKED\":7,\"PASS\":7} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":6,\"FAIL\":4,\"PASS\":5} · alerts: 24\n- fleet actions 24h: 100 runs · failures: artery-decision-truth:failure×3, sovereign-tick:failure×3, .github/workflows/fleet-yield.yml:failure×2, artery-integrity:failure×3, artery-grid:failure×1, artery-fleet:failure×3, artery-wallet:failure×3\n- sovereign tick last pulse: 6min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":95,\"github-actions[bot]\":1,\"z-user\":1,\"artery-fix\":1,\"Z User\":2}\n- office-ci (FleetHQ) verdict: PASS · 31min ago\n- Domain book office/data.json: 145min old (law <=60min)\n- Domain book agents/office-live.json: 145min old (law <=180min)\n- Domain book dex/office-feed.json: 164min old (law <=1560min)\n- flow map: nodes=35 edges=98 page-integrated=15 plane-internal=19 orphans=0 ghosts=0 density=2.8\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=17570 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=0h\n- dex book dex/showcase.json: ok sig=pair=unknown age=0h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"VERIFIED\":4,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 14 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): Domain book office/data.json stale (145min > 60min) - its producer workflow may be stalled\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #6 · 2026-10-13T19:38:54.237Z\n- wallet 24h verdicts: {\"BLOCKED\":7,\"PASS\":9} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":6,\"FAIL\":4,\"PASS\":7} · alerts: 30\n- fleet actions 24h: 100 runs · failures: .github/workflows/fleet-yield.yml:failure×3, artery-participation:failure×4, artery-decision-truth:failure×5, value-scan:failure×1\n- sovereign tick last pulse: 11min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"github-actions[bot]\":4}\n- office-ci (FleetHQ) verdict: PASS · 61min ago\n- Domain book office/data.json: 493min old (law <=60min)\n- Domain book agents/office-live.json: 493min old (law <=180min)\n- Domain book dex/office-feed.json: 512min old (law <=1560min)\n- flow map: nodes=37 edges=100 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.7\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=25163 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=4h\n- dex book dex/showcase.json: ok sig=pair=unknown age=4h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"VERIFIED\":4,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 16 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): Domain book office/data.json stale (493min > 60min) - its producer workflow may be stalled\n- PROPOSAL(law): Domain book agents/office-live.json stale (493min > 180min) - its producer workflow may be stalled\n- PROPOSAL(law): 23 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #7 · 2026-10-14T00:00:08.122Z\n- wallet 24h verdicts: {\"BLOCKED\":6,\"PASS\":11} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":5,\"FAIL\":4,\"PASS\":9} · alerts: 35\n- fleet actions 24h: 100 runs · failures: artery-decision-truth:failure×1, claims-intake:failure×2, sovereign-state:failure×3\n- sovereign tick last pulse: 20min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":92,\"Z User\":3,\"selfhood[bot]\":5}\n- office-ci (FleetHQ) verdict: PASS · 19min ago\n- Domain book office/data.json: 0min old (law <=60min)\n- Domain book agents/office-live.json: 83min old (law <=180min)\n- Domain book dex/office-feed.json: 773min old (law <=1560min)\n- flow map: nodes=37 edges=102 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.76\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=34835 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"VERIFIED\":4,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 17 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #8 · 2026-10-14T03:09:07.214Z\n- wallet 24h verdicts: {\"BLOCKED\":2,\"PASS\":12} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":1,\"FAIL\":4,\"PASS\":9} · alerts: 31\n- fleet actions 24h: 100 runs · failures: sovereign-state:failure×4\n- sovereign tick last pulse: 12min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":94,\"standby-directive-lane\":1,\"map\":1,\"estate-relay\":1,\"relay\":1,\"estate-vault\":2}\n- office-ci (FleetHQ) verdict: PASS · 27min ago\n- Domain book office/data.json: 0min old (law <=60min)\n- Domain book agents/office-live.json: 108min old (law <=180min)\n- Domain book dex/office-feed.json: 962min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=26502 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=3h\n- dex book dex/showcase.json: ok sig=pair=unknown age=3h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":4,\"STALE-TRUTH\":2} decider-stalled=false\n- PROPOSAL(law): wallet carried 14 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 10 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #9 · 2026-10-14T06:45:25.920Z\n- wallet 24h verdicts: {\"BLOCKED\":2,\"PASS\":13} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":1,\"FAIL\":4,\"PASS\":11} · alerts: 37\n- fleet actions 24h: 100 runs · failures: contract-check:failure×2\n- sovereign tick last pulse: 15min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"github-actions[bot]\":3,\"Z User\":1}\n- office-ci (FleetHQ) verdict: PASS · 23min ago\n- Domain book office/data.json: 16min old (law <=60min)\n- Domain book agents/office-live.json: 14min old (law <=180min)\n- Domain book dex/office-feed.json: 1178min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=29665 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":5,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 15 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #10 · 2026-10-14T08:32:19.611Z\n- wallet 24h verdicts: {\"BLOCKED\":2,\"PASS\":15} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":1,\"FAIL\":4,\"PASS\":12} · alerts: 40\n- fleet actions 24h: 100 runs · failures: contract-check:failure×4\n- sovereign tick last pulse: 23min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":91,\"exec31-synthesis-lane\":1,\"Z User\":5,\"github-actions[bot]\":3}\n- office-ci (FleetHQ) verdict: PASS · 12min ago\n- Domain book office/data.json: 6min old (law <=60min)\n- Domain book agents/office-live.json: 35min old (law <=180min)\n- Domain book dex/office-feed.json: 1285min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=29665 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=3h\n- dex book dex/showcase.json: ok sig=pair=unknown age=3h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":5,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 17 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #11 · 2026-10-14T11:32:43.434Z\n- wallet 24h verdicts: {\"PASS\":8} · failing laws: {}\n- fleet 24h verdicts: {\"PASS\":9} · alerts: 26\n- fleet actions 24h: 100 runs · failures: none\n- sovereign tick last pulse: 15min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":94,\"github-actions[bot]\":1,\"estate-relay\":1,\"exec31-synthesis-lane\":1,\"Z User\":3}\n- office-ci (FleetHQ) verdict: PASS · 7min ago\n- Domain book office/data.json: 2min old (law <=60min)\n- Domain book agents/office-live.json: 29min old (law <=180min)\n- Domain book dex/office-feed.json: 1466min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=28250 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"STALE-TRUTH\":6} decider-stalled=true\n- PROPOSAL(law): wallet carried 8 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 10 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D5-social-standby evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #12 · 2026-10-14T14:12:31.272Z\n- wallet 24h verdicts: {\"PASS\":10} · failing laws: {}\n- fleet 24h verdicts: {\"PASS\":9} · alerts: 27\n- fleet actions 24h: 100 runs · failures: sovereign-state:failure×4\n- sovereign tick last pulse: 21min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":91,\"exec34-audit-lane\":1,\"exec33-registry-lane\":3,\"github-actions[bot]\":4,\"exec32-registry-lane\":1}\n- office-ci (FleetHQ) verdict: PASS · 70min ago\n- Domain book office/data.json: 1min old (law <=60min)\n- Domain book agents/office-live.json: 14min old (law <=180min)\n- Domain book dex/office-feed.json: 1625min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=27123 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":5,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 10 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): Domain book dex/office-feed.json stale (1625min > 1560min) - its producer workflow may be stalled\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #13 · 2026-10-14T17:22:04.363Z\n- wallet 24h verdicts: {\"PASS\":10} · failing laws: {}\n- fleet 24h verdicts: {\"PASS\":9} · alerts: 27\n- fleet actions 24h: 100 runs · failures: identity-guard:failure×2, sovereign-state:failure×7, sovereign-tick:failure×1\n- sovereign tick last pulse: 11min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":89,\"exec36-registry-lane\":2,\"saos-fleet\":2,\"exec35-registry-lane\":2,\"exec34-registry-lane\":1,\"exec34-audit-lane\":1,\"exec33-registry-lane\":3}\n- office-ci (FleetHQ) verdict: FAIL · 37min ago\n- Domain book office/data.json: 17min old (law <=60min)\n- Domain book agents/office-live.json: 72min old (law <=180min)\n- Domain book dex/office-feed.json: 1815min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=27888 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=0h\n- dex book dex/showcase.json: ok sig=pair=unknown age=0h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"STALE-TRUTH\":6} decider-stalled=true\n- PROPOSAL(law): wallet carried 10 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): office-ci (FleetHQ) is FAIL — the office build artery is red; measure before touching the office\n- PROPOSAL(law): Domain book dex/office-feed.json stale (1815min > 1560min) - its producer workflow may be stalled\n- PROPOSAL(law): 15 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D5-social-standby evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n"
-  },
   "integrity": {
-   "at": "2026-10-14T20:30:08.583Z",
+   "at": "2026-10-14T21:00:10.739Z",
    "path": "ops/integrity/verdict.json",
    "source": "roshpinacare-sys/Autonomy",
    "candidates": [
@@ -832,12 +814,12 @@
     {
      "repo": "roshpinacare-sys/Autonomy",
      "path": "ops/integrity/verdict.json",
-     "at": "2026-10-14T18:46:36.590Z"
+     "at": "2026-10-14T20:58:28.401Z"
     }
    ],
    "data": {
     "schema": "integrity-guard/2",
-    "at": "2026-10-14T18:46:36.590Z",
+    "at": "2026-10-14T20:58:28.401Z",
     "overall": "PASS",
     "summary": {
      "sources": 11,
@@ -848,40 +830,40 @@
      }
     },
     "provenance": {
-     "runId": "38617993319",
-     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38617993319",
-     "sha": "436a81482f42e69ee2dcdefbdb58ebcaf005ea3d"
+     "runId": "38636524764",
+     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38636524764",
+     "sha": "ccfdda724991c22f34ff6fe695842db6bd39c077"
     },
     "verified": [
      {
       "where": "self:ops/integrity/verdict.json",
       "law": "verified",
-      "detail": "run=38616540980 conc=success repo=Autonomy"
+      "detail": "run=38617993319 conc=success repo=Autonomy"
      },
      {
       "where": "FleetHQ:receipts/office-ci/verdict.json",
       "law": "verified",
-      "detail": "run=38610800465 conc=success repo=FleetHQ"
+      "detail": "run=38628480945 conc=success repo=FleetHQ"
      },
      {
       "where": "Domain:office/data.json",
       "law": "verified",
-      "detail": "run=38610800465 conc=success repo=FleetHQ"
+      "detail": "run=38628480945 conc=success repo=FleetHQ"
      },
      {
       "where": "Domain:office/data.json",
       "law": "verified",
-      "detail": "run=38603945413 conc=success repo=Autonomy"
+      "detail": "run=38618779293 conc=success repo=Autonomy"
      },
      {
       "where": "Domain:office/data.json",
       "law": "verified",
-      "detail": "run=38612624362 conc=success repo=Autonomy"
+      "detail": "run=38623541555 conc=success repo=Autonomy"
      },
      {
       "where": "Domain:office/data.json",
       "law": "verified",
-      "detail": "run=38605992668 conc=failure repo=Autonomy"
+      "detail": "run=38630580742 conc=failure repo=Autonomy"
      }
     ],
     "findings": [
@@ -942,15 +924,33 @@
     ]
    }
   },
-  "flowMap": {
-   "at": "2026-10-14T20:30:08.583Z",
-   "path": "ops/flow/flow-map.json",
+  "lessons": {
+   "at": "2026-10-14T21:00:10.739Z",
+   "path": "ops/lessons/ledger.md",
    "source": "roshpinacare-sys/Autonomy",
+   "candidates": [
+    {
+     "repo": "roshpinacare-sys/Autonomy",
+     "path": "ops/lessons/ledger.md",
+     "at": null
+    },
+    {
+     "repo": "roshpinacare-sys/Sandbox",
+     "path": "ops/lessons/ledger.md",
+     "at": null
+    }
+   ],
+   "text": "# LESSONS LEDGER · append-only · deterministic distillation of measured history\n\n## scribe #1 · 2026-10-12T20:40:52.826Z\n- wallet: no receipts yet (artery young)\n- fleet actions 24h: 14 runs · failures: artery-grid:failure×1, artery-fleet:failure×1, hive-probe:failure×1, federation:failure×1, verifier (truth & quality):failure×2, sovereign-state:failure×1, artery-catchup:failure×1\n- sovereign tick last pulse: 1min ago\n- sandbox commits 24h: 7 · authors: {\"integrity-guard\":1,\"grid-watch\":1,\"sovereign-flow\":1,\"probe-runner[bot]\":1,\"sandbox-sovereign\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 17min ago\n- Domain book office/data.json: 48min old (law <=60min)\n- Domain book agents/office-live.json: 87min old (law <=180min)\n- Domain book dex/office-feed.json: 561min old (law <=1560min)\n- flow map: not yet generated (artery-flow first run pending)\n- integrity guard: no verdict yet (artery-integrity first run pending)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=15029 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=15h\n- dex book dex/showcase.json: ok sig=pair=unknown age=15h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: no verdict yet (artery-decision-truth first run pending)\n- no law proposals — everything measured healthy\n\n\n## scribe #2 · 2026-10-13T01:40:41.404Z\n- wallet 24h verdicts: {\"BLOCKED\":3} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":3} · alerts: 3\n- fleet actions 24h: 100 runs · failures: artery-fleet:failure×3, artery-wallet:failure×3, artery-grid:failure×4, artery-integrity:failure×1, hive-probe:failure×2, sovereign-tick:failure×1, artery-catchup:failure×1, research-lane:failure×2, profit-oracle:failure×2, value-scan:failure×2, key-proof:failure×1, .github/workflows/fleet-yield.yml:failure×1, artery-participation:failure×1, artery-decision-truth:failure×1\n- sovereign tick last pulse: 17min ago\n- sandbox commits 24h: 86 · authors: {\"roshpinacare-sys\":16,\"sandbox-sovereign\":8,\"sandbox-state\":12,\"fleet-artery\":2,\"wallet-artery\":2,\"probe-runner[bot]\":4,\"fleet-healer\":2,\"grid-watch\":4,\"sovereign-federation\":2,\"integrity-guard\":2,\"decision-truth\":4,\"sovereign-flow\":2,\"stabilize-agent\":1,\"sandbox-verifier\":2,\"Z User\":2,\"research-runner[bot]\":3,\"github-actions[bot]\":4,\"fleet-yield\":3,\"value-scan-bot\":2,\"participation[bot]\":3,\"autonomy-wave2-agent\":3,\"sovereign-scribe\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 25min ago\n- Domain book office/data.json: 10min old (law <=60min)\n- Domain book agents/office-live.json: 29min old (law <=180min)\n- Domain book dex/office-feed.json: 861min old (law <=1560min)\n- flow map: nodes=35 edges=95 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.71\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=5253 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 3 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet FAIL/BLOCKED streak ≥3 — escalate to owner issue; do not mint green\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 5 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #3 · 2026-10-13T07:07:55.186Z\n- wallet 24h verdicts: {\"BLOCKED\":5} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":5} · alerts: 5\n- fleet actions 24h: 100 runs · failures: artery-integrity:failure×2, artery-grid:failure×6, artery-fleet:failure×2, sovereign-decider:failure×1, artery-wallet:failure×2\n- sovereign tick last pulse: 2min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"github-actions[bot]\":3,\"sandbox-sovereign\":1}\n- office-ci (FleetHQ) verdict: PASS · 5min ago\n- Domain book office/data.json: 8min old (law <=60min)\n- Domain book agents/office-live.json: 6min old (law <=180min)\n- Domain book dex/office-feed.json: 1188min old (law <=1560min)\n- flow map: nodes=35 edges=97 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.77\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=5253 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=6h\n- dex book dex/showcase.json: ok sig=pair=unknown age=6h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 5 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet FAIL/BLOCKED streak ≥3 — escalate to owner issue; do not mint green\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 4 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #4 · 2026-10-13T10:19:55.784Z\n- wallet 24h verdicts: {\"BLOCKED\":7,\"PASS\":1} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":6,\"FAIL\":1} · alerts: 8\n- fleet actions 24h: 100 runs · failures: sovereign-decider:failure×2, artery-grid:failure×5, artery-fleet:failure×2, artery-wallet:failure×2, fleet-heal:failure×1, artery-integrity:failure×3\n- sovereign tick last pulse: 9min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"Z User\":1,\"github-actions[bot]\":3}\n- office-ci (FleetHQ) verdict: PASS · 38min ago\n- Domain book office/data.json: 20min old (law <=60min)\n- Domain book agents/office-live.json: 34min old (law <=180min)\n- Domain book dex/office-feed.json: 1380min old (law <=1560min)\n- flow map: nodes=35 edges=97 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.77\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=10661 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=2h\n- dex book dex/showcase.json: ok sig=pair=unknown age=2h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=false\n- PROPOSAL(law): wallet carried 8 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 6 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #5 · 2026-10-13T13:51:15.874Z\n- wallet 24h verdicts: {\"BLOCKED\":7,\"PASS\":7} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":6,\"FAIL\":4,\"PASS\":5} · alerts: 24\n- fleet actions 24h: 100 runs · failures: artery-decision-truth:failure×3, sovereign-tick:failure×3, .github/workflows/fleet-yield.yml:failure×2, artery-integrity:failure×3, artery-grid:failure×1, artery-fleet:failure×3, artery-wallet:failure×3\n- sovereign tick last pulse: 6min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":95,\"github-actions[bot]\":1,\"z-user\":1,\"artery-fix\":1,\"Z User\":2}\n- office-ci (FleetHQ) verdict: PASS · 31min ago\n- Domain book office/data.json: 145min old (law <=60min)\n- Domain book agents/office-live.json: 145min old (law <=180min)\n- Domain book dex/office-feed.json: 164min old (law <=1560min)\n- flow map: nodes=35 edges=98 page-integrated=15 plane-internal=19 orphans=0 ghosts=0 density=2.8\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=17570 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=0h\n- dex book dex/showcase.json: ok sig=pair=unknown age=0h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"VERIFIED\":4,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 14 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): Domain book office/data.json stale (145min > 60min) - its producer workflow may be stalled\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #6 · 2026-10-13T19:38:54.237Z\n- wallet 24h verdicts: {\"BLOCKED\":7,\"PASS\":9} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":6,\"FAIL\":4,\"PASS\":7} · alerts: 30\n- fleet actions 24h: 100 runs · failures: .github/workflows/fleet-yield.yml:failure×3, artery-participation:failure×4, artery-decision-truth:failure×5, value-scan:failure×1\n- sovereign tick last pulse: 11min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"github-actions[bot]\":4}\n- office-ci (FleetHQ) verdict: PASS · 61min ago\n- Domain book office/data.json: 493min old (law <=60min)\n- Domain book agents/office-live.json: 493min old (law <=180min)\n- Domain book dex/office-feed.json: 512min old (law <=1560min)\n- flow map: nodes=37 edges=100 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.7\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=25163 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=4h\n- dex book dex/showcase.json: ok sig=pair=unknown age=4h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"VERIFIED\":4,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 16 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): Domain book office/data.json stale (493min > 60min) - its producer workflow may be stalled\n- PROPOSAL(law): Domain book agents/office-live.json stale (493min > 180min) - its producer workflow may be stalled\n- PROPOSAL(law): 23 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #7 · 2026-10-14T00:00:08.122Z\n- wallet 24h verdicts: {\"BLOCKED\":6,\"PASS\":11} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":5,\"FAIL\":4,\"PASS\":9} · alerts: 35\n- fleet actions 24h: 100 runs · failures: artery-decision-truth:failure×1, claims-intake:failure×2, sovereign-state:failure×3\n- sovereign tick last pulse: 20min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":92,\"Z User\":3,\"selfhood[bot]\":5}\n- office-ci (FleetHQ) verdict: PASS · 19min ago\n- Domain book office/data.json: 0min old (law <=60min)\n- Domain book agents/office-live.json: 83min old (law <=180min)\n- Domain book dex/office-feed.json: 773min old (law <=1560min)\n- flow map: nodes=37 edges=102 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.76\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=34835 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"VERIFIED\":4,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 17 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #8 · 2026-10-14T03:09:07.214Z\n- wallet 24h verdicts: {\"BLOCKED\":2,\"PASS\":12} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":1,\"FAIL\":4,\"PASS\":9} · alerts: 31\n- fleet actions 24h: 100 runs · failures: sovereign-state:failure×4\n- sovereign tick last pulse: 12min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":94,\"standby-directive-lane\":1,\"map\":1,\"estate-relay\":1,\"relay\":1,\"estate-vault\":2}\n- office-ci (FleetHQ) verdict: PASS · 27min ago\n- Domain book office/data.json: 0min old (law <=60min)\n- Domain book agents/office-live.json: 108min old (law <=180min)\n- Domain book dex/office-feed.json: 962min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=26502 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=3h\n- dex book dex/showcase.json: ok sig=pair=unknown age=3h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":4,\"STALE-TRUTH\":2} decider-stalled=false\n- PROPOSAL(law): wallet carried 14 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 10 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #9 · 2026-10-14T06:45:25.920Z\n- wallet 24h verdicts: {\"BLOCKED\":2,\"PASS\":13} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":1,\"FAIL\":4,\"PASS\":11} · alerts: 37\n- fleet actions 24h: 100 runs · failures: contract-check:failure×2\n- sovereign tick last pulse: 15min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"github-actions[bot]\":3,\"Z User\":1}\n- office-ci (FleetHQ) verdict: PASS · 23min ago\n- Domain book office/data.json: 16min old (law <=60min)\n- Domain book agents/office-live.json: 14min old (law <=180min)\n- Domain book dex/office-feed.json: 1178min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=29665 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":5,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 15 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #10 · 2026-10-14T08:32:19.611Z\n- wallet 24h verdicts: {\"BLOCKED\":2,\"PASS\":15} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":1,\"FAIL\":4,\"PASS\":12} · alerts: 40\n- fleet actions 24h: 100 runs · failures: contract-check:failure×4\n- sovereign tick last pulse: 23min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":91,\"exec31-synthesis-lane\":1,\"Z User\":5,\"github-actions[bot]\":3}\n- office-ci (FleetHQ) verdict: PASS · 12min ago\n- Domain book office/data.json: 6min old (law <=60min)\n- Domain book agents/office-live.json: 35min old (law <=180min)\n- Domain book dex/office-feed.json: 1285min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=29665 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=3h\n- dex book dex/showcase.json: ok sig=pair=unknown age=3h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":5,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 17 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #11 · 2026-10-14T11:32:43.434Z\n- wallet 24h verdicts: {\"PASS\":8} · failing laws: {}\n- fleet 24h verdicts: {\"PASS\":9} · alerts: 26\n- fleet actions 24h: 100 runs · failures: none\n- sovereign tick last pulse: 15min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":94,\"github-actions[bot]\":1,\"estate-relay\":1,\"exec31-synthesis-lane\":1,\"Z User\":3}\n- office-ci (FleetHQ) verdict: PASS · 7min ago\n- Domain book office/data.json: 2min old (law <=60min)\n- Domain book agents/office-live.json: 29min old (law <=180min)\n- Domain book dex/office-feed.json: 1466min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=28250 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"STALE-TRUTH\":6} decider-stalled=true\n- PROPOSAL(law): wallet carried 8 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 10 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D5-social-standby evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #12 · 2026-10-14T14:12:31.272Z\n- wallet 24h verdicts: {\"PASS\":10} · failing laws: {}\n- fleet 24h verdicts: {\"PASS\":9} · alerts: 27\n- fleet actions 24h: 100 runs · failures: sovereign-state:failure×4\n- sovereign tick last pulse: 21min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":91,\"exec34-audit-lane\":1,\"exec33-registry-lane\":3,\"github-actions[bot]\":4,\"exec32-registry-lane\":1}\n- office-ci (FleetHQ) verdict: PASS · 70min ago\n- Domain book office/data.json: 1min old (law <=60min)\n- Domain book agents/office-live.json: 14min old (law <=180min)\n- Domain book dex/office-feed.json: 1625min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=27123 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":5,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 10 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): Domain book dex/office-feed.json stale (1625min > 1560min) - its producer workflow may be stalled\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #13 · 2026-10-14T17:22:04.363Z\n- wallet 24h verdicts: {\"PASS\":10} · failing laws: {}\n- fleet 24h verdicts: {\"PASS\":9} · alerts: 27\n- fleet actions 24h: 100 runs · failures: identity-guard:failure×2, sovereign-state:failure×7, sovereign-tick:failure×1\n- sovereign tick last pulse: 11min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":89,\"exec36-registry-lane\":2,\"saos-fleet\":2,\"exec35-registry-lane\":2,\"exec34-registry-lane\":1,\"exec34-audit-lane\":1,\"exec33-registry-lane\":3}\n- office-ci (FleetHQ) verdict: FAIL · 37min ago\n- Domain book office/data.json: 17min old (law <=60min)\n- Domain book agents/office-live.json: 72min old (law <=180min)\n- Domain book dex/office-feed.json: 1815min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=27888 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=0h\n- dex book dex/showcase.json: ok sig=pair=unknown age=0h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"STALE-TRUTH\":6} decider-stalled=true\n- PROPOSAL(law): wallet carried 10 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): office-ci (FleetHQ) is FAIL — the office build artery is red; measure before touching the office\n- PROPOSAL(law): Domain book dex/office-feed.json stale (1815min > 1560min) - its producer workflow may be stalled\n- PROPOSAL(law): 15 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D5-social-standby evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #14 · 2026-10-14T20:44:49.875Z\n- wallet 24h verdicts: {\"PASS\":10} · failing laws: {}\n- fleet 24h verdicts: {\"PASS\":8,\"FAIL\":2} · alerts: 30\n- fleet actions 24h: 100 runs · failures: artery-fleet:failure×1, .github/workflows/fleet-yield.yml:failure×1\n- sovereign tick last pulse: 10min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":93,\"giant-bootstrap-lane\":1,\"github-actions[bot]\":3,\"exec37-plan-lane\":1,\"exec36-registry-lane\":2}\n- office-ci (FleetHQ) verdict: PASS · 43min ago\n- Domain book office/data.json: 1min old (law <=60min)\n- Domain book agents/office-live.json: 43min old (law <=180min)\n- Domain book dex/office-feed.json: 2018min old (law <=1560min)\n- flow map: nodes=37 edges=97 page-integrated=10 plane-internal=26 orphans=0 ghosts=0 density=2.62\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=25425 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=0h\n- dex book dex/showcase.json: ok sig=pair=unknown age=0h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"STALE-TRUTH\":6} decider-stalled=true\n- PROPOSAL(law): wallet carried 10 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): Domain book dex/office-feed.json stale (2018min > 1560min) - its producer workflow may be stalled\n- PROPOSAL(law): 14 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D5-social-standby evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n"
+  },
+  "flowMap": {
+   "at": "2026-10-14T21:00:10.739Z",
+   "path": "ops/flow/flow-map.json",
+   "source": "roshpinacare-sys/Sandbox",
    "candidates": [
     {
      "repo": "roshpinacare-sys/Sandbox",
      "path": "ops/flow/flow-map.json",
-     "at": "2026-10-14T17:05:55.300Z"
+     "at": "2026-10-14T20:39:24.469Z"
     },
     {
      "repo": "roshpinacare-sys/Autonomy",
@@ -959,15 +959,15 @@
     }
    ],
    "data": {
-    "generatedAt": "2026-10-14T19:29:26.865Z",
+    "generatedAt": "2026-10-14T20:39:24.469Z",
     "owner": "roshpinacare-sys",
     "corpusFiles": [
      "roshpinacare-sys/Domain/index.html [page]",
      "roshpinacare-sys/Domain/agents/office-pulse.cjs [agent]",
      "roshpinacare-sys/Domain/agents/office-feed.mjs [agent]",
      "roshpinacare-sys/Domain/agents/office-artery.mjs [agent]",
-     "roshpinacare-sys/Autonomy/engine/scribe.mjs [learner]",
-     "roshpinacare-sys/Autonomy/.github/workflows/artery-watch.yml [watch]",
+     "roshpinacare-sys/Sandbox/engine/scribe.mjs [learner]",
+     "roshpinacare-sys/Sandbox/.github/workflows/artery-watch.yml [watch]",
      "roshpinacare-sys/Domain/marketing/adsmarket.html [page]",
      "roshpinacare-sys/Domain/.github/workflows/adsmarket-panel.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/agent-verify.yml [workflow]",
@@ -1194,14 +1194,14 @@
     ],
     "nodes": [
      {
-      "key": "roshpinacare-sys/Autonomy:receipts/wallet/verdict.json",
+      "key": "roshpinacare-sys/Sandbox:receipts/wallet/verdict.json",
       "kind": "receipt",
       "path": "receipts/wallet/verdict.json",
-      "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 0.59,
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 28.96,
       "missing": false,
-      "author": "roshpinacare-sys",
-      "sha": "b1161f12",
+      "author": "local-beats",
+      "sha": "5e197e1e",
       "maxAgeH": 2,
       "feeds": "artery-wallet (hourly)",
       "contentAt": null,
@@ -1214,14 +1214,14 @@
       ]
      },
      {
-      "key": "roshpinacare-sys/Autonomy:receipts/fleet/verdict.json",
+      "key": "roshpinacare-sys/Sandbox:receipts/fleet/verdict.json",
       "kind": "receipt",
       "path": "receipts/fleet/verdict.json",
-      "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 2.1,
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 30.2,
       "missing": false,
-      "author": "roshpinacare-sys",
-      "sha": "9be734de",
+      "author": "local-beats",
+      "sha": "d3518c71",
       "maxAgeH": 3,
       "feeds": "artery-fleet (2h)",
       "contentAt": null,
@@ -1234,14 +1234,14 @@
       ]
      },
      {
-      "key": "roshpinacare-sys/Autonomy:receipts/grid/verdict.json",
+      "key": "roshpinacare-sys/Sandbox:receipts/grid/verdict.json",
       "kind": "receipt",
       "path": "receipts/grid/verdict.json",
-      "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 0.05,
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 1.68,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "1510baa3",
+      "sha": "15cf0f77",
       "maxAgeH": 1,
       "feeds": "artery-grid (30min)",
       "contentAt": null,
@@ -1254,75 +1254,70 @@
       ]
      },
      {
-      "key": "roshpinacare-sys/Autonomy:receipts/latest.json",
+      "key": "roshpinacare-sys/Sandbox:receipts/latest.json",
       "kind": "pulse",
       "path": "receipts/latest.json",
-      "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 0.23,
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 1.68,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "2a89f1a8",
+      "sha": "15cf0f77",
       "maxAgeH": 1,
       "feeds": "sovereign.yml (~15min)",
-      "contentAt": "2026-10-14T19:15:04.406Z",
-      "contentAgeH": 0.23,
+      "contentAt": null,
+      "contentAgeH": null,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
       "consumers": [
-       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)"
+       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)"
       ]
      },
      {
-      "key": "roshpinacare-sys/Autonomy:ops/lessons/ledger.md",
+      "key": "roshpinacare-sys/Sandbox:ops/lessons/ledger.md",
       "kind": "lesson",
       "path": "ops/lessons/ledger.md",
-      "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 2.11,
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 58.01,
       "missing": false,
-      "author": "roshpinacare-sys",
-      "sha": "28fdce38",
+      "author": "sovereign-scribe",
+      "sha": "7fb404f5",
       "maxAgeH": 26,
       "feeds": "artery-scribe (daily)",
       "contentAt": null,
       "contentAgeH": null,
       "contentDivergence": false,
-      "integration": "PLANE-INTERNAL",
+      "integration": "ORPHAN",
       "pageConsumed": false,
-      "consumers": [
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)"
-      ]
+      "consumers": []
      },
      {
-      "key": "roshpinacare-sys/Autonomy:ops/flow/flow-map.json",
+      "key": "roshpinacare-sys/Sandbox:ops/flow/flow-map.json",
       "kind": "flowmap",
       "path": "ops/flow/flow-map.json",
-      "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 1.61,
+      "repo": "roshpinacare-sys/Sandbox",
+      "ageH": 3.55,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "1c73bd7c",
+      "sha": "688e8bb3",
       "maxAgeH": 4,
       "feeds": "artery-flow (3h)",
-      "contentAt": "2026-10-14T17:52:17.311Z",
-      "contentAgeH": 1.6,
+      "contentAt": null,
+      "contentAgeH": null,
       "contentDivergence": false,
       "integration": "SELF",
       "pageConsumed": false,
-      "consumers": [
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)"
-      ]
+      "consumers": []
      },
      {
       "key": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
       "kind": "receipt",
       "path": "receipts/office-ci/verdict.json",
       "repo": "roshpinacare-sys/FleetHQ",
-      "ageH": 0.49,
+      "ageH": 0.61,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "a8fc8fae",
+      "sha": "8bc845fe",
       "maxAgeH": 30,
       "feeds": "office-ci (push)",
       "contentAt": null,
@@ -1331,8 +1326,7 @@
       "integration": "INTEGRATED",
       "pageConsumed": true,
       "consumers": [
-       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)"
+       "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)"
       ]
      },
      {
@@ -1340,14 +1334,14 @@
       "kind": "state",
       "path": "office/state/office-state.json",
       "repo": "roshpinacare-sys/FleetHQ",
-      "ageH": 2.57,
+      "ageH": 0.14,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "a0b4d28d",
+      "sha": "508fe53b",
       "maxAgeH": 3,
       "feeds": "office-heartbeat (2h)",
-      "contentAt": "2026-10-14T16:53:54.123Z",
-      "contentAgeH": 2.58,
+      "contentAt": "2026-10-14T20:29:51.643Z",
+      "contentAgeH": 0.15,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1361,7 +1355,7 @@
       "kind": "digest",
       "path": "digest.json",
       "repo": "roshpinacare-sys/FleetHQ",
-      "ageH": 0.98,
+      "ageH": 2.15,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "b251cde2",
@@ -1383,20 +1377,19 @@
       "kind": "book",
       "path": "office/data.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.2,
+      "ageH": 0.37,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "911c0c42",
+      "sha": "856205a3",
       "maxAgeH": 1,
       "feeds": "office-pulse (20min)",
-      "contentAt": "2026-10-14T19:16:42.686Z",
-      "contentAgeH": 0.2,
+      "contentAt": "2026-10-14T20:16:14.388Z",
+      "contentAgeH": 0.37,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
       "consumers": [
        "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
        "roshpinacare-sys/Domain/.github/workflows/office-orders-twin.yml (workflow)",
        "roshpinacare-sys/Domain/.github/workflows/office-pulse-twin.yml (workflow)",
        "roshpinacare-sys/Domain/.github/workflows/office-pulse.yml (workflow)",
@@ -1410,20 +1403,19 @@
       "kind": "book",
       "path": "agents/office-live.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.65,
+      "ageH": 0.61,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "cbfbffe9",
+      "sha": "b415af92",
       "maxAgeH": 3,
       "feeds": "office-artery (2h)",
-      "contentAt": "2026-10-14T18:49:38.862Z",
-      "contentAgeH": 0.65,
+      "contentAt": "2026-10-14T20:01:48.247Z",
+      "contentAgeH": 0.62,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
       "consumers": [
        "roshpinacare-sys/Domain/agents/office-artery.mjs (agent)",
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
        "roshpinacare-sys/Domain/.github/workflows/office-artery.yml (workflow)",
        "roshpinacare-sys/Domain/.github/workflows/office-orders-twin.yml (workflow)",
        "roshpinacare-sys/Domain/agents/integrity-twin.mjs (agent)"
@@ -1434,20 +1426,19 @@
       "kind": "book",
       "path": "dex/office-feed.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 32.36,
+      "ageH": 33.53,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "cb31c6f8",
       "maxAgeH": 26,
       "feeds": "office-feed (daily)",
       "contentAt": "2026-10-13T11:07:02.709Z",
-      "contentAgeH": 32.36,
+      "contentAgeH": 33.53,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
       "consumers": [
        "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
        "roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow)"
       ]
      },
@@ -1456,14 +1447,14 @@
       "kind": "book",
       "path": "status.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.17,
+      "ageH": 0.14,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "99757ce9",
+      "sha": "67c11319",
       "maxAgeH": 30,
       "feeds": "pages build",
-      "contentAt": "2026-10-14T19:17:14.677Z",
-      "contentAgeH": 0.19,
+      "contentAt": "2026-10-14T20:29:20.010Z",
+      "contentAgeH": 0.16,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1485,14 +1476,14 @@
       "kind": "book",
       "path": "marketing/adsmarket.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 53.94,
+      "ageH": 55.11,
       "missing": false,
       "author": "adsmarket-panel-bot",
       "sha": "d74bde6a",
       "maxAgeH": 168,
       "feeds": "adsmarket-panel (weekly Mon 05:41 UTC + dispatch)",
       "contentAt": "2026-10-12T13:32:02.155Z",
-      "contentAgeH": 53.94,
+      "contentAgeH": 55.11,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1507,7 +1498,7 @@
       "kind": "book",
       "path": "dex/agent.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 50.32,
+      "ageH": 51.49,
       "missing": false,
       "author": "Z User",
       "sha": "0d8da6df",
@@ -1527,7 +1518,7 @@
       "kind": "book",
       "path": "dex/bridge.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 595.06,
+      "ageH": 596.23,
       "missing": false,
       "author": "Z User",
       "sha": "9365852e",
@@ -1536,25 +1527,23 @@
       "contentAt": null,
       "contentAgeH": null,
       "contentDivergence": false,
-      "integration": "PLANE-INTERNAL",
+      "integration": "ORPHAN",
       "pageConsumed": false,
-      "consumers": [
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)"
-      ]
+      "consumers": []
      },
      {
       "key": "roshpinacare-sys/Domain:dex/credits.json",
       "kind": "book",
       "path": "dex/credits.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 1.34,
+      "ageH": 0.95,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "ce3f1d5e",
+      "sha": "62f7758c",
       "maxAgeH": 48,
       "feeds": "discovered",
-      "contentAt": "2026-10-14T18:06:59.902Z",
-      "contentAgeH": 1.36,
+      "contentAt": "2026-10-14T19:40:28.408Z",
+      "contentAgeH": 0.97,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1569,10 +1558,10 @@
       "kind": "book",
       "path": "dex/deposits.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 4.78,
+      "ageH": 0.91,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "0f6b6129",
+      "sha": "4b02fb95",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": null,
@@ -1592,7 +1581,7 @@
       "kind": "book",
       "path": "dex/fleet.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 595.06,
+      "ageH": 596.23,
       "missing": false,
       "author": "Z User",
       "sha": "9365852e",
@@ -1601,25 +1590,23 @@
       "contentAt": null,
       "contentAgeH": null,
       "contentDivergence": false,
-      "integration": "PLANE-INTERNAL",
+      "integration": "ORPHAN",
       "pageConsumed": false,
-      "consumers": [
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)"
-      ]
+      "consumers": []
      },
      {
       "key": "roshpinacare-sys/Domain:dex/giants.json",
       "kind": "book",
       "path": "dex/giants.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 2.34,
+      "ageH": 3.51,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "b5a336b2",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T17:04:50.697Z",
-      "contentAgeH": 2.4,
+      "contentAgeH": 3.56,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1632,14 +1619,14 @@
       "kind": "book",
       "path": "dex/grid.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 4.76,
+      "ageH": 0.95,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "491eb638",
+      "sha": "62f7758c",
       "maxAgeH": 26,
       "feeds": "discovered",
-      "contentAt": "2026-10-14T14:36:18.064Z",
-      "contentAgeH": 4.87,
+      "contentAt": "2026-10-14T19:33:14.249Z",
+      "contentAgeH": 1.09,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1658,14 +1645,14 @@
       "kind": "book",
       "path": "dex/honest-econ.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 2.34,
+      "ageH": 3.51,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "b5a336b2",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T17:04:50.783Z",
-      "contentAgeH": 2.4,
+      "contentAgeH": 3.56,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1678,7 +1665,7 @@
       "kind": "book",
       "path": "dex/mirror-stub.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 595.06,
+      "ageH": 596.23,
       "missing": false,
       "author": "Z User",
       "sha": "9365852e",
@@ -1687,25 +1674,23 @@
       "contentAt": null,
       "contentAgeH": null,
       "contentDivergence": false,
-      "integration": "PLANE-INTERNAL",
+      "integration": "ORPHAN",
       "pageConsumed": false,
-      "consumers": [
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)"
-      ]
+      "consumers": []
      },
      {
       "key": "roshpinacare-sys/Domain:dex/money.json",
       "kind": "book",
       "path": "dex/money.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 4.78,
+      "ageH": 0.91,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "0f6b6129",
+      "sha": "4b02fb95",
       "maxAgeH": 48,
       "feeds": "discovered",
-      "contentAt": "2026-10-14T13:56:57.129Z",
-      "contentAgeH": 5.53,
+      "contentAt": "2026-10-14T18:48:39.143Z",
+      "contentAgeH": 1.83,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1723,10 +1708,10 @@
       "kind": "book",
       "path": "dex/onramp.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 1.34,
+      "ageH": 0.95,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "ce3f1d5e",
+      "sha": "62f7758c",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": null,
@@ -1735,7 +1720,6 @@
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
       "consumers": [
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
        "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)"
       ]
      },
@@ -1744,14 +1728,14 @@
       "kind": "book",
       "path": "dex/pegout-queue.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 75.25,
+      "ageH": 76.42,
       "missing": false,
       "author": "zai-agent",
       "sha": "a385eb5f",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-04T14:23:10.883Z",
-      "contentAgeH": 245.09,
+      "contentAgeH": 246.26,
       "contentDivergence": true,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1767,14 +1751,14 @@
       "kind": "book",
       "path": "dex/pnl-desk.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 4.78,
+      "ageH": 5.95,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "0f6b6129",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T10:31:45.918Z",
-      "contentAgeH": 8.95,
+      "contentAgeH": 10.12,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1789,10 +1773,10 @@
       "kind": "book",
       "path": "dex/portfolio.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 1.34,
+      "ageH": 0.95,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "ce3f1d5e",
+      "sha": "62f7758c",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": null,
@@ -1810,7 +1794,7 @@
       "kind": "book",
       "path": "dex/redeem-requests.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 246.31,
+      "ageH": 247.48,
       "missing": false,
       "author": "Z User",
       "sha": "ecd6a77b",
@@ -1819,21 +1803,19 @@
       "contentAt": null,
       "contentAgeH": null,
       "contentDivergence": false,
-      "integration": "PLANE-INTERNAL",
+      "integration": "ORPHAN",
       "pageConsumed": false,
-      "consumers": [
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)"
-      ]
+      "consumers": []
      },
      {
       "key": "roshpinacare-sys/Domain:dex/relay.json",
       "kind": "book",
       "path": "dex/relay.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 1.34,
+      "ageH": 0.95,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "ce3f1d5e",
+      "sha": "62f7758c",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": null,
@@ -1842,7 +1824,6 @@
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
       "consumers": [
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
        "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)"
       ]
      },
@@ -1851,10 +1832,10 @@
       "kind": "book",
       "path": "dex/showcase.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 1.34,
+      "ageH": 0.95,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "ce3f1d5e",
+      "sha": "62f7758c",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": null,
@@ -1863,7 +1844,6 @@
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
       "consumers": [
-       "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
        "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)"
       ]
      },
@@ -1872,14 +1852,14 @@
       "kind": "book",
       "path": "dex/state.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 1.34,
+      "ageH": 0.95,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "ce3f1d5e",
+      "sha": "62f7758c",
       "maxAgeH": 48,
       "feeds": "discovered",
-      "contentAt": "2026-10-14T18:06:59.902Z",
-      "contentAgeH": 1.36,
+      "contentAt": "2026-10-14T19:40:28.408Z",
+      "contentAgeH": 0.97,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1894,14 +1874,14 @@
       "kind": "book",
       "path": "dex/watch.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 4.78,
+      "ageH": 0.91,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "0f6b6129",
+      "sha": "4b02fb95",
       "maxAgeH": 26,
       "feeds": "discovered",
-      "contentAt": "2026-10-14T13:53:18.021Z",
-      "contentAgeH": 5.59,
+      "contentAt": "2026-10-14T18:45:28.842Z",
+      "contentAgeH": 1.89,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1916,14 +1896,14 @@
       "kind": "book",
       "path": "dex/world.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 1.34,
+      "ageH": 0.95,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "ce3f1d5e",
+      "sha": "62f7758c",
       "maxAgeH": 26,
       "feeds": "discovered",
-      "contentAt": "2026-10-14T18:06:59.911Z",
-      "contentAgeH": 1.36,
+      "contentAt": "2026-10-14T19:40:28.417Z",
+      "contentAgeH": 0.97,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1938,14 +1918,14 @@
       "kind": "book",
       "path": "dex/xc-intents.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 19.23,
+      "ageH": 20.4,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "552f81bf",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T00:14:36.998Z",
-      "contentAgeH": 19.23,
+      "contentAgeH": 20.4,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1958,14 +1938,14 @@
       "kind": "book",
       "path": "dex/xc-ops.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 75.25,
+      "ageH": 76.42,
       "missing": false,
       "author": "zai-agent",
       "sha": "a385eb5f",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-04T14:24:37.881Z",
-      "contentAgeH": 245.07,
+      "contentAgeH": 246.23,
       "contentDivergence": true,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1978,14 +1958,14 @@
       "kind": "book",
       "path": "dex/xc-requests.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 75.25,
+      "ageH": 76.42,
       "missing": false,
       "author": "zai-agent",
       "sha": "a385eb5f",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-04T14:21:46.235Z",
-      "contentAgeH": 245.11,
+      "contentAgeH": 246.28,
       "contentDivergence": true,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1995,24 +1975,19 @@
      }
     ],
     "loopOnly": [
-     "roshpinacare-sys/Autonomy:ops/lessons/ledger.md",
      "roshpinacare-sys/FleetHQ:digest.json",
      "roshpinacare-sys/Domain:agents/office-live.json",
      "roshpinacare-sys/Domain:dex/office-feed.json",
      "roshpinacare-sys/Domain:dex/agent.json",
-     "roshpinacare-sys/Domain:dex/bridge.json",
      "roshpinacare-sys/Domain:dex/credits.json",
      "roshpinacare-sys/Domain:dex/deposits.json",
-     "roshpinacare-sys/Domain:dex/fleet.json",
      "roshpinacare-sys/Domain:dex/giants.json",
      "roshpinacare-sys/Domain:dex/grid.json",
      "roshpinacare-sys/Domain:dex/honest-econ.json",
-     "roshpinacare-sys/Domain:dex/mirror-stub.json",
      "roshpinacare-sys/Domain:dex/onramp.json",
      "roshpinacare-sys/Domain:dex/pegout-queue.json",
      "roshpinacare-sys/Domain:dex/pnl-desk.json",
      "roshpinacare-sys/Domain:dex/portfolio.json",
-     "roshpinacare-sys/Domain:dex/redeem-requests.json",
      "roshpinacare-sys/Domain:dex/relay.json",
      "roshpinacare-sys/Domain:dex/showcase.json",
      "roshpinacare-sys/Domain:dex/state.json",
@@ -2027,841 +2002,774 @@
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 309,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/FleetHQ:office/state/office-state.json",
       "evidenceLine": 290,
-      "nodeAgeH": 2.5683405555555554,
+      "nodeAgeH": 0.13519805555555556,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 296,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 259,
-      "nodeAgeH": 0.197785,
+      "nodeAgeH": 0.3746425,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
       "to": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
       "evidenceLine": 118,
-      "nodeAgeH": 0.48584055555555555,
+      "nodeAgeH": 0.6099202777777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
-      "to": "roshpinacare-sys/Autonomy:receipts/wallet/verdict.json",
+      "to": "roshpinacare-sys/Sandbox:receipts/wallet/verdict.json",
       "evidenceLine": 159,
-      "nodeAgeH": 0.5866738888888889,
+      "nodeAgeH": 28.961864722222224,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
-      "to": "roshpinacare-sys/Autonomy:receipts/grid/verdict.json",
+      "to": "roshpinacare-sys/Sandbox:receipts/grid/verdict.json",
       "evidenceLine": 160,
-      "nodeAgeH": 0.04861833333333333,
+      "nodeAgeH": 1.683531388888889,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
-      "to": "roshpinacare-sys/Autonomy:receipts/fleet/verdict.json",
+      "to": "roshpinacare-sys/Sandbox:receipts/fleet/verdict.json",
       "evidenceLine": 161,
-      "nodeAgeH": 2.0972294444444444,
+      "nodeAgeH": 30.204364722222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
-      "to": "roshpinacare-sys/Autonomy:receipts/latest.json",
+      "to": "roshpinacare-sys/Sandbox:receipts/latest.json",
       "evidenceLine": 162,
-      "nodeAgeH": 0.225285,
+      "nodeAgeH": 1.683531388888889,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/office-feed.json",
       "evidenceLine": 7,
-      "nodeAgeH": 32.358062777777775,
+      "nodeAgeH": 33.52686472222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
       "to": "roshpinacare-sys/FleetHQ:digest.json",
       "evidenceLine": 42,
-      "nodeAgeH": 0.9766738888888888,
+      "nodeAgeH": 2.1454758333333332,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-artery.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 68,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-artery.mjs (agent)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 22,
-      "nodeAgeH": 0.6488961111111111,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:dex/office-feed.json",
-      "evidenceLine": 109,
-      "nodeAgeH": 32.358062777777775,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:dex/bridge.json",
-      "evidenceLine": 150,
-      "nodeAgeH": 595.0638961111111,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:dex/fleet.json",
-      "evidenceLine": 150,
-      "nodeAgeH": 595.0638961111111,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:dex/relay.json",
-      "evidenceLine": 150,
-      "nodeAgeH": 1.3416738888888888,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:dex/onramp.json",
-      "evidenceLine": 150,
-      "nodeAgeH": 1.3416738888888888,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:dex/showcase.json",
-      "evidenceLine": 151,
-      "nodeAgeH": 1.3416738888888888,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:dex/redeem-requests.json",
-      "evidenceLine": 151,
-      "nodeAgeH": 246.30889611111112,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:dex/mirror-stub.json",
-      "evidenceLine": 151,
-      "nodeAgeH": 595.0638961111111,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
-      "evidenceLine": 95,
-      "nodeAgeH": 0.48584055555555555,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:office/data.json",
-      "evidenceLine": 107,
-      "nodeAgeH": 0.197785,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Domain:agents/office-live.json",
-      "evidenceLine": 108,
-      "nodeAgeH": 0.6488961111111111,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Autonomy:ops/lessons/ledger.md",
-      "evidenceLine": 197,
-      "nodeAgeH": 2.1086183333333333,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Autonomy:ops/flow/flow-map.json",
-      "evidenceLine": 125,
-      "nodeAgeH": 1.6050072222222223,
-      "nodeMissing": false
-     },
-     {
-      "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "to": "roshpinacare-sys/Autonomy:receipts/latest.json",
-      "evidenceLine": 64,
-      "nodeAgeH": 0.225285,
+      "nodeAgeH": 0.6149202777777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/marketing/adsmarket.html (page)",
       "to": "roshpinacare-sys/Domain:marketing/adsmarket.json",
       "evidenceLine": 46,
-      "nodeAgeH": 53.942507222222225,
+      "nodeAgeH": 55.111309166666665,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/adsmarket-panel.yml (workflow)",
       "to": "roshpinacare-sys/Domain:marketing/adsmarket.json",
       "evidenceLine": 42,
-      "nodeAgeH": 53.942507222222225,
+      "nodeAgeH": 55.111309166666665,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/world.json",
       "evidenceLine": 102,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 135,
-      "nodeAgeH": 4.757507222222222,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/state.json",
       "evidenceLine": 135,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/credits.json",
       "evidenceLine": 135,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/portfolio.json",
       "evidenceLine": 135,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/onramp.json",
       "evidenceLine": 135,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/showcase.json",
       "evidenceLine": 135,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/relay.json",
       "evidenceLine": 135,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/xc-intents.json",
       "evidenceLine": 47,
-      "nodeAgeH": 19.232785,
+      "nodeAgeH": 20.401586944444446,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/xc-ops.json",
       "evidenceLine": 47,
-      "nodeAgeH": 75.24861833333334,
+      "nodeAgeH": 76.41742027777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/xc-requests.json",
       "evidenceLine": 47,
-      "nodeAgeH": 75.24861833333334,
+      "nodeAgeH": 76.41742027777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
       "evidenceLine": 47,
-      "nodeAgeH": 75.24861833333334,
+      "nodeAgeH": 76.41742027777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/grid-sentinel.yml (workflow)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 4,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/pnl-desk.json",
       "evidenceLine": 39,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 5.952420277777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 39,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/deposits.json",
       "evidenceLine": 39,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/watch.json",
       "evidenceLine": 39,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/network-census.yml (workflow)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 5,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-artery.yml (workflow)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 9,
-      "nodeAgeH": 0.6488961111111111,
+      "nodeAgeH": 0.6149202777777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/office-feed.json",
       "evidenceLine": 27,
-      "nodeAgeH": 32.358062777777775,
+      "nodeAgeH": 33.52686472222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-orders-twin.yml (workflow)",
       "to": "roshpinacare-sys/FleetHQ:digest.json",
       "evidenceLine": 86,
-      "nodeAgeH": 0.9766738888888888,
+      "nodeAgeH": 2.1454758333333332,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-orders-twin.yml (workflow)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 87,
-      "nodeAgeH": 0.197785,
+      "nodeAgeH": 0.3746425,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-orders-twin.yml (workflow)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 88,
-      "nodeAgeH": 0.6488961111111111,
+      "nodeAgeH": 0.6149202777777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-pulse-twin.yml (workflow)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 87,
-      "nodeAgeH": 0.197785,
+      "nodeAgeH": 0.3746425,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-pulse.yml (workflow)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 49,
-      "nodeAgeH": 0.197785,
+      "nodeAgeH": 0.3746425,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/weave-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 35,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/adsmarket-panel.cjs (agent)",
       "to": "roshpinacare-sys/Domain:marketing/adsmarket.json",
       "evidenceLine": 72,
-      "nodeAgeH": 53.942507222222225,
+      "nodeAgeH": 55.111309166666665,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/content-campaign.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 169,
-      "nodeAgeH": 4.757507222222222,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/daily-digest.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 88,
-      "nodeAgeH": 4.757507222222222,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
       "evidenceLine": 17,
-      "nodeAgeH": 75.24861833333334,
+      "nodeAgeH": 76.41742027777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/credits.json",
       "evidenceLine": 172,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 4,
-      "nodeAgeH": 4.757507222222222,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/world.json",
       "evidenceLine": 4,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/state.json",
       "evidenceLine": 4,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/credits.json",
       "evidenceLine": 4,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/portfolio.json",
       "evidenceLine": 5,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/giants.json",
       "evidenceLine": 44,
-      "nodeAgeH": 2.3383405555555554,
+      "nodeAgeH": 3.5071425,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/honest-econ.json",
       "evidenceLine": 44,
-      "nodeAgeH": 2.3383405555555554,
+      "nodeAgeH": 3.5071425,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/state.json",
       "evidenceLine": 14,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/watch.json",
       "evidenceLine": 318,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/agent.json",
       "evidenceLine": 332,
-      "nodeAgeH": 50.318062777777776,
+      "nodeAgeH": 51.48686472222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-xc.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
       "evidenceLine": 32,
-      "nodeAgeH": 75.24861833333334,
+      "nodeAgeH": 76.41742027777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/fleet-heartbeat.cjs (agent)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 62,
-      "nodeAgeH": 0.197785,
+      "nodeAgeH": 0.3746425,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/grid-guard.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 17,
-      "nodeAgeH": 4.757507222222222,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/grid-sentinel.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 20,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/integrity-twin.mjs (agent)",
       "to": "roshpinacare-sys/FleetHQ:digest.json",
       "evidenceLine": 21,
-      "nodeAgeH": 0.9766738888888888,
+      "nodeAgeH": 2.1454758333333332,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/integrity-twin.mjs (agent)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 27,
-      "nodeAgeH": 0.197785,
+      "nodeAgeH": 0.3746425,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/integrity-twin.mjs (agent)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 28,
-      "nodeAgeH": 0.6488961111111111,
+      "nodeAgeH": 0.6149202777777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/integrity-twin.mjs (agent)",
       "to": "roshpinacare-sys/FleetHQ:office/state/office-state.json",
       "evidenceLine": 29,
-      "nodeAgeH": 2.5683405555555554,
+      "nodeAgeH": 0.13519805555555556,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/market-exec.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pnl-desk.json",
       "evidenceLine": 387,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 5.952420277777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 34,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pnl-desk.json",
       "evidenceLine": 35,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 5.952420277777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/deposits.json",
       "evidenceLine": 36,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/watch.json",
       "evidenceLine": 37,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 28,
-      "nodeAgeH": 4.757507222222222,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 138,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/deposits.json",
       "evidenceLine": 139,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/money-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 15,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/money-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/world.json",
       "evidenceLine": 141,
-      "nodeAgeH": 1.3416738888888888,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/network-census.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 8,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
       "evidenceLine": 7,
-      "nodeAgeH": 75.24861833333334,
+      "nodeAgeH": 76.41742027777778,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/proof-pipeline.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 96,
-      "nodeAgeH": 4.757507222222222,
+      "nodeAgeH": 0.9529758333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/redact-telemetry.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 118,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/tick-keeper.cjs (agent)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 56,
-      "nodeAgeH": 0.197785,
+      "nodeAgeH": 0.3746425,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 66,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/deposits.json",
       "evidenceLine": 70,
-      "nodeAgeH": 4.783618333333333,
+      "nodeAgeH": 0.9068647222222223,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 126,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/weave-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 31,
-      "nodeAgeH": 0.17111833333333334,
+      "nodeAgeH": 0.13908694444444444,
       "nodeMissing": false
      }
     ],
-    "orphans": [],
+    "orphans": [
+     {
+      "key": "roshpinacare-sys/Sandbox:ops/lessons/ledger.md",
+      "feeds": "artery-scribe (daily)"
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/bridge.json",
+      "feeds": "discovered"
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/fleet.json",
+      "feeds": "discovered"
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/mirror-stub.json",
+      "feeds": "discovered"
+     },
+     {
+      "key": "roshpinacare-sys/Domain:dex/redeem-requests.json",
+      "feeds": "discovered"
+     }
+    ],
     "ghosts": [],
     "stale": [
      {
+      "consumer": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "target": "roshpinacare-sys/Sandbox:receipts/wallet/verdict.json",
+      "ageH": 29
+     },
+     {
+      "consumer": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "target": "roshpinacare-sys/Sandbox:receipts/grid/verdict.json",
+      "ageH": 1.7
+     },
+     {
+      "consumer": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "target": "roshpinacare-sys/Sandbox:receipts/fleet/verdict.json",
+      "ageH": 30.2
+     },
+     {
+      "consumer": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
+      "target": "roshpinacare-sys/Sandbox:receipts/latest.json",
+      "ageH": 1.7
+     },
+     {
       "consumer": "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
       "target": "roshpinacare-sys/Domain:dex/office-feed.json",
-      "ageH": 32.4
-     },
-     {
-      "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "target": "roshpinacare-sys/Domain:dex/office-feed.json",
-      "ageH": 32.4
-     },
-     {
-      "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "target": "roshpinacare-sys/Domain:dex/bridge.json",
-      "ageH": 595.1
-     },
-     {
-      "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "target": "roshpinacare-sys/Domain:dex/fleet.json",
-      "ageH": 595.1
-     },
-     {
-      "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "target": "roshpinacare-sys/Domain:dex/redeem-requests.json",
-      "ageH": 246.3
-     },
-     {
-      "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
-      "target": "roshpinacare-sys/Domain:dex/mirror-stub.json",
-      "ageH": 595.1
+      "ageH": 33.5
      },
      {
       "consumer": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "target": "roshpinacare-sys/Domain:dex/xc-ops.json",
-      "ageH": 75.2
+      "ageH": 76.4
      },
      {
       "consumer": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "target": "roshpinacare-sys/Domain:dex/xc-requests.json",
-      "ageH": 75.2
+      "ageH": 76.4
      },
      {
       "consumer": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "target": "roshpinacare-sys/Domain:dex/pegout-queue.json",
-      "ageH": 75.2
+      "ageH": 76.4
      },
      {
       "consumer": "roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow)",
       "target": "roshpinacare-sys/Domain:dex/office-feed.json",
-      "ageH": 32.4
+      "ageH": 33.5
      },
      {
       "consumer": "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
       "target": "roshpinacare-sys/Domain:dex/pegout-queue.json",
-      "ageH": 75.2
+      "ageH": 76.4
      },
      {
       "consumer": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
       "target": "roshpinacare-sys/Domain:dex/agent.json",
-      "ageH": 50.3
+      "ageH": 51.5
      },
      {
       "consumer": "roshpinacare-sys/Domain/agents/dex-xc.cjs (agent)",
       "target": "roshpinacare-sys/Domain:dex/pegout-queue.json",
-      "ageH": 75.2
+      "ageH": 76.4
      },
      {
       "consumer": "roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent)",
       "target": "roshpinacare-sys/Domain:dex/pegout-queue.json",
-      "ageH": 75.2
+      "ageH": 76.4
      }
     ],
     "summary": {
      "nodes": 37,
-     "edges": 97,
-     "orphans": 0,
-     "planeInternal": 26,
+     "edges": 83,
+     "orphans": 5,
+     "planeInternal": 21,
      "ghosts": 0,
-     "stale": 14,
+     "stale": 13,
      "integrated": 10,
-     "flowDensity": 2.62
+     "flowDensity": 2.24
     },
     "alerts": [
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=32.4h > 26h (consumer: roshpinacare-sys/Domain/agents/office-feed.mjs (agent))"
+      "detail": "roshpinacare-sys/Sandbox:receipts/wallet/verdict.json age=29.0h > 2h (consumer: roshpinacare-sys/Domain/agents/office-pulse.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=32.4h > 26h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Sandbox:receipts/grid/verdict.json age=1.7h > 1h (consumer: roshpinacare-sys/Domain/agents/office-pulse.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/bridge.json age=595.1h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Sandbox:receipts/fleet/verdict.json age=30.2h > 3h (consumer: roshpinacare-sys/Domain/agents/office-pulse.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/fleet.json age=595.1h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Sandbox:receipts/latest.json age=1.7h > 1h (consumer: roshpinacare-sys/Domain/agents/office-pulse.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/redeem-requests.json age=246.3h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=33.5h > 26h (consumer: roshpinacare-sys/Domain/agents/office-feed.mjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/mirror-stub.json age=595.1h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json age=76.4h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json age=75.2h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
+      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json age=76.4h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json age=75.2h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=76.4h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=75.2h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
+      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=33.5h > 26h (consumer: roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=32.4h > 26h (consumer: roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow))"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=76.4h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-core.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=75.2h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-core.cjs (agent))"
+      "detail": "roshpinacare-sys/Domain:dex/agent.json age=51.5h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-router.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/agent.json age=50.3h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-router.cjs (agent))"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=76.4h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-xc.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=75.2h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-xc.cjs (agent))"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=76.4h > 48h (consumer: roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent))"
      },
      {
-      "law": "law-feed-fresh",
+      "law": "law-orphan-producer",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=75.2h > 48h (consumer: roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent))"
+      "detail": "roshpinacare-sys/Sandbox:ops/lessons/ledger.md produced (artery-scribe (daily)) but no consumer found in corpus"
      },
      {
-      "law": "law-plane-internal",
+      "law": "law-orphan-producer",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Autonomy:ops/lessons/ledger.md circulates only inside its producer plane — verify the organ's own output flows somewhere"
+      "detail": "roshpinacare-sys/Domain:dex/bridge.json produced (discovered) but no consumer found in corpus"
+     },
+     {
+      "law": "law-orphan-producer",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/fleet.json produced (discovered) but no consumer found in corpus"
+     },
+     {
+      "law": "law-orphan-producer",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/mirror-stub.json produced (discovered) but no consumer found in corpus"
+     },
+     {
+      "law": "law-orphan-producer",
+      "severity": "flag",
+      "detail": "roshpinacare-sys/Domain:dex/redeem-requests.json produced (discovered) but no consumer found in corpus"
      },
      {
       "law": "law-plane-internal",
@@ -2886,22 +2794,12 @@
      {
       "law": "law-plane-internal",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/bridge.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
-     },
-     {
-      "law": "law-plane-internal",
-      "severity": "flag",
       "detail": "roshpinacare-sys/Domain:dex/credits.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
      },
      {
       "law": "law-plane-internal",
       "severity": "flag",
       "detail": "roshpinacare-sys/Domain:dex/deposits.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
-     },
-     {
-      "law": "law-plane-internal",
-      "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/fleet.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
      },
      {
       "law": "law-plane-internal",
@@ -2917,11 +2815,6 @@
       "law": "law-plane-internal",
       "severity": "flag",
       "detail": "roshpinacare-sys/Domain:dex/honest-econ.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
-     },
-     {
-      "law": "law-plane-internal",
-      "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/mirror-stub.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
      },
      {
       "law": "law-plane-internal",
@@ -2942,11 +2835,6 @@
       "law": "law-plane-internal",
       "severity": "flag",
       "detail": "roshpinacare-sys/Domain:dex/portfolio.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
-     },
-     {
-      "law": "law-plane-internal",
-      "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/redeem-requests.json circulates only inside its producer plane — verify the organ's own output flows somewhere"
      },
      {
       "law": "law-plane-internal",
@@ -2991,23 +2879,23 @@
      {
       "law": "law-content-divergence",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json commit-age=75.2h but content-age=245.1h — fresh commits of stale content"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json commit-age=76.4h but content-age=246.3h — fresh commits of stale content"
      },
      {
       "law": "law-content-divergence",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json commit-age=75.2h but content-age=245.1h — fresh commits of stale content"
+      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json commit-age=76.4h but content-age=246.2h — fresh commits of stale content"
      },
      {
       "law": "law-content-divergence",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json commit-age=75.2h but content-age=245.1h — fresh commits of stale content"
+      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json commit-age=76.4h but content-age=246.3h — fresh commits of stale content"
      }
     ]
    }
   },
   "research": {
-   "at": "2026-10-14T20:30:08.583Z",
+   "at": "2026-10-14T21:00:10.739Z",
    "path": "research/findings-2026-10-11.json",
    "data": {
     "schema": "saos.research.findings/1",
