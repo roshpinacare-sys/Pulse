@@ -1,0 +1,62 @@
+# sovereign-voice.yml — קול-הריבונות: פעימת-תרגום-המצב-לשפה-אנושית
+# חוק-האם: steem/docs/R344-SOVEREIGN-DIRECT-CHANNEL.md §3 + saos-dex DECISIONS #20
+# נתיב-חינם: Actions על-ריפו-ציבורי + GitHub Models דרך GITHUB_TOKEN (מובנה, אפס-עלות, אפס-סודות-חדשים).
+# יושרה: הסקריפט fail-honest — כשל = status UNAVAILABLE/REJECTED כנה ב-voice.json; לעולם-לא-המצאה.
+# additive-only: workflow-חדש-נפרד — לא-נוגע-ב-heartbeat.yml/identity-guard.yml.
+
+name: sovereign-voice
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'state/sovereign-channel/**'
+      - 'scripts/sovereign-voice.mjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sovereign-voice
+  cancel-in-progress: false
+
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout (lawful identity per DECISIONS #10)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: git identity (estate law #10)
+        run: |
+          git config user.name "roshpinacare-sys"
+          git config user.email "326012154+roshpinacare-sys@users.noreply.github.com"
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: speak (fail-honest — the script never invents)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/sovereign-voice.mjs
+
+      - name: commit voice state (bounded rebase-retry x5, R331 pattern)
+        run: |
+          if git diff --quiet state/sovereign-channel/voice.json; then
+            echo "voice state unchanged — nothing to commit"
+            exit 0
+          fi
+          git add state/sovereign-channel/voice.json
+          git commit -m "sovereign-voice: heartbeat state (fail-honest, law R344 §3) [ci]"
+          pushed=0
+          for i in 1 2 3 4 5; do
+            if git pull --rebase -X theirs --autostash origin main && git push origin main; then pushed=1; break; fi
+            sleep $((i * 4))
+          done
+          if [ "$pushed" != "1" ]; then echo "::warning::HONEST FAILURE after 5 retries — voice state stays local this run"; fi

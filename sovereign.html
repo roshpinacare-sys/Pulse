@@ -96,6 +96,12 @@
     </section>
   </div>
 
+  <section class="panel" style="margin-bottom:16px" aria-labelledby="voice-h">
+    <h2 id="voice-h">💬 קול-הריבונות <span class="badge" id="voice-badge">טוען…</span></h2>
+    <div id="voice-body" style="font-size:.95rem;color:var(--ink)">קורא-מהגיט…</div>
+    <p class="note" id="voice-meta"></p>
+  </section>
+
   <div class="grid two">
     <section class="panel" aria-labelledby="req-h">
       <h2 id="req-h">👑 מה-הריבונות-מבקשת <span class="badge" id="req-badge">טוען…</span></h2>
@@ -182,6 +188,24 @@
     if(gaps!==null) tiles[2].querySelector(".v").className="v "+(gaps>0?"warn":"ok");
     tiles[3].querySelector(".v").textContent="פועל";
     tiles[3].querySelector(".v").className="v ok";
+  });
+
+  /* קול-הריבונות — fail-honest בלבד */
+  fetchText(RAW+"state/sovereign-channel/voice.json",function(t){
+    var body=$("voice-body");
+    if(!t){ badge("voice-badge","עוד-לא-חיווט — CLAIM-ONLY","err");
+      body.textContent="קובץ-הקול-עדיין-לא-קיים-בגיט. הפעימה-הראשונה-של-הקול-תכתוב-אותו; עד-אז — אין-דבר-שנדבר-בשם-הריבונות."; return; }
+    var v; try{ v=JSON.parse(t); }catch(e){ badge("voice-badge","קול-פגום-כנה","err");
+      body.textContent="קובץ-הקול-פגום — לא-מוצג. אין-המצאה."; return; }
+    if(v.status==="TRUE"&&v.summary){
+      badge("voice-badge","TRUE — ממדדים-בלבד","ok");
+      body.textContent=v.summary;
+      $("voice-meta").textContent="נוצר "+String(v.at||"").slice(0,16).replace("T"," ")+" UTC · מודל: "+(v.model||"?")+" · כל-מספר-בטקסט-אומת-מול-הקלט-הממודד (אימות-אי-ההמצאה)";
+    } else {
+      badge("voice-badge",v.status==="REJECTED"?"REJECTED — נדחה-באימות":"UNAVAILABLE — כנה","err");
+      body.textContent="הקול-לא-דיבר-במחזור-זה"+(v.reason?(": "+v.reason):"")+". העיקרון: עדיף-שקט-כנה-מאשר-דיבור-לא-מאומת.";
+      $("voice-meta").textContent="נמדד "+String(v.at||"").slice(0,16).replace("T"," ")+" UTC · מודל: "+(v.model||"?");
+    }
   });
 
   /* זרם-הבקשות — הריבונות → הבעלים */
