@@ -313,6 +313,8 @@ const cadence = {
 
 // --- R328 economy-sovereignty: the sovereignty IS the economy — measured every beat ---
 // Reads the economic ledger of record (saos-dex) + the two live income-artery receipts.
+// AUTH LAW (measured R328): saos-dex is PRIVATE — anonymous raw.githubusercontent 404s;
+// the receipts ride the authenticated contents API (base64) like the rest of the census.
 // Fail-open: a missed fetch is a named reason, never a silent zero (DECISIONS #14 law:
 // "evidence over narrative; every income claim cites a measured receipt").
 const economy = {
@@ -324,13 +326,13 @@ const economy = {
   note: null,
 }
 {
-  const raw = async (url) => {
-    const r = await fetch(url, { headers: { 'User-Agent': 'pulse-probe/1 (economy lane R328)' } })
-    if (!r.ok) throw new Error(`${url.split('/').slice(-1)[0]} -> ${r.status}`)
-    return r.text()
+  const contents = async (path) => {
+    const r = await gh(`/repos/${OWNER}/saos-dex/contents/${path}`, AUTH_TOK)
+    if (r.status !== 200 || !r.data?.content) throw new Error(`${path} -> ${r.status}`)
+    return Buffer.from(r.data.content, 'base64').toString('utf-8')
   }
   try {
-    const eco = JSON.parse(await raw('https://raw.githubusercontent.com/roshpinacare-sys/saos-dex/main/grids/state/economy-sovereignty.json'))
+    const eco = JSON.parse(await contents('grids/state/economy-sovereignty.json'))
     economy.sovereigntyLedger = {
       schema: eco.schema,
       at: eco.at,
@@ -342,11 +344,11 @@ const economy = {
     economy.gapsOpen = gaps.filter((g) => String(g.status || '').startsWith('OPEN')).length
   } catch (e) { economy.note = `sovereignty ledger unread: ${String(e).slice(0, 100)}` }
   try {
-    const t = JSON.parse(await raw('https://raw.githubusercontent.com/roshpinacare-sys/saos-dex/main/grids/state/treasury-public.json'))
+    const t = JSON.parse(await contents('grids/state/treasury-public.json'))
     economy.treasury = { at: t.at, verdict: t.verdict, acted: t.acted, openOrders: t.openOrders, trader: t.trader }
   } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `treasury receipt unread: ${String(e).slice(0, 80)}` }
   try {
-    const a = JSON.parse(await raw('https://raw.githubusercontent.com/roshpinacare-sys/saos-dex/main/grids/state/army-public.json'))
+    const a = JSON.parse(await contents('grids/state/army-public.json'))
     economy.army = { at: a.at, verdict: a.verdict, acted: a.acted, roster: a.roster, stasis: a.stasis }
   } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `army receipt unread: ${String(e).slice(0, 80)}` }
   if (economy.gapsOpen != null && economy.gapsOpen > 0) {
