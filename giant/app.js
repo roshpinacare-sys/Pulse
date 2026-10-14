@@ -9,6 +9,37 @@ const fmt = n => (n == null || isNaN(n) ? "—" : Number(n).toLocaleString("en-U
 const fmti = n => (n == null || isNaN(n) ? "—" : Math.round(n).toLocaleString("en-US"));
 const usd = n => (n == null ? "—" : "$" + fmt(n));
 const mu = v => (v == null ? "—" : "$" + (v / 1e6).toLocaleString("en-US", { maximumFractionDigits: 2 }));
+/* R362 חוק-היחידות: הספר-החי מנהל הכל ב-µ (מיליונית-יחידה). הקריאה-הקנונית = ÷1e6, והגולם תמיד לצידה (title) — אין-עוד "80 מיליון" מזויף-תצוגה. */
+function uBook(v) {
+  if (v == null) return "—";
+  const canon = (v / 1e6).toLocaleString("en-US", { maximumFractionDigits: 3 });
+  return `<span title="µ-ספר גולם: ${fmti(v)} — הקריאה-הקנונית היא ÷1,000,000">${canon}</span> <small style="color:var(--dim)">µ:${fmti(v)}</small>`;
+}
+/* R362 הוכחת-אספקה חיה: מחושבת-מהספר-עצמו בכל-רינדור. הפער-בזהות-השימור = דגל-ביקורת גלוי — אף-פעם לא מוסתר. */
+function unitProofHtml(s) {
+  const wg = s.wallets || [], ps = s.pools || [], fg = s.forge || {};
+  const sum = f => wg.reduce((a, w) => a + ((w.balances || {})[f] || 0) + ((w.locked || {})[f] || 0), 0);
+  const sumPools = f => ps.reduce((a, p) => a + (p.a === f ? (p.ra || 0) : 0) + (p.b === f ? (p.rb || 0) : 0), 0);
+  const row = (l, muv) => `<tr><td>${l}</td><td class="num">${fmti(muv)}</td><td class="num"><b>${(muv / 1e6).toLocaleString("en-US", { maximumFractionDigits: 2 })}</b></td></tr>`;
+  const saosIssued = (fg.issuedMu || {}).SAOS || 0, saosCap = (fg.capMu || {}).SAOS || 0;
+  const saosW = sum("SAOS"), saosP = sumPools("SAOS"), saosBurned = s.burnedSaosMu || 0;
+  const saosTotal = saosW + saosP, saosDelta = saosIssued - saosBurned - saosTotal;
+  const usdsAll = sum("USDS") + sumPools("USDS");
+  const bad = Math.abs(saosDelta) > saosIssued * 0.001;
+  return `<div class="card glow" style="margin-top:13px"><h3>🧮 הוכחת-אספקה · חוק-היחידות (R362 — התשובה ל-“80 מיליון”)</h3>
+  <div class="note"><b>מה-קרה-באמת:</b> הספר-החי מנהל <b>הכל ב-µ (מיליונית-יחידה)</b>. ממשקים-קודמים הציגו את ה-µ הגולם כמטבע-שלם — וכך-נולד “85,163,147 SAOS” שהוא-בעצם ~85 ערך-ספר (÷1,000,000). המספרים-הגולמיים-אמיתיים; התווית-הייתה-שגויה. מעכשיו: קריאה-קנונית ÷1e6 והגולם לצידה — בכל-מסך.</div>
+  <div class="tblwrap" style="margin-top:8px"><table class="tbl"><thead><tr><th>SAOS — שורת-ספר</th><th>µ-גולם (כפי-שבספר)</th><th>קריאה-מטבעית ÷1e6</th></tr></thead><tbody>
+  ${row("הונפקו (forge issued)", saosIssued)}
+  ${row("נשרפו (burn)", saosBurned)}
+  ${row("Σ יתרות-ארנקאות (+נעולים)", saosW)}
+  ${row("Σ עתודות-בריכות", saosP)}
+  ${row("תקרת-הנפקה (forge cap)", saosCap)}
+  </tbody></table></div>
+  <div class="more">זהות-השימור: הונפקו − נשרפו − Σ(ארנקאות+בריכות) = <b class="${bad ? "dn" : "up"}">${fmti(saosDelta)} µ</b>${bad ? ' · <span class="pill p-red">דגל-ביקורת: פער >0.1% — מוצג-כאן-ולא-מוסתר; ליין-האודיט מחויב להסבירו ממקור-המנוע</span>' : ' · עומד-בתוך-סבילות-0.1%'}</div>
+  <div class="more">USDS להשוואה: Σ ארנקאות+בריכות = ${fmti(usdsAll)} µ = <b>${(usdsAll / 1e6).toLocaleString("en-US", { maximumFractionDigits: 2 })} USDS</b> (הקריאה-הוודאית — חופפת ל-honest-econ.json).</div>
+  <div class="note" style="margin-top:8px"><b>אמת-כלכלית (honest-econ R74):</b> ל-SAOS <b>אין ביד-חוץ ואין שוק-חוץ</b> — כל-המחירים-כאן = מחירי-ספר-פנימי (SIM), מתויגים-ככאלה. הכסף-האמיתי-על-השרשרת נמדד-בנפרד (dex/money.json ≈ $18). טענת-“21 מיליון” בתיעוד סותרת את תקרת-ה-forge בספר — סתירה-מוצהרת שמחייבת תיקון-מקור (ליין L-UNIT).</div>
+  </div>`;
+}
 const muN = v => (v == null ? "—" : (v / 1e6).toLocaleString("en-US", { maximumFractionDigits: 2 }));
 const asOf = t => `<span class="asof">as-of ${esc(t || "—")}</span>`;
 const AGO = t => { if (!t) return "—"; const d = new Date(t); if (isNaN(d.getTime())) return "—"; const m = Math.max(0, Math.round((Date.now() - d.getTime()) / 6e4)); return m < 60 ? m + " דק'" : m < 1440 ? Math.round(m / 60) + " ש'" : Math.round(m / 1440) + " ימ'"; };
@@ -276,6 +307,7 @@ function vDex() {
     ${kpi(fmti(s.fills) + " · " + fmti(s.swaps), "fills · swaps", "ladders " + fmti(s.ladders), "am")}
     ${kpi(fmti(s.liveOrders), "הזמנות-חיות", "rejected-last " + fmti(s.rejectedLast))}
   </div>
+  ${unitProofHtml(s)}
   <div class="grid g-2" style="margin-top:13px">
     <div class="card glow"><h3><span class="ic">${ICONS.earn}</span> הכנסות-הפרוטוקול</h3>
       <div class="tblwrap" style="border:none"><table class="tbl"><tbody>

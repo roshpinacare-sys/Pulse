@@ -172,7 +172,7 @@ function vTrade() {
     <div class="tg">
       <div class="tg-panel swap"><div class="ph">החלפה מיידית <small>AMM אמת · נתיב-מרכז USDS</small></div>
         <div class="pb">
-          <div class="fld"><label>משלם <b>יתרה: ${fmt(w[T.swap.from] || 0)}</b></label>
+          <div class="fld"><label>משלם <b>יתרה: ${uBook(w[T.swap.from] || 0)}</b></label>
             <div class="amtbox"><input data-in="swap-amt" type="number" min="0" inputmode="decimal" placeholder="0.0" value="${esc(T.swap.amt)}" aria-label="כמות-מקור">
             <select data-in="swap-from" class="amtsel" aria-label="מטבע-מקור">${assets.map(a => `<option ${a === T.swap.from ? "selected" : ""}>${esc(a)}</option>`).join("")}</select></div></div>
           <div class="flip"><button data-act="swap-flip" aria-label="החלף-כיוון">⇅</button></div>
@@ -192,7 +192,7 @@ function vTrade() {
           <div class="typetabs"><button data-act="otype" data-k="limit" class="${T.tick.type === "limit" ? "on" : ""}">Limit</button><button data-act="otype" data-k="market" class="${T.tick.type === "market" ? "on" : ""}">Market</button></div>
           ${T.tick.type === "limit" ? `<div class="fld"><label>מחיר (${esc(m.quote)}) <b>מיטבי: ${fmt(lev)}</b></label>
             <div class="amtbox"><input data-in="tick-px" type="number" min="0" placeholder="0" value="${esc(T.tick.px)}" aria-label="מחיר"></div></div>` : ""}
-          <div class="fld"><label>כמות (${esc(m.base)}) <b>יתרה: ${fmt(w[TICKQ] || 0)} ${esc(TICKQ)}</b></label>
+          <div class="fld"><label>כמות (${esc(m.base)}) <b>יתרה: ${uBook(w[TICKQ] || 0)}</b></label>
             <div class="amtbox"><input data-in="tick-qty" type="number" min="0" placeholder="0.0" value="${esc(T.tick.qty)}" aria-label="כמות"></div></div>
           <div id="ticksum">${ticketSummaryHtml(m)}</div>
           <button class="btn gold" data-act="tick-go" style="width:100%;margin-top:10px">שלח-כוונה ${T.tick.side === "buy" ? "לקנייה" : "למכירה"}</button>
@@ -247,7 +247,7 @@ function poolCard(p, i) {
     <h4><span class="tok g">${esc(p.a.slice(0, 2))}</span><span class="tok">${esc(p.b.slice(0, 2))}</span> ${esc(p.a)}/${esc(p.b)} ${p.derived ? '<span class="pill p-vio">מנוע</span>' : ""}</h4>
     <div class="pstat">
       <div><span>מיד</span><b>${fmt(p.mid)}</b></div><div><span>עמלה</span><b>${p.feeBps} bps</b></div>
-      <div><span>יתרה-${esc(p.a)}</span><b>${fmt(p.ra)}</b></div><div><span>יתרה-${esc(p.b)}</span><b>${fmt(p.rb)}</b></div>
+      <div><span>יתרה-${esc(p.a)}</span><b>${uBook(p.ra)}</b></div><div><span>יתרה-${esc(p.b)}</span><b>${uBook(p.rb)}</b></div>
       <div class="hl"><span>תשואת-LP</span><b>${((p.lpYieldBps || 0) / 100).toFixed(2)}%</b></div><div><span>עמלות-LP</span><b>${mu(p.lpFeesMu || 0)}</b></div>
       <div><span>החלפות</span><b>${fmti(p.swaps || 0)}</b></div><div><span>LP-סך</span><b>${fmt(p.lp)}</b></div>
     </div></div>`;
@@ -260,7 +260,7 @@ function poolCalcHtml(p) {
   const share = amt > 0 ? (mint / (lp + mint)) * 100 : 0;
   const w = (walletsB().find(x => x.name === "treasury") || { balances: {} }).balances || {};
   return `<div class="poolcalc">
-    <div class="fld swap"><label>כמות ${esc(p.a)} <b>יתרה: ${fmt(w[p.a] || 0)}</b></label>
+    <div class="fld swap"><label>כמות ${esc(p.a)} <b>יתרה: ${uBook(w[p.a] || 0)}</b></label>
       <div class="amtbox"><input data-in="pool-amt" type="number" min="0" placeholder="0.0" value="${esc(window.__poolAmt || "")}" aria-label="כמות-הפקדה"></div></div>
     <div class="r"><span>נדרש גם ${esc(p.b)}</span><b>${fmt(bAmt)} ${esc(p.b)}</b></div>
     <div class="r"><span>LP-צפוי-להטביע</span><b>${fmt(mint)}</b></div>
