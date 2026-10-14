@@ -362,6 +362,7 @@ await writeFile('state/network.json', JSON.stringify(network, null, 1), 'utf-8')
 //     Honesty: per-source at/error recorded; a failed source is reported, never forged.
 const SANDBOX = 'roshpinacare-sys/Sandbox'
 const AUTONOMY = 'roshpinacare-sys/Autonomy'
+const DOMAIN = 'roshpinacare-sys/Domain'
 const sources = {}
 // SOURCE-LADDER (T-70, root-cause of issue #7): the arteries MOVED — public compute now
 // lives on Autonomy while Sandbox is quota-dead private memory. A single-source mirror
@@ -417,6 +418,13 @@ await Promise.all([
   grabLadder('integrity', [[SANDBOX, 'ops/integrity/verdict.json'], [AUTONOMY, 'ops/integrity/verdict.json']], 'json'),
   grabLadder('decisionTruth', [[SANDBOX, 'ops/decision-truth/verdict.json'], [AUTONOMY, 'ops/decision-truth/verdict.json']], 'json'),
   grabLadder('profitOracle', [[SANDBOX, 'receipts/profit-oracle-latest.json']], 'json'),
+  // R331 · THE SOVEREIGN BOOK (T-90, trace 1a139fae43eccbc9): the fleet's PUBLISHED
+  // work gets its own face — Domain's keyless chain-truth ledger (public RPC, refs-scrubbed,
+  // no handles) mirrored into this public shell so the backup display survives BOTH a
+  // chain-front shelling (T-81: steemit.com shelved the whole roster while the chain
+  // stayed whole) AND a node outage (the committed mirror renders with zero network).
+  // The record lives in git; the display reads git. That is the backup property.
+  grabLadder('publishedBook', [[DOMAIN, 'content/published.json']], 'json'),
 ])
 // research: date-named files — CI walks back up to 9 days for the latest findings
 {

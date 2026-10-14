@@ -64,6 +64,12 @@
   </section>
 
   <section>
+    <h2>הספר-הריבוני — הפרסומים-שלנו <span class="pill" id="bookpill">…</span></h2>
+    <div class="mut" style="font-size:12.5px;margin:4px 0 8px">העדות-המחויבת-של-מה-פרסמנו — ספר-keyless מהשרשרת-הציבורית (STEEM+HIVE), מוטמע-בגיט. התצוגה-הזו-שורדת-גם-השתלת-ממשק-שרשרת (T-81) וגם-נפילת-צמתים — הרשומה-חיה-בגיט, לא-בחסדי-חזית-כלשהי. ידי-חשבונות-אינן-מופיעות-כאן-מטעמי-חוק-refs; ה-permlink-הוא-מפתח-השרשרת.</div>
+    <div id="book" class="mut">טוען את-הספר…</div>
+  </section>
+
+  <section>
     <h2>מדוע הפאנל מציג ירידה</h2>
     <ul id="reasons" class="mut"><li>טוען…</li></ul>
   </section>
@@ -236,8 +242,66 @@ async function boot(){
     paint(await r2.json());
   }
 }
-boot(); chain();
-setInterval(boot, 5*60*1000); setInterval(chain, 5*60*1000);
+// R331 · THE SOVEREIGN BOOK — the backup display of the fleet's published work.
+// Source ladder: (1) the committed CI mirror (mirror/lanes.json → sources.publishedBook)
+// — survives node outages AND chain-front shelling, because git is the record;
+// (2) direct keyless fetch from Domain's public ledger — fresher, still keyless;
+// (3) honest degrade — named, never faked. Refs law: no handles rendered; the
+// permlink IS the chain key. Deep links go through steemworld's permlink search
+// (keyless, handle-free) — never through a front whose mood we don't control.
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function book(){
+  const box = document.getElementById('book');
+  const pill = document.getElementById('bookpill');
+  let data = null, src = null;
+  try{
+    const mj = await (await fetch('mirror/lanes.json?v='+Date.now())).json();
+    const lane = mj?.sources?.publishedBook;
+    if (lane && lane.data && Array.isArray(lane.data.posts)) { data = lane.data; src = 'מראה-CI מוטמע (' + (lane.source||'Domain') + ')'; }
+    else if (lane && lane.error) { /* ladder falls through to direct fetch below */ }
+  }catch{}
+  if (!data){
+    try{
+      const r = await fetch('https://raw.githubusercontent.com/roshpinacare-sys/Domain/main/content/published.json?v='+Date.now());
+      const j = await r.json();
+      if (Array.isArray(j.posts)) { data = j; src = 'קריאה-ישירה-מהספר (Domain)'; }
+    }catch{}
+  }
+  if (!data){
+    box.textContent = 'הספר-לא-נגיש-מהדפדפן — מראה-ה-CI-המוטמע-ישא-את-העדות-בדופק-הבא (כנה, לא-מזויף).';
+    pill.textContent = 'לא-נגיש'; pill.className = 'pill warn';
+    return;
+  }
+  const posts = data.posts || [];
+  const when = data.generatedAt || data.at || null;
+  pill.textContent = posts.length + ' רשומות' + (when ? ' · הוטמע ' + new Date(when).toLocaleString('he-IL') : '');
+  pill.className = 'pill ' + (posts.length > 0 ? 'ok' : 'warn');
+  if (!posts.length){
+    box.textContent = 'הספר-ריק-כרגע (המדידה-החיה-ממתינה-לרשומה-הראשונה) — כנה, לא-מזויף.';
+    return;
+  }
+  box.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'max-height:420px;overflow-y:auto;scrollbar-width:thin';
+  const badge = (ch) => ch === 'HIVE' ? '<span class="pill">HIVE</span>' : '<span class="pill ok">STEEM</span>';
+  const fmtPay = (p) => { const n = parseFloat(String(p ?? '').split(' ')[0]); return Number.isFinite(n) && n > 0 ? '$' + n.toFixed(3) : null; };
+  for (const p of posts){
+    const row = document.createElement('div'); row.className = 'row';
+    const pay = fmtPay(p.pendingPayout);
+    const t = p.at ? new Date(p.at.endsWith('Z')||p.at.includes('+') ? p.at : p.at+'Z').toLocaleString('he-IL') : '–';
+    row.innerHTML = '<span style="min-width:0;flex:1">' + badge(p.chain) + ' <strong>' + esc(p.title) + '</strong>'
+      + '<br><span class="mut" style="font-size:12px">' + t + (pay ? ' · צף-בדרך ' + pay : '')
+      + ' · <code style="font-size:11.5px">' + esc(p.permlink) + '</code></span></span>'
+      + '<span><a href="https://steemworld.org/search?search=' + encodeURIComponent(p.permlink) + '" target="_blank" rel="noopener">חיפוש-שרשרת ↗</a></span>';
+    wrap.appendChild(row);
+  }
+  box.appendChild(wrap);
+  const via = document.createElement('div'); via.className = 'mut'; via.style.fontSize = '12.5px';
+  via.textContent = 'מקור: ' + src;
+  box.appendChild(via);
+}
+boot(); chain(); book();
+setInterval(boot, 5*60*1000); setInterval(chain, 5*60*1000); setInterval(book, 5*60*1000);
 </script>
 </body>
 </html>
