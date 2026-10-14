@@ -67,10 +67,12 @@ if (existsSync(VOICE_PATH)) {
   }
 }
 
-// ---- 3. הקול (GitHub Models — נתיב-חינם-על-Actions-ציבורי) ----
+// ---- 3. הקול (GitHub Models — נתיב-חינם-על-Actions-ציבורי; דואלי-endpoint fail-honest) ----
 const TOKEN = process.env.GITHUB_TOKEN || '';
 const MODEL = process.env.SOVEREIGN_VOICE_MODEL || 'openai/gpt-4o-mini';
-const ENDPOINT = process.env.SOVEREIGN_VOICE_ENDPOINT || 'https://models.github.ai/inference/chat/completions';
+const ENDPOINTS = (process.env.SOVEREIGN_VOICE_ENDPOINTS ||
+  'https://models.github.ai/inference/chat/completions,https://models.inference.ai.azure.com/chat/completions')
+  .split(',').map(s => s.trim()).filter(Boolean);
 
 if (!TOKEN) { writeHonest('UNAVAILABLE', 'no-token (GITHUB_TOKEN missing) — כנה: בלי-אסימון-אין-קול'); process.exit(0); }
 
@@ -90,27 +92,37 @@ const USER = [
 ].join('\n');
 
 let summary = null, status = 'UNAVAILABLE', reason = '';
-try {
-  const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), 30000);
-  const res = await fetch(ENDPOINT, {
-    method: 'POST',
-    signal: ctrl.signal,
-    headers: { 'Authorization': 'Bearer ' + TOKEN, 'Content-Type': 'application/json', 'User-Agent': 'saos-sovereign-voice/1' },
-    body: JSON.stringify({
-      model: MODEL, temperature: 0.2, max_tokens: 300,
-      messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: USER }],
-    }),
-  });
-  clearTimeout(t);
-  if (!res.ok) { reason = 'models-api-' + res.status; }
-  else {
-    const j = await res.json();
+const reasons = [];
+for (const ep of ENDPOINTS) {
+  const modelName = ep.includes('azure.com') ? MODEL.replace(/^openai\//, '') : MODEL;
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 30000);
+    const res = await fetch(ep, {
+      method: 'POST',
+      signal: ctrl.signal,
+      headers: { 'Authorization': 'Bearer ' + TOKEN, 'Content-Type': 'application/json', 'User-Agent': 'saos-sovereign-voice/1' },
+      body: JSON.stringify({
+        model: modelName, temperature: 0.2, max_tokens: 300,
+        messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: USER }],
+      }),
+    });
+    clearTimeout(t);
+    if (!res.ok) { reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':' + res.status); continue; }
+    const raw = await res.text();
+    const ct = (res.headers.get('content-type') || '');
+    let j = null;
+    if (ct.includes('json')) { try { j = JSON.parse(raw); } catch { j = null; } }
+    else { try { j = JSON.parse(raw); } catch { j = null; } }
+    if (!j) { reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':non-json-body'); continue; }
     const txt = j && j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content;
-    if (typeof txt === 'string' && txt.trim().length > 10) summary = txt.trim();
-    else reason = 'empty-or-malformed-response';
+    if (typeof txt === 'string' && txt.trim().length > 10) { summary = txt.trim(); break; }
+    reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':empty-response');
+  } catch (e) {
+    reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':fetch-failed:' + (e && e.name === 'AbortError' ? 'timeout' : String(e).slice(0, 60)));
   }
-} catch (e) { reason = 'fetch-failed: ' + (e && e.name === 'AbortError' ? 'timeout-30s' : String(e).slice(0, 120)); }
+}
+if (!summary) reason = reasons.join(' | ');
 
 // ---- 4. חוק-אי-ההמצאה: כל-מספר-בסיכום-חייב-להיות-בקלט ----
 if (summary) {
