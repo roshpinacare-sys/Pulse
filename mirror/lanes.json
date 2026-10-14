@@ -1,26 +1,26 @@
 {
  "schema": "pulse-mirror-v1",
- "generatedAt": "2026-10-14T14:30:08.460Z",
+ "generatedAt": "2026-10-14T15:00:08.196Z",
  "trigger": "repository_dispatch",
  "provenance": "CI-carried from roshpinacare-sys/Sandbox public-grade ledgers (darkened by the T-66 repo flip, not by content) + live chain probes. Sanitized output of a §7 runner shell.",
  "chains": {
-  "hiveHead": 110768908,
-  "steemHead": 110435062,
+  "hiveHead": 110769506,
+  "steemHead": 110435658,
   "steemNode": "api.steemit.com",
   "hiveNode": "api.hive.blog",
   "steemNodes": [
    {
     "node": "api.steemit.com",
-    "ms": 136,
-    "head": 110435062,
+    "ms": 188,
+    "head": 110435658,
     "ok": true
    }
   ],
   "hiveNodes": [
    {
     "node": "api.hive.blog",
-    "ms": 338,
-    "head": 110768908,
+    "ms": 67,
+    "head": 110769506,
     "ok": true
    }
   ],
@@ -28,14 +28,14 @@
    "account": "steem.dao",
    "sp": 0,
    "steem": 1.11,
-   "sbd": 2575934.541,
+   "sbd": 2575941.696,
    "via": "api.steemit.com",
-   "at": "2026-10-14T14:30:08.460Z"
+   "at": "2026-10-14T15:00:08.196Z"
   }
  },
  "sources": {
   "profitOracle": {
-   "at": "2026-10-14T14:30:08.460Z",
+   "at": "2026-10-14T15:00:08.196Z",
    "path": "receipts/profit-oracle-latest.json",
    "source": "roshpinacare-sys/Sandbox",
    "candidates": [
@@ -411,8 +411,131 @@
     }
    }
   },
+  "integrity": {
+   "at": "2026-10-14T15:00:08.196Z",
+   "path": "ops/integrity/verdict.json",
+   "source": "roshpinacare-sys/Autonomy",
+   "candidates": [
+    {
+     "repo": "roshpinacare-sys/Sandbox",
+     "path": "ops/integrity/verdict.json",
+     "at": "2026-10-12T10:42:49.896Z"
+    },
+    {
+     "repo": "roshpinacare-sys/Autonomy",
+     "path": "ops/integrity/verdict.json",
+     "at": "2026-10-14T13:54:50.329Z"
+    }
+   ],
+   "data": {
+    "schema": "integrity-guard/2",
+    "at": "2026-10-14T13:54:50.329Z",
+    "overall": "PASS",
+    "summary": {
+     "sources": 11,
+     "verified": 6,
+     "findings": 9,
+     "counts": {
+      "FLAG": 9
+     }
+    },
+    "provenance": {
+     "runId": "38575830199",
+     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38575830199",
+     "sha": "36ac4857e24ceea7a3d32e25359119878d771d8f"
+    },
+    "verified": [
+     {
+      "where": "self:ops/integrity/verdict.json",
+      "law": "verified",
+      "detail": "run=38562461034 conc=success repo=Autonomy"
+     },
+     {
+      "where": "FleetHQ:receipts/office-ci/verdict.json",
+      "law": "verified",
+      "detail": "run=38568326076 conc=success repo=FleetHQ"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38568326076 conc=success repo=FleetHQ"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38557298971 conc=success repo=Autonomy"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38568387812 conc=success repo=Autonomy"
+     },
+     {
+      "where": "Domain:office/data.json",
+      "law": "verified",
+      "detail": "run=38561487817 conc=success repo=Autonomy"
+     }
+    ],
+    "findings": [
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/wallet/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/fleet/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/grid/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:receipts/latest.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:ops/flow/receipt.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:state/verifier/verdict-latest.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Domain:agents/office-live.json",
+      "law": "unprovenanced",
+      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: office lane"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:ops/decision-truth/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     },
+     {
+      "level": "FLAG",
+      "where": "Sandbox:ops/integrity/verdict.json",
+      "law": "source-unreachable",
+      "detail": "raw 404 — דגל-כנה, לא-מילוי"
+     }
+    ]
+   }
+  },
   "publishedBook": {
-   "at": "2026-10-14T14:30:08.460Z",
+   "at": "2026-10-14T15:00:08.196Z",
    "path": "content/published.json",
    "source": "roshpinacare-sys/Domain",
    "candidates": [
@@ -575,7 +698,7 @@
    }
   },
   "lessons": {
-   "at": "2026-10-14T14:30:08.460Z",
+   "at": "2026-10-14T15:00:08.196Z",
    "path": "ops/lessons/ledger.md",
    "source": "roshpinacare-sys/Autonomy",
    "candidates": [
@@ -592,358 +715,8 @@
    ],
    "text": "# LESSONS LEDGER · append-only · deterministic distillation of measured history\n\n## scribe #1 · 2026-10-12T20:40:52.826Z\n- wallet: no receipts yet (artery young)\n- fleet actions 24h: 14 runs · failures: artery-grid:failure×1, artery-fleet:failure×1, hive-probe:failure×1, federation:failure×1, verifier (truth & quality):failure×2, sovereign-state:failure×1, artery-catchup:failure×1\n- sovereign tick last pulse: 1min ago\n- sandbox commits 24h: 7 · authors: {\"integrity-guard\":1,\"grid-watch\":1,\"sovereign-flow\":1,\"probe-runner[bot]\":1,\"sandbox-sovereign\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 17min ago\n- Domain book office/data.json: 48min old (law <=60min)\n- Domain book agents/office-live.json: 87min old (law <=180min)\n- Domain book dex/office-feed.json: 561min old (law <=1560min)\n- flow map: not yet generated (artery-flow first run pending)\n- integrity guard: no verdict yet (artery-integrity first run pending)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=15029 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=15h\n- dex book dex/showcase.json: ok sig=pair=unknown age=15h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: no verdict yet (artery-decision-truth first run pending)\n- no law proposals — everything measured healthy\n\n\n## scribe #2 · 2026-10-13T01:40:41.404Z\n- wallet 24h verdicts: {\"BLOCKED\":3} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":3} · alerts: 3\n- fleet actions 24h: 100 runs · failures: artery-fleet:failure×3, artery-wallet:failure×3, artery-grid:failure×4, artery-integrity:failure×1, hive-probe:failure×2, sovereign-tick:failure×1, artery-catchup:failure×1, research-lane:failure×2, profit-oracle:failure×2, value-scan:failure×2, key-proof:failure×1, .github/workflows/fleet-yield.yml:failure×1, artery-participation:failure×1, artery-decision-truth:failure×1\n- sovereign tick last pulse: 17min ago\n- sandbox commits 24h: 86 · authors: {\"roshpinacare-sys\":16,\"sandbox-sovereign\":8,\"sandbox-state\":12,\"fleet-artery\":2,\"wallet-artery\":2,\"probe-runner[bot]\":4,\"fleet-healer\":2,\"grid-watch\":4,\"sovereign-federation\":2,\"integrity-guard\":2,\"decision-truth\":4,\"sovereign-flow\":2,\"stabilize-agent\":1,\"sandbox-verifier\":2,\"Z User\":2,\"research-runner[bot]\":3,\"github-actions[bot]\":4,\"fleet-yield\":3,\"value-scan-bot\":2,\"participation[bot]\":3,\"autonomy-wave2-agent\":3,\"sovereign-scribe\":1,\"sovereignty-boot\":2}\n- office-ci (FleetHQ) verdict: PASS · 25min ago\n- Domain book office/data.json: 10min old (law <=60min)\n- Domain book agents/office-live.json: 29min old (law <=180min)\n- Domain book dex/office-feed.json: 861min old (law <=1560min)\n- flow map: nodes=35 edges=95 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.71\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=5253 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 3 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet FAIL/BLOCKED streak ≥3 — escalate to owner issue; do not mint green\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 5 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #3 · 2026-10-13T07:07:55.186Z\n- wallet 24h verdicts: {\"BLOCKED\":5} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":5} · alerts: 5\n- fleet actions 24h: 100 runs · failures: artery-integrity:failure×2, artery-grid:failure×6, artery-fleet:failure×2, sovereign-decider:failure×1, artery-wallet:failure×2\n- sovereign tick last pulse: 2min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"github-actions[bot]\":3,\"sandbox-sovereign\":1}\n- office-ci (FleetHQ) verdict: PASS · 5min ago\n- Domain book office/data.json: 8min old (law <=60min)\n- Domain book agents/office-live.json: 6min old (law <=180min)\n- Domain book dex/office-feed.json: 1188min old (law <=1560min)\n- flow map: nodes=35 edges=97 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.77\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=5253 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=6h\n- dex book dex/showcase.json: ok sig=pair=unknown age=6h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=true\n- PROPOSAL(law): wallet carried 5 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): wallet FAIL/BLOCKED streak ≥3 — escalate to owner issue; do not mint green\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 4 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #4 · 2026-10-13T10:19:55.784Z\n- wallet 24h verdicts: {\"BLOCKED\":7,\"PASS\":1} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":6,\"FAIL\":1} · alerts: 8\n- fleet actions 24h: 100 runs · failures: sovereign-decider:failure×2, artery-grid:failure×5, artery-fleet:failure×2, artery-wallet:failure×2, fleet-heal:failure×1, artery-integrity:failure×3\n- sovereign tick last pulse: 9min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"Z User\":1,\"github-actions[bot]\":3}\n- office-ci (FleetHQ) verdict: PASS · 38min ago\n- Domain book office/data.json: 20min old (law <=60min)\n- Domain book agents/office-live.json: 34min old (law <=180min)\n- Domain book dex/office-feed.json: 1380min old (law <=1560min)\n- flow map: nodes=35 edges=97 page-integrated=14 plane-internal=20 orphans=0 ghosts=0 density=2.77\n- integrity guard: overall=FAIL sources=9 claims-verified=3 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=10661 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=2h\n- dex book dex/showcase.json: ok sig=pair=unknown age=2h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"STALE-TRUTH\":5} decider-stalled=false\n- PROPOSAL(law): wallet carried 8 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): fleet verify FAIL/BLOCKED streak ≥2 — a critical repo is regressing; measure before touching anything\n- PROPOSAL(law): 6 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): integrity guard FAIL ({\"MEDIUM\":1,\"FLAG\":7,\"CRITICAL\":2}) - suspected forged receipts; freeze trust in flagged receipts and investigate before further lane work\n- PROPOSAL(law): integrity guard 1 MEDIUM alerts (unverifiable/unprovenanced receipts) - upgrade those producers to full provenance (fix-dont-lock)\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #5 · 2026-10-13T13:51:15.874Z\n- wallet 24h verdicts: {\"BLOCKED\":7,\"PASS\":7} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":6,\"FAIL\":4,\"PASS\":5} · alerts: 24\n- fleet actions 24h: 100 runs · failures: artery-decision-truth:failure×3, sovereign-tick:failure×3, .github/workflows/fleet-yield.yml:failure×2, artery-integrity:failure×3, artery-grid:failure×1, artery-fleet:failure×3, artery-wallet:failure×3\n- sovereign tick last pulse: 6min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":95,\"github-actions[bot]\":1,\"z-user\":1,\"artery-fix\":1,\"Z User\":2}\n- office-ci (FleetHQ) verdict: PASS · 31min ago\n- Domain book office/data.json: 145min old (law <=60min)\n- Domain book agents/office-live.json: 145min old (law <=180min)\n- Domain book dex/office-feed.json: 164min old (law <=1560min)\n- flow map: nodes=35 edges=98 page-integrated=15 plane-internal=19 orphans=0 ghosts=0 density=2.8\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=17570 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=0h\n- dex book dex/showcase.json: ok sig=pair=unknown age=0h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"VERIFIED\":4,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 14 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): Domain book office/data.json stale (145min > 60min) - its producer workflow may be stalled\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #6 · 2026-10-13T19:38:54.237Z\n- wallet 24h verdicts: {\"BLOCKED\":7,\"PASS\":9} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":6,\"FAIL\":4,\"PASS\":7} · alerts: 30\n- fleet actions 24h: 100 runs · failures: .github/workflows/fleet-yield.yml:failure×3, artery-participation:failure×4, artery-decision-truth:failure×5, value-scan:failure×1\n- sovereign tick last pulse: 11min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"github-actions[bot]\":4}\n- office-ci (FleetHQ) verdict: PASS · 61min ago\n- Domain book office/data.json: 493min old (law <=60min)\n- Domain book agents/office-live.json: 493min old (law <=180min)\n- Domain book dex/office-feed.json: 512min old (law <=1560min)\n- flow map: nodes=37 edges=100 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.7\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=10 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=25163 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=4h\n- dex book dex/showcase.json: ok sig=pair=unknown age=4h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"VERIFIED\":4,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 16 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): Domain book office/data.json stale (493min > 60min) - its producer workflow may be stalled\n- PROPOSAL(law): Domain book agents/office-live.json stale (493min > 180min) - its producer workflow may be stalled\n- PROPOSAL(law): 23 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #7 · 2026-10-14T00:00:08.122Z\n- wallet 24h verdicts: {\"BLOCKED\":6,\"PASS\":11} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":5,\"FAIL\":4,\"PASS\":9} · alerts: 35\n- fleet actions 24h: 100 runs · failures: artery-decision-truth:failure×1, claims-intake:failure×2, sovereign-state:failure×3\n- sovereign tick last pulse: 20min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":92,\"Z User\":3,\"selfhood[bot]\":5}\n- office-ci (FleetHQ) verdict: PASS · 19min ago\n- Domain book office/data.json: 0min old (law <=60min)\n- Domain book agents/office-live.json: 83min old (law <=180min)\n- Domain book dex/office-feed.json: 773min old (law <=1560min)\n- flow map: nodes=37 edges=102 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.76\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=34835 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=5 truth={\"VERIFIED\":4,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 17 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #8 · 2026-10-14T03:09:07.214Z\n- wallet 24h verdicts: {\"BLOCKED\":2,\"PASS\":12} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":1,\"FAIL\":4,\"PASS\":9} · alerts: 31\n- fleet actions 24h: 100 runs · failures: sovereign-state:failure×4\n- sovereign tick last pulse: 12min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":94,\"standby-directive-lane\":1,\"map\":1,\"estate-relay\":1,\"relay\":1,\"estate-vault\":2}\n- office-ci (FleetHQ) verdict: PASS · 27min ago\n- Domain book office/data.json: 0min old (law <=60min)\n- Domain book agents/office-live.json: 108min old (law <=180min)\n- Domain book dex/office-feed.json: 962min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=26502 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=3h\n- dex book dex/showcase.json: ok sig=pair=unknown age=3h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":4,\"STALE-TRUTH\":2} decider-stalled=false\n- PROPOSAL(law): wallet carried 14 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 10 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #9 · 2026-10-14T06:45:25.920Z\n- wallet 24h verdicts: {\"BLOCKED\":2,\"PASS\":13} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":1,\"FAIL\":4,\"PASS\":11} · alerts: 37\n- fleet actions 24h: 100 runs · failures: contract-check:failure×2\n- sovereign tick last pulse: 15min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":96,\"github-actions[bot]\":3,\"Z User\":1}\n- office-ci (FleetHQ) verdict: PASS · 23min ago\n- Domain book office/data.json: 16min old (law <=60min)\n- Domain book agents/office-live.json: 14min old (law <=180min)\n- Domain book dex/office-feed.json: 1178min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=29665 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":5,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 15 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #10 · 2026-10-14T08:32:19.611Z\n- wallet 24h verdicts: {\"BLOCKED\":2,\"PASS\":15} · failing laws: {}\n- fleet 24h verdicts: {\"BLOCKED\":1,\"FAIL\":4,\"PASS\":12} · alerts: 40\n- fleet actions 24h: 100 runs · failures: contract-check:failure×4\n- sovereign tick last pulse: 23min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":91,\"exec31-synthesis-lane\":1,\"Z User\":5,\"github-actions[bot]\":3}\n- office-ci (FleetHQ) verdict: PASS · 12min ago\n- Domain book office/data.json: 6min old (law <=60min)\n- Domain book agents/office-live.json: 35min old (law <=180min)\n- Domain book dex/office-feed.json: 1285min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=29665 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=3h\n- dex book dex/showcase.json: ok sig=pair=unknown age=3h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":5,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 17 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n\n## scribe #11 · 2026-10-14T11:32:43.434Z\n- wallet 24h verdicts: {\"PASS\":8} · failing laws: {}\n- fleet 24h verdicts: {\"PASS\":9} · alerts: 26\n- fleet actions 24h: 100 runs · failures: none\n- sovereign tick last pulse: 15min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":94,\"github-actions[bot]\":1,\"estate-relay\":1,\"exec31-synthesis-lane\":1,\"Z User\":3}\n- office-ci (FleetHQ) verdict: PASS · 7min ago\n- Domain book office/data.json: 2min old (law <=60min)\n- Domain book agents/office-live.json: 29min old (law <=180min)\n- Domain book dex/office-feed.json: 1466min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=28250 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"STALE-TRUTH\":6} decider-stalled=true\n- PROPOSAL(law): wallet carried 8 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): 10 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D0-owner-channel evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D1-econ-treasury-floor evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D3-flow-weave evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D4-truth-network evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): decision D5-social-standby evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n- PROPOSAL(law): sovereign decider heartbeat stalled (>90min) - the sovereignty must keep deciding per its own charter\n\n\n## scribe #12 · 2026-10-14T14:12:31.272Z\n- wallet 24h verdicts: {\"PASS\":10} · failing laws: {}\n- fleet 24h verdicts: {\"PASS\":9} · alerts: 27\n- fleet actions 24h: 100 runs · failures: sovereign-state:failure×4\n- sovereign tick last pulse: 21min ago\n- sandbox commits 24h: 100+ (page cap) · authors: {\"roshpinacare-sys\":91,\"exec34-audit-lane\":1,\"exec33-registry-lane\":3,\"github-actions[bot]\":4,\"exec32-registry-lane\":1}\n- office-ci (FleetHQ) verdict: PASS · 70min ago\n- Domain book office/data.json: 1min old (law <=60min)\n- Domain book agents/office-live.json: 14min old (law <=180min)\n- Domain book dex/office-feed.json: 1625min old (law <=1560min)\n- flow map: nodes=37 edges=103 page-integrated=15 plane-internal=21 orphans=0 ghosts=0 density=2.78\n- integrity guard: overall=PASS sources=11 claims-verified=6 findings=9 (receipts provenance cross-checked vs Actions API)\n- dex book dex/bridge.json: ok sig=escrow=1 intents=0 chains=8 age=unknown\n- dex book dex/fleet.json: ok sig=configured=false probedAt=unknown age=unknown\n- dex book dex/relay.json: ok sig=enabled=false anchor=saos-dex.anchor.v1 uptimeMs=27123 age=unknown\n- dex book dex/onramp.json: ok sig=stale=false steemHead=[object Object] age=1h\n- dex book dex/showcase.json: ok sig=pair=unknown age=1h\n- dex book dex/redeem-requests.json: ok sig=requests=0 protocol=SAOS-DEX-REDEEM-REQUESTS/1 age=unknown\n- dex book dex/mirror-stub.json: honest stub (ok=false) - declares itself a placeholder, kept as truth-marker\n- dex books: 6/7 carry live Console-truth (escrow/fleet/relay/onramp) - the business organs are publicly mirrored; wired to the learning loop this run\n- decision-truth: overall=PASS_WITH_ALERTS decisions=6 truth={\"VERIFIED\":5,\"STALE-TRUTH\":1} decider-stalled=false\n- PROPOSAL(law): wallet carried 10 trust-flag(s)/24h (out-of-band PASS mints) — owner P0: make wallet CI the only minter\n- PROPOSAL(law): Domain book dex/office-feed.json stale (1625min > 1560min) - its producer workflow may be stalled\n- PROPOSAL(law): 11 feed(s) past their freshness law while being read by live code\n- PROPOSAL(law): decision D2-eng-errors evidence is STALE-TRUTH (world moved past published evidence) - T14 RE-MEASURE must re-decide per charter\n\n"
   },
-  "decisionTruth": {
-   "at": "2026-10-14T14:30:08.460Z",
-   "path": "ops/decision-truth/verdict.json",
-   "source": "roshpinacare-sys/Autonomy",
-   "candidates": [
-    {
-     "repo": "roshpinacare-sys/Sandbox",
-     "path": "ops/decision-truth/verdict.json",
-     "at": "2026-10-12T10:56:07.000Z"
-    },
-    {
-     "repo": "roshpinacare-sys/Autonomy",
-     "path": "ops/decision-truth/verdict.json",
-     "at": "2026-10-14T13:15:11.000Z"
-    }
-   ],
-   "data": {
-    "schema": "sandbox/decision-truth/1",
-    "generatedAt": "2026-10-14T13:15:11Z",
-    "durationMs": 2333,
-    "overall": "PASS_WITH_ALERTS",
-    "charter": "ops/sovereign/DECIDER/CHARTER.md",
-    "law": "H: every ENFORCED decision must re-measure its evidence independently AND show a measured consumer; stale evidence = STALE-TRUTH; no consumer = UNEXECUTED; source down = UNVERIFIABLE (never forged)",
-    "decider": {
-     "generatedAt": "2026-10-14T12:51:04Z",
-     "stateAgeMin": 24,
-     "source": "local-checkout",
-     "heartbeat": {
-      "workflow": "sovereign-decider.yml",
-      "lastRunAt": "2026-10-14T12:50:47Z",
-      "ageS": 1462,
-      "stalled": false
-     }
-    },
-    "measures": {
-     "chain": {
-      "head": 110433563,
-      "treasuryNetSp": 2810.7,
-      "mult": 0.0006203157260195221
-     },
-     "beaconPulse": {
-      "treasuryNetSp": 2810.7
-     },
-     "faultedAgentsNow": [],
-     "flowSummary": {
-      "nodes": 37,
-      "edges": 103,
-      "orphans": 0,
-      "ghosts": null
-     },
-     "workOrderIds": [
-      "WO-Sandbox-reds"
-     ]
-    },
-    "decisions": [
-     {
-      "id": "D0-owner-channel",
-      "area": "הנהגה",
-      "status": "OBSERVING",
-      "decidedAt": "2026-10-14T12:51:02Z",
-      "truth": "VERIFIED",
-      "checks": [
-       {
-        "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 24min (limit 120)"
-       }
-      ],
-      "note": "evidence re-measured independently + execution present"
-     },
-     {
-      "id": "D1-econ-treasury-floor",
-      "area": "כלכלה",
-      "status": "ENFORCED",
-      "priority": "P1",
-      "decidedAt": "2026-10-14T12:51:04Z",
-      "truth": "VERIFIED",
-      "checks": [
-       {
-        "law": "policy-internal-consistency",
-        "result": "ok",
-        "detail": "interimFloors=13/13 tier-mapping=ok"
-       },
-       {
-        "law": "treasury-basis-fresh-measure",
-        "result": "ok",
-        "detail": "claimed=2810.7 fresh=2810.7 tol=1"
-       },
-       {
-        "law": "beacon-vs-fresh",
-        "result": "ok",
-        "detail": "beacon=2810.7"
-       },
-       {
-        "law": "operators-basis",
-        "result": "ok",
-        "detail": "all 13 operators within ±2SP"
-       },
-       {
-        "law": "below-floor-list",
-        "result": "ok",
-        "detail": "fresh-below=[\"acct-10\",\"acct-11\",\"acct-12\",\"acct-13\"] declared=[\"acct-10\",\"acct-11\",\"acct-12\",\"acct-13\"]"
-       },
-       {
-        "law": "execution-existence",
-        "result": "ok",
-        "detail": "[{\"where\":\"sandbox:engine/fleet-yield.mjs\",\"via\":[\"operatingFloorSp\",\"interimFloorSp\",\"operatorInterimFloors\",\"D1-econ-treasury-floor\"]}]"
-       },
-       {
-        "law": "yield-engines-declared",
-        "result": "ok",
-        "detail": "dex=continue-armed (keyless engine, כבר-חי) curation=continue"
-       },
-       {
-        "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 24min (limit 120)"
-       }
-      ],
-      "note": "evidence re-measured independently + execution present"
-     },
-     {
-      "id": "D2-eng-errors",
-      "area": "הנדסה",
-      "status": "ENFORCED",
-      "decidedAt": "2026-10-14T12:51:04Z",
-      "truth": "STALE-TRUTH",
-      "checks": [
-       {
-        "law": "routed-orders-exist",
-        "result": "unverifiable",
-        "detail": "routed=[] missing=[]"
-       },
-       {
-        "law": "orders-status-tracking",
-        "result": "ok",
-        "detail": "all routed orders carry status"
-       },
-       {
-        "law": "fleethq-reds-persist",
-        "result": "ok",
-        "detail": "failure runs in last 48h: 1 - routed WO-FleetHQ-reds subject persists (work pending)"
-       },
-       {
-        "law": "faulted-agents-fix",
-        "result": "mismatch",
-        "detail": "foreman reports zero faulted agents NOW - fix landed, world moved past the decision - RE-MEASURE"
-       },
-       {
-        "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 24min (limit 120)"
-       }
-      ],
-      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
-     },
-     {
-      "id": "D3-flow-weave",
-      "area": "רשת",
-      "status": "ENFORCED",
-      "decidedAt": "2026-10-14T12:51:04Z",
-      "truth": "VERIFIED",
-      "checks": [
-       {
-        "law": "orphans-fresh",
-        "result": "ok",
-        "detail": "claimed=0 fresh=0"
-       },
-       {
-        "law": "ghosts-fresh",
-        "result": "ok",
-        "detail": "claimed=0 fresh=0"
-       },
-       {
-        "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 24min (limit 120)"
-       }
-      ],
-      "note": "evidence re-measured independently + execution present"
-     },
-     {
-      "id": "D4-truth-network",
-      "area": "אימות-עצמי",
-      "status": "ENFORCED",
-      "priority": "P1",
-      "decidedAt": "2026-10-14T12:51:04Z",
-      "truth": "VERIFIED",
-      "checks": [
-       {
-        "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 24min (limit 120)"
-       }
-      ],
-      "note": "evidence re-measured independently + execution present"
-     },
-     {
-      "id": "D5-social-standby",
-      "area": "רשת-חברתית",
-      "status": "ENFORCED",
-      "priority": "P1",
-      "decidedAt": "2026-10-14T12:51:04Z",
-      "truth": "VERIFIED",
-      "checks": [
-       {
-        "law": "decider-state-age",
-        "result": "ok",
-        "detail": "state age 24min (limit 120)"
-       }
-      ],
-      "note": "evidence re-measured independently + execution present"
-     }
-    ],
-    "provenance": {
-     "runId": "38570215033",
-     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38570215033",
-     "sha": "08c5f577b187a6d17cc17288535b0b74af6404c7",
-     "engine": "engine/decision-truth.mjs (H-series, zai-code-3)",
-     "generatedAt": "2026-10-14T13:15:11Z"
-    },
-    "selftest": {
-     "vectors": 16,
-     "ok": true
-    }
-   }
-  },
-  "integrity": {
-   "at": "2026-10-14T14:30:08.460Z",
-   "path": "ops/integrity/verdict.json",
-   "source": "roshpinacare-sys/Autonomy",
-   "candidates": [
-    {
-     "repo": "roshpinacare-sys/Sandbox",
-     "path": "ops/integrity/verdict.json",
-     "at": "2026-10-12T10:42:49.896Z"
-    },
-    {
-     "repo": "roshpinacare-sys/Autonomy",
-     "path": "ops/integrity/verdict.json",
-     "at": "2026-10-14T13:54:50.329Z"
-    }
-   ],
-   "data": {
-    "schema": "integrity-guard/2",
-    "at": "2026-10-14T13:54:50.329Z",
-    "overall": "PASS",
-    "summary": {
-     "sources": 11,
-     "verified": 6,
-     "findings": 9,
-     "counts": {
-      "FLAG": 9
-     }
-    },
-    "provenance": {
-     "runId": "38575830199",
-     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38575830199",
-     "sha": "36ac4857e24ceea7a3d32e25359119878d771d8f"
-    },
-    "verified": [
-     {
-      "where": "self:ops/integrity/verdict.json",
-      "law": "verified",
-      "detail": "run=38562461034 conc=success repo=Autonomy"
-     },
-     {
-      "where": "FleetHQ:receipts/office-ci/verdict.json",
-      "law": "verified",
-      "detail": "run=38568326076 conc=success repo=FleetHQ"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38568326076 conc=success repo=FleetHQ"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38557298971 conc=success repo=Autonomy"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38568387812 conc=success repo=Autonomy"
-     },
-     {
-      "where": "Domain:office/data.json",
-      "law": "verified",
-      "detail": "run=38561487817 conc=success repo=Autonomy"
-     }
-    ],
-    "findings": [
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/wallet/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/fleet/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/grid/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:receipts/latest.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:ops/flow/receipt.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:state/verifier/verdict-latest.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Domain:agents/office-live.json",
-      "law": "unprovenanced",
-      "detail": "אין-טענת-run — שדרוג-מתוכנן ל-lane: office lane"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:ops/decision-truth/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     },
-     {
-      "level": "FLAG",
-      "where": "Sandbox:ops/integrity/verdict.json",
-      "law": "source-unreachable",
-      "detail": "raw 404 — דגל-כנה, לא-מילוי"
-     }
-    ]
-   }
-  },
   "flowMap": {
-   "at": "2026-10-14T14:30:08.460Z",
+   "at": "2026-10-14T15:00:08.196Z",
    "path": "ops/flow/flow-map.json",
    "source": "roshpinacare-sys/Autonomy",
    "candidates": [
@@ -955,11 +728,11 @@
     {
      "repo": "roshpinacare-sys/Autonomy",
      "path": "ops/flow/flow-map.json",
-     "at": "2026-10-14T14:13:08.259Z"
+     "at": "2026-10-14T14:35:09.468Z"
     }
    ],
    "data": {
-    "generatedAt": "2026-10-14T14:13:08.259Z",
+    "generatedAt": "2026-10-14T14:35:09.468Z",
     "owner": "roshpinacare-sys",
     "corpusFiles": [
      "roshpinacare-sys/Domain/index.html [page]",
@@ -994,6 +767,7 @@
      "roshpinacare-sys/Domain/.github/workflows/dex-grid.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/dex-router-cron.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/dex-watchdog.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/earn-audit-cron.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/econ-desk.yml [workflow]",
@@ -1026,6 +800,7 @@
      "roshpinacare-sys/Domain/.github/workflows/org-gitleaks.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/org-selftests.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/pf-artery-keeper.yml [workflow]",
+     "roshpinacare-sys/Domain/.github/workflows/press-bake.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/proof-pipeline.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/public-loops-bake.yml [workflow]",
      "roshpinacare-sys/Domain/.github/workflows/public-pulse.yml [workflow]",
@@ -1195,7 +970,7 @@
       "kind": "receipt",
       "path": "receipts/wallet/verdict.json",
       "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 0.18,
+      "ageH": 0.54,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "5c981557",
@@ -1215,10 +990,10 @@
       "kind": "receipt",
       "path": "receipts/fleet/verdict.json",
       "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 2.06,
+      "ageH": 0.1,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "9e02a033",
+      "sha": "bd65d1ec",
       "maxAgeH": 3,
       "feeds": "artery-fleet (2h)",
       "contentAt": null,
@@ -1235,7 +1010,7 @@
       "kind": "receipt",
       "path": "receipts/grid/verdict.json",
       "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 1.18,
+      "ageH": 1.54,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "bae9b4b9",
@@ -1255,14 +1030,14 @@
       "kind": "pulse",
       "path": "receipts/latest.json",
       "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 0.35,
+      "ageH": 0.34,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "36ac4857",
+      "sha": "667788b0",
       "maxAgeH": 1,
       "feeds": "sovereign.yml (~15min)",
-      "contentAt": "2026-10-14T13:51:35.819Z",
-      "contentAgeH": 0.35,
+      "contentAt": "2026-10-14T14:13:45.006Z",
+      "contentAgeH": 0.34,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1276,7 +1051,7 @@
       "kind": "lesson",
       "path": "ops/lessons/ledger.md",
       "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 0,
+      "ageH": 0.36,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "9d4eb85a",
@@ -1296,14 +1071,14 @@
       "kind": "flowmap",
       "path": "ops/flow/flow-map.json",
       "repo": "roshpinacare-sys/Autonomy",
-      "ageH": 2.65,
+      "ageH": 0.35,
       "missing": false,
       "author": "roshpinacare-sys",
-      "sha": "f11c9ee1",
+      "sha": "9ca5dd39",
       "maxAgeH": 4,
       "feeds": "artery-flow (3h)",
-      "contentAt": "2026-10-14T11:33:13.122Z",
-      "contentAgeH": 2.65,
+      "contentAt": "2026-10-14T14:13:08.259Z",
+      "contentAgeH": 0.35,
       "contentDivergence": false,
       "integration": "SELF",
       "pageConsumed": false,
@@ -1316,7 +1091,7 @@
       "kind": "receipt",
       "path": "receipts/office-ci/verdict.json",
       "repo": "roshpinacare-sys/FleetHQ",
-      "ageH": 1.17,
+      "ageH": 1.53,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "f56b72bd",
@@ -1337,14 +1112,14 @@
       "kind": "state",
       "path": "office/state/office-state.json",
       "repo": "roshpinacare-sys/FleetHQ",
-      "ageH": 1.12,
+      "ageH": 1.48,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "da4680fb",
       "maxAgeH": 3,
       "feeds": "office-heartbeat (2h)",
       "contentAt": "2026-10-14T13:04:42.704Z",
-      "contentAgeH": 1.13,
+      "contentAgeH": 1.49,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1358,7 +1133,7 @@
       "kind": "digest",
       "path": "digest.json",
       "repo": "roshpinacare-sys/FleetHQ",
-      "ageH": 1.12,
+      "ageH": 1.49,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "0d6c9552",
@@ -1381,14 +1156,14 @@
       "kind": "book",
       "path": "office/data.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0,
+      "ageH": 0.36,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "d1fb7ebc",
       "maxAgeH": 1,
       "feeds": "office-pulse (20min)",
       "contentAt": "2026-10-14T14:12:28.845Z",
-      "contentAgeH": 0,
+      "contentAgeH": 0.36,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1409,14 +1184,14 @@
       "kind": "book",
       "path": "agents/office-live.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.24,
+      "ageH": 0.6,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "2cd48eaf",
       "maxAgeH": 3,
       "feeds": "office-artery (2h)",
       "contentAt": "2026-10-14T13:58:16.580Z",
-      "contentAgeH": 0.24,
+      "contentAgeH": 0.6,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1434,14 +1209,14 @@
       "kind": "book",
       "path": "dex/office-feed.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 27.09,
+      "ageH": 27.45,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "cb31c6f8",
       "maxAgeH": 26,
       "feeds": "office-feed (daily)",
       "contentAt": "2026-10-13T11:07:02.709Z",
-      "contentAgeH": 27.09,
+      "contentAgeH": 27.45,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1457,14 +1232,14 @@
       "kind": "book",
       "path": "status.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.98,
+      "ageH": 1.34,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "26655055",
       "maxAgeH": 30,
       "feeds": "pages build",
       "contentAt": "2026-10-14T13:12:31.763Z",
-      "contentAgeH": 1,
+      "contentAgeH": 1.36,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1486,14 +1261,14 @@
       "kind": "book",
       "path": "marketing/adsmarket.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 48.67,
+      "ageH": 49.04,
       "missing": false,
       "author": "adsmarket-panel-bot",
       "sha": "d74bde6a",
       "maxAgeH": 168,
       "feeds": "adsmarket-panel (weekly Mon 05:41 UTC + dispatch)",
       "contentAt": "2026-10-12T13:32:02.155Z",
-      "contentAgeH": 48.67,
+      "contentAgeH": 49.04,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1508,7 +1283,7 @@
       "kind": "book",
       "path": "dex/agent.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 45.05,
+      "ageH": 45.41,
       "missing": false,
       "author": "Z User",
       "sha": "0d8da6df",
@@ -1528,7 +1303,7 @@
       "kind": "book",
       "path": "dex/bridge.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 589.79,
+      "ageH": 590.16,
       "missing": false,
       "author": "Z User",
       "sha": "9365852e",
@@ -1548,14 +1323,14 @@
       "kind": "book",
       "path": "dex/credits.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.75,
+      "ageH": 1.11,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "8c19cdf3",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T13:24:30.904Z",
-      "contentAgeH": 0.8,
+      "contentAgeH": 1.16,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1570,7 +1345,7 @@
       "kind": "book",
       "path": "dex/deposits.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 5.16,
+      "ageH": 5.52,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "a5518ad0",
@@ -1594,7 +1369,7 @@
       "kind": "book",
       "path": "dex/fleet.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 589.79,
+      "ageH": 590.16,
       "missing": false,
       "author": "Z User",
       "sha": "9365852e",
@@ -1614,14 +1389,14 @@
       "kind": "book",
       "path": "dex/giants.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.75,
+      "ageH": 1.11,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "8c19cdf3",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T11:44:54.544Z",
-      "contentAgeH": 2.46,
+      "contentAgeH": 2.82,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1634,14 +1409,14 @@
       "kind": "book",
       "path": "dex/grid.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 3.56,
+      "ageH": 3.92,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "666256cd",
       "maxAgeH": 26,
       "feeds": "discovered",
       "contentAt": "2026-10-14T08:55:30.959Z",
-      "contentAgeH": 5.28,
+      "contentAgeH": 5.64,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1661,14 +1436,14 @@
       "kind": "book",
       "path": "dex/honest-econ.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.75,
+      "ageH": 1.11,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "8c19cdf3",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T11:44:54.970Z",
-      "contentAgeH": 2.46,
+      "contentAgeH": 2.82,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1681,7 +1456,7 @@
       "kind": "book",
       "path": "dex/mirror-stub.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 589.79,
+      "ageH": 590.16,
       "missing": false,
       "author": "Z User",
       "sha": "9365852e",
@@ -1701,14 +1476,14 @@
       "kind": "book",
       "path": "dex/money.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 5.16,
+      "ageH": 5.52,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "a5518ad0",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T07:55:23.742Z",
-      "contentAgeH": 6.28,
+      "contentAgeH": 6.65,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1725,7 +1500,7 @@
       "kind": "book",
       "path": "dex/onramp.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.75,
+      "ageH": 1.11,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "8c19cdf3",
@@ -1746,14 +1521,14 @@
       "kind": "book",
       "path": "dex/pegout-queue.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 69.98,
+      "ageH": 70.34,
       "missing": false,
       "author": "zai-agent",
       "sha": "a385eb5f",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-04T14:23:10.883Z",
-      "contentAgeH": 239.82,
+      "contentAgeH": 240.18,
       "contentDivergence": true,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1769,14 +1544,14 @@
       "kind": "book",
       "path": "dex/pnl-desk.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 19.67,
+      "ageH": 20.04,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "b4f544aa",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-13T12:54:32.652Z",
-      "contentAgeH": 25.3,
+      "contentAgeH": 25.66,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1791,7 +1566,7 @@
       "kind": "book",
       "path": "dex/portfolio.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.75,
+      "ageH": 1.11,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "8c19cdf3",
@@ -1812,7 +1587,7 @@
       "kind": "book",
       "path": "dex/redeem-requests.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 241.04,
+      "ageH": 241.4,
       "missing": false,
       "author": "Z User",
       "sha": "ecd6a77b",
@@ -1832,7 +1607,7 @@
       "kind": "book",
       "path": "dex/relay.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.75,
+      "ageH": 1.11,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "8c19cdf3",
@@ -1853,7 +1628,7 @@
       "kind": "book",
       "path": "dex/showcase.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.75,
+      "ageH": 1.11,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "8c19cdf3",
@@ -1874,14 +1649,14 @@
       "kind": "book",
       "path": "dex/state.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.75,
+      "ageH": 1.11,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "8c19cdf3",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T13:24:30.904Z",
-      "contentAgeH": 0.8,
+      "contentAgeH": 1.16,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1896,14 +1671,14 @@
       "kind": "book",
       "path": "dex/watch.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 5.16,
+      "ageH": 5.52,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "a5518ad0",
       "maxAgeH": 26,
       "feeds": "discovered",
       "contentAt": "2026-10-14T07:50:20.238Z",
-      "contentAgeH": 6.37,
+      "contentAgeH": 6.73,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1918,14 +1693,14 @@
       "kind": "book",
       "path": "dex/world.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 0.75,
+      "ageH": 1.11,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "8c19cdf3",
       "maxAgeH": 26,
       "feeds": "discovered",
       "contentAt": "2026-10-14T13:24:30.915Z",
-      "contentAgeH": 0.8,
+      "contentAgeH": 1.16,
       "contentDivergence": false,
       "integration": "INTEGRATED",
       "pageConsumed": true,
@@ -1941,14 +1716,14 @@
       "kind": "book",
       "path": "dex/xc-intents.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 13.96,
+      "ageH": 14.33,
       "missing": false,
       "author": "roshpinacare-sys",
       "sha": "552f81bf",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-14T00:14:36.998Z",
-      "contentAgeH": 13.96,
+      "contentAgeH": 14.33,
       "contentDivergence": false,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1961,14 +1736,14 @@
       "kind": "book",
       "path": "dex/xc-ops.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 69.98,
+      "ageH": 70.34,
       "missing": false,
       "author": "zai-agent",
       "sha": "a385eb5f",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-04T14:24:37.881Z",
-      "contentAgeH": 239.8,
+      "contentAgeH": 240.16,
       "contentDivergence": true,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -1981,14 +1756,14 @@
       "kind": "book",
       "path": "dex/xc-requests.json",
       "repo": "roshpinacare-sys/Domain",
-      "ageH": 69.98,
+      "ageH": 70.34,
       "missing": false,
       "author": "zai-agent",
       "sha": "a385eb5f",
       "maxAgeH": 48,
       "feeds": "discovered",
       "contentAt": "2026-10-04T14:21:46.235Z",
-      "contentAgeH": 239.84,
+      "contentAgeH": 240.21,
       "contentDivergence": true,
       "integration": "PLANE-INTERNAL",
       "pageConsumed": false,
@@ -2025,721 +1800,721 @@
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/Domain:dex/world.json",
       "evidenceLine": 413,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 414,
-      "nodeAgeH": 3.5574944444444445,
+      "nodeAgeH": 3.920518611111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/Domain:dex/office-feed.json",
       "evidenceLine": 415,
-      "nodeAgeH": 27.088605555555556,
+      "nodeAgeH": 27.451629722222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/Domain:dex/deposits.json",
       "evidenceLine": 757,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/FleetHQ:office/state/office-state.json",
       "evidenceLine": 844,
-      "nodeAgeH": 1.1183277777777778,
+      "nodeAgeH": 1.4813519444444445,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 412,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/FleetHQ:digest.json",
       "evidenceLine": 519,
-      "nodeAgeH": 1.1241611111111112,
+      "nodeAgeH": 1.4871852777777779,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 416,
-      "nodeAgeH": -0.0011166666666666666,
+      "nodeAgeH": 0.3619075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/index.html (page)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 597,
-      "nodeAgeH": 0.23582777777777778,
+      "nodeAgeH": 0.5988519444444445,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 259,
-      "nodeAgeH": -0.0011166666666666666,
+      "nodeAgeH": 0.3619075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
       "to": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
       "evidenceLine": 118,
-      "nodeAgeH": 1.1697166666666667,
+      "nodeAgeH": 1.5327408333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
       "to": "roshpinacare-sys/Autonomy:receipts/wallet/verdict.json",
       "evidenceLine": 159,
-      "nodeAgeH": 0.17888333333333334,
+      "nodeAgeH": 0.5419075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
       "to": "roshpinacare-sys/Autonomy:receipts/grid/verdict.json",
       "evidenceLine": 160,
-      "nodeAgeH": 1.1797166666666667,
+      "nodeAgeH": 1.5427408333333332,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
       "to": "roshpinacare-sys/Autonomy:receipts/fleet/verdict.json",
       "evidenceLine": 161,
-      "nodeAgeH": 2.06305,
+      "nodeAgeH": 0.1044075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
       "to": "roshpinacare-sys/Autonomy:receipts/latest.json",
       "evidenceLine": 162,
-      "nodeAgeH": 0.3469388888888889,
+      "nodeAgeH": 0.3405186111111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/office-feed.json",
       "evidenceLine": 7,
-      "nodeAgeH": 27.088605555555556,
+      "nodeAgeH": 27.451629722222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
       "to": "roshpinacare-sys/FleetHQ:digest.json",
       "evidenceLine": 42,
-      "nodeAgeH": 1.1241611111111112,
+      "nodeAgeH": 1.4871852777777779,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-artery.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 68,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/office-artery.mjs (agent)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 22,
-      "nodeAgeH": 0.23582777777777778,
+      "nodeAgeH": 0.5988519444444445,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:dex/office-feed.json",
       "evidenceLine": 109,
-      "nodeAgeH": 27.088605555555556,
+      "nodeAgeH": 27.451629722222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:dex/bridge.json",
       "evidenceLine": 150,
-      "nodeAgeH": 589.7944388888889,
+      "nodeAgeH": 590.1574630555556,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:dex/fleet.json",
       "evidenceLine": 150,
-      "nodeAgeH": 589.7944388888889,
+      "nodeAgeH": 590.1574630555556,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:dex/relay.json",
       "evidenceLine": 150,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:dex/onramp.json",
       "evidenceLine": 150,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:dex/showcase.json",
       "evidenceLine": 151,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:dex/redeem-requests.json",
       "evidenceLine": 151,
-      "nodeAgeH": 241.0394388888889,
+      "nodeAgeH": 241.40246305555556,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:dex/mirror-stub.json",
       "evidenceLine": 151,
-      "nodeAgeH": 589.7944388888889,
+      "nodeAgeH": 590.1574630555556,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/FleetHQ:receipts/office-ci/verdict.json",
       "evidenceLine": 95,
-      "nodeAgeH": 1.1697166666666667,
+      "nodeAgeH": 1.5327408333333334,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 107,
-      "nodeAgeH": -0.0011166666666666666,
+      "nodeAgeH": 0.3619075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 108,
-      "nodeAgeH": 0.23582777777777778,
+      "nodeAgeH": 0.5988519444444445,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Autonomy:ops/lessons/ledger.md",
       "evidenceLine": 197,
-      "nodeAgeH": -0.0016722222222222223,
+      "nodeAgeH": 0.36135194444444446,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Autonomy:ops/flow/flow-map.json",
       "evidenceLine": 125,
-      "nodeAgeH": 2.6533277777777777,
+      "nodeAgeH": 0.3510741666666667,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "to": "roshpinacare-sys/Autonomy:receipts/latest.json",
       "evidenceLine": 64,
-      "nodeAgeH": 0.3469388888888889,
+      "nodeAgeH": 0.3405186111111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/marketing/adsmarket.html (page)",
       "to": "roshpinacare-sys/Domain:marketing/adsmarket.json",
       "evidenceLine": 46,
-      "nodeAgeH": 48.67305,
+      "nodeAgeH": 49.036074166666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/adsmarket-panel.yml (workflow)",
       "to": "roshpinacare-sys/Domain:marketing/adsmarket.json",
       "evidenceLine": 42,
-      "nodeAgeH": 48.67305,
+      "nodeAgeH": 49.036074166666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 66,
-      "nodeAgeH": 3.5574944444444445,
+      "nodeAgeH": 3.920518611111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/world.json",
       "evidenceLine": 66,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/state.json",
       "evidenceLine": 66,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/credits.json",
       "evidenceLine": 66,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/portfolio.json",
       "evidenceLine": 66,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/onramp.json",
       "evidenceLine": 66,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/showcase.json",
       "evidenceLine": 66,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/relay.json",
       "evidenceLine": 66,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/xc-intents.json",
       "evidenceLine": 47,
-      "nodeAgeH": 13.963327777777778,
+      "nodeAgeH": 14.326351944444445,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/xc-ops.json",
       "evidenceLine": 47,
-      "nodeAgeH": 69.97916111111111,
+      "nodeAgeH": 70.34218527777777,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/xc-requests.json",
       "evidenceLine": 47,
-      "nodeAgeH": 69.97916111111111,
+      "nodeAgeH": 70.34218527777777,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
       "evidenceLine": 47,
-      "nodeAgeH": 69.97916111111111,
+      "nodeAgeH": 70.34218527777777,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/grid-sentinel.yml (workflow)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 4,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/pnl-desk.json",
       "evidenceLine": 39,
-      "nodeAgeH": 19.67277222222222,
+      "nodeAgeH": 20.03579638888889,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 39,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/deposits.json",
       "evidenceLine": 39,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/mirror-from-console.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/watch.json",
       "evidenceLine": 39,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/network-census.yml (workflow)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 5,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-artery.yml (workflow)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 9,
-      "nodeAgeH": 0.23582777777777778,
+      "nodeAgeH": 0.5988519444444445,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow)",
       "to": "roshpinacare-sys/Domain:dex/office-feed.json",
       "evidenceLine": 27,
-      "nodeAgeH": 27.088605555555556,
+      "nodeAgeH": 27.451629722222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-orders-twin.yml (workflow)",
       "to": "roshpinacare-sys/FleetHQ:digest.json",
       "evidenceLine": 86,
-      "nodeAgeH": 1.1241611111111112,
+      "nodeAgeH": 1.4871852777777779,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-orders-twin.yml (workflow)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 87,
-      "nodeAgeH": -0.0011166666666666666,
+      "nodeAgeH": 0.3619075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-orders-twin.yml (workflow)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 88,
-      "nodeAgeH": 0.23582777777777778,
+      "nodeAgeH": 0.5988519444444445,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-pulse-twin.yml (workflow)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 87,
-      "nodeAgeH": -0.0011166666666666666,
+      "nodeAgeH": 0.3619075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/office-pulse.yml (workflow)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 49,
-      "nodeAgeH": -0.0011166666666666666,
+      "nodeAgeH": 0.3619075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/.github/workflows/weave-mirror.yml (workflow)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 35,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/adsmarket-panel.cjs (agent)",
       "to": "roshpinacare-sys/Domain:marketing/adsmarket.json",
       "evidenceLine": 72,
-      "nodeAgeH": 48.67305,
+      "nodeAgeH": 49.036074166666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/content-campaign.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 169,
-      "nodeAgeH": 3.5574944444444445,
+      "nodeAgeH": 3.920518611111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/daily-digest.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 88,
-      "nodeAgeH": 3.5574944444444445,
+      "nodeAgeH": 3.920518611111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
       "evidenceLine": 17,
-      "nodeAgeH": 69.97916111111111,
+      "nodeAgeH": 70.34218527777777,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/credits.json",
       "evidenceLine": 172,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 4,
-      "nodeAgeH": 3.5574944444444445,
+      "nodeAgeH": 3.920518611111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/world.json",
       "evidenceLine": 4,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/state.json",
       "evidenceLine": 4,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/credits.json",
       "evidenceLine": 4,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/portfolio.json",
       "evidenceLine": 5,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/giants.json",
       "evidenceLine": 44,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/honest-econ.json",
       "evidenceLine": 44,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/state.json",
       "evidenceLine": 14,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/watch.json",
       "evidenceLine": 318,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-router.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/agent.json",
       "evidenceLine": 332,
-      "nodeAgeH": 45.048605555555554,
+      "nodeAgeH": 45.41162972222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/dex-xc.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
       "evidenceLine": 32,
-      "nodeAgeH": 69.97916111111111,
+      "nodeAgeH": 70.34218527777777,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/fleet-heartbeat.cjs (agent)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 62,
-      "nodeAgeH": -0.0011166666666666666,
+      "nodeAgeH": 0.3619075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/grid-guard.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 17,
-      "nodeAgeH": 3.5574944444444445,
+      "nodeAgeH": 3.920518611111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/grid-sentinel.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 20,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/integrity-twin.mjs (agent)",
       "to": "roshpinacare-sys/FleetHQ:digest.json",
       "evidenceLine": 21,
-      "nodeAgeH": 1.1241611111111112,
+      "nodeAgeH": 1.4871852777777779,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/integrity-twin.mjs (agent)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 27,
-      "nodeAgeH": -0.0011166666666666666,
+      "nodeAgeH": 0.3619075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/integrity-twin.mjs (agent)",
       "to": "roshpinacare-sys/Domain:agents/office-live.json",
       "evidenceLine": 28,
-      "nodeAgeH": 0.23582777777777778,
+      "nodeAgeH": 0.5988519444444445,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/integrity-twin.mjs (agent)",
       "to": "roshpinacare-sys/FleetHQ:office/state/office-state.json",
       "evidenceLine": 29,
-      "nodeAgeH": 1.1183277777777778,
+      "nodeAgeH": 1.4813519444444445,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/market-exec.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pnl-desk.json",
       "evidenceLine": 387,
-      "nodeAgeH": 19.67277222222222,
+      "nodeAgeH": 20.03579638888889,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 34,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pnl-desk.json",
       "evidenceLine": 35,
-      "nodeAgeH": 19.67277222222222,
+      "nodeAgeH": 20.03579638888889,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/deposits.json",
       "evidenceLine": 36,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/mirror-from-console.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/watch.json",
       "evidenceLine": 37,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 28,
-      "nodeAgeH": 3.5574944444444445,
+      "nodeAgeH": 3.920518611111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 138,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/moment-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/deposits.json",
       "evidenceLine": 139,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/money-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 15,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/money-watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/world.json",
       "evidenceLine": 141,
-      "nodeAgeH": 0.74555,
+      "nodeAgeH": 1.1085741666666666,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/network-census.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 8,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/pegout-queue.json",
       "evidenceLine": 7,
-      "nodeAgeH": 69.97916111111111,
+      "nodeAgeH": 70.34218527777777,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/proof-pipeline.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/grid.json",
       "evidenceLine": 96,
-      "nodeAgeH": 3.5574944444444445,
+      "nodeAgeH": 3.920518611111111,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/redact-telemetry.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 118,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/tick-keeper.cjs (agent)",
       "to": "roshpinacare-sys/Domain:office/data.json",
       "evidenceLine": 56,
-      "nodeAgeH": -0.0011166666666666666,
+      "nodeAgeH": 0.3619075,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/money.json",
       "evidenceLine": 66,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:dex/deposits.json",
       "evidenceLine": 70,
-      "nodeAgeH": 5.157216666666667,
+      "nodeAgeH": 5.520240833333333,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/watch.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 126,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      },
      {
       "from": "roshpinacare-sys/Domain/agents/weave-mirror.mjs (agent)",
       "to": "roshpinacare-sys/Domain:status.json",
       "evidenceLine": 31,
-      "nodeAgeH": 0.9786055555555555,
+      "nodeAgeH": 1.3416297222222222,
       "nodeMissing": false
      }
     ],
@@ -2749,77 +2524,77 @@
      {
       "consumer": "roshpinacare-sys/Domain/index.html (page)",
       "target": "roshpinacare-sys/Domain:dex/office-feed.json",
-      "ageH": 27.1
+      "ageH": 27.5
      },
      {
       "consumer": "roshpinacare-sys/Domain/agents/office-pulse.cjs (agent)",
       "target": "roshpinacare-sys/Autonomy:receipts/grid/verdict.json",
-      "ageH": 1.2
+      "ageH": 1.5
      },
      {
       "consumer": "roshpinacare-sys/Domain/agents/office-feed.mjs (agent)",
       "target": "roshpinacare-sys/Domain:dex/office-feed.json",
-      "ageH": 27.1
+      "ageH": 27.5
      },
      {
       "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "target": "roshpinacare-sys/Domain:dex/office-feed.json",
-      "ageH": 27.1
+      "ageH": 27.5
      },
      {
       "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "target": "roshpinacare-sys/Domain:dex/bridge.json",
-      "ageH": 589.8
+      "ageH": 590.2
      },
      {
       "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "target": "roshpinacare-sys/Domain:dex/fleet.json",
-      "ageH": 589.8
+      "ageH": 590.2
      },
      {
       "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "target": "roshpinacare-sys/Domain:dex/redeem-requests.json",
-      "ageH": 241
+      "ageH": 241.4
      },
      {
       "consumer": "roshpinacare-sys/Autonomy/engine/scribe.mjs (learner)",
       "target": "roshpinacare-sys/Domain:dex/mirror-stub.json",
-      "ageH": 589.8
+      "ageH": 590.2
      },
      {
       "consumer": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "target": "roshpinacare-sys/Domain:dex/xc-ops.json",
-      "ageH": 70
+      "ageH": 70.3
      },
      {
       "consumer": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "target": "roshpinacare-sys/Domain:dex/xc-requests.json",
-      "ageH": 70
+      "ageH": 70.3
      },
      {
       "consumer": "roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow)",
       "target": "roshpinacare-sys/Domain:dex/pegout-queue.json",
-      "ageH": 70
+      "ageH": 70.3
      },
      {
       "consumer": "roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow)",
       "target": "roshpinacare-sys/Domain:dex/office-feed.json",
-      "ageH": 27.1
+      "ageH": 27.5
      },
      {
       "consumer": "roshpinacare-sys/Domain/agents/dex-core.cjs (agent)",
       "target": "roshpinacare-sys/Domain:dex/pegout-queue.json",
-      "ageH": 70
+      "ageH": 70.3
      },
      {
       "consumer": "roshpinacare-sys/Domain/agents/dex-xc.cjs (agent)",
       "target": "roshpinacare-sys/Domain:dex/pegout-queue.json",
-      "ageH": 70
+      "ageH": 70.3
      },
      {
       "consumer": "roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent)",
       "target": "roshpinacare-sys/Domain:dex/pegout-queue.json",
-      "ageH": 70
+      "ageH": 70.3
      }
     ],
     "summary": {
@@ -2836,77 +2611,77 @@
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=27.1h > 26h (consumer: roshpinacare-sys/Domain/index.html (page))"
+      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=27.5h > 26h (consumer: roshpinacare-sys/Domain/index.html (page))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Autonomy:receipts/grid/verdict.json age=1.2h > 1h (consumer: roshpinacare-sys/Domain/agents/office-pulse.cjs (agent))"
+      "detail": "roshpinacare-sys/Autonomy:receipts/grid/verdict.json age=1.5h > 1h (consumer: roshpinacare-sys/Domain/agents/office-pulse.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=27.1h > 26h (consumer: roshpinacare-sys/Domain/agents/office-feed.mjs (agent))"
+      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=27.5h > 26h (consumer: roshpinacare-sys/Domain/agents/office-feed.mjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=27.1h > 26h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=27.5h > 26h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/bridge.json age=589.8h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Domain:dex/bridge.json age=590.2h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/fleet.json age=589.8h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Domain:dex/fleet.json age=590.2h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/redeem-requests.json age=241.0h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Domain:dex/redeem-requests.json age=241.4h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/mirror-stub.json age=589.8h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
+      "detail": "roshpinacare-sys/Domain:dex/mirror-stub.json age=590.2h > 48h (consumer: roshpinacare-sys/Autonomy/engine/scribe.mjs (learner))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json age=70.0h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
+      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json age=70.3h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json age=70.0h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
+      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json age=70.3h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=70.0h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=70.3h > 48h (consumer: roshpinacare-sys/Domain/.github/workflows/dex-xc-cron.yml (workflow))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=27.1h > 26h (consumer: roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow))"
+      "detail": "roshpinacare-sys/Domain:dex/office-feed.json age=27.5h > 26h (consumer: roshpinacare-sys/Domain/.github/workflows/office-feed.yml (workflow))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=70.0h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-core.cjs (agent))"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=70.3h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-core.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=70.0h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-xc.cjs (agent))"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=70.3h > 48h (consumer: roshpinacare-sys/Domain/agents/dex-xc.cjs (agent))"
      },
      {
       "law": "law-feed-fresh",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=70.0h > 48h (consumer: roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent))"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json age=70.3h > 48h (consumer: roshpinacare-sys/Domain/agents/pegout-hand.cjs (agent))"
      },
      {
       "law": "law-plane-internal",
@@ -3016,23 +2791,250 @@
      {
       "law": "law-content-divergence",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json commit-age=70.0h but content-age=239.8h — fresh commits of stale content"
+      "detail": "roshpinacare-sys/Domain:dex/pegout-queue.json commit-age=70.3h but content-age=240.2h — fresh commits of stale content"
      },
      {
       "law": "law-content-divergence",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json commit-age=70.0h but content-age=239.8h — fresh commits of stale content"
+      "detail": "roshpinacare-sys/Domain:dex/xc-ops.json commit-age=70.3h but content-age=240.2h — fresh commits of stale content"
      },
      {
       "law": "law-content-divergence",
       "severity": "flag",
-      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json commit-age=70.0h but content-age=239.8h — fresh commits of stale content"
+      "detail": "roshpinacare-sys/Domain:dex/xc-requests.json commit-age=70.3h but content-age=240.2h — fresh commits of stale content"
      }
     ]
    }
   },
+  "decisionTruth": {
+   "at": "2026-10-14T15:00:08.196Z",
+   "path": "ops/decision-truth/verdict.json",
+   "source": "roshpinacare-sys/Autonomy",
+   "candidates": [
+    {
+     "repo": "roshpinacare-sys/Sandbox",
+     "path": "ops/decision-truth/verdict.json",
+     "at": "2026-10-12T10:56:07.000Z"
+    },
+    {
+     "repo": "roshpinacare-sys/Autonomy",
+     "path": "ops/decision-truth/verdict.json",
+     "at": "2026-10-14T14:39:42.000Z"
+    }
+   ],
+   "data": {
+    "schema": "sandbox/decision-truth/1",
+    "generatedAt": "2026-10-14T14:39:42Z",
+    "durationMs": 2278,
+    "overall": "PASS_WITH_ALERTS",
+    "charter": "ops/sovereign/DECIDER/CHARTER.md",
+    "law": "H: every ENFORCED decision must re-measure its evidence independently AND show a measured consumer; stale evidence = STALE-TRUTH; no consumer = UNEXECUTED; source down = UNVERIFIABLE (never forged)",
+    "decider": {
+     "generatedAt": "2026-10-14T12:51:04Z",
+     "stateAgeMin": 109,
+     "source": "local-checkout",
+     "heartbeat": {
+      "workflow": "sovereign-decider.yml",
+      "lastRunAt": "2026-10-14T12:50:47Z",
+      "ageS": 6534,
+      "stalled": true
+     }
+    },
+    "measures": {
+     "chain": {
+      "head": 110435243,
+      "treasuryNetSp": 2810.7,
+      "mult": 0.0006203181883387332
+     },
+     "beaconPulse": {
+      "treasuryNetSp": 2810.7
+     },
+     "faultedAgentsNow": [],
+     "flowSummary": {
+      "nodes": 37,
+      "edges": 103,
+      "orphans": 0,
+      "ghosts": null
+     },
+     "workOrderIds": [
+      "WO-Sandbox-reds"
+     ]
+    },
+    "decisions": [
+     {
+      "id": "D0-owner-channel",
+      "area": "הנהגה",
+      "status": "OBSERVING",
+      "decidedAt": "2026-10-14T12:51:02Z",
+      "truth": "VERIFIED",
+      "checks": [
+       {
+        "law": "decider-state-age",
+        "result": "ok",
+        "detail": "state age 109min (limit 120)"
+       }
+      ],
+      "note": "evidence re-measured independently + execution present"
+     },
+     {
+      "id": "D1-econ-treasury-floor",
+      "area": "כלכלה",
+      "status": "ENFORCED",
+      "priority": "P1",
+      "decidedAt": "2026-10-14T12:51:04Z",
+      "truth": "STALE-TRUTH",
+      "checks": [
+       {
+        "law": "policy-internal-consistency",
+        "result": "ok",
+        "detail": "interimFloors=13/13 tier-mapping=ok"
+       },
+       {
+        "law": "treasury-basis-fresh-measure",
+        "result": "ok",
+        "detail": "claimed=2810.7 fresh=2810.7 tol=1"
+       },
+       {
+        "law": "beacon-vs-fresh",
+        "result": "ok",
+        "detail": "beacon=2810.7"
+       },
+       {
+        "law": "operators-basis",
+        "result": "mismatch",
+        "detail": "[{\"op\":\"acct-09\",\"policySp\":42.9,\"freshSp\":11.9}]"
+       },
+       {
+        "law": "below-floor-list",
+        "result": "mismatch",
+        "detail": "fresh-below=[\"acct-10\",\"acct-09\",\"acct-11\",\"acct-12\",\"acct-13\"] declared=[\"acct-10\",\"acct-11\",\"acct-12\",\"acct-13\"]"
+       },
+       {
+        "law": "execution-existence",
+        "result": "ok",
+        "detail": "[{\"where\":\"sandbox:engine/fleet-yield.mjs\",\"via\":[\"operatingFloorSp\",\"interimFloorSp\",\"operatorInterimFloors\",\"D1-econ-treasury-floor\"]}]"
+       },
+       {
+        "law": "yield-engines-declared",
+        "result": "ok",
+        "detail": "dex=continue-armed (keyless engine, כבר-חי) curation=continue"
+       },
+       {
+        "law": "decider-state-age",
+        "result": "ok",
+        "detail": "state age 109min (limit 120)"
+       }
+      ],
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+     },
+     {
+      "id": "D2-eng-errors",
+      "area": "הנדסה",
+      "status": "ENFORCED",
+      "decidedAt": "2026-10-14T12:51:04Z",
+      "truth": "STALE-TRUTH",
+      "checks": [
+       {
+        "law": "routed-orders-exist",
+        "result": "unverifiable",
+        "detail": "routed=[] missing=[]"
+       },
+       {
+        "law": "orders-status-tracking",
+        "result": "ok",
+        "detail": "all routed orders carry status"
+       },
+       {
+        "law": "fleethq-reds-persist",
+        "result": "ok",
+        "detail": "failure runs in last 48h: 1 - routed WO-FleetHQ-reds subject persists (work pending)"
+       },
+       {
+        "law": "faulted-agents-fix",
+        "result": "mismatch",
+        "detail": "foreman reports zero faulted agents NOW - fix landed, world moved past the decision - RE-MEASURE"
+       },
+       {
+        "law": "decider-state-age",
+        "result": "ok",
+        "detail": "state age 109min (limit 120)"
+       }
+      ],
+      "note": "world moved past published evidence - T14 RE-MEASURE must re-decide (honest cycle)"
+     },
+     {
+      "id": "D3-flow-weave",
+      "area": "רשת",
+      "status": "ENFORCED",
+      "decidedAt": "2026-10-14T12:51:04Z",
+      "truth": "VERIFIED",
+      "checks": [
+       {
+        "law": "orphans-fresh",
+        "result": "ok",
+        "detail": "claimed=0 fresh=0"
+       },
+       {
+        "law": "ghosts-fresh",
+        "result": "ok",
+        "detail": "claimed=0 fresh=0"
+       },
+       {
+        "law": "decider-state-age",
+        "result": "ok",
+        "detail": "state age 109min (limit 120)"
+       }
+      ],
+      "note": "evidence re-measured independently + execution present"
+     },
+     {
+      "id": "D4-truth-network",
+      "area": "אימות-עצמי",
+      "status": "ENFORCED",
+      "priority": "P1",
+      "decidedAt": "2026-10-14T12:51:04Z",
+      "truth": "VERIFIED",
+      "checks": [
+       {
+        "law": "decider-state-age",
+        "result": "ok",
+        "detail": "state age 109min (limit 120)"
+       }
+      ],
+      "note": "evidence re-measured independently + execution present"
+     },
+     {
+      "id": "D5-social-standby",
+      "area": "רשת-חברתית",
+      "status": "ENFORCED",
+      "priority": "P1",
+      "decidedAt": "2026-10-14T12:51:04Z",
+      "truth": "VERIFIED",
+      "checks": [
+       {
+        "law": "decider-state-age",
+        "result": "ok",
+        "detail": "state age 109min (limit 120)"
+       }
+      ],
+      "note": "evidence re-measured independently + execution present"
+     }
+    ],
+    "provenance": {
+     "runId": "38582476304",
+     "runUrl": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/38582476304",
+     "sha": "afcad0577da00036f1cd9093481bd1985a244b26",
+     "engine": "engine/decision-truth.mjs (H-series, zai-code-3)",
+     "generatedAt": "2026-10-14T14:39:42Z"
+    },
+    "selftest": {
+     "vectors": 16,
+     "ok": true
+    }
+   }
+  },
   "research": {
-   "at": "2026-10-14T14:30:08.460Z",
+   "at": "2026-10-14T15:00:08.196Z",
    "path": "research/findings-2026-10-11.json",
    "data": {
     "schema": "saos.research.findings/1",
