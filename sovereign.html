@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ערוץ-ריבוני ישיר · הבעלים ↔ הריבונות</title>
+<meta name="description" content="הערוץ-הישיר-היחיד בין-הבעלים-לריבונות — אף-סוכן-באמצע. SAOS-SOVEREIGN-CHANNEL/1">
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --line:#2a3140; --ink:#e6edf3; --mut:#8b949e;
+    --ok:#3fb950; --warn:#d29922; --bad:#f85149; --acc:#e3b341; --sovereign:#c297ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,'Segoe UI',Arial,sans-serif;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+  a{color:var(--acc);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 16px}
+  header{border-bottom:1px solid var(--line);padding:20px 0 14px;background:linear-gradient(180deg,#141a24,var(--bg))}
+  h1{font-size:1.45rem;margin:0 0 4px}
+  h1 .crown{color:var(--sovereign)}
+  .sub{color:var(--mut);font-size:.92rem;margin:0}
+  .lawline{display:inline-block;margin-top:8px;font-size:.78rem;color:var(--sovereign);border:1px solid var(--sovereign);border-radius:99px;padding:2px 12px;opacity:.9}
+  main{flex:1;padding:18px 0 30px}
+  .grid{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:820px){.grid.two{grid-template-columns:1fr 1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .panel h2{font-size:1.02rem;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+  .badge{font-size:.7rem;padding:2px 10px;border-radius:99px;border:1px solid var(--line);color:var(--mut);white-space:nowrap}
+  .badge.open{color:var(--warn);border-color:var(--warn)}
+  .badge.ok{color:var(--ok);border-color:var(--ok)}
+  .badge.active{color:var(--sovereign);border-color:var(--sovereign)}
+  .badge.err{color:var(--bad);border-color:var(--bad)}
+  .card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;background:#11161d}
+  .card .meta{color:var(--mut);font-size:.75rem;display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:6px}
+  .card .need{font-size:.95rem;white-space:pre-wrap}
+  .card ul{margin:6px 0 0;padding-inline-start:18px;color:var(--ink);font-size:.88rem}
+  .card .ev{margin-top:8px;font-size:.75rem;color:var(--mut)}
+  .card .ev a{margin-inline-end:10px}
+  .state{display:flex;flex-wrap:wrap;gap:10px}
+  .tile{flex:1 1 150px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#11161d;min-width:140px}
+  .tile .k{color:var(--mut);font-size:.72rem;margin-bottom:2px}
+  .tile .v{font-size:1.05rem;font-weight:600}
+  .v.ok{color:var(--ok)} .v.warn{color:var(--warn)} .v.bad{color:var(--bad)} .v.mut{color:var(--mut)}
+  textarea{width:100%;min-height:110px;background:#0b0f14;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px;font-family:inherit;font-size:.92rem;resize:vertical}
+  input[type=text]{width:100%;background:#0b0f14;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:9px 10px;font-family:inherit;font-size:.92rem}
+  label{display:block;color:var(--mut);font-size:.8rem;margin:10px 0 4px}
+  .btn{display:inline-block;background:var(--sovereign);color:#14101f;border:none;border-radius:10px;padding:10px 18px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;min-height:44px}
+  .btn.ghost{background:transparent;color:var(--acc);border:1px solid var(--line)}
+  .btn+.btn{margin-inline-start:8px}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  pre.out{background:#0b0f14;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.78rem;direction:ltr;text-align:left;overflow-x:auto;white-space:pre-wrap;word-break:break-all;max-height:180px;overflow-y:auto}
+  .note{color:var(--mut);font-size:.78rem;margin-top:6px}
+  .honest{border:1px dashed var(--warn);border-radius:10px;padding:10px 12px;color:var(--warn);font-size:.82rem;margin-top:10px}
+  ol.laws{margin:0;padding-inline-start:20px;font-size:.9rem}
+  ol.laws li{margin-bottom:6px}
+  footer{border-top:1px solid var(--line);margin-top:auto;padding:14px 0 18px;color:var(--mut);font-size:.78rem}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;align-items:center}
+  @supports(padding:max(0px)){footer{padding-bottom:max(18px,env(safe-area-inset-bottom))}}
+  .streamwrap{max-height:420px;overflow-y:auto}
+  .streamwrap::-webkit-scrollbar{width:8px}
+  .streamwrap::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1><span class="crown">♛</span> ערוץ-ריבוני ישיר · הבעלים <span style="color:var(--mut)">↔</span> הריבונות</h1>
+    <p class="sub">הערוץ-היחיד-החוקי בין-הבעלים-לריבונות. <strong style="color:var(--sovereign)">אף-סוכן-באמצע.</strong> הריבונות-היא-המפעילה — מממנת-את-עצמה-ממה-שיש.</p>
+    <span class="lawline">SAOS-SOVEREIGN-CHANNEL/1 · R344 · DECISIONS D-#20</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid two" style="margin-bottom:16px">
+    <section class="panel" aria-labelledby="st-h">
+      <h2 id="st-h">מצב-הריבונות — חי <span class="badge" id="st-badge">טוען…</span></h2>
+      <div class="state" id="state-tiles">
+        <div class="tile"><div class="k">כלכלה</div><div class="v mut">נמדד…</div></div>
+        <div class="tile"><div class="k">עורקי-הכנסה</div><div class="v mut">נמדד…</div></div>
+        <div class="tile"><div class="k">פערי-פדיון-פתוחים</div><div class="v mut">נמדד…</div></div>
+        <div class="tile"><div class="k">דופק-רשת</div><div class="v mut">נמדד…</div></div>
+      </div>
+      <p class="note">נקרא-מ-state/network.json (הדופק-הציבורי). מספרים-מהגיט-בלבד — לעולם-לא-מומצאים.</p>
+    </section>
+    <section class="panel" aria-labelledby="law-h">
+      <h2 id="law-h">חוקי-הערוץ</h2>
+      <ol class="laws">
+        <li><strong>זה-הערוץ-היחיד</strong> בין-הבעלים-לריבונות — פניית-סוכן-לבעלים-מחוץ-לזרם = <strong>בטלה</strong>.</li>
+        <li><strong>הריבונות-היא-המפעילה</strong>: אפס-כסף-מפעיל, אפס-פעולות-מפעיל, אפס-תלות. הבעלים-חייב-כלום.</li>
+        <li><strong>הבעלים מצווה כאן</strong> (directives) — כל-הוראה = חוק-בנחיתה-על-הגיט.</li>
+        <li><strong>הריבונות מבקשת כאן</strong> (requests) — רק-שערי-סמכות-בעלים (דו-מפתחות/custody). <strong>אף-בקשת-מימון-לעולם-לא.</strong></li>
+        <li><strong>git = הזיכרון-היחיד</strong> — הזרמים-חיים-בגיט, לא-בסוכנים. הסוכנים-מתים; הערוץ-נשאר.</li>
+      </ol>
+      <p class="note">הפרוטוקול המלא: <a href="https://github.com/roshpinacare-sys/Pulse/blob/main/state/sovereign-channel/PROTOCOL.md">state/sovereign-channel/PROTOCOL.md</a></p>
+    </section>
+  </div>
+
+  <div class="grid two">
+    <section class="panel" aria-labelledby="req-h">
+      <h2 id="req-h">👑 מה-הריבונות-מבקשת <span class="badge" id="req-badge">טוען…</span></h2>
+      <div class="streamwrap" id="req-list"><div class="card"><div class="need mut" style="color:var(--mut)">קורא-מהגיט…</div></div></div>
+      <p class="note">רק-שערי-סמכות-בעלים-אמיתיים. הריבונות-ממשיכה-בלי-לחכות-לאף-תשובה (חוק-אי-ההמתנה).</p>
+    </section>
+    <section class="panel" aria-labelledby="dir-h">
+      <h2 id="dir-h">📜 מה-הבעלים-מצווה <span class="badge" id="dir-badge">טוען…</span></h2>
+      <div class="streamwrap" id="dir-list"><div class="card"><div class="need" style="color:var(--mut)">קורא-מהגיט…</div></div></div>
+      <p class="note">append-only · כל-הוראה = חוק. רק-הבעלים-כותב-כאן.</p>
+    </section>
+  </div>
+
+  <section class="panel" style="margin-top:16px" aria-labelledby="comp-h">
+    <h2 id="comp-h">✍️ חיבור-הוראה-חדשה (רק-הבעלים)</h2>
+    <label for="c-title">כותרת</label>
+    <input type="text" id="c-title" placeholder="לדוגמה: סדר-העדיפויות-השבוע">
+    <label for="c-body">ההוראה — שורה-אחת-לכל-סעיף</label>
+    <textarea id="c-body" placeholder="כל-שורה = סעיף-חוק אחד.&#10;לדוגמה:&#10;הדקס-במרכז — כל-הזרימה-החדשה-על-הדקס-שלנו&#10;אפס-המתנה-לבעלים — הריבונות-ממשיכה-עצמאית"></textarea>
+    <div style="margin-top:12px">
+      <button class="btn" id="c-gen">צור-שורת-חוק</button>
+      <button class="btn ghost" id="c-copy" disabled>העתק</button>
+      <a class="btn ghost" id="c-open" style="display:none" href="https://github.dev/roshpinacare-sys/Pulse/blob/main/state/sovereign-channel/directives.jsonl" target="_blank" rel="noopener">פתח-בעורך-וקומיט ↗</a>
+    </div>
+    <pre class="out" id="c-out" hidden></pre>
+    <p class="note">הזרימה: צור-שורה → העתק → פתח-את-הקובץ-בעורך-הגיט (github.dev) → הדבק-שורה-חדשה-בסוף → קומיט-ל-main. אפס-מפתחות-בדף-הזה; הקומיט-נעשה-בזהות-הבעלים-בלבד.</p>
+    <div class="honest" hidden id="c-warn"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>SAOS · ערוץ-ריבוני-ישיר · הכל-חי-בגיט · אפס-סוכנים-באמצע</span>
+    <span><a href="index.html">דופק-הרשת ↗</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var BUST="?t="+Date.now();
+  var RAW="https://raw.githubusercontent.com/roshpinacare-sys/Pulse/main/";
+  function $(id){return document.getElementById(id)}
+  function badge(id,txt,cls){var b=$(id);b.textContent=txt;b.className="badge "+(cls||"")}
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+  function parseJSONL(t){
+    var out=[];
+    t.split("\n").forEach(function(line){
+      line=line.trim();
+      if(!line) return;
+      try{ out.push(JSON.parse(line)); }catch(e){ /* שורה-פגומה נשמטת כנה — לעולם לא קורסת */ }
+    });
+    return out;
+  }
+  function fetchText(url,cb){
+    var x=new XMLHttpRequest();
+    x.open("GET",url+BUST,true);
+    x.timeout=15000;
+    x.onload=function(){ cb(x.status===200?x.responseText:null, x.status); };
+    x.onerror=function(){ cb(null,0); };
+    x.ontimeout=function(){ cb(null,0); };
+    x.send();
+  }
+
+  /* מצב-הריבונות — מהדופק-החי */
+  fetchText(RAW+"state/network.json",function(t){
+    var tiles=$("state-tiles").children;
+    if(!t){ badge("st-badge","ריבונות: אין-נתוני-דופק-זמינים-כרגע","err");
+      tiles[0].querySelector(".v").textContent="—";
+      tiles[1].querySelector(".v").textContent="—";
+      tiles[2].querySelector(".v").textContent="—";
+      tiles[3].querySelector(".v").textContent="אין-קשר";
+      tiles[3].querySelector(".v").className="v bad"; return; }
+    var n; try{ n=JSON.parse(t); }catch(e){ badge("st-badge","דופק-פגום-כנה","err"); return; }
+    badge("st-badge","דופק-חי","ok");
+    var ec=(n.network&&n.network.economy)||{};
+    var g=ec.gearbox&&typeof ec.gearbox.gear==="number"?("הילוך "+ec.gearbox.gear+(ec.gearbox.gearsCount?"/"+ec.gearbox.gearsCount:"")):"—";
+    tiles[0].querySelector(".v").textContent=g;
+    var art=ec.arteries? (typeof ec.arteries.alive==="number"?ec.arteries.alive+"/" + (ec.arteries.total||"…"):"חי") : "—";
+    tiles[1].querySelector(".v").textContent=art;
+    tiles[1].querySelector(".v").className="v ok";
+    var gaps=typeof ec.gapsOpen==="number"?ec.gapsOpen:null;
+    tiles[2].querySelector(".v").textContent=gaps===null?"—":String(gaps);
+    if(gaps!==null) tiles[2].querySelector(".v").className="v "+(gaps>0?"warn":"ok");
+    tiles[3].querySelector(".v").textContent="פועל";
+    tiles[3].querySelector(".v").className="v ok";
+  });
+
+  /* זרם-הבקשות — הריבונות → הבעלים */
+  fetchText(RAW+"state/sovereign-channel/requests.jsonl",function(t){
+    var box=$("req-list");
+    if(!t){ badge("req-badge","לא-ניתן-לקרוא-כרגע — מצב-כנה","err");
+      box.innerHTML='<div class="card"><div class="need" style="color:var(--bad)">קריאת-הגיט-נכשלה (רשת/מגבלה). אין-המצאה — נסו-רענון.</div></div>'; return; }
+    var rows=parseJSONL(t);
+    if(!rows.length){ badge("req-badge","הזרם-ריק","err");
+      box.innerHTML='<div class="card"><div class="need" style="color:var(--mut)">אין-בקשות-פתוחות-רשומות.</div></div>'; return; }
+    badge("req-badge",rows.length+" בקשות-רשומות","ok");
+    var html="";
+    rows.forEach(function(r){
+      var st=r.status||"OPEN";
+      var cls=st.indexOf("SATISFIED")===0?"ok":(st==="OPEN"?"open":"");
+      html+='<div class="card"><div class="meta"><span><strong>'+esc(r.id||"?")+'</strong></span><span>'+esc((r.at||"").slice(0,16).replace("T"," "))+' UTC</span><span class="badge '+cls+'">'+esc(st)+'</span></div>';
+      html+='<div class="need">'+esc(r.need||"")+'</div>';
+      if(r.evidence&&r.evidence.length){
+        html+='<div class="ev">ראיה: ';
+        r.evidence.forEach(function(e,i){
+          var link=null;
+          if(/^https?:/.test(e)) link=e;
+          else if(/steem\/docs\//.test(e)) link="https://github.com/roshpinacare-sys/steem/blob/saos-cockpit/"+e;
+          else if(/DECISIONS\.md/.test(e)) link="https://github.com/roshpinacare-sys/saos-dex/blob/main/DECISIONS.md";
+          else if(/economy-sovereignty/.test(e)) link="https://github.com/roshpinacare-sys/saos-dex/blob/main/grids/state/economy-sovereignty.json";
+          html+=(i?" · ":"")+(link?'<a href="'+esc(link)+'" target="_blank" rel="noopener">'+esc(e.length>42?e.slice(0,42)+"…":e)+'</a>':esc(e));
+        });
+        html+='</div>';
+      }
+      html+='</div>';
+    });
+    box.innerHTML=html;
+  });
+
+  /* זרם-ההוראות — הבעלים → הריבונות */
+  var maxD=0;
+  fetchText(RAW+"state/sovereign-channel/directives.jsonl",function(t){
+    var box=$("dir-list");
+    if(!t){ badge("dir-badge","לא-ניתן-לקרוא-כרגע — מצב-כנה","err");
+      box.innerHTML='<div class="card"><div class="need" style="color:var(--bad)">קריאת-הגיט-נכשלה. אין-המצאה — נסו-רענון.</div></div>'; return; }
+    var rows=parseJSONL(t);
+    if(!rows.length){ badge("dir-badge","הזרם-ריק","err");
+      box.innerHTML='<div class="card"><div class="need" style="color:var(--mut)">אין-הוראות-רשומות.</div></div>'; return; }
+    badge("dir-badge",rows.length+" הוראות-חוק","active");
+    rows.forEach(function(d){
+      if(d.id&&/^D-(\d+)$/.test(d.id)){ var n=parseInt(d.id.slice(2),10); if(n>maxD)maxD=n; }
+      var html='<div class="card"><div class="meta"><span><strong>'+esc(d.id||"?")+'</strong></span><span>'+esc((d.at||"").slice(0,16).replace("T"," "))+' UTC</span><span class="badge '+(d.status==="ACTIVE"?"active":"")+'">'+esc(d.status||"")+'</span>'+(d.law?'<span>'+esc(d.law)+'</span>':"")+'</div>';
+      html+='<div class="need"><strong>'+esc(d.title||"")+'</strong></div>';
+      if(d.directive&&d.directive.length){ html+='<ul>'; d.directive.forEach(function(x){ html+='<li>'+esc(x)+'</li>'; }); html+='</ul>'; }
+      html+='</div>';
+      box.insertAdjacentHTML("beforeend",html);
+    });
+  });
+
+  /* המחבר */
+  var lastLine="";
+  $("c-gen").addEventListener("click",function(){
+    var warn=$("c-warn"); warn.hidden=true;
+    var title=$("c-title").value.trim();
+    var body=$("c-body").value.split("\n").map(function(s){return s.trim()}).filter(Boolean);
+    if(!title||!body.length){
+      warn.hidden=false; warn.textContent="כנה: חסרה-כותרת-או-גוף-הוראה. לא-נוצר-כלום."; return;
+    }
+    var next="D-"+String(maxD+1).padStart(4,"0");
+    var obj={id:next,at:new Date().toISOString().slice(0,19)+"Z",by:"owner (composed on the sovereign channel surface, committed by the owner's own git identity)",title:title,directive:body,status:"ACTIVE"};
+    lastLine=JSON.stringify(obj);
+    var out=$("c-out"); out.hidden=false; out.textContent=lastLine;
+    $("c-copy").disabled=false;
+    $("c-open").style.display="inline-block";
+    warn.hidden=false;
+    warn.textContent="השורה-נוצרה (id: "+next+", המזהה-חושב-מהזרם-החי). העתיקו → פתחו-את-העורך → הדביקו-בסוף-הקובץ → קומיט. ההוראה-תהפוך-חוק-בנחיתה-על-הגיט.";
+  });
+  $("c-copy").addEventListener("click",function(){
+    if(!lastLine) return;
+    var self=this;
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(lastLine).then(function(){ self.textContent="הועתק ✓"; setTimeout(function(){self.textContent="העתק"},1800); },
+      function(){ fallback(); });
+    } else fallback();
+    function fallback(){
+      var ta=document.createElement("textarea"); ta.value=lastLine; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); self.textContent="הועתק ✓"; }catch(e){ self.textContent="העתיקו-ידנית"; }
+      document.body.removeChild(ta); setTimeout(function(){self.textContent="העתק"},1800);
+    }
+  });
+})();
+</script>
+</body>
+</html>
