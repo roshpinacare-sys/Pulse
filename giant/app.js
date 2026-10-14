@@ -11,7 +11,8 @@ const usd = n => (n == null ? "—" : "$" + fmt(n));
 const mu = v => (v == null ? "—" : "$" + (v / 1e6).toLocaleString("en-US", { maximumFractionDigits: 2 }));
 const muN = v => (v == null ? "—" : (v / 1e6).toLocaleString("en-US", { maximumFractionDigits: 2 }));
 const asOf = t => `<span class="asof">as-of ${esc(t || "—")}</span>`;
-const AGO = t => { if (!t) return "—"; const m = Math.max(0, Math.round((Date.now() - new Date(t)) / 6e4)); return m < 60 ? m + " דק'" : m < 1440 ? Math.round(m / 60) + " ש'" : Math.round(m / 1440) + " ימ'"; };
+const AGO = t => { if (!t) return "—"; const d = new Date(t); if (isNaN(d.getTime())) return "—"; const m = Math.max(0, Math.round((Date.now() - d.getTime()) / 6e4)); return m < 60 ? m + " דק'" : m < 1440 ? Math.round(m / 60) + " ש'" : Math.round(m / 1440) + " ימ'"; };
+const INC = () => { const s = st(); return s.income || { poolFeesMu: s.poolFeesMu, feeMeterMu: s.feeMeter, treasuryProfitMu: s.treasuryProfit, treasuryProfitEverMu: s.treasuryProfitEverMu, ladderSpentMu: (s.ladder || {}).spentMu, hub: "USDS" }; };
 
 function toast(msg, kind) {
   const el = document.createElement("div");
@@ -209,8 +210,8 @@ function vHome() {
     </div>
   </div>
   <div class="grid g-4" style="margin-top:13px">
-    ${kpi(mu(st().income ? st().income.poolFeesMu : null), "עמלות-בריכות-נצברות", "income.poolFees", "am")}
-    ${kpi(mu(st().income ? st().income.treasuryProfitEverMu : null), "רווח-אוצר-נצבר-אי-פעם", "income.treasuryProfitEver")}
+    ${kpi(mu(INC().poolFeesMu), "עמלות-בריכות-נצברות", "income.poolFees", "am")}
+    ${kpi(mu(INC().treasuryProfitEverMu), "רווח-אוצר-נצבר-אי-פעם", "income.treasuryProfitEver")}
     ${kpi(fmt(st().savings ? st().savings.apyBps / 100 : null) + "%", "APY-חיסכון (fee-share 30%)", "savings.apyBps=" + fmti(st().savings ? st().savings.apyBps : 0), "up")}
     ${kpi(fmti(st().liveOrders), "הזמנות-חיות-בספר", "liveOrders")}
   </div>
@@ -265,7 +266,7 @@ function giantsMini() {
 }
 
 function vDex() {
-  const s = st(), inc = s.income || {}, lad = s.ladder || {}, back = s.backing || {};
+  const s = st(), inc = INC(), lad = s.ladder || {}, back = s.backing || {};
   return `<div class="view">
   <div class="row" style="justify-content:space-between"><div><div class="h1">הבורסה-הריבונית <span class="gd">saos-dex · פרוטוקול</span></div>
   <div class="sub">ספר-חי-מאוטם: 3s בלוקים · ספר-קרדיטים-0 · שימור-WSBD · כל-המספרים-מהמנוע (raw הקומיט האחרון).</div></div>${asOf(S.dex.at)}</div>
@@ -647,7 +648,7 @@ function vAdmin() {
   <div class="row" style="justify-content:space-between"><div><div class="h1">ניהול <span class="gd">מלא</span> — הבעלים</div>
   <div class="sub">הכל-פתוח: זרמים-גולמיים · מרשם-כפילויות · מחבר-הוראות · צגי-ספרים.</div></div><button class="btn ghost" id="alock">נעל</button></div>
   <div class="grid g-4" style="margin-top:13px">
-    ${kpi(mu(s.income ? s.income.poolFeesMu : null), "עמלות-בריכות", asOf(S.dex.at), "am")}
+    ${kpi(mu(INC().poolFeesMu), "עמלות-בריכות", asOf(S.dex.at), "am")}
     ${kpi(AGO(S.dex.at), "גיל-ספר-הדקס", "raw Console/dex/state.json")}
     ${kpi(AGO(S.net ? S.net.generatedAt : null), "גיל-דופק-הצי", "network.json")}
     ${kpi(fmti(s.height), "גובה-שרשרת", "3s בלוקים")}
@@ -725,6 +726,7 @@ window.addEventListener("hashchange", route);
 document.addEventListener("DOMContentLoaded", async () => {
   paletteInit(); route();
   await loadAll(); route();
+  if (!(st().income)) { setTimeout(async () => { try { await loadDex(); route(); } catch (e) { } }, 4000); }
   setInterval(route, 180000);
   setInterval(() => { $("#clock").textContent = new Date().toISOString().slice(11, 19) + "Z"; }, 1000);
   setInterval(async () => { await loadAll(); const id = (location.hash || "").replace(/^#\//, "").split("/")[0]; if (["home", "channel", "dex", "markets", "earn", "engine", "bigcoins", "giants"].includes(id)) route(); }, 150000);
