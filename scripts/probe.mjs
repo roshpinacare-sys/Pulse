@@ -418,7 +418,7 @@ await Promise.all([
   grabLadder('integrity', [[SANDBOX, 'ops/integrity/verdict.json'], [AUTONOMY, 'ops/integrity/verdict.json']], 'json'),
   grabLadder('decisionTruth', [[SANDBOX, 'ops/decision-truth/verdict.json'], [AUTONOMY, 'ops/decision-truth/verdict.json']], 'json'),
   grabLadder('profitOracle', [[SANDBOX, 'receipts/profit-oracle-latest.json']], 'json'),
-  // R331 · THE SOVEREIGN BOOK (T-90, trace 1a139fae43eccbc9): the fleet's PUBLISHED
+  // R335 · THE SOVEREIGN BOOK (T-90, trace 1a139fae43eccbc9): the fleet's PUBLISHED
   // work gets its own face — Domain's keyless chain-truth ledger (public RPC, refs-scrubbed,
   // no handles) mirrored into this public shell so the backup display survives BOTH a
   // chain-front shelling (T-81: steemit.com shelved the whole roster while the chain
