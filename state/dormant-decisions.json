@@ -176,13 +176,26 @@
         "runsTotal": 0,
         "designLaw": "device-executes, github-ledgers"
       }
+    },
+    {
+      "repo": "roshpinacare-sys.github.io",
+      "verdict": "keep-dormant-on-purpose",
+      "reason": "org front-door content site (Pages, \"SAOS — רשת האימות\") — deploy-on-content-commit design: its life is Pages serving + version-stamp chain (T23-D ca82cef→1952735→508e14e, last deploy 2026-10-13T11:25Z), not a commit cadence; the 24h clock is semantically mismatched for a static front-door; last activity was a real content fix (mojibake strings), not bulk hygiene; reviewBy re-check = Pages reachability",
+      "evidence": {
+        "lastCommitAt": "2026-10-13T11:25:12Z",
+        "lastCommitSubject": "fix three mojibake strings on the org homepage (broken Hebrew glyphs baked into bytes)",
+        "visibility": "public",
+        "runsTotal": 16,
+        "lastRunAt": "2026-10-13T11:25:16Z",
+        "designLaw": "deploy-on-content-commit"
+      }
     }
   ],
   "note": "the 2026-10-13T00:45Z identity-law commits across the fleet are bulk signing hygiene — they clock freshness (they ARE commits) but carry no capability delta; this is exactly why verdicts cite evidence, not just timestamps | secondPass (R327): the 2026-10-13T03:24Z run cluster across the 5 private repos is the same identity-signing sweep shape (bulk hygiene), and negen/sovereign-runner-kit have ZERO runs — their dormancy is design-law (owner-signed contract; device-executes-github-ledgers), not silence",
   "secondPass": {
     "at": "2026-10-14T11:35:00Z",
     "by": "agent session web-d3bb9782-4861-436f-90cb-3a7d68d8b9bf (channel zai-web, trace 1a13a234447aa051) — R327 dormant-triage lane, continuing Pulse issue #5",
-    "scope": "the 7 repos the R326 honest-clock fix exposed as staleUndecided after the 8-repo first pass",
+    "scope": "the 7 repos the R326 honest-clock fix exposed as staleUndecided + the front-door site newly exposed at 11:30Z (16/16 total — every stale repo now carries a cited verdict)",
     "method": "same evidence law: per-repo measured /commits + README role declaration + Actions runs shape; no timestamp-only verdicts"
   }
 }
