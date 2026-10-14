@@ -1,5 +1,10 @@
 # Pulse — איבר-הדופק של הרשת · the fleet's autonomous heartbeat organ
 
+[![SAOS office](https://roshpinacare-sys.github.io/Domain/badge/office.svg)](https://roshpinacare-sys.github.io/Domain/office3d/)
+[![SAOS fleet](https://roshpinacare-sys.github.io/Domain/badge/fleet.svg)](https://roshpinacare-sys.github.io/Domain/status/)
+[![steem-edge](https://roshpinacare-sys.github.io/Domain/badge/edge.svg)](https://roshpinacare-sys.github.io/Domain/money.html)
+
+
 > **הבעיה שהאיבר הזה פותר**: עד היום כל פעילות הרשת קרתה רק כשסשן-סוכן היה ער.
 > git הוא אחסון פסיבי — הוא לא פועם מעצמו. Pulse הוא התשובה ההנדסית: הלולאה רצה
 > **על תשתית GitHub עצמה** (Actions על ריפו ציבורי = דקות-חינם אינסופיות), כל 30 דקות,
