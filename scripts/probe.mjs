@@ -436,6 +436,13 @@ const sources = {}
 const rawGet = async (repo, path) => {
   const url = `https://raw.githubusercontent.com/${repo}/main/${path}`
   let res = await fetch(url, { headers: H(FLEET_TOKEN || GITHUB_TOKEN), signal: AbortSignal.timeout(20000) })
+  // T-109 law (measured 2026-10-21): a fine-grained token WITHOUT a grant on this repo
+  // makes raw return 404 (not 401) — identical to a missing file. A 404 under a tokened
+  // request must be re-probed ANONYMOUSLY before it counts as a miss, or every public
+  // source dies behind a poisoned header (the born-broken mirror lane, all 7 gaps).
+  if (res.status === 404 && (FLEET_TOKEN || GITHUB_TOKEN)) {
+    res = await fetch(url, { headers: H(''), signal: AbortSignal.timeout(20000) })
+  }
   if (res.status === 404) return { miss: '404' }
   if (!res.ok) {
     const c = await gh(`/repos/${repo}/contents/${path}`, FLEET_TOKEN || GITHUB_TOKEN)
@@ -493,15 +500,18 @@ await Promise.all([
 {
   const p = (n) => String(n).padStart(2, '0')
   let done = false
-  for (let back = 0; back <= 9 && !done; back++) {
+  for (let back = 0; back <= 14 && !done; back++) {
     const d = new Date(Date.now() - back * 86400e3)
     const path = `research/findings-${d.getUTCFullYear()}-${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())}.json`
     try {
-      const res = await fetch(`https://raw.githubusercontent.com/${SANDBOX}/main/${path}`, { headers: H(FLEET_TOKEN || GITHUB_TOKEN), signal: AbortSignal.timeout(20000) })
-      if (res.ok) { sources.research = { at: NOW, path, data: await res.json() }; done = true }
+      let rres = await fetch(`https://raw.githubusercontent.com/${SANDBOX}/main/${path}`, { headers: H(FLEET_TOKEN || GITHUB_TOKEN), signal: AbortSignal.timeout(20000) })
+      if (rres.status === 404 && (FLEET_TOKEN || GITHUB_TOKEN)) {
+        rres = await fetch(`https://raw.githubusercontent.com/${SANDBOX}/main/${path}`, { headers: H(''), signal: AbortSignal.timeout(20000) })
+      }
+      if (rres.ok) { sources.research = { at: NOW, path, data: await rres.json() }; done = true }
     } catch {}
   }
-  if (!done) sources.research = { at: NOW, path: 'research/findings-*.json', error: 'no findings file within 9 days — honest gap' }
+  if (!done) sources.research = { at: NOW, path: 'research/findings-*.json', error: 'no findings file within 14 days — honest gap' }
 }
 // live chain probes (the probe lanes live again, on public infra)
 // NODE-LADDER (T23-C, 2026-10-13): a single node answered before — if that one node
