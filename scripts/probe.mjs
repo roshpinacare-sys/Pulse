@@ -18,6 +18,7 @@
 //   and the terminal is degraded — private sight is missing, and that is reported, not hidden.
 // Schema: pulse-network-v2 (v1 fields preserved; adds auth.visibility + per-repo actions liveness).
 import { readFile, writeFile } from 'node:fs/promises'
+import { fetchJsonSource, deriveGapsBlock } from './lib/economy-sources.mjs'
 
 const API = 'https://api.github.com'
 const REPO = process.env.GITHUB_REPOSITORY || 'roshpinacare-sys/Pulse'
@@ -313,8 +314,18 @@ const cadence = {
 
 // --- R328 economy-sovereignty: the sovereignty IS the economy — measured every beat ---
 // Reads the economic ledger of record (saos-dex) + the two live income-artery receipts.
-// AUTH LAW (measured R328): saos-dex is PRIVATE — anonymous raw.githubusercontent 404s;
-// the receipts ride the authenticated contents API (base64) like the rest of the census.
+// AUTH LAW (rewritten wave #82, trace 1a178c614313ad05 — supersedes the R328
+// "saos-dex is PRIVATE, raw 404s" note): the heartbeat secret FLEET_TOKEN measured
+// HTTP 401 on cloud (expired/revoked — owner-custody rotation pending), which starved
+// this whole block to nulls through the authenticated-only contents API. MEASURED
+// 2026-10-26: saos-dex is PUBLIC — every grids/state/*.json answers HTTP 200 on
+// raw.githubusercontent.com with NO token at all. Reader ladder per source
+// (scripts/lib/economy-sources.mjs, TDD suite scripts/economy-sources.test.mjs):
+//   RAW FIRST (tokenless — works forever for public repos; a token can only die)
+//   → authenticated contents API ONLY as fallback (private-flip / raw-outage cover)
+//   → unreachable (honest named error, never fabricated).
+// Cache nothing — every beat is a live measurement; each source carries its mode receipt
+// (raw|api|unreachable + real HTTP statuses) in economy.sources.
 // Fail-open: a missed fetch is a named reason, never a silent zero (DECISIONS #14 law:
 // "evidence over narrative; every income claim cites a measured receipt").
 const economy = {
@@ -325,14 +336,18 @@ const economy = {
   fetchedAt: NOW,
   note: null,
 }
+let gapsBlock = null
 {
-  const contents = async (path) => {
-    const r = await gh(`/repos/${OWNER}/saos-dex/contents/${path}`, AUTH_TOK)
-    if (r.status !== 200 || !r.data?.content) throw new Error(`${path} -> ${r.status}`)
-    return Buffer.from(r.data.content, 'base64').toString('utf-8')
-  }
-  try {
-    const eco = JSON.parse(await contents('grids/state/economy-sovereignty.json'))
+  const get = (path) => fetchJsonSource({ owner: OWNER, repo: 'saos-dex', path, apiToken: AUTH_TOK })
+  const [sovereignty, treasurySrc, armySrc, gearboxSrc] = await Promise.all([
+    get('grids/state/economy-sovereignty.json'),
+    get('grids/state/treasury-public.json'),
+    get('grids/state/army-public.json'),
+    get('grids/state/policy-gears.json'),
+  ])
+  const receipt = (r) => ({ mode: r.mode, http: r.http, at: NOW, error: r.error })
+  if (sovereignty.data) {
+    const eco = sovereignty.data
     economy.sovereigntyLedger = {
       schema: eco.schema,
       at: eco.at,
@@ -342,18 +357,18 @@ const economy = {
     }
     const gaps = eco.measuredNow?.sovereignGaps || []
     economy.gapsOpen = gaps.filter((g) => String(g.status || '').startsWith('OPEN')).length
-  } catch (e) { economy.note = `sovereignty ledger unread: ${String(e).slice(0, 100)}` }
-  try {
-    const t = JSON.parse(await contents('grids/state/treasury-public.json'))
+  } else economy.note = `sovereignty ledger unread: ${String(sovereignty.error).slice(0, 100)}`
+  if (treasurySrc.data) {
+    const t = treasurySrc.data
     economy.treasury = { at: t.at, verdict: t.verdict, acted: t.acted, openOrders: t.openOrders, trader: t.trader }
-  } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `treasury receipt unread: ${String(e).slice(0, 80)}` }
-  try {
-    const a = JSON.parse(await contents('grids/state/army-public.json'))
+  } else economy.note = (economy.note ? economy.note + '; ' : '') + `treasury receipt unread: ${String(treasurySrc.error).slice(0, 80)}`
+  if (armySrc.data) {
+    const a = armySrc.data
     economy.army = { at: a.at, verdict: a.verdict, acted: a.acted, roster: a.roster, stasis: a.stasis }
-  } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `army receipt unread: ${String(e).slice(0, 80)}` }
+  } else economy.note = (economy.note ? economy.note + '; ' : '') + `army receipt unread: ${String(armySrc.error).slice(0, 80)}`
   // R329 gearbox: which gear is the paved road in right now (SAOS-POLICY-GEARS/1)
-  try {
-    const g = JSON.parse(await contents('grids/state/policy-gears.json'))
+  if (gearboxSrc.data) {
+    const g = gearboxSrc.data
     economy.gearbox = {
       protocol: g.protocol,
       gear: g.state?.gear ?? null,
@@ -364,13 +379,29 @@ const economy = {
       kelly: g.state?.kelly ?? (g.kelly?.enabled ? { mode: "enabled-stateless" } : null),
       at: g.state?.at ?? null,
     }
-  } catch (e) { economy.note = (economy.note ? economy.note + '; ' : '') + `gearbox unread: ${String(e).slice(0, 80)}` }
+  } else economy.note = (economy.note ? economy.note + '; ' : '') + `gearbox unread: ${String(gearboxSrc.error).slice(0, 80)}`
+  economy.sources = {
+    'grids/state/economy-sovereignty.json': receipt(sovereignty),
+    'grids/state/treasury-public.json': receipt(treasurySrc),
+    'grids/state/army-public.json': receipt(armySrc),
+    'grids/state/policy-gears.json': receipt(gearboxSrc),
+  }
   if (economy.gapsOpen != null && economy.gapsOpen > 0) {
     state.reasons.push(`economy-sovereignty: ${economy.gapsOpen} sovereign self-funding gaps OPEN (DECISIONS #14) — redemption ledger active, flow direction = sovereignty funds the operator`)
   }
   if (economy.gearbox?.gear != null && economy.gearbox.gear > 1) {
     state.reasons.push(`economy-sovereignty: paved road in gear ${economy.gearbox.gear} (streak ${economy.gearbox.greenStreak}) — receipt-driven upshift per DECISIONS #15`)
   }
+  console.log(`economy: ${Object.entries(economy.sources).map(([p, r]) => `${p.split('/').pop()}=${r.mode}`).join(' ')}`)
+  // §4 gaps block (owner directive GAP-1 compute wall / GAP-2 canary gears / GAP-3 dormant
+  // assets): derived ONLY from the fetched sources — verbatim fields with sourcePath,
+  // honest dataAbsent=true when a gap's data is absent, zero fabrication. The sibling
+  // lane G77-e hand-wrote a pulse-gaps/1 verdict block into one network.json revision
+  // (durable copies: state/sovereign-channel/notes.jsonl N-0009 + giant docs/status/) —
+  // since the heartbeat regenerates this file every beat, the block now lives in the
+  // generator itself (pulse-gaps/2).
+  gapsBlock = deriveGapsBlock({ sovereignty, gearbox: gearboxSrc, dormantLedger, now: NOW, patHealth })
+  console.log(`gaps: ${['gap1', 'gap2', 'gap3'].map((k) => `${k}${gapsBlock[k]?.dataAbsent ? ':data-absent' : ''}`).join(' ')}${gapsBlock.blockers?.length ? ` blockers=${gapsBlock.blockers.length}` : ''}`)
 }
 
 // --- terminal semantics (honest, fail-closed, CALIBRATED) ---
@@ -406,6 +437,7 @@ const network = {
   auth: { pat: patHealth, mode, visibility },
   cadence,
   economy,
+  gaps: gapsBlock,
   totals,
   stale24h,
   stale24hAnnotated,
