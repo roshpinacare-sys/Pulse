@@ -1,6 +1,6 @@
 {
  "schema": "pulse-network-v2",
- "generatedAt": "2026-10-29T15:30:08.837Z",
+ "generatedAt": "2026-10-29T16:00:44.888Z",
  "trigger": "repository_dispatch",
  "note": "self-relay",
  "terminal": "degraded",
@@ -52,7 +52,7 @@
    "stasis": 10
   },
   "gapsOpen": 0,
-  "fetchedAt": "2026-10-29T15:30:08.837Z",
+  "fetchedAt": "2026-10-29T16:00:44.888Z",
   "note": null,
   "gearbox": {
    "protocol": "SAOS-POLICY-GEARS/1",
@@ -77,7 +77,7 @@
      "raw": 200,
      "api": null
     },
-    "at": "2026-10-29T15:30:08.837Z",
+    "at": "2026-10-29T16:00:44.888Z",
     "error": null
    },
    "grids/state/treasury-public.json": {
@@ -86,7 +86,7 @@
      "raw": 200,
      "api": null
     },
-    "at": "2026-10-29T15:30:08.837Z",
+    "at": "2026-10-29T16:00:44.888Z",
     "error": null
    },
    "grids/state/army-public.json": {
@@ -95,7 +95,7 @@
      "raw": 200,
      "api": null
     },
-    "at": "2026-10-29T15:30:08.837Z",
+    "at": "2026-10-29T16:00:44.888Z",
     "error": null
    },
    "grids/state/policy-gears.json": {
@@ -104,14 +104,14 @@
      "raw": 200,
      "api": null
     },
-    "at": "2026-10-29T15:30:08.837Z",
+    "at": "2026-10-29T16:00:44.888Z",
     "error": null
    }
   }
  },
  "gaps": {
   "schema": "pulse-gaps/2",
-  "at": "2026-10-29T15:30:08.837Z",
+  "at": "2026-10-29T16:00:44.888Z",
   "derivation": "generator-derived from fetched sources only — verbatim fields, zero fabrication; a gap with no fetched data says dataAbsent=true",
   "blockers": [
    "FLEET_TOKEN probe HTTP 401 (expired/revoked) = owner-custody rotation pending; economy/gaps sources unaffected — raw ladder is tokenless by design"
@@ -231,9 +231,9 @@
     "open": 1
    }
   ],
-  "actionsFailing": 0,
+  "actionsFailing": 2,
   "actionsRedInfo": 0,
-  "actionsRedActionable": 0,
+  "actionsRedActionable": 2,
   "actionsQuotaGated": 0,
   "actionsUnmeasured": 0
  },
@@ -376,17 +376,59 @@
    "reviewBy": null
   }
  ],
- "actionsFailing": [],
- "actionsRedActionable": [],
+ "actionsFailing": [
+  "Autonomy",
+  "giant"
+ ],
+ "actionsRedActionable": [
+  "Autonomy",
+  "giant"
+ ],
  "actionsQuotaGated": [],
  "actionsRedInfo": [],
  "fleet": [
+  {
+   "name": "Domain",
+   "private": false,
+   "archived": false,
+   "defaultBranch": "main",
+   "pushedAt": "2026-10-29T16:00:44Z",
+   "lastCommitAt": null,
+   "issuesOpen": 26,
+   "actions": {
+    "status": "completed",
+    "conclusion": "success",
+    "workflow": "office-pulse",
+    "event": "workflow_dispatch",
+    "runId": 40906882939,
+    "startedAt": "2026-10-29T15:58:13Z",
+    "url": "https://github.com/roshpinacare-sys/Domain/actions/runs/40906882939"
+   }
+  },
+  {
+   "name": "Console",
+   "private": false,
+   "archived": false,
+   "defaultBranch": "main",
+   "pushedAt": "2026-10-29T16:00:20Z",
+   "lastCommitAt": null,
+   "issuesOpen": 0,
+   "actions": {
+    "status": "in_progress",
+    "conclusion": null,
+    "workflow": "runtime-pacemaker",
+    "event": "workflow_run",
+    "runId": 40907169316,
+    "startedAt": "2026-10-29T15:59:58Z",
+    "url": "https://github.com/roshpinacare-sys/Console/actions/runs/40907169316"
+   }
+  },
   {
    "name": "saos-runtime",
    "private": false,
    "archived": false,
    "defaultBranch": "main",
-   "pushedAt": "2026-10-29T15:30:06Z",
+   "pushedAt": "2026-10-29T15:59:09Z",
    "lastCommitAt": null,
    "issuesOpen": 19,
    "actions": {
@@ -394,9 +436,9 @@
     "conclusion": null,
     "workflow": "sovereign-runtime",
     "event": "workflow_dispatch",
-    "runId": 40901771408,
-    "startedAt": "2026-10-29T15:27:35Z",
-    "url": "https://github.com/roshpinacare-sys/saos-runtime/actions/runs/40901771408"
+    "runId": 40906598927,
+    "startedAt": "2026-10-29T15:56:29Z",
+    "url": "https://github.com/roshpinacare-sys/saos-runtime/actions/runs/40906598927"
    }
   },
   {
@@ -404,7 +446,7 @@
    "private": false,
    "archived": false,
    "defaultBranch": "saos-cockpit",
-   "pushedAt": "2026-10-29T15:30:05Z",
+   "pushedAt": "2026-10-29T15:59:08Z",
    "lastCommitAt": null,
    "issuesOpen": 25,
    "actions": {
@@ -418,57 +460,21 @@
    }
   },
   {
-   "name": "Autonomy",
+   "name": "saos-dex",
    "private": false,
    "archived": false,
    "defaultBranch": "main",
-   "pushedAt": "2026-10-29T15:29:32Z",
+   "pushedAt": "2026-10-29T15:58:46Z",
    "lastCommitAt": null,
    "issuesOpen": 0,
    "actions": {
     "status": "completed",
     "conclusion": "success",
-    "workflow": "identity-guard",
+    "workflow": "dex-selftest",
     "event": "push",
-    "runId": 40902023022,
-    "startedAt": "2026-10-29T15:29:04Z",
-    "url": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/40902023022"
-   }
-  },
-  {
-   "name": "saos-dex",
-   "private": false,
-   "archived": false,
-   "defaultBranch": "main",
-   "pushedAt": "2026-10-29T15:29:06Z",
-   "lastCommitAt": null,
-   "issuesOpen": 0,
-   "actions": {
-    "status": "completed",
-    "conclusion": "skipped",
-    "workflow": "identity-guard",
-    "event": "push",
-    "runId": 40902033686,
-    "startedAt": "2026-10-29T15:29:08Z",
-    "url": "https://github.com/roshpinacare-sys/saos-dex/actions/runs/40902033686"
-   }
-  },
-  {
-   "name": "Console",
-   "private": false,
-   "archived": false,
-   "defaultBranch": "main",
-   "pushedAt": "2026-10-29T15:29:01Z",
-   "lastCommitAt": null,
-   "issuesOpen": 0,
-   "actions": {
-    "status": "pending",
-    "conclusion": null,
-    "workflow": "runtime-pacemaker",
-    "event": "workflow_run",
-    "runId": 40902189882,
-    "startedAt": "2026-10-29T15:30:05Z",
-    "url": "https://github.com/roshpinacare-sys/Console/actions/runs/40902189882"
+    "runId": 40906980302,
+    "startedAt": "2026-10-29T15:58:48Z",
+    "url": "https://github.com/roshpinacare-sys/saos-dex/actions/runs/40906980302"
    }
   },
   {
@@ -476,7 +482,7 @@
    "private": false,
    "archived": false,
    "defaultBranch": "main",
-   "pushedAt": "2026-10-29T15:27:10Z",
+   "pushedAt": "2026-10-29T15:55:45Z",
    "lastCommitAt": null,
    "issuesOpen": 0,
    "actions": {
@@ -484,9 +490,81 @@
     "conclusion": null,
     "workflow": "sovereign-state",
     "event": "repository_dispatch",
-    "runId": 40901631939,
-    "startedAt": "2026-10-29T15:26:45Z",
-    "url": "https://github.com/roshpinacare-sys/Sandbox/actions/runs/40901631939"
+    "runId": 40906440408,
+    "startedAt": "2026-10-29T15:55:31Z",
+    "url": "https://github.com/roshpinacare-sys/Sandbox/actions/runs/40906440408"
+   }
+  },
+  {
+   "name": "Autonomy",
+   "private": false,
+   "archived": false,
+   "defaultBranch": "main",
+   "pushedAt": "2026-10-29T15:51:26Z",
+   "lastCommitAt": null,
+   "issuesOpen": 0,
+   "actions": {
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow": "artery-fleet",
+    "event": "workflow_dispatch",
+    "runId": 40905605021,
+    "startedAt": "2026-10-29T15:50:28Z",
+    "url": "https://github.com/roshpinacare-sys/Autonomy/actions/runs/40905605021"
+   }
+  },
+  {
+   "name": "saos-desk",
+   "private": false,
+   "archived": false,
+   "defaultBranch": "main",
+   "pushedAt": "2026-10-29T15:41:34Z",
+   "lastCommitAt": null,
+   "issuesOpen": 0,
+   "actions": {
+    "status": "completed",
+    "conclusion": "failure",
+    "workflow": "desk-beat",
+    "event": "workflow_dispatch",
+    "runId": 38666205220,
+    "startedAt": "2026-10-15T01:32:28Z",
+    "url": "https://github.com/roshpinacare-sys/saos-desk/actions/runs/38666205220"
+   }
+  },
+  {
+   "name": "fleet-economy",
+   "private": false,
+   "archived": false,
+   "defaultBranch": "main",
+   "pushedAt": "2026-10-29T15:36:02Z",
+   "lastCommitAt": null,
+   "issuesOpen": 0,
+   "actions": {
+    "status": "completed",
+    "conclusion": "success",
+    "workflow": "economy-beat",
+    "event": "schedule",
+    "runId": 40902520937,
+    "startedAt": "2026-10-29T15:31:59Z",
+    "url": "https://github.com/roshpinacare-sys/fleet-economy/actions/runs/40902520937"
+   }
+  },
+  {
+   "name": "sovereign-lighthouse",
+   "private": false,
+   "archived": false,
+   "defaultBranch": "main",
+   "pushedAt": "2026-10-29T15:33:28Z",
+   "lastCommitAt": null,
+   "issuesOpen": 1,
+   "actions": {
+    "status": "completed",
+    "conclusion": "success",
+    "workflow": "lighthouse-pulse",
+    "event": "schedule",
+    "runId": 40902749488,
+    "startedAt": "2026-10-29T15:33:21Z",
+    "url": "https://github.com/roshpinacare-sys/sovereign-lighthouse/actions/runs/40902749488"
    }
   },
   {
@@ -494,7 +572,7 @@
    "private": false,
    "archived": false,
    "defaultBranch": "main",
-   "pushedAt": "2026-10-29T15:26:56Z",
+   "pushedAt": "2026-10-29T15:30:38Z",
    "lastCommitAt": null,
    "issuesOpen": 5,
    "actions": {
@@ -502,27 +580,9 @@
     "conclusion": null,
     "workflow": "heartbeat",
     "event": "repository_dispatch",
-    "runId": 40902184783,
-    "startedAt": "2026-10-29T15:30:03Z",
-    "url": "https://github.com/roshpinacare-sys/Pulse/actions/runs/40902184783"
-   }
-  },
-  {
-   "name": "Domain",
-   "private": false,
-   "archived": false,
-   "defaultBranch": "main",
-   "pushedAt": "2026-10-29T15:26:47Z",
-   "lastCommitAt": null,
-   "issuesOpen": 26,
-   "actions": {
-    "status": "queued",
-    "conclusion": null,
-    "workflow": "treasury-route",
-    "event": "schedule",
-    "runId": 40902200291,
-    "startedAt": "2026-10-29T15:30:08Z",
-    "url": "https://github.com/roshpinacare-sys/Domain/actions/runs/40902200291"
+    "runId": 40907190886,
+    "startedAt": "2026-10-29T16:00:06Z",
+    "url": "https://github.com/roshpinacare-sys/Pulse/actions/runs/40907190886"
    }
   },
   {
@@ -616,24 +676,6 @@
    }
   },
   {
-   "name": "fleet-economy",
-   "private": false,
-   "archived": false,
-   "defaultBranch": "main",
-   "pushedAt": "2026-10-29T15:17:30Z",
-   "lastCommitAt": null,
-   "issuesOpen": 0,
-   "actions": {
-    "status": "completed",
-    "conclusion": "success",
-    "workflow": "economy-beat",
-    "event": "schedule",
-    "runId": 40899416869,
-    "startedAt": "2026-10-29T15:13:48Z",
-    "url": "https://github.com/roshpinacare-sys/fleet-economy/actions/runs/40899416869"
-   }
-  },
-  {
    "name": "roshpina",
    "private": false,
    "archived": false,
@@ -661,12 +703,12 @@
    "issuesOpen": 320,
    "actions": {
     "status": "completed",
-    "conclusion": "success",
-    "workflow": "trust-heartbeat",
+    "conclusion": "failure",
+    "workflow": "architect-daemon",
     "event": "schedule",
-    "runId": 40895170157,
-    "startedAt": "2026-10-29T14:48:29Z",
-    "url": "https://github.com/roshpinacare-sys/giant/actions/runs/40895170157"
+    "runId": 40906936194,
+    "startedAt": "2026-10-29T15:58:33Z",
+    "url": "https://github.com/roshpinacare-sys/giant/actions/runs/40906936194"
    }
   },
   {
@@ -678,13 +720,13 @@
    "lastCommitAt": null,
    "issuesOpen": 0,
    "actions": {
-    "status": "completed",
-    "conclusion": "success",
-    "workflow": "identity-guard",
-    "event": "push",
-    "runId": 40894483136,
-    "startedAt": "2026-10-29T14:44:23Z",
-    "url": "https://github.com/roshpinacare-sys/GridWatch/actions/runs/40894483136"
+    "status": "in_progress",
+    "conclusion": null,
+    "workflow": "grid-watch",
+    "event": "workflow_dispatch",
+    "runId": 40907203916,
+    "startedAt": "2026-10-29T16:00:10Z",
+    "url": "https://github.com/roshpinacare-sys/GridWatch/actions/runs/40907203916"
    }
   },
   {
@@ -718,45 +760,9 @@
     "conclusion": null,
     "workflow": "beat-keepalive",
     "event": "workflow_dispatch",
-    "runId": 40899353626,
-    "startedAt": "2026-10-29T15:13:26Z",
-    "url": "https://github.com/roshpinacare-sys/sovereign-runner-kit/actions/runs/40899353626"
-   }
-  },
-  {
-   "name": "sovereign-lighthouse",
-   "private": false,
-   "archived": false,
-   "defaultBranch": "main",
-   "pushedAt": "2026-10-29T14:32:20Z",
-   "lastCommitAt": null,
-   "issuesOpen": 1,
-   "actions": {
-    "status": "queued",
-    "conclusion": null,
-    "workflow": "estate-redboard",
-    "event": "workflow_dispatch",
-    "runId": 40902212749,
-    "startedAt": "2026-10-29T15:30:13Z",
-    "url": "https://github.com/roshpinacare-sys/sovereign-lighthouse/actions/runs/40902212749"
-   }
-  },
-  {
-   "name": "saos-desk",
-   "private": false,
-   "archived": false,
-   "defaultBranch": "main",
-   "pushedAt": "2026-10-29T13:42:10Z",
-   "lastCommitAt": null,
-   "issuesOpen": 0,
-   "actions": {
-    "status": "completed",
-    "conclusion": "failure",
-    "workflow": "desk-beat",
-    "event": "workflow_dispatch",
-    "runId": 38666205220,
-    "startedAt": "2026-10-15T01:32:28Z",
-    "url": "https://github.com/roshpinacare-sys/saos-desk/actions/runs/38666205220"
+    "runId": 40904467865,
+    "startedAt": "2026-10-29T15:43:37Z",
+    "url": "https://github.com/roshpinacare-sys/sovereign-runner-kit/actions/runs/40904467865"
    }
   },
   {
@@ -772,9 +778,9 @@
     "conclusion": null,
     "workflow": "beat-keepalive",
     "event": "workflow_dispatch",
-    "runId": 40897556833,
-    "startedAt": "2026-10-29T15:02:49Z",
-    "url": "https://github.com/roshpinacare-sys/sovereign-beacon/actions/runs/40897556833"
+    "runId": 40902682851,
+    "startedAt": "2026-10-29T15:32:58Z",
+    "url": "https://github.com/roshpinacare-sys/sovereign-beacon/actions/runs/40902682851"
    }
   },
   {
@@ -824,11 +830,11 @@
    "actions": {
     "status": "completed",
     "conclusion": "success",
-    "workflow": "swallow-watch",
+    "workflow": "identity-guard",
     "event": "schedule",
-    "runId": 40849739125,
-    "startedAt": "2026-10-29T09:27:12Z",
-    "url": "https://github.com/roshpinacare-sys/roshpinacare-sys.github.io/actions/runs/40849739125"
+    "runId": 40905211971,
+    "startedAt": "2026-10-29T15:48:05Z",
+    "url": "https://github.com/roshpinacare-sys/roshpinacare-sys.github.io/actions/runs/40905211971"
    }
   },
   {
@@ -880,9 +886,9 @@
     "conclusion": null,
     "workflow": "agent9-clock",
     "event": "repository_dispatch",
-    "runId": 40900924491,
-    "startedAt": "2026-10-29T15:22:40Z",
-    "url": "https://github.com/roshpinacare-sys/agent9-clock/actions/runs/40900924491"
+    "runId": 40905395567,
+    "startedAt": "2026-10-29T15:49:13Z",
+    "url": "https://github.com/roshpinacare-sys/agent9-clock/actions/runs/40905395567"
    }
   },
   {
@@ -1093,35 +1099,35 @@
  ],
  "chains": {
   "schema": "pulse-chains-v1",
-  "at": "2026-10-29T15:30:08.837Z",
+  "at": "2026-10-29T16:00:44.888Z",
   "steem": {
-   "head": 110862248,
+   "head": 110862857,
    "node": "api.steemit.com",
    "treasury": {
     "account": "steem.dao",
     "sp": 0,
     "steem": 1.11,
-    "sbd": 2585250.88,
+    "sbd": 2585257.856,
     "via": "api.steemit.com",
-    "at": "2026-10-29T15:30:08.837Z"
+    "at": "2026-10-29T16:00:44.888Z"
    },
    "tries": [
     {
      "node": "api.steemit.com",
-     "ms": 182,
-     "head": 110862248,
+     "ms": 202,
+     "head": 110862857,
      "ok": true
     }
    ]
   },
   "hive": {
-   "head": 111200071,
+   "head": 111200680,
    "node": "api.hive.blog",
    "tries": [
     {
      "node": "api.hive.blog",
-     "ms": 289,
-     "head": 111200071,
+     "ms": 183,
+     "head": 111200680,
      "ok": true
     }
    ]
