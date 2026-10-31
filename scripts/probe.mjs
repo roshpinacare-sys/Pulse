@@ -106,16 +106,27 @@ async function listRepos(path, tok) {
 
 const state = { terminal: 'success', reasons: [] }
 
-// --- 1. OBSERVE (a): PAT health (blind-spot cover: token expiry/death becomes VISIBLE, not silent) ---
-const AUTH_SECRET = FLEET_TOKEN ? 'FLEET_TOKEN' : GH_PAT ? 'GH_PAT' : ''
-const AUTH_TOK = FLEET_TOKEN || GH_PAT || ''
-let patHealth = { ok: false, status: 'missing', secret: AUTH_SECRET || null }
-if (AUTH_TOK) {
-  const r = await gh('/user', AUTH_TOK)
-  patHealth = { ok: r.status === 200, status: String(r.status), secret: AUTH_SECRET }
-  if (!patHealth.ok) state.reasons.push(`${AUTH_SECRET} probe failed (HTTP ${r.status}) — expired/revoked/scoped-out token`)
-} else {
+// --- 1. OBSERVE (a): PAT health — TOKEN LADDER (failover on DEATH, not just absence) ---
+// measured failure 2026-10-20→10-31 (issue #10): FLEET_TOKEN died (HTTP 401) and SHADOWED
+// a valid GH_PAT — `FLEET_TOKEN || GH_PAT` descends on absence only, so the run was
+// declared public-only forever while a live private-sight token sat unused in secrets.
+// Law now: the ladder descends on death too. Try FLEET_TOKEN → on 401/403 try GH_PAT →
+// if every step dies, continue tokenless honestly. Every death is recorded as a reason.
+let AUTH_TOK = ''
+let patHealth = { ok: false, status: 'missing', secret: null }
+const TOKEN_LADDER = [
+  ...(FLEET_TOKEN ? [{ secret: 'FLEET_TOKEN', tok: FLEET_TOKEN }] : []),
+  ...(GH_PAT ? [{ secret: 'GH_PAT', tok: GH_PAT }] : []),
+]
+if (TOKEN_LADDER.length === 0) {
   state.reasons.push('FLEET_TOKEN/GH_PAT secrets not set — census falls back to tokenless public-only sight')
+} else {
+  for (const step of TOKEN_LADDER) {
+    const r = await gh('/user', step.tok)
+    patHealth = { ok: r.status === 200, status: String(r.status), secret: step.secret }
+    if (patHealth.ok) { AUTH_TOK = step.tok; break }
+    state.reasons.push(`${step.secret} probe failed (HTTP ${r.status}) — expired/revoked/scoped-out token`)
+  }
 }
 
 // --- 1. OBSERVE (b): census — authority ladder, NEVER-BLIND ---
