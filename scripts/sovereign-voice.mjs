@@ -67,11 +67,13 @@ if (existsSync(VOICE_PATH)) {
   }
 }
 
-// ---- 3. הקול (GitHub Models — נתיב-חינם-על-Actions-ציבורי; דואלי-endpoint fail-honest) ----
+// ---- 3. הקול (GitHub Models — נתיב-חינם-על-Actions-ציבורי; fail-honest) ----
+// 2026-11-02 fix: models.inference.ai.azure.com retired by GitHub (fetch-failed) — removed from defaults.
+// workflow must grant `models: read` on GITHUB_TOKEN (sovereign-voice.yml) or models.github.ai refuses.
 const TOKEN = process.env.GITHUB_TOKEN || '';
 const MODEL = process.env.SOVEREIGN_VOICE_MODEL || 'openai/gpt-4o-mini';
 const ENDPOINTS = (process.env.SOVEREIGN_VOICE_ENDPOINTS ||
-  'https://models.github.ai/inference/chat/completions,https://models.inference.ai.azure.com/chat/completions')
+  'https://models.github.ai/inference/chat/completions')
   .split(',').map(s => s.trim()).filter(Boolean);
 
 if (!TOKEN) { writeHonest('UNAVAILABLE', 'no-token (GITHUB_TOKEN missing) — כנה: בלי-אסימון-אין-קול'); process.exit(0); }
