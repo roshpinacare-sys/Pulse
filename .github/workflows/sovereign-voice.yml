@@ -1,6 +1,6 @@
 # sovereign-voice.yml — קול-הריבונות: פעימת-תרגום-המצב-לשפה-אנושית
 # חוק-האם: steem/docs/R344-SOVEREIGN-DIRECT-CHANNEL.md §3 + saos-dex DECISIONS #20
-# נתיב-חינם: Actions על-ריפו-ציבורי + GitHub Models דרך GITHUB_TOKEN (מובנה, אפס-עלות, אפס-סודות-חדשים).
+# נתיב: Actions על-ריפו-ציבורי. GitHub Models הושבת 2026-07-30 — הקול = תבנית מדוידת אפס-המצאה (או LLM חיצוני דרך env בעל-שער).
 # יושרה: הסקריפט fail-honest — כשל = status UNAVAILABLE/REJECTED כנה ב-voice.json; לעולם-לא-המצאה.
 # additive-only: workflow-חדש-נפרד — לא-נוגע-ב-heartbeat.yml/identity-guard.yml.
 
@@ -44,10 +44,10 @@ jobs:
 
       - name: speak (fail-honest — the script never invents)
         env:
-          # optional estate PAT (if the built-in GITHUB_TOKEN cannot reach GitHub Models on this runner —
-          # voice.json kept reporting models.github.ai:non-json-body while a PAT call succeeds). Zero new
-          # secrets required: falls back to the built-in token when SOVEREIGN_VOICE_PAT is absent.
-          GITHUB_TOKEN: ${{ secrets.SOVEREIGN_VOICE_PAT || secrets.GITHUB_TOKEN }}
+          # GitHub Models retired 2026-07-30 — no Models call anymore. The token is used for the
+          # voice-state commit only; the voice itself is a deterministic zero-invention template
+          # (or an owner-provided external LLM via SOVEREIGN_VOICE_API_URL/SOVEREIGN_VOICE_API_KEY env).
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/sovereign-voice.mjs
 
       - name: commit voice state (bounded rebase-retry x5, R331 pattern)
