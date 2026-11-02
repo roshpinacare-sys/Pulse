@@ -67,64 +67,56 @@ if (existsSync(VOICE_PATH)) {
   }
 }
 
-// ---- 3. הקול (GitHub Models — נתיב-חינם-על-Actions-ציבורי; fail-honest) ----
-// 2026-11-02 fix: models.inference.ai.azure.com retired by GitHub (fetch-failed) — removed from defaults.
-// workflow must grant `models: read` on GITHUB_TOKEN (sovereign-voice.yml) or models.github.ai refuses.
-const TOKEN = process.env.GITHUB_TOKEN || '';
-const MODEL = process.env.SOVEREIGN_VOICE_MODEL || 'openai/gpt-4o-mini';
-const ENDPOINTS = (process.env.SOVEREIGN_VOICE_ENDPOINTS ||
-  'https://models.github.ai/inference/chat/completions')
-  .split(',').map(s => s.trim()).filter(Boolean);
+// ---- 3. הקול — LLM חיצוני אופציונלי, ואחרת תבנית מדוידת (אפס-המצאה) ----
+// GitHub Models פרושה (2026-07-30) — אין עוד נתיב-חינם-מובנה; ברירת-המחדל קול-חי מתבסס-אך-מדידה.
+const TOKEN = process.env.SOVEREIGN_VOICE_API_KEY || process.env.GITHUB_TOKEN || '';
+const API_URL = process.env.SOVEREIGN_VOICE_API_URL || '';
+const MODEL = process.env.SOVEREIGN_VOICE_MODEL || (API_URL ? 'openai/gpt-4o-mini' : 'template/he-1 (deterministic, zero-invention)');
 
-if (!TOKEN) { writeHonest('UNAVAILABLE', 'no-token (GITHUB_TOKEN missing) — כנה: בלי-אסימון-אין-קול'); process.exit(0); }
-
-const SYSTEM = [
-  'אתה קול-הריבונות של SAOS — מתרגם מצב-ממודד לשפה-אנושית בעברית.',
-  'חוקים אבסולוטיים:',
-  '1) אסור לך להמציא, לעגל, או להכניס אף מספר שלא מופיע מילה-במילה בקלט. השתמש במספרים בדיוק כפי שניתנו.',
-  '2) אסור לך להבטיח דבר, לייעץ, או להוסיף עובדות מחוץ לקלט.',
-  '3) 2-4 משפטים קצרים, עברית, עובדתית, ללא-קישוט.',
-  '4) אם ערך-מסוים null — אמור שהוא לא-נמדד-כרגע; אל תנחש.',
-].join('\n');
-
-const USER = [
-  'תרגם את מצב-הריבונות-הממודד-הבא ל-2-4 משפטים בעברית:',
-  'קלט-ממודד (המקור-היחיד): ' + JSON.stringify(inputs),
-  openNeeds.length ? ('בקשות-פתוחות-לריבונות-מהבעלים (הזכר בקצרה, בלי להוסיף פרטים): ' + JSON.stringify(openNeeds)) : 'אין-בקשות-פתוחות.',
-].join('\n');
+function templateSummary() {
+  // חוק-אי-המצאה: רק ערכים-שזורמים מילה-במילה מקלט-הממודד; null = "לא-נמדד-כרגע".
+  const p = [];
+  p.push(inputs.gear != null
+    ? ('מצב-מנוע: גיר ' + inputs.gear + '/' + (inputs.gearsCount != null ? inputs.gearsCount : '?') + (inputs.lastVerdict ? ' (' + inputs.lastVerdict + ')' : '') + (inputs.greenStreak != null ? ' · רצף-ירוק ' + inputs.greenStreak : ''))
+    : 'מצב-מנוע: לא-נמדד-כרגע');
+  p.push(inputs.gapsOpen != null ? ('פערים-פתוחים: ' + inputs.gapsOpen) : 'פערים: לא-נמדד');
+  p.push(inputs.treasuryVerdict
+    ? ('אוצר: ' + inputs.treasuryVerdict + (inputs.treasuryOpenOrders != null ? ' · הזמנות-חיות ' + inputs.treasuryOpenOrders : ''))
+    : 'אוצר: לא-נמדד-כרגע');
+  p.push(inputs.armyVerdict
+    ? ('צבא: ' + inputs.armyVerdict + (inputs.armyRoster != null ? ' (' + inputs.armyRoster + ' ברוסטר, פעלו ' + (inputs.armyActed != null ? inputs.armyActed : '?') + ')' : ''))
+    : 'צבא: לא-נמדד-כרגע');
+  p.push('ריפואים: ' + (inputs.reposTotal != null ? inputs.reposTotal : '?') + ' (' + (inputs.reposPublic != null ? inputs.reposPublic : '?') + ' ציבוריים) · ראש-שרשרת-steem: ' + (inputs.steemHead != null ? inputs.steemHead : 'לא-נמדד') + ' · הוראות-פעילות: ' + inputs.activeDirectives + ' · בקשות-פתוחות: ' + inputs.openRequests);
+  return p.slice(0, 4).join('. ') + '. ' + p[4] + '.';
+}
 
 let summary = null, status = 'UNAVAILABLE', reason = '';
-const reasons = [];
-for (const ep of ENDPOINTS) {
-  const modelName = ep.includes('azure.com') ? MODEL.replace(/^openai\//, '') : MODEL;
+if (API_URL && TOKEN) {
+  const reasons = [];
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), 30000);
-    const res = await fetch(ep, {
-      method: 'POST',
-      signal: ctrl.signal,
+    const res = await fetch(API_URL, {
+      method: 'POST', signal: ctrl.signal,
       headers: { 'Authorization': 'Bearer ' + TOKEN, 'Content-Type': 'application/json', 'User-Agent': 'saos-sovereign-voice/1' },
-      body: JSON.stringify({
-        model: modelName, temperature: 0.2, max_tokens: 300,
-        messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: USER }],
-      }),
+      body: JSON.stringify({ model: MODEL, temperature: 0.2, max_tokens: 300, messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: USER }] }),
     });
     clearTimeout(t);
-    if (!res.ok) { reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':' + res.status); continue; }
-    const raw = await res.text();
-    const ct = (res.headers.get('content-type') || '');
-    let j = null;
-    if (ct.includes('json')) { try { j = JSON.parse(raw); } catch { j = null; } }
-    else { try { j = JSON.parse(raw); } catch { j = null; } }
-    if (!j) { reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':non-json-body(len=' + raw.length + ',head=' + raw.slice(0, 60).replace(/\s+/g, ' ') + ')'); continue; }
-    const txt = j && j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content;
-    if (typeof txt === 'string' && txt.trim().length > 10) { summary = txt.trim(); break; }
-    reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':empty-response');
-  } catch (e) {
-    reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':fetch-failed:' + (e && e.name === 'AbortError' ? 'timeout' : String(e).slice(0, 60)));
-  }
+    if (!res.ok) { reasons.push(API_URL.replace(/^https:\/\//, '').split('/')[0] + ':' + res.status); }
+    else {
+      const raw = await res.text(); let j = null;
+      try { j = JSON.parse(raw); } catch { j = null; }
+      if (!j) reasons.push(API_URL.replace(/^https:\/\//, '').split('/')[0] + ':non-json-body(len=' + raw.length + ',head=' + raw.slice(0, 60).replace(/\s+/g, ' ') + ')');
+      else {
+        const txt = j && j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content;
+        if (typeof txt === 'string' && txt.trim().length > 10) summary = txt.trim();
+        else reasons.push(API_URL.replace(/^https:\/\//, '').split('/')[0] + ':empty-response');
+      }
+    }
+  } catch (e) { reasons.push('external-llm:fetch-failed:' + (e && e.name === 'AbortError' ? 'timeout' : String(e).slice(0, 60))); }
+  if (!summary) reason = 'external-llm-fail (' + reasons.join(' | ') + ') — נופל-לתבנית-המדוידה';
 }
-if (!summary) reason = reasons.join(' | ');
+if (!summary) { summary = templateSummary(); status = 'TRUE'; }
 
 // ---- 4. חוק-אי-ההמצאה: כל-מספר-בסיכום-חייב-להיות-בקלט ----
 if (summary) {
