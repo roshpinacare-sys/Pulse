@@ -122,7 +122,8 @@ if (!summary) { summary = templateSummary(); status = 'TRUE'; }
 if (summary) {
   const inputBlob = JSON.stringify(inputs) + ' ' + JSON.stringify(openNeeds);
   const nums = summary.match(/\d[\d.,]*/g) || [];
-  const foreign = nums.filter(n => !inputBlob.includes(n.replace(/,$/, '')));
+  // תיקון רגיל: נקודה/פסיק בסוף-משפט הם דקודוקס, לא מספר-זר (רק הספרה-עצמה נבדקת בקלט)
+  const foreign = nums.filter(n => !inputBlob.includes(n.replace(/[.,]+$/, '')));
   if (foreign.length) { status = 'REJECTED'; reason = 'foreign-numbers: ' + foreign.slice(0, 5).join(','); summary = null; }
   else status = 'TRUE';
 }
