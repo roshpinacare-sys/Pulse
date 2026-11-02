@@ -116,7 +116,7 @@ for (const ep of ENDPOINTS) {
     let j = null;
     if (ct.includes('json')) { try { j = JSON.parse(raw); } catch { j = null; } }
     else { try { j = JSON.parse(raw); } catch { j = null; } }
-    if (!j) { reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':non-json-body'); continue; }
+    if (!j) { reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':non-json-body(len=' + raw.length + ',head=' + raw.slice(0, 60).replace(/\s+/g, ' ') + ')'); continue; }
     const txt = j && j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content;
     if (typeof txt === 'string' && txt.trim().length > 10) { summary = txt.trim(); break; }
     reasons.push(ep.replace(/^https:\/\//, '').split('/')[0] + ':empty-response');
