@@ -117,7 +117,33 @@ async function fjl(url) {
 const RAWC = "https://raw.githubusercontent.com/roshpinacare-sys/Console/main/dex/";
 const CDNJ = "https://cdn.jsdelivr.net/gh/roshpinacare-sys/Console@main/dex/";
 
-const S = { net: null, lanes: null, directives: [], requests: [], notes: [], voice: null, dex: DEX0, giants: null, cg: null, llama: null, loaded: false };
+const S = { net: null, lanes: null, directives: [], requests: [], notes: [], voice: null, dex: DEX0, giants: null, cg: null, llama: null, money: null, loaded: false };
+
+/* R-GAP1: money.json (Console/agents/money-watch · R39 fuel/redemption sentinel) existed and was measured
+   hourly — but GIANT never fetched it, so the home loop showed money-watch as "—". Wired now (honest: only
+   fetched values, no derivation). */
+async function loadMoney() {
+  try { S.money = await fj(RAWC + "money.json", "money", 30); }
+  catch (e1) { try { S.money = await fj(CDNJ + "money.json", "money", 30); } catch (e2) { S.money = READ("money"); } }
+}
+/* R-GAP2: measured loop rows — money-watch status + estate red-board derived only from fetched sources. */
+function moneyWatchStatus() {
+  const m = S.money; if (!m) return null;
+  const f = m.fuel || {}, r = m.redemption || {};
+  return "fuel:" + (f.ok ? "ok" : "FAIL") + " · redemption:" + (r.ok ? "ok" : "FAIL");
+}
+function redBoardStatus() {
+  const n = S.net; if (!n) return null;
+  const red = (n.actionsRedActionable || []).length, fail = (n.actionsFailing || []).length, stale = (n.stale24h || []).length;
+  return "אדום-פעיל: " + red + " · נכשלים: " + fail + " · דהויים-24h: " + stale;
+}
+/* R-GAP3: the credits book was hardcoded 0 on home/dex while the engine book itself carries creditsTotal —
+   display the live value, fall back to counting rows, never invent. */
+function creditsBook() {
+  const t = S.dex && S.dex.top;
+  if (!t) return null;
+  return (t.creditsTotal != null) ? t.creditsTotal : (t.credits || []).length;
+}
 
 async function loadDex() {
   const grab = async base => {
@@ -156,7 +182,7 @@ async function loadAll() {
     (await j("../state/sovereign-channel/directives.jsonl", fjl)) || S.directives,
     (await j("../state/sovereign-channel/requests.jsonl", fjl)) || S.requests,
     (await j("../state/sovereign-channel/notes.jsonl", fjl)) || S.notes];
-  await Promise.all([loadDex(), loadGiants(), loadCG(), loadLlama()]);
+  await Promise.all([loadDex(), loadGiants(), loadCG(), loadLlama(), loadMoney()]);
   S.loaded = true;
   const dot = $("#livedot"), txt = $("#livetxt");
   if (S.net) { txt.textContent = "חי · " + (S.net.totals ? S.net.totals.repos + " ריפואים · ספר-דקס " + AGO(S.dex.at) : "מסונכרן"); dot.className = "dot"; }
@@ -232,7 +258,7 @@ function vHome() {
         <div><div class="bignum" id="cu-ops">—</div><div class="l" style="font-size:11px;color:var(--dim)">אופרציות-שרשרת</div></div>
         <div><div class="bignum" id="cu-h">—</div><div class="l" style="font-size:11px;color:var(--dim)">גובה-שרשרת</div></div>
       </div>
-      <div class="more">ספר-קרדיטים: <b>0</b> · סימולציה: אין · הכל נגזר מהמנוע החי המאוטם בגיט (${asOf(S.dex.at)})</div>
+      <div class="more">ספר-קרדיטים: <b>${fmti(creditsBook())}</b> · סימולציה: אין · הכל נגזר מהמנוע החי המאוטם בגיט (${asOf(S.dex.at)})</div>
     </div>
     <div class="card">
       <h3><span class="ic">${ICONS.coins}</span> שוק-המטבעות-הגדולים <span class="pill p-blue">CoinGecko-live</span></h3>
@@ -268,9 +294,9 @@ function endlessLoop() {
     ["dex cloud-beat", "60 דק'", s.engine ? "חי" : "מדוד", S.dex.at],
     ["giants-beat", "1440 דק'", "ליגת-ענקים 28 משפחות", S.giants ? S.giants.asOf : "—"],
     ["Pulse heartbeat", "30 דק'", S.net && S.net.cadence ? "firing · " + S.net.cadence.lastRunAgeMin + " דק'" : "—", S.net ? S.net.generatedAt : "—"],
-    ["sovereign-voice", "30 דק'", S.voice ? (S.voice.status || "?") : "—", S.voice ? S.voice.generatedAt : "—"],
-    ["money-watch", "30 דק'", "משמרת-נתיב-כסף (fuel/redemption)", "—"],
-    ["estate-redboard", "יומי", "רשימה-אדומה-לאחוזה", "—"]
+    ["sovereign-voice", "30 דק'", S.voice ? (S.voice.status || "?") : "—", S.voice ? (S.voice.at || S.voice.generatedAt) : "—"],
+    ["money-watch", "30 דק'", moneyWatchStatus() || "משמרת-נתיב-כסף (fuel/redemption)", S.money ? S.money.publishedAt : "—"],
+    ["estate-redboard", "יומי", redBoardStatus() || "רשימה-אדומה-לאחוזה", S.net ? S.net.generatedAt : "—"]
   ];
   return `<div class="tblwrap" style="border:none"><table class="tbl"><thead><tr><th>מנוע</th><th>קצב</th><th>מצב</th><th>נמדד</th></tr></thead><tbody>
   ${rows.map(r => `<tr><td><b>${esc(r[0])}</b></td><td class="num">${esc(r[1])}</td><td>${esc(r[2])}</td><td class="num">${AGO(r[3])}</td></tr>`).join("")}
@@ -300,7 +326,7 @@ function vDex() {
   const s = st(), inc = INC(), lad = s.ladder || {}, back = s.backing || {};
   return `<div class="view">
   <div class="row" style="justify-content:space-between"><div><div class="h1">הבורסה-הריבונית <span class="gd">saos-dex · פרוטוקול</span></div>
-  <div class="sub">ספר-חי-מאוטם: 3s בלוקים · ספר-קרדיטים-0 · שימור-WSBD · כל-המספרים-מהמנוע (raw הקומיט האחרון).</div></div>${asOf(S.dex.at)}</div>
+  <div class="sub">ספר-חי-מאוטם: 3s בלוקים · ספר-קרדיטים-${fmti(creditsBook())} · שימור-WSBD · כל-המספרים-מהמנוע (raw הקומיט האחרון).</div></div>${asOf(S.dex.at)}</div>
   <div class="grid g-4" style="margin-top:13px">
     ${kpi("#" + fmti(s.height), "גובה-שרשרת", "3s בלוקים · " + (s.lastBlockAgoMs != null ? "בלוק-אחרון לפני " + (s.lastBlockAgoMs / 1000).toFixed(1) + "s" : ""), "up")}
     ${kpi(fmti(s.tps), "TPS-עכשיו", "ops סה\"כ " + fmti(s.opsTotal))}
@@ -509,11 +535,35 @@ function renderCTab(t) {
   if (t === "r") el.innerHTML = (S.requests.length ? S.requests.slice().reverse().map(msgCard).join("") : `<div class="note">הזרם-לא-נטען.</div>`);
   if (t === "n") el.innerHTML = (S.notes.length ? `<div class="scroll">${S.notes.slice().reverse().map(msgCard).join("")}</div>` : `<div class="note">אין-דוחות.</div>`);
   if (t === "v") el.innerHTML = S.voice ? `<div class="card"><h3>🗣 קול-הריבונות (translation-only · anti-invention)</h3>
-    <div class="msg"><div class="mh"><span class="pill ${S.voice.status === "OK" ? "p-ok" : "p-gold"}">${esc(S.voice.status || "?")}</span>${asOf(S.voice.generatedAt)}</div>
-    <div class="mb">${esc(S.voice.text || S.voice.body || S.voice.message || "—")}</div></div>
+    <div class="msg"><div class="mh"><span class="pill ${S.voice.status === "TRUE" ? "p-ok" : "p-gold"}">${esc(S.voice.status || "?")}</span>${asOf(S.voice.at || S.voice.generatedAt)}</div>
+    <div class="mb">${esc(S.voice.summary || S.voice.text || S.voice.body || (S.voice.status !== "TRUE" ? "אין-קול-כרגע — כנה (status: " + esc(S.voice.status || "?") + ")" : "—"))}</div></div>
     <div class="more">${S.voice.reason ? "reason: " + esc(S.voice.reason) : ""}</div></div>` : `<div class="note">voice.json לא-נטען — כנה: לא-נמדד-כאן.</div>`;
 }
 function nextId(list, pfx) { let mx = 0; list.forEach(x => { const m = /(\d+)$/.exec(x.id || ""); if (m) mx = Math.max(mx, +m[1]); }); return pfx + "-" + String(mx + 1).padStart(4, "0"); }
+/* PROTOCOL §1.2 (D-0002 · R360): closing the listed open gap "קומיט-ישיר-מהמשטח" — owner-gated direct commit.
+   The PAT lives only in the browser session (sessionStorage), never in the repo, never in saved page state. */
+function ghB64(s) {
+  const b = new TextEncoder().encode(s); let bin = "";
+  for (let i = 0; i < b.length; i += 0x8000) bin += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+async function ghAppendJsonlLine(pat, relPath, newLine, commitMsg) {
+  const api = "https://api.github.com/repos/roshpinacare-sys/Pulse/contents/" + relPath;
+  const cur = await fetch(api + "?ref=main", { headers: { "Authorization": "Bearer " + pat, "Accept": "application/vnd.github+json" } });
+  if (!cur.ok) throw new Error("read-" + cur.status);
+  const curJ = await cur.json();
+  const curText = new TextDecoder().decode(Uint8Array.from(atob((curJ.content || "").replace(/\n/g, "")), c => c.charCodeAt(0)));
+  if (curText.split("\n").map(s => s.trim()).filter(Boolean).includes(newLine)) throw new Error("השורה-כבר-בזרם (append-only)");
+  const next = ((curText && !curText.endsWith("\n")) ? curText + "\n" : curText) + newLine + "\n";
+  const put = await fetch(api, {
+    method: "PUT",
+    headers: { "Authorization": "Bearer " + pat, "Accept": "application/vnd.github+json", "Content-Type": "application/json" },
+    body: JSON.stringify({ message: commitMsg, content: ghB64(next), sha: curJ.sha, branch: "main" }),
+  });
+  if (!put.ok) throw new Error("commit-" + put.status);
+  return true;
+}
+
 function composer(mountId) {
   const nid = nextId(S.directives, "D");
   const el = $("#" + mountId);
@@ -542,10 +592,34 @@ function composer(mountId) {
     if (navigator.clipboard) navigator.clipboard.writeText(line).then(done, () => { this.textContent = "העתיקו-ידנית"; });
     else { const ta = document.createElement("textarea"); ta.value = line; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done.call(this); } catch (e) { this.textContent = "העתיקו-ידנית"; } ta.remove(); }
   };
+  if (isAdmin()) {
+    el.insertAdjacentHTML("beforeend", `
+    <div class="note" style="margin-top:12px"><b>קומיט-ישיר-מהמשטח (PROTOCOL §1.2 — פער-סגור):</b> אסימון-בעלים-עם-push-לריפו. האסימון-חי-רק-בסשן-הזה — אפס-מפתחות-בריפו ובשמירת-דף.</div>
+    <div class="row" style="margin-top:8px">
+      <input id="cz-pat" type="password" placeholder="github_pat_… / ghp_…" style="flex:1;min-width:220px;border-radius:11px;border:1px solid var(--line2);background:var(--bg2);color:var(--text);padding:10px 14px;font-size:13px" autocomplete="off">
+      <button class="btn gold" id="cz-commit" disabled>קומיט-ישיר → directives.jsonl</button>
+    </div>
+    <div class="err" id="cz-cerr"></div>`);
+    const syncCommit = () => { const p = ((($("#cz-pat") || {}).value) || "").trim(); $("#cz-commit").disabled = !(line && p.length > 20); };
+    $("#cz-pat").addEventListener("input", syncCommit);
+    $("#cz-commit").onclick = async function () {
+      const btn = this, err = $("#cz-cerr");
+      btn.disabled = true; err.textContent = "";
+      try {
+        await ghAppendJsonlLine((($("#cz-pat").value) || "").trim(), "state/sovereign-channel/directives.jsonl", line, "D (composer): owner directive via GIANT direct-commit (PROTOCOL §1.2)");
+        try { sessionStorage.setItem("giant-ghpat", ($("#cz-pat").value || "").trim()); } catch (e) { }
+        $("#cz-pat").value = "";
+        toast("ההוראה נקומטה ישירות ל-main ✓", "ok");
+      } catch (e) { err.textContent = "כשל-כנה: " + esc((e && e.message) || e); toast("כשל-קומיט", "err"); }
+      btn.disabled = false; syncCommit();
+    };
+    try { const saved = sessionStorage.getItem("giant-ghpat"); if (saved) { $("#cz-pat").value = saved; syncCommit(); } } catch (e) { }
+  }
 }
 
 function vWallet() {
   const port = (S.dex && S.dex.state) ? null : null;
+  const m = S.money || null, mf = (m && m.fuel) || {}, mpd = (mf.powerdown || {}), mr = (m && m.redemption) || {}, md = (m && m.dispatch) || {};
   return `<div class="view">
   <div class="h1">ארנק · משמורת · <span class="gd">ספרי-יתרות</span></div>
   <div class="sub">Saosmartwallet owner-gated · ספרי-הליבה חיים-במנוע · משמרת-מפתחות: אף-סוכן-לא-נוגע.</div>
@@ -560,6 +634,14 @@ function vWallet() {
       <div class="note">יתרות-הליבה (treasury+operator+arena) חיות-בספר-המנוע — התצוגה-המלאה-בספרי-המנוע: <a href="https://github.com/roshpinacare-sys/Console/tree/main/dex" target="_blank" rel="noopener">Console/dex ↗</a></div>
       <div class="more" style="margin-top:8px">גיבוי-מאגר: ${mu((st().backing || {}).WSTEEM)} WSTEEM · ${mu((st().backing || {}).WSBD)} WSBD · הכל-בחוק-שימור</div>
       <div class="note" style="margin-top:8px"><b>עקרון:</b> מספרי-יתרות-מוצגים-רק-מספרים-שניתן-לאמת-בספר. מה-שלא-ניתן-לאימות-כאן — לא-מוצג (לא-מומצא).</div>
+    </div>
+    <div class="card"><h3>💰 money-watch — נתיב-הכסף-האמיתי (R39 · fuel/redemption)</h3>
+      ${m ? `<div class="organs">
+        <div class="organ"><span class="dot"></span><span>fuel-in (${esc(mf.account || "—")})<small>steem ${fmt(mf.steem)} · sbd ${fmt(mf.sbd)} · sp ${fmt(mf.sp)} · ${mf.ok ? "ok" : "FAIL"}</small></span></div>
+        <div class="organ"><span class="dot"></span><span>powerdown-מסלול<small>${mpd.active ? "פעיל · " + fmt(mpd.rateSp) + " SP/שבוע · next " + esc(mpd.nextPayout || "—") : "לא-פעיל"}</small></span></div>
+        <div class="organ"><span class="dot"></span><span>dispatch-out<small>${esc(md.note || (md.ok ? "ok" : "FAIL"))}</small></span></div>
+        <div class="organ"><span class="dot"></span><span>redemption-out<small>${esc(mr.note || (mr.ok ? "ok" : "FAIL"))}</small></span></div>
+      </div><div class="more">${asOf(m.publishedAt)} · מקור: Console/dex/money.json · ${esc(m.engine || "")}</div>` : `<div class="note">money.json לא-נטען — כנה: לא-נמדד-כאן (הנתיב-נמדד-ב-Console/agents/money-watch).</div>`}
     </div>
   </div></div>`;
 }
@@ -759,6 +841,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   paletteInit(); route();
   await loadAll(); route();
   if (!(st().income)) { setTimeout(async () => { try { await loadDex(); route(); } catch (e) { } }, 4000); }
+  if (!S.net) { setTimeout(async () => { try { await loadAll(); route(); } catch (e) { } }, 6000); }
   setInterval(route, 180000);
   setInterval(() => { $("#clock").textContent = new Date().toISOString().slice(11, 19) + "Z"; }, 1000);
   setInterval(async () => { await loadAll(); const id = (location.hash || "").replace(/^#\//, "").split("/")[0]; if (["home", "channel", "dex", "markets", "earn", "engine", "bigcoins", "giants"].includes(id)) route(); }, 150000);
