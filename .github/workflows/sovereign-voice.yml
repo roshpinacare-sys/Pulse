@@ -44,7 +44,10 @@ jobs:
 
       - name: speak (fail-honest — the script never invents)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # optional estate PAT (if the built-in GITHUB_TOKEN cannot reach GitHub Models on this runner —
+          # voice.json kept reporting models.github.ai:non-json-body while a PAT call succeeds). Zero new
+          # secrets required: falls back to the built-in token when SOVEREIGN_VOICE_PAT is absent.
+          GITHUB_TOKEN: ${{ secrets.SOVEREIGN_VOICE_PAT || secrets.GITHUB_TOKEN }}
         run: node scripts/sovereign-voice.mjs
 
       - name: commit voice state (bounded rebase-retry x5, R331 pattern)
